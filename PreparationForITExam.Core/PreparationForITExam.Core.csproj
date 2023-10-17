@@ -1,0 +1,17 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net6.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="HtmlSanitizer" Version="8.0.723" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\PreparationForITExam.Infrastructure\PreparationForITExam.Infrastructure.csproj" />
+  </ItemGroup>
+
+</Project>
