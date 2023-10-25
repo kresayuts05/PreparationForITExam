@@ -21,10 +21,6 @@ namespace PreparationForITExam.Infrastructure.Data.Entities
         [Key]
         public int Id { get; set; }
 
-        [ForeignKey(nameof(Mon))]
-        public int MonId { get; set; }
-        public Mon Mon { get; set; }
-
         [Required]
         public string Title { get; set; }
 
@@ -39,9 +35,11 @@ namespace PreparationForITExam.Infrastructure.Data.Entities
 
         public bool IsActive { get; set; }
 
-        public ICollection<string> UsefulUrls { get; set; } = new HashSet<string>();
+        [ForeignKey(nameof(Mon))]
+        public int MonId { get; set; }
+        public Mon Mon { get; set; }
 
-        public ICollection<Material> Materials { get; set; } = new HashSet<Material>();
+        public ICollection<string> UsefulUrls { get; set; } = new HashSet<string>();//nzzz
         public ICollection<Image> Images { get; set; } = new HashSet<Image>();
     }
 }

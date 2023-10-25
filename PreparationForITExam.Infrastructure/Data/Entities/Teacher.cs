@@ -27,6 +27,9 @@ namespace PreparationForITExam.Infrastructure.Data.Entities
 
         public string AboutMe { get; set; }
 
+        public string Status { get; set; }
+        public bool IsActive { get; set; }
+
         [Required]
         [ForeignKey(nameof(User))]
         public string UserId { get; set; }
@@ -37,10 +40,7 @@ namespace PreparationForITExam.Infrastructure.Data.Entities
         public int SchoolId { get; set; }
         public School School { get; set; }
 
-        public string Status { get; set; }
-
-        public bool IsActive { get; set; }
-
-
+        public ICollection<Lesson> Lessons { get; set; } = new HashSet<Lesson>();
+        public ICollection<Exercise> Exercises { get; set; } = new HashSet<Exercise>();
     }
 }

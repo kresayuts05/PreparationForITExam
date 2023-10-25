@@ -18,22 +18,22 @@ namespace PreparationForITExam.Infrastructure.Data.Entities
         [Key]
         public int Id { get; set; }
 
-        [ForeignKey(nameof(School))]
-        public int SchoolId { get; set; }
-        public School School { get; set; }
-
         public string Speciality { get; set; }
 
         public int Grade { get; set; }
 
         public string AboutMe { get; set; }
+        public bool IsActive { get; set; }
 
         [Required]
         [ForeignKey(nameof(User))]
         public string UserId { get; set; }
         public User User { get; set; }
 
-        public bool IsActive { get; set; }
+        [Required]
+        [ForeignKey(nameof(School))]
+        public int SchoolId { get; set; }
+        public School School { get; set; }
 
         public ICollection<Exercise> FinishedExercises { get; set; } = new HashSet<Exercise>();
     }

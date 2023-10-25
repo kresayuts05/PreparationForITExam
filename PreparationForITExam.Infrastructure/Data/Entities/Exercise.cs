@@ -29,5 +29,6 @@ namespace PreparationForITExam.Infrastructure.Data.Entities
         public Lesson Lesson { get; set; }
 
         public ICollection<Material> Materials { get; set; } = new HashSet<Material>();
+        public ICollection<Student> Students { get; set; } = new HashSet<Student>();
     }
 }

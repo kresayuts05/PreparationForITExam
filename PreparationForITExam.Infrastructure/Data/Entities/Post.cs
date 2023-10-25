@@ -32,17 +32,20 @@ namespace PreparationForITExam.Infrastructure.Data.Entities
 
         public DateTime PostedOn { get; set; }
 
-        [ForeignKey(nameof(User))]
-        public string UserId { get; set; }
-        public User User { get; set; }
-
         public bool IsActive { get; set; }
 
         public string UsefulUrl { get; set; }
 
+
         [DefaultValue(0)]
         public int Likes { get; set; }
 
+
+        [ForeignKey(nameof(User))]
+        public string UserId { get; set; }
+        public User User { get; set; }
+
         public ICollection<Comment> Comments { get; set; } = new HashSet<Comment>();
+        public ICollection<Image> Images { get; set; } = new HashSet<Image>();
     }
 }

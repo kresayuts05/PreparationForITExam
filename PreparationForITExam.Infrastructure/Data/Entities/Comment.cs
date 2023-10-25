@@ -20,10 +20,6 @@ namespace PreparationForITExam.Infrastructure.Data.Entities
         [Key]
         public int Id { get; set; }
 
-        [ForeignKey(nameof(User))]
-        public string UserId { get; set; }
-        public User User { get; set; }
-
         [Required]
         public string Content { get; set; }
 
@@ -33,5 +29,9 @@ namespace PreparationForITExam.Infrastructure.Data.Entities
         public int Likes { get; set; }
 
         public bool IsActive { get; set; }
+
+        [ForeignKey(nameof(User))]
+        public string UserId { get; set; }
+        public User User { get; set; }
     }
 }

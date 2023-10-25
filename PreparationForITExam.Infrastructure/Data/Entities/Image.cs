@@ -24,8 +24,8 @@ namespace PreparationForITExam.Infrastructure.Data.Entities
         [Required]
         public bool IsActive { get; set; }
 
-        [ForeignKey(nameof(Post))]
-        public int PostId { get; set; }
-        public Post Post { get; set; }
+        //[ForeignKey(nameof(Post))]
+        //public int PostId { get; set; }
+        //public Post Post { get; set; }
     }
 }
