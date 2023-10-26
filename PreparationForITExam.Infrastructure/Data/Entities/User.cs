@@ -6,6 +6,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
+using static PreparationForITExam.Infrastructure.Data.Constants.ModelConstraints.UserConstraints;
+
 namespace PreparationForITExam.Infrastructure.Data.Entities
 {
     public class User : IdentityUser
@@ -16,19 +18,23 @@ namespace PreparationForITExam.Infrastructure.Data.Entities
         }
 
         [Required]
-        public string FirstName { get; set; }
+        [MaxLength(FirstNameMaxLength)]
+        public string FirstName { get; set; } = null!;
 
         [Required]
-        public string LastName { get; set; }
+        [MaxLength(LastNameMaxLength)]
+        public string LastName { get; set; } = null!;
 
         [Required]
-        public string City { get; set; }
+        [MaxLength(CityMaxLength)]
+        public string City { get; set; } = null!;
 
         public string? ProfilePictureUrl { get; set; }
 
         public bool IsActive { get; set; }
 
         public ICollection<Post> Posts { get; set; } = new HashSet<Post>();
+
         public ICollection<Material> Materials { get; set; } = new HashSet<Material>();
     }
 }

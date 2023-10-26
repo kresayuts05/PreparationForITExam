@@ -8,6 +8,8 @@ using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
 
+using static PreparationForITExam.Infrastructure.Data.Constants.ModelConstraints.NewsConstraints;
+
 namespace PreparationForITExam.Infrastructure.Data.Entities
 {
     public class News
@@ -22,10 +24,12 @@ namespace PreparationForITExam.Infrastructure.Data.Entities
         public int Id { get; set; }
 
         [Required]
-        public string Title { get; set; }
+        [MaxLength(TitleMaxLength)]
+        public string Title { get; set; } = null!;
 
         [Required]
-        public string Description { get; set; }
+        [MaxLength(DescriptionMaxLength)]
+        public string Description { get; set; } = null!;
 
         [Required]
         [DefaultValue(0)]
@@ -35,11 +39,12 @@ namespace PreparationForITExam.Infrastructure.Data.Entities
 
         public bool IsActive { get; set; }
 
+        [Required]
         [ForeignKey(nameof(Mon))]
         public int MonId { get; set; }
-        public Mon Mon { get; set; }
+        public MonUser Mon { get; set; }
 
-        public ICollection<string> UsefulUrls { get; set; } = new HashSet<string>();//nzzz
+        public string? UsefulUrls { get; set; }
         public ICollection<Image> Images { get; set; } = new HashSet<Image>();
     }
 }

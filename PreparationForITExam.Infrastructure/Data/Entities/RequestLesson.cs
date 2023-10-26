@@ -6,37 +6,40 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-using static PreparationForITExam.Infrastructure.Data.Constants.ModelConstraints.ExerciseConstraints;
-
+using static PreparationForITExam.Infrastructure.Data.Constants.ModelConstraints.RequestConstraints;
 
 namespace PreparationForITExam.Infrastructure.Data.Entities
 {
-    public class Exercise
+    public class RequestLesson
     {
-        public Exercise()
+        public RequestLesson()
         {
-            this.IsActive = true;
+            this.IsActive= true;
         }
 
         [Key]
         public int Id { get; set; }
 
         [Required]
-        [MaxLength(TitleMaxLength)]
-        public string Title { get; set; } = null!;
-
-        [Required]
-        [MaxLength(ContentMaxLength)]
-        public string Content { get; set; }
-
-        public bool IsActive { get; set; }
+        [ForeignKey(nameof(Teacher))]
+        public int TeacherId { get; set; }
+        public Teacher Teacher { get; set; }
 
         [Required]
         [ForeignKey(nameof(Lesson))]
         public int LessonId { get; set; }
         public Lesson Lesson { get; set; }
 
+        [Required]
+        [MaxLength(ChangedContentMaxLength)]
+        public string ChangedContent { get; set; }
+
+        [Required]
+        [MaxLength(SuggestionMaxLength)]
+        public string Suggestion { get; set; }
+
+        public bool IsActive { get; set; }
+
         public ICollection<Material> Materials { get; set; } = new HashSet<Material>();
-        public ICollection<Student> Students { get; set; } = new HashSet<Student>();
     }
 }

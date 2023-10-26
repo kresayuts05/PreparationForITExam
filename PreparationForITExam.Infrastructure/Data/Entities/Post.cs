@@ -8,6 +8,8 @@ using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 
+using static PreparationForITExam.Infrastructure.Data.Constants.ModelConstraints.PostConstraints;
+
 namespace PreparationForITExam.Infrastructure.Data.Entities
 {
     public class Post
@@ -22,13 +24,16 @@ namespace PreparationForITExam.Infrastructure.Data.Entities
         public int Id { get; set; }
 
         [Required]
-        public string Title { get; set; }
+        [MaxLength(TitleMaxLength)]
+        public string Title { get; set; } = null!;
 
         [Required]
-        public string ShortDescription { get; set; }
+        [MaxLength(ShortDescriptionMaxLength)]
+        public string ShortDescription { get; set; } = null!;
 
         [Required]
-        public string Description { get; set; }
+        [MaxLength(DescriptionMaxLength)]
+        public string Description { get; set; } = null!;
 
         public DateTime PostedOn { get; set; }
 
@@ -36,16 +41,14 @@ namespace PreparationForITExam.Infrastructure.Data.Entities
 
         public string UsefulUrl { get; set; }
 
-
         [DefaultValue(0)]
         public int Likes { get; set; }
-
 
         [ForeignKey(nameof(User))]
         public string UserId { get; set; }
         public User User { get; set; }
 
-        public ICollection<Comment> Comments { get; set; } = new HashSet<Comment>();
+        public ICollection<PostComment> Comments { get; set; } = new HashSet<PostComment>();
         public ICollection<Image> Images { get; set; } = new HashSet<Image>();
     }
 }

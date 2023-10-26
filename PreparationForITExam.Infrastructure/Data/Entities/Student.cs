@@ -6,6 +6,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
+using static PreparationForITExam.Infrastructure.Data.Constants.ModelConstraints.StudentConstraints;
+
 namespace PreparationForITExam.Infrastructure.Data.Entities
 {
     public class Student
@@ -18,11 +20,17 @@ namespace PreparationForITExam.Infrastructure.Data.Entities
         [Key]
         public int Id { get; set; }
 
-        public string Speciality { get; set; }
+        [Required]
+        [MaxLength(SpecialtyMaxLength)]
+        public string Speciality { get; set; } = null!;
 
+        [Required]
+        [Range(GradeMinValue, GradeMaxValue)]
         public int Grade { get; set; }
 
+        [MaxLength(AboutMeMaxLength)]
         public string AboutMe { get; set; }
+
         public bool IsActive { get; set; }
 
         [Required]

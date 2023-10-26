@@ -5,6 +5,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
+using static PreparationForITExam.Infrastructure.Data.Constants.ModelConstraints.SchoolConstraints;
+
+
 namespace PreparationForITExam.Infrastructure.Data.Entities
 {
     public class School
@@ -18,10 +21,12 @@ namespace PreparationForITExam.Infrastructure.Data.Entities
         public int Id { get; set; }
 
         [Required]
-        public string Name { get; set; }
+        [MaxLength(NameMaxLength)]
+        public string Name { get; set; } = null!;
 
         [Required]
-        public string  City { get; set; }
+        [MaxLength(CityMaxLength)]
+        public string  City { get; set; } = null!;
 
         public bool IsActive { get; set; }
     }

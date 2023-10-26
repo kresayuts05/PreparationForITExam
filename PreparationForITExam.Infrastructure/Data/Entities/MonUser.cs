@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
@@ -9,29 +8,24 @@ using System.Threading.Tasks;
 
 namespace PreparationForITExam.Infrastructure.Data.Entities
 {
-    public class Comment
+    public class MonUser
     {
-        public Comment()
+        public MonUser()
         {
-            this.IsActive = true;
-            this.PostedOn= DateTime.Now;
+            this.IsActive= true;
         }
 
         [Key]
         public int Id { get; set; }
 
         [Required]
-        public string Content { get; set; }
-
-        public DateTime PostedOn { get; set; }
-
-        [DefaultValue(0)]
-        public int Likes { get; set; }
-
-        public bool IsActive { get; set; }
-
         [ForeignKey(nameof(User))]
         public string UserId { get; set; }
         public User User { get; set; }
+
+        public bool IsActive { get; set; }
+
+        public ICollection<News> News { get; set; }
+        public ICollection<Lesson> Lessons { get; set; }
     }
 }

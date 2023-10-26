@@ -18,9 +18,8 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Data\Common\" />
     <Folder Include="Data\Configurations\" />
-    <Folder Include="Data\Constants\" />
+    <Folder Include="Migrations\" />
   </ItemGroup>
 
 </Project>
