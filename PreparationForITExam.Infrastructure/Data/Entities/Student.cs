@@ -20,11 +20,9 @@ namespace PreparationForITExam.Infrastructure.Data.Entities
         [Key]
         public int Id { get; set; }
 
-        [Required]
         [MaxLength(SpecialtyMaxLength)]
         public string Speciality { get; set; } = null!;
 
-        [Required]
         [Range(GradeMinValue, GradeMaxValue)]
         public int Grade { get; set; }
 
