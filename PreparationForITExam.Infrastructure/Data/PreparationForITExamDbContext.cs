@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
+using PreparationForITExam.Infrastructure.Data.Configurations;
 using PreparationForITExam.Infrastructure.Data.Entities;
 using System;
 using System.Collections.Generic;
@@ -32,6 +33,9 @@ namespace PreparationForITExam.Infrastructure.Data
         public DbSet<RequestLesson> RequestsLessons { get; set; }
         public DbSet<RequestExercise> RequestsExercises { get; set; }
         public DbSet<Material> Materials { get; set; }
+        public DbSet<SectionOfCurricular> SectionsOfCurricular { get; set; }
+        public DbSet<Test> Tests { get; set; }
+        public DbSet<Question> Questions { get; set; }
 
 
         protected override void OnModelCreating(ModelBuilder builder)
@@ -50,6 +54,8 @@ namespace PreparationForITExam.Infrastructure.Data
                 .HasOne(e => e.Lesson)
                 .WithOne()
                 .OnDelete(DeleteBehavior.Restrict);
+
+            builder.ApplyConfiguration(new RoleConfiguration());
 
             base.OnModelCreating(builder);
         }

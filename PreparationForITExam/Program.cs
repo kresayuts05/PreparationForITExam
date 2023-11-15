@@ -1,3 +1,4 @@
+using CloudinaryDotNet;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
@@ -40,7 +41,7 @@ public class Program
         });
 
         builder.Services.AddApplicationServices();
-       // ConfigureCloudaryService(builder.Services, builder.Configuration);
+        ConfigureCloudaryService(builder.Services, builder.Configuration);
 
         builder.Services.AddResponseCaching();
 
@@ -73,5 +74,20 @@ public class Program
         app.MapRazorPages();
 
         app.Run();
+    }
+
+    //Cloudinary api
+    private static void ConfigureCloudaryService(IServiceCollection services, IConfiguration configuration)
+    {
+        var cloudName = configuration.GetValue<string>("AccountSettings:CloudName");
+        var apiKey = configuration.GetValue<string>("AccountSettings:ApiKey");
+        var apiSecret = configuration.GetValue<string>("AccountSettings:ApiSecret");
+
+        if (new[] { cloudName, apiKey, apiSecret }.Any(string.IsNullOrWhiteSpace))
+        {
+            throw new ArgumentException("Please specify your Cloudinary account Information");
+        }
+
+        services.AddSingleton(new Cloudinary(new Account(cloudName, apiKey, apiSecret)));
     }
 }

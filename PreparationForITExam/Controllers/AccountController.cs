@@ -2,8 +2,8 @@
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using PreparationForITExam.Core.Contracts;
+using PreparationForITExam.Core.Models.Account;
 using PreparationForITExam.Infrastructure.Data.Entities;
-using PreparationForITExam.Models.Account;
 
 namespace PreparationForITExam.Controllers
 {
@@ -31,7 +31,7 @@ namespace PreparationForITExam.Controllers
 
         [HttpGet]
         [AllowAnonymous]
-        public IActionResult Register()
+        public IActionResult RegisterAsStudent()
         {
             var model = new RegisterViewModel();
 

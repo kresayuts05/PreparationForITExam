@@ -1,0 +1,62 @@
+﻿@model RegisterViewModel
+@{
+}
+
+<div class="form_wrapper">
+    <div class="form_container">
+        <div class="title_container">
+            <h2>Регистрация за ученик</h2>
+        </div>
+        <div class="row clearfix">
+            <div class="">
+                <form method="post" enctype="multipart/form-data">
+                    <div class="row clearfix">
+                        <div class="input_field">
+                            <span asp-validation-for="FirstName" class="text-white"></span>
+                            <input type="text" class="form-control" placeholder="Самуил*" required />
+                        </div>
+                        <div class="input_field">
+                            <span asp-validation-for="LastName" class="text-white"></span>
+                            <input type="text" class="form-control" placeholder="Иванов*" required />
+                        </div>
+                        <div class="input_field">
+                            <span asp-validation-for="Email"></span>
+                            <input type="email" class="form-control" placeholder="samuilvanov@gmail.com*" required />
+                        </div>
+                        <div class="input_field">
+                            <span asp-validation-for="Password"></span>
+                            <input type="password" class="form-control" placeholder="Парола*" required />
+                        </div>
+                        <div class="input_field">
+                            <input asp-for="PasswordRepeat" class="form-control" placeholder="Потвърди парола*">
+                            <span asp-validation-for="PasswordRepeat" class="text-white"></span>
+                        </div>
+                        <div class="input_field">
+                            <span asp-validation-for="PhoneNumber"></span>
+                            <input type="text" class="form-control" placeholder="+359886121260*" required />
+                        </div>
+                        <div class="input_field">
+                            <span asp-validation-for="City"></span>
+                            <input type="text" class="form-control" placeholder="Казанлък" />
+                        </div>
+                        <div class="input_field">
+                            <span asp-validation-for="SchoolName"></span>
+                            <input type="text" class="form-control" placeholder="ППМГ &quotНикола Обрешков&quot" />
+                        </div>
+                    </div>
+
+                    <input class="button" type="submit" value="Регистрирай се" />
+                </form>
+            </div>
+        </div>
+    </div>
+    <div class="center">
+        <a asp-controller="Account" asp-action="RegisterAsTeacher" class="credit">Регистрация като <b>Учител</b></a>
+        <br>
+        <a asp-controller="Account" asp-action="Login" class="credit">Вече имате акаунт? <b>Вход</b></a>
+    </div>
+</div>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}

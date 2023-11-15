@@ -36,7 +36,6 @@ namespace PreparationForITExam.Infrastructure.Data.Entities
         public string UserId { get; set; }
         public User User { get; set; }
 
-        [Required]
         [ForeignKey(nameof(School))]
         public int SchoolId { get; set; }
         public School School { get; set; }

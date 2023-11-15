@@ -57,8 +57,8 @@ namespace PreparationForITExam.Infrastructure.Data.Constants
             public const int NameMaxLength = 60;
             public const int NameMinLength = 2;
 
-            public const int CityMaxLength = 169;
-            public const int CityMinLength = 1;
+            public const int CitySchoolMaxLength = 169;
+            public const int CitySchoolMinLength = 1;
         }
 
         public static class CommentConstraints
@@ -122,6 +122,30 @@ namespace PreparationForITExam.Infrastructure.Data.Constants
 
             public const int ContentMaxLength = 4000;
             public const int ContentMinLength = 2;
+        }
+
+        public static class SectionOfCurricularConstraints
+        {
+            public const int TitleMaxLength = 100;
+            public const int TitleMinLength = 2;
+
+            public const int ContentMaxLength = 4000;
+            public const int ContentMinLength = 2;
+        }
+
+        public static class QuestionConstraints
+        {
+            public const int QuestionMaxLength = 250;
+            public const int QuestionMinLength = 3;
+
+            public const int CorrectAnswerMaxLength = 150;
+            public const int CorrectAnswerMinLength = 2;
+
+            public const int WrongAnswerMaxLength = 500;
+            public const int WrongAnswerMinLength = 2; 
+            
+            public const int PointsMaxValue = 500;
+            public const int PointsMinValue = 2;
         }
     }
 }

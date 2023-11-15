@@ -5,7 +5,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace PreparationForITExam.Infrastructure.Migrations
 {
-    public partial class Init : Migration
+    public partial class init : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -66,6 +66,20 @@ namespace PreparationForITExam.Infrastructure.Migrations
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_School", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "SectionsOfCurricular",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    Title = table.Column<string>(type: "nvarchar(100)", maxLength: 100, nullable: false),
+                    IsActive = table.Column<bool>(type: "bit", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_SectionsOfCurricular", x => x.Id);
                 });
 
             migrationBuilder.CreateTable(
@@ -306,6 +320,35 @@ namespace PreparationForITExam.Infrastructure.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "Tests",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    UserId = table.Column<string>(type: "nvarchar(450)", nullable: false),
+                    SectionOfCurricularId = table.Column<int>(type: "int", nullable: false),
+                    TotalPoints = table.Column<int>(type: "int", nullable: false),
+                    CreatedOn = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    IsActive = table.Column<bool>(type: "bit", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Tests", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_Tests_AspNetUsers_UserId",
+                        column: x => x.UserId,
+                        principalTable: "AspNetUsers",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_Tests_SectionsOfCurricular_SectionOfCurricularId",
+                        column: x => x.SectionOfCurricularId,
+                        principalTable: "SectionsOfCurricular",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "News",
                 columns: table => new
                 {
@@ -357,6 +400,30 @@ namespace PreparationForITExam.Infrastructure.Migrations
                         column: x => x.PostId,
                         principalTable: "Posts",
                         principalColumn: "Id");
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Questions",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    QuestionContent = table.Column<string>(type: "nvarchar(250)", maxLength: 250, nullable: false),
+                    CorrectAnswer = table.Column<string>(type: "nvarchar(150)", maxLength: 150, nullable: false),
+                    WrongAnswers = table.Column<string>(type: "nvarchar(500)", maxLength: 500, nullable: false),
+                    Points = table.Column<int>(type: "int", nullable: false),
+                    IsActive = table.Column<bool>(type: "bit", nullable: false),
+                    TestId = table.Column<int>(type: "int", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Questions", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_Questions_Tests_TestId",
+                        column: x => x.TestId,
+                        principalTable: "Tests",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateTable(
@@ -441,7 +508,8 @@ namespace PreparationForITExam.Infrastructure.Migrations
                     Group = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: false),
                     Content = table.Column<string>(type: "nvarchar(4000)", maxLength: 4000, nullable: false),
                     IsActive = table.Column<bool>(type: "bit", nullable: false),
-                    ExerciseId = table.Column<int>(type: "int", nullable: false)
+                    ExerciseId = table.Column<int>(type: "int", nullable: false),
+                    SectionOfCurricularId = table.Column<int>(type: "int", nullable: true)
                 },
                 constraints: table =>
                 {
@@ -452,6 +520,11 @@ namespace PreparationForITExam.Infrastructure.Migrations
                         principalTable: "Exercises",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_Lessons_SectionsOfCurricular_SectionOfCurricularId",
+                        column: x => x.SectionOfCurricularId,
+                        principalTable: "SectionsOfCurricular",
+                        principalColumn: "Id");
                 });
 
             migrationBuilder.CreateTable(
@@ -606,6 +679,17 @@ namespace PreparationForITExam.Infrastructure.Migrations
                         principalColumn: "Id");
                 });
 
+            migrationBuilder.InsertData(
+                table: "AspNetRoles",
+                columns: new[] { "Id", "ConcurrencyStamp", "Name", "NormalizedName" },
+                values: new object[,]
+                {
+                    { "0f761db2-ab55-416c-83b9-70abded3d908", "c970ee60-d087-462f-a93c-92315106825b", "Administrator", "ADMINISTRATOR" },
+                    { "71281cf3-9730-4d7e-acbb-213edee8291c", "50d81525-7c45-4a4c-92e4-311c17d8c744", "Teacher", "TEACHER" },
+                    { "e66d730b-bcf1-41b5-b7e0-3e66056e61d9", "7ea10baa-9bdb-4635-a15a-9f6b84da368e", "Student", "STUDENT" },
+                    { "fe750b82-6fe9-472c-bdc5-61f5433d429e", "7d7aefc0-f169-4b87-beab-b349a2fe61fd", "MonUser", "MONUSER" }
+                });
+
             migrationBuilder.CreateIndex(
                 name: "IX_AspNetRoleClaims_RoleId",
                 table: "AspNetRoleClaims",
@@ -682,6 +766,11 @@ namespace PreparationForITExam.Infrastructure.Migrations
                 column: "ExerciseId");
 
             migrationBuilder.CreateIndex(
+                name: "IX_Lessons_SectionOfCurricularId",
+                table: "Lessons",
+                column: "SectionOfCurricularId");
+
+            migrationBuilder.CreateIndex(
                 name: "IX_LessonTeacher_TeachersId",
                 table: "LessonTeacher",
                 column: "TeachersId");
@@ -742,6 +831,11 @@ namespace PreparationForITExam.Infrastructure.Migrations
                 column: "UserId");
 
             migrationBuilder.CreateIndex(
+                name: "IX_Questions_TestId",
+                table: "Questions",
+                column: "TestId");
+
+            migrationBuilder.CreateIndex(
                 name: "IX_RequestsExercises_ExerciseId",
                 table: "RequestsExercises",
                 column: "ExerciseId");
@@ -779,6 +873,16 @@ namespace PreparationForITExam.Infrastructure.Migrations
             migrationBuilder.CreateIndex(
                 name: "IX_Teachers_UserId",
                 table: "Teachers",
+                column: "UserId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Tests_SectionOfCurricularId",
+                table: "Tests",
+                column: "SectionOfCurricularId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Tests_UserId",
+                table: "Tests",
                 column: "UserId");
 
             migrationBuilder.AddForeignKey(
@@ -837,6 +941,9 @@ namespace PreparationForITExam.Infrastructure.Migrations
                 name: "PostComments");
 
             migrationBuilder.DropTable(
+                name: "Questions");
+
+            migrationBuilder.DropTable(
                 name: "AspNetRoles");
 
             migrationBuilder.DropTable(
@@ -855,6 +962,9 @@ namespace PreparationForITExam.Infrastructure.Migrations
                 name: "Posts");
 
             migrationBuilder.DropTable(
+                name: "Tests");
+
+            migrationBuilder.DropTable(
                 name: "MonUsers");
 
             migrationBuilder.DropTable(
@@ -865,6 +975,9 @@ namespace PreparationForITExam.Infrastructure.Migrations
 
             migrationBuilder.DropTable(
                 name: "Exercises");
+
+            migrationBuilder.DropTable(
+                name: "SectionsOfCurricular");
 
             migrationBuilder.DropTable(
                 name: "Teachers");

@@ -92,6 +92,36 @@ namespace PreparationForITExam.Infrastructure.Migrations
                         .HasFilter("[NormalizedName] IS NOT NULL");
 
                     b.ToTable("AspNetRoles", (string)null);
+
+                    b.HasData(
+                        new
+                        {
+                            Id = "0f761db2-ab55-416c-83b9-70abded3d908",
+                            ConcurrencyStamp = "c970ee60-d087-462f-a93c-92315106825b",
+                            Name = "Administrator",
+                            NormalizedName = "ADMINISTRATOR"
+                        },
+                        new
+                        {
+                            Id = "e66d730b-bcf1-41b5-b7e0-3e66056e61d9",
+                            ConcurrencyStamp = "7ea10baa-9bdb-4635-a15a-9f6b84da368e",
+                            Name = "Student",
+                            NormalizedName = "STUDENT"
+                        },
+                        new
+                        {
+                            Id = "71281cf3-9730-4d7e-acbb-213edee8291c",
+                            ConcurrencyStamp = "50d81525-7c45-4a4c-92e4-311c17d8c744",
+                            Name = "Teacher",
+                            NormalizedName = "TEACHER"
+                        },
+                        new
+                        {
+                            Id = "fe750b82-6fe9-472c-bdc5-61f5433d429e",
+                            ConcurrencyStamp = "7d7aefc0-f169-4b87-beab-b349a2fe61fd",
+                            Name = "MonUser",
+                            NormalizedName = "MONUSER"
+                        });
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
@@ -295,6 +325,9 @@ namespace PreparationForITExam.Infrastructure.Migrations
                     b.Property<bool>("IsActive")
                         .HasColumnType("bit");
 
+                    b.Property<int?>("SectionOfCurricularId")
+                        .HasColumnType("int");
+
                     b.Property<string>("Title")
                         .IsRequired()
                         .HasMaxLength(60)
@@ -303,6 +336,8 @@ namespace PreparationForITExam.Infrastructure.Migrations
                     b.HasKey("Id");
 
                     b.HasIndex("ExerciseId");
+
+                    b.HasIndex("SectionOfCurricularId");
 
                     b.ToTable("Lessons");
                 });
@@ -538,6 +573,45 @@ namespace PreparationForITExam.Infrastructure.Migrations
                     b.ToTable("PostComments");
                 });
 
+            modelBuilder.Entity("PreparationForITExam.Infrastructure.Data.Entities.Question", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
+
+                    b.Property<string>("CorrectAnswer")
+                        .IsRequired()
+                        .HasMaxLength(150)
+                        .HasColumnType("nvarchar(150)");
+
+                    b.Property<bool>("IsActive")
+                        .HasColumnType("bit");
+
+                    b.Property<int>("Points")
+                        .HasColumnType("int");
+
+                    b.Property<string>("QuestionContent")
+                        .IsRequired()
+                        .HasMaxLength(250)
+                        .HasColumnType("nvarchar(250)");
+
+                    b.Property<int>("TestId")
+                        .HasColumnType("int");
+
+                    b.Property<string>("WrongAnswers")
+                        .IsRequired()
+                        .HasMaxLength(500)
+                        .HasColumnType("nvarchar(500)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("TestId");
+
+                    b.ToTable("Questions");
+                });
+
             modelBuilder.Entity("PreparationForITExam.Infrastructure.Data.Entities.RequestExercise", b =>
                 {
                     b.Property<int>("Id")
@@ -636,6 +710,27 @@ namespace PreparationForITExam.Infrastructure.Migrations
                     b.ToTable("School");
                 });
 
+            modelBuilder.Entity("PreparationForITExam.Infrastructure.Data.Entities.SectionOfCurricular", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
+
+                    b.Property<bool>("IsActive")
+                        .HasColumnType("bit");
+
+                    b.Property<string>("Title")
+                        .IsRequired()
+                        .HasMaxLength(100)
+                        .HasColumnType("nvarchar(100)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("SectionsOfCurricular");
+                });
+
             modelBuilder.Entity("PreparationForITExam.Infrastructure.Data.Entities.Student", b =>
                 {
                     b.Property<int>("Id")
@@ -723,6 +818,39 @@ namespace PreparationForITExam.Infrastructure.Migrations
                     b.HasIndex("UserId");
 
                     b.ToTable("Teachers");
+                });
+
+            modelBuilder.Entity("PreparationForITExam.Infrastructure.Data.Entities.Test", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
+
+                    b.Property<DateTime>("CreatedOn")
+                        .HasColumnType("datetime2");
+
+                    b.Property<bool>("IsActive")
+                        .HasColumnType("bit");
+
+                    b.Property<int>("SectionOfCurricularId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("TotalPoints")
+                        .HasColumnType("int");
+
+                    b.Property<string>("UserId")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(450)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("SectionOfCurricularId");
+
+                    b.HasIndex("UserId");
+
+                    b.ToTable("Tests");
                 });
 
             modelBuilder.Entity("PreparationForITExam.Infrastructure.Data.Entities.User", b =>
@@ -943,6 +1071,10 @@ namespace PreparationForITExam.Infrastructure.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
+                    b.HasOne("PreparationForITExam.Infrastructure.Data.Entities.SectionOfCurricular", null)
+                        .WithMany("Lessons")
+                        .HasForeignKey("SectionOfCurricularId");
+
                     b.Navigation("Exercise");
                 });
 
@@ -1032,6 +1164,17 @@ namespace PreparationForITExam.Infrastructure.Migrations
                     b.Navigation("User");
                 });
 
+            modelBuilder.Entity("PreparationForITExam.Infrastructure.Data.Entities.Question", b =>
+                {
+                    b.HasOne("PreparationForITExam.Infrastructure.Data.Entities.Test", "Test")
+                        .WithMany("Questions")
+                        .HasForeignKey("TestId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Test");
+                });
+
             modelBuilder.Entity("PreparationForITExam.Infrastructure.Data.Entities.RequestExercise", b =>
                 {
                     b.HasOne("PreparationForITExam.Infrastructure.Data.Entities.Exercise", "Exercise")
@@ -1108,6 +1251,25 @@ namespace PreparationForITExam.Infrastructure.Migrations
                     b.Navigation("User");
                 });
 
+            modelBuilder.Entity("PreparationForITExam.Infrastructure.Data.Entities.Test", b =>
+                {
+                    b.HasOne("PreparationForITExam.Infrastructure.Data.Entities.SectionOfCurricular", "SectionOfCurricular")
+                        .WithMany("Tests")
+                        .HasForeignKey("SectionOfCurricularId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("PreparationForITExam.Infrastructure.Data.Entities.User", "User")
+                        .WithMany()
+                        .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("SectionOfCurricular");
+
+                    b.Navigation("User");
+                });
+
             modelBuilder.Entity("PreparationForITExam.Infrastructure.Data.Entities.Exercise", b =>
                 {
                     b.Navigation("Materials");
@@ -1145,9 +1307,21 @@ namespace PreparationForITExam.Infrastructure.Migrations
                     b.Navigation("Materials");
                 });
 
+            modelBuilder.Entity("PreparationForITExam.Infrastructure.Data.Entities.SectionOfCurricular", b =>
+                {
+                    b.Navigation("Lessons");
+
+                    b.Navigation("Tests");
+                });
+
             modelBuilder.Entity("PreparationForITExam.Infrastructure.Data.Entities.Teacher", b =>
                 {
                     b.Navigation("Exercises");
+                });
+
+            modelBuilder.Entity("PreparationForITExam.Infrastructure.Data.Entities.Test", b =>
+                {
+                    b.Navigation("Questions");
                 });
 
             modelBuilder.Entity("PreparationForITExam.Infrastructure.Data.Entities.User", b =>

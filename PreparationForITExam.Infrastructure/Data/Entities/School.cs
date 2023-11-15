@@ -25,7 +25,7 @@ namespace PreparationForITExam.Infrastructure.Data.Entities
         public string Name { get; set; } = null!;
 
         [Required]
-        [MaxLength(CityMaxLength)]
+        [MaxLength(CitySchoolMaxLength)]
         public string  City { get; set; } = null!;
 
         public bool IsActive { get; set; }
