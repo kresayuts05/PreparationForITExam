@@ -25,6 +25,7 @@ namespace PreparationForITExam.Infrastructure.Data
         public DbSet<MonUser> MonUsers { get; set; }
         public DbSet<Image> Images { get; set; }
         public DbSet<Post> Posts { get; set; }
+        public DbSet<School> Schools { get; set; }
         public DbSet<PostComment> PostComments { get; set; }
         public DbSet<Lesson> Lessons { get; set; }
         public DbSet<Exercise> Exercises { get; set; }

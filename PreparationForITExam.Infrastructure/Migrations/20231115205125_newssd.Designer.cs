@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using PreparationForITExam.Infrastructure.Data;
 
@@ -11,9 +12,10 @@ using PreparationForITExam.Infrastructure.Data;
 namespace PreparationForITExam.Infrastructure.Migrations
 {
     [DbContext(typeof(PreparationForITExamDbContext))]
-    partial class PreparationForITExamDbContextModelSnapshot : ModelSnapshot
+    [Migration("20231115205125_newssd")]
+    partial class newssd
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -97,28 +99,28 @@ namespace PreparationForITExam.Infrastructure.Migrations
                         new
                         {
                             Id = "0f761db2-ab55-416c-83b9-70abded3d908",
-                            ConcurrencyStamp = "6e66dc87-faf8-42ef-88ab-97a83a451d5b",
+                            ConcurrencyStamp = "59bef803-59bb-4537-890f-ab41fa78a309",
                             Name = "Administrator",
                             NormalizedName = "ADMINISTRATOR"
                         },
                         new
                         {
                             Id = "e66d730b-bcf1-41b5-b7e0-3e66056e61d9",
-                            ConcurrencyStamp = "8052fe2e-e4fd-4d59-81b7-f6fdfc9eee1a",
+                            ConcurrencyStamp = "453b4055-b933-4828-8298-454c34891611",
                             Name = "Student",
                             NormalizedName = "STUDENT"
                         },
                         new
                         {
                             Id = "71281cf3-9730-4d7e-acbb-213edee8291c",
-                            ConcurrencyStamp = "ef6fe581-88d2-4e85-956e-8172e0e431ed",
+                            ConcurrencyStamp = "ac3ca9fe-f279-4ce7-a8b2-15237be2ad25",
                             Name = "Teacher",
                             NormalizedName = "TEACHER"
                         },
                         new
                         {
                             Id = "fe750b82-6fe9-472c-bdc5-61f5433d429e",
-                            ConcurrencyStamp = "a0213fe0-992f-4f99-811a-f2b51a1a0c24",
+                            ConcurrencyStamp = "d26f867c-b313-4f2b-9461-ee44b80870f5",
                             Name = "MonUser",
                             NormalizedName = "MONUSER"
                         });
@@ -778,6 +780,7 @@ namespace PreparationForITExam.Infrastructure.Migrations
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
 
                     b.Property<string>("AboutMe")
+                        .IsRequired()
                         .HasMaxLength(300)
                         .HasColumnType("nvarchar(300)");
 
@@ -800,6 +803,7 @@ namespace PreparationForITExam.Infrastructure.Migrations
                         .HasColumnType("nvarchar(50)");
 
                     b.Property<string>("University")
+                        .IsRequired()
                         .HasMaxLength(60)
                         .HasColumnType("nvarchar(60)");
 

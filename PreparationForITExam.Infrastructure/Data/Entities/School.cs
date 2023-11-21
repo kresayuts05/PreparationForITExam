@@ -29,5 +29,9 @@ namespace PreparationForITExam.Infrastructure.Data.Entities
         public string  City { get; set; } = null!;
 
         public bool IsActive { get; set; }
+
+        public ICollection<Student> Students { get; set; } = new HashSet<Student>();
+
+        public ICollection<Teacher> Teachers { get; set; } = new HashSet<Teacher>();
     }
 }

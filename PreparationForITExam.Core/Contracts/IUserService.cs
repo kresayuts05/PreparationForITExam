@@ -8,5 +8,6 @@ namespace PreparationForITExam.Core.Contracts
 {
     public interface IUserService
     {
+        Task<bool> UserByEmailExists(string email);
     }
 }

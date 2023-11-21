@@ -6,8 +6,8 @@ using System.Threading.Tasks;
 
 namespace PreparationForITExam.Core.Contracts
 {
-    public interface IStudentService
+    public interface ISchoolService
     {
-        Task Create(string userId);
+        Task<int> GetSchoolByNameAndCity(string schoolName, string city);
     }
 }

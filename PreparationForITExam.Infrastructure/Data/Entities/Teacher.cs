@@ -30,12 +30,11 @@ namespace PreparationForITExam.Infrastructure.Data.Entities
         [MaxLength(SubjectMaxLength)]
         public string Subject { get; set; } = null!;
 
-        [Required]
         [MaxLength(UniversityMaxLength)]
-        public string University { get; set; } = null!;
+        public string? University { get; set; } = null!;
 
         [MaxLength(AboutMeMaxLength)]
-        public string AboutMe { get; set; }
+        public string? AboutMe { get; set; }
 
         [EnumDataType(typeof(TeacherStatusEnum))]
         public string Status { get; set; }

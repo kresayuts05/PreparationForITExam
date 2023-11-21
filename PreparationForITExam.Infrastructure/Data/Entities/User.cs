@@ -26,9 +26,8 @@ namespace PreparationForITExam.Infrastructure.Data.Entities
         [MaxLength(LastNameMaxLength)]
         public string LastName { get; set; } = null!;
 
-        [Required]
         [MaxLength(CityMaxLength)]
-        public string City { get; set; } = null!;
+        public string? City { get; set; }
 
         public string? ProfilePictureUrl { get; set; }
 

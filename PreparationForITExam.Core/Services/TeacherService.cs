@@ -1,4 +1,5 @@
 ﻿using PreparationForITExam.Core.Contracts;
+using PreparationForITExam.Core.Models.Account;
 using PreparationForITExam.Infrastructure.Data.Common;
 using PreparationForITExam.Infrastructure.Data.Entities;
 using System;
@@ -9,23 +10,25 @@ using System.Threading.Tasks;
 
 namespace PreparationForITExam.Core.Services
 {
-    public class StudentService : IStudentService
+    public class TeacherService : ITeacherService
     {
         private readonly IRepository repo;
 
-        public StudentService(IRepository _repo)
+        public TeacherService(IRepository _repo)
         {
             repo = _repo;
         }
 
-        public async Task Create(string userId)
+        public async Task Create(string userId, RegisterViewModelForTeacher model)
         {
-            var student = new Student()
+            var teacher = new Teacher()
             {
                 UserId = userId,
+                Experience = model.Experience,
+                Subject = model.Subject,
             };
 
-            await repo.AddAsync(student);
+            await repo.AddAsync(teacher);
             await repo.SaveChangesAsync();
         }
     }

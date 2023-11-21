@@ -14,78 +14,168 @@ namespace PreparationForITExam.Controllers
         private readonly IStudentService studentService;
         private readonly IImageService imageService;
         private readonly IUserService userService;
+        private readonly ISchoolService schoolService;
+        private readonly ITeacherService teacherService;
 
         public AccountController(
             UserManager<User> _userManager,
             SignInManager<User> _signInManager,
             IStudentService _studentService,
             IImageService _imageService,
-            IUserService _userService)
+            IUserService _userService,
+            ISchoolService _schoolService,
+            ITeacherService _teacherService)
         {
             userManager = _userManager;
             signInManager = _signInManager;
             studentService = _studentService;
             imageService = _imageService;
             userService = _userService;
+            schoolService = _schoolService;
+            teacherService = _teacherService;
         }
 
         [HttpGet]
         [AllowAnonymous]
         public IActionResult RegisterAsStudent()
         {
-            var model = new RegisterViewModel();
+            var model = new RegisterViewModelForStudent();
 
             return View(model);
         }
 
-        //[HttpPost]
-        //[AllowAnonymous]
-        //public async Task<IActionResult> Register(RegisterViewModel model)
-        //{
-        //    if (await userService.UserByEmailExists(model.Email))
-        //    {
-        //        ModelState.AddModelError(nameof(model.Email), "There is already a registration with this email!");
-        //    }
+        [HttpPost]
+        [AllowAnonymous]
+        public async Task<IActionResult> RegisterAsStudent(RegisterViewModelForStudent model)
+        {
+            if (await userService.UserByEmailExists(model.Email))
+            {
+                ModelState.AddModelError(nameof(model.Email), "There is already a registration with this email!");
+            }
 
-        //    if (!ModelState.IsValid)
-        //    {
-        //        return View(model);
-        //    }
+            if (model.SchoolName != null)
+            {
+                if (model.City == null)
+                {
+                    ModelState.AddModelError(nameof(model.City), "Моля въведете града, в който е съответното учиище!");
+                }
 
-        //    var user = new User()
-        //    {
-        //        Email = model.Email,
-        //        FirstName = model.FirstName,
-        //        LastName = model.LastName,
-        //        UserName = model.Email,
-        //        PhoneNumber = model.PhoneNumber,
-        //        Address = model.Address,
-        //        City = model.City,
-        //        Country = model.Country
-        //    };
+                int schoolId = await schoolService.GetSchoolByNameAndCity(model.SchoolName, model.City);
 
-        //    var result = await userManager.CreateAsync(user, model.Password);
+                if (schoolId == 0)
+                {
+                    ModelState.AddModelError(nameof(model.City), "Училището не е намерено! Моля опитайте отново!");
+                }
+            }
 
-        //    await userManager.AddToRoleAsync(user, "Client");
-        //    await clientService.Create(user.Id);
+            if (!ModelState.IsValid)
+            {
+                return View(model);
+            }
 
-        //    user.ProfilePictureUrl = await this.imageService.UploadImage(model.ProfilePicture, "images", user);
-        //    await userManager.UpdateAsync(user);
+            var user = new User()
+            {
+                Email = model.Email,
+                FirstName = model.FirstName,
+                LastName = model.LastName,
+                UserName = model.Email,
+                PhoneNumber = model.PhoneNumber,
+                City = model.City,
+            };
 
-        //    if (result.Succeeded)
-        //    {
-        //        await signInManager.SignInAsync(user, isPersistent: false);
+            var result = await userManager.CreateAsync(user, model.Password);
 
-        //        return RedirectToAction("Index", "Home");
-        //    }
+            await userManager.AddToRoleAsync(user, "Student");
+            await studentService.Create(user.Id);
 
-        //    foreach (var item in result.Errors)
-        //    {
-        //        ModelState.AddModelError("", item.Description);
-        //    }
+            if (model.ProfilePicture != null)
+            {
+                user.ProfilePictureUrl = await this.imageService.UploadImage(model.ProfilePicture, "images", user);
+                await userManager.UpdateAsync(user);
+            }
 
-        //    return View(model);
-        //}
+            if (result.Succeeded)
+            {
+                await signInManager.SignInAsync(user, isPersistent: false);
+
+                return RedirectToAction("Index", "Home");
+            }
+
+            foreach (var item in result.Errors)
+            {
+                ModelState.AddModelError("", item.Description);
+            }
+
+            return View(model);
+        }
+
+        [HttpGet]
+        [AllowAnonymous]
+        public IActionResult RegisterAsTeacher()
+        {
+            var model = new RegisterViewModelForTeacher();
+
+            return View(model);
+        }
+
+        [HttpPost]
+        [AllowAnonymous]
+        public async Task<IActionResult> RegisterAsTeacher(RegisterViewModelForTeacher model)
+        {
+            if (await userService.UserByEmailExists(model.Email))
+            {
+                ModelState.AddModelError(nameof(model.Email), "Регистрация с този имейл вече съществува!");
+            }
+
+            int schoolId = await schoolService.GetSchoolByNameAndCity(model.SchoolName, model.City);
+
+            if (schoolId == 0)//може да е -1???????????????
+            {
+                ModelState.AddModelError(nameof(model.City), "Училището не е намерено! Моля опитайте отново!");
+            }
+
+
+            if (!ModelState.IsValid)
+            {
+                return View(model);
+            }
+
+            var user = new User()
+            {
+                Email = model.Email,
+                FirstName = model.FirstName,
+                LastName = model.LastName,
+                UserName = model.Email,
+                PhoneNumber = model.PhoneNumber,
+                City = model.City,                
+            };
+
+            var result = await userManager.CreateAsync(user, model.Password);
+
+            await userManager.AddToRoleAsync(user, "Teacher");
+            await teacherService.Create(user.Id, model);
+
+
+            if (model.ProfilePicture != null)
+            {
+                user.ProfilePictureUrl = await this.imageService.UploadImage(model.ProfilePicture, "images", user);
+                await userManager.UpdateAsync(user);
+            }
+
+            if (result.Succeeded)
+            {
+                await signInManager.SignInAsync(user, isPersistent: false);
+
+                return RedirectToAction("Index", "Home");
+            }
+
+            foreach (var item in result.Errors)
+            {
+                ModelState.AddModelError("", item.Description);
+            }
+
+            return View(model);
+        }
 
         //[HttpGet]
         //[AllowAnonymous]
@@ -126,11 +216,11 @@ namespace PreparationForITExam.Controllers
         //    return View(model);
         //}
 
-        //public async Task<IActionResult> Logout()
-        //{
-        //    await signInManager.SignOutAsync();
+        public async Task<IActionResult> Logout()
+        {
+            await signInManager.SignOutAsync();
 
-        //    return RedirectToAction("Index", "Home");
-        //}
+            return RedirectToAction("Index", "Home");
+        }
     }
 }

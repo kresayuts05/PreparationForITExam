@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using PreparationForITExam.Infrastructure.Data;
 
@@ -11,9 +12,10 @@ using PreparationForITExam.Infrastructure.Data;
 namespace PreparationForITExam.Infrastructure.Migrations
 {
     [DbContext(typeof(PreparationForITExamDbContext))]
-    partial class PreparationForITExamDbContextModelSnapshot : ModelSnapshot
+    [Migration("20231115204714_news")]
+    partial class news
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -97,28 +99,28 @@ namespace PreparationForITExam.Infrastructure.Migrations
                         new
                         {
                             Id = "0f761db2-ab55-416c-83b9-70abded3d908",
-                            ConcurrencyStamp = "6e66dc87-faf8-42ef-88ab-97a83a451d5b",
+                            ConcurrencyStamp = "32be4dbf-f27f-4710-b78e-03383853953b",
                             Name = "Administrator",
                             NormalizedName = "ADMINISTRATOR"
                         },
                         new
                         {
                             Id = "e66d730b-bcf1-41b5-b7e0-3e66056e61d9",
-                            ConcurrencyStamp = "8052fe2e-e4fd-4d59-81b7-f6fdfc9eee1a",
+                            ConcurrencyStamp = "57ffd17f-ac30-4925-87d5-b5b9c653c8dc",
                             Name = "Student",
                             NormalizedName = "STUDENT"
                         },
                         new
                         {
                             Id = "71281cf3-9730-4d7e-acbb-213edee8291c",
-                            ConcurrencyStamp = "ef6fe581-88d2-4e85-956e-8172e0e431ed",
+                            ConcurrencyStamp = "91aa52b5-03ec-457e-a97b-46fc6a15c0f3",
                             Name = "Teacher",
                             NormalizedName = "TEACHER"
                         },
                         new
                         {
                             Id = "fe750b82-6fe9-472c-bdc5-61f5433d429e",
-                            ConcurrencyStamp = "a0213fe0-992f-4f99-811a-f2b51a1a0c24",
+                            ConcurrencyStamp = "cafc185b-2ecd-4a45-a80b-602ef67f796b",
                             Name = "MonUser",
                             NormalizedName = "MONUSER"
                         });
@@ -750,6 +752,7 @@ namespace PreparationForITExam.Infrastructure.Migrations
                         .HasColumnType("bit");
 
                     b.Property<int?>("SchoolId")
+                        .IsRequired()
                         .HasColumnType("int");
 
                     b.Property<string>("Speciality")
@@ -778,6 +781,7 @@ namespace PreparationForITExam.Infrastructure.Migrations
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
 
                     b.Property<string>("AboutMe")
+                        .IsRequired()
                         .HasMaxLength(300)
                         .HasColumnType("nvarchar(300)");
 
@@ -800,6 +804,7 @@ namespace PreparationForITExam.Infrastructure.Migrations
                         .HasColumnType("nvarchar(50)");
 
                     b.Property<string>("University")
+                        .IsRequired()
                         .HasMaxLength(60)
                         .HasColumnType("nvarchar(60)");
 
@@ -1212,7 +1217,9 @@ namespace PreparationForITExam.Infrastructure.Migrations
                 {
                     b.HasOne("PreparationForITExam.Infrastructure.Data.Entities.School", "School")
                         .WithMany("Students")
-                        .HasForeignKey("SchoolId");
+                        .HasForeignKey("SchoolId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
                     b.HasOne("PreparationForITExam.Infrastructure.Data.Entities.User", "User")
                         .WithMany()

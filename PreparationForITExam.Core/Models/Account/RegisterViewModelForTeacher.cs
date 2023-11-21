@@ -1,14 +1,19 @@
-﻿using System.ComponentModel.DataAnnotations;
-
-using static PreparationForITExam.Infrastructure.Data.Constants.ModelConstraints.UserConstraints;
-using static PreparationForITExam.Infrastructure.Data.Constants.ModelConstraints.SchoolConstraints;
-using Microsoft.AspNetCore.Http;
+﻿using Microsoft.AspNetCore.Http;
+using System;
+using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 
 namespace PreparationForITExam.Core.Models.Account
 {
-    public class RegisterViewModel
-    {
+    using static PreparationForITExam.Infrastructure.Data.Constants.ModelConstraints.UserConstraints;
+    using static PreparationForITExam.Infrastructure.Data.Constants.ModelConstraints.SchoolConstraints;
+    using static PreparationForITExam.Infrastructure.Data.Constants.ModelConstraints.TeacherConstraints;
 
+    public class RegisterViewModelForTeacher
+    {
         [Required]
         [StringLength(FirstNameMaxLength, MinimumLength = FirstNameMinLength)]
         public string FirstName { get; set; } = null!;
@@ -34,15 +39,23 @@ namespace PreparationForITExam.Core.Models.Account
 
         [Required]
         [Phone]
-        public string PhoneNumber { get; set; }
+        public string PhoneNumber { get; set; } = null!;
 
+        [Required]
         [StringLength(CityMaxLength, MinimumLength = CityMinLength)]
+        public string City { get; set; }
 
-        public string City { get; set; } = null!;
-
-        [MaxLength(NameMaxLength)]
+        [Required]
         [StringLength(NameMaxLength, MinimumLength = NameMinLength)]
-        public string SchoolName { get; set; } = null!;
+        public string SchoolName { get; set; }
+
+        [Required]
+        [Range(ExperienceMinValue, ExperienceMaxValue)]
+        public int Experience { get; set; }
+
+        [Required]
+        [StringLength(SubjectMaxLength, MinimumLength = SubjectMinLength)]
+        public string Subject { get; set; } = null!;
 
         public IFormFile? ProfilePicture { get; set; }
     }

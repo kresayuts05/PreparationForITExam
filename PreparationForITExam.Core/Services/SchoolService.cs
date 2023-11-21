@@ -10,21 +10,23 @@ using System.Threading.Tasks;
 
 namespace PreparationForITExam.Core.Services
 {
-    public class UserService:IUserService
+    public class SchoolService : ISchoolService
     {
         private readonly IRepository repo;
 
-        public UserService(IRepository _repo)
+        public SchoolService(IRepository _repo)
         {
             repo = _repo;
         }
-        
-        public async Task<bool> UserByEmailExists(string email)
-        {
-            var user = await repo.All<User>()
-                .FirstOrDefaultAsync(u => u.Email == email && u.IsActive == true);
 
-            return user != null;
+        public async Task<int> GetSchoolByNameAndCity(string schoolName, string city)
+        {
+            var schoolId = await repo.All<School>()
+                .Where(s => s.Name.ToLower() == schoolName.ToLower() && s.City == city)
+                .Select(s => s.Id)
+                .FirstOrDefaultAsync();
+
+            return schoolId;
         }
-    }   
+    }
 }

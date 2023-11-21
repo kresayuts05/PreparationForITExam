@@ -15,30 +15,30 @@ namespace PreparationForITExam.Infrastructure.Data.Entities
         public Student()
         {
             this.IsActive = true;
+            this.Grade = 0;
         }
 
         [Key]
         public int Id { get; set; }
 
         [MaxLength(SpecialtyMaxLength)]
-        public string Speciality { get; set; } = null!;
+        public string? Speciality { get; set; } = null!;
 
         [Range(GradeMinValue, GradeMaxValue)]
         public int Grade { get; set; }
 
         [MaxLength(AboutMeMaxLength)]
-        public string AboutMe { get; set; }
+        public string? AboutMe { get; set; }
 
         public bool IsActive { get; set; }
 
-        [Required]
         [ForeignKey(nameof(User))]
         public string UserId { get; set; }
         public User User { get; set; }
 
         [ForeignKey(nameof(School))]
-        public int SchoolId { get; set; }
-        public School School { get; set; }
+        public int? SchoolId { get; set; }
+        public School? School { get; set; }
 
         public ICollection<Exercise> FinishedExercises { get; set; } = new HashSet<Exercise>();
     }
