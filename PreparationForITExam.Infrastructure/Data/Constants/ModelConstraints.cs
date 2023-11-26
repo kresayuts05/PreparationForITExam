@@ -128,9 +128,12 @@ namespace PreparationForITExam.Infrastructure.Data.Constants
         {
             public const int TitleMaxLength = 100;
             public const int TitleMinLength = 2;
+        }
 
-            public const int ContentMaxLength = 4000;
-            public const int ContentMinLength = 2;
+        public static class ModuleOfCurricularConstraints
+        {
+            public const int TitleMaxLength = 100;
+            public const int TitleMinLength = 2;
         }
 
         public static class QuestionConstraints

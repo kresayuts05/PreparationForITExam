@@ -32,7 +32,6 @@ namespace PreparationForITExam.Core.Models.Account
         [DataType(DataType.Password)]
         public string PasswordRepeat { get; set; } = null!;
 
-        [Required]
         [Phone]
         public string PhoneNumber { get; set; } = null!;
 

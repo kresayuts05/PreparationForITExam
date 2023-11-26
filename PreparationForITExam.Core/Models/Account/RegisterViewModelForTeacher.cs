@@ -49,13 +49,13 @@ namespace PreparationForITExam.Core.Models.Account
         [StringLength(NameMaxLength, MinimumLength = NameMinLength)]
         public string SchoolName { get; set; }
 
-        [Required]
+        
         [Range(ExperienceMinValue, ExperienceMaxValue)]
         public int Experience { get; set; }
 
-        [Required]
+        
         [StringLength(SubjectMaxLength, MinimumLength = SubjectMinLength)]
-        public string Subject { get; set; } = null!;
+        public string? Subject { get; set; } = null!;
 
         public IFormFile? ProfilePicture { get; set; }
     }

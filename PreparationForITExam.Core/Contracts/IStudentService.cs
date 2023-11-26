@@ -8,6 +8,6 @@ namespace PreparationForITExam.Core.Contracts
 {
     public interface IStudentService
     {
-        Task Create(string userId);
+        Task Create(string userId, int schoolId);
     }
 }

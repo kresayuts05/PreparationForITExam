@@ -18,11 +18,12 @@ namespace PreparationForITExam.Core.Services
             repo = _repo;
         }
 
-        public async Task Create(string userId)
+        public async Task Create(string userId, int schoolId)
         {
             var student = new Student()
             {
                 UserId = userId,
+                SchoolId = schoolId
             };
 
             await repo.AddAsync(student);

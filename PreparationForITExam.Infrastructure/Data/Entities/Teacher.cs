@@ -22,13 +22,11 @@ namespace PreparationForITExam.Infrastructure.Data.Entities
         [Key]
         public int Id { get; set; }
 
-        [Required]
         [Range(ExperienceMinValue, ExperienceMaxValue)]
         public int Experience { get; set; }
 
-        [Required]
         [MaxLength(SubjectMaxLength)]
-        public string Subject { get; set; } = null!;
+        public string? Subject { get; set; }
 
         [MaxLength(UniversityMaxLength)]
         public string? University { get; set; } = null!;

@@ -48,9 +48,11 @@ namespace PreparationForITExam.Controllers
         [AllowAnonymous]
         public async Task<IActionResult> RegisterAsStudent(RegisterViewModelForStudent model)
         {
+            int schoolId = 0;
+
             if (await userService.UserByEmailExists(model.Email))
             {
-                ModelState.AddModelError(nameof(model.Email), "There is already a registration with this email!");
+                ModelState.AddModelError(nameof(model.Email), "Вече съществува регистрация с този имейл!");
             }
 
             if (model.SchoolName != null)
@@ -60,7 +62,7 @@ namespace PreparationForITExam.Controllers
                     ModelState.AddModelError(nameof(model.City), "Моля въведете града, в който е съответното учиище!");
                 }
 
-                int schoolId = await schoolService.GetSchoolByNameAndCity(model.SchoolName, model.City);
+                schoolId = await schoolService.GetSchoolByNameAndCity(model.SchoolName, model.City);
 
                 if (schoolId == 0)
                 {
@@ -86,7 +88,7 @@ namespace PreparationForITExam.Controllers
             var result = await userManager.CreateAsync(user, model.Password);
 
             await userManager.AddToRoleAsync(user, "Student");
-            await studentService.Create(user.Id);
+            await studentService.Create(user.Id, schoolId);
 
             if (model.ProfilePicture != null)
             {
@@ -147,7 +149,7 @@ namespace PreparationForITExam.Controllers
                 LastName = model.LastName,
                 UserName = model.Email,
                 PhoneNumber = model.PhoneNumber,
-                City = model.City,                
+                City = model.City,
             };
 
             var result = await userManager.CreateAsync(user, model.Password);
@@ -177,44 +179,44 @@ namespace PreparationForITExam.Controllers
             return View(model);
         }
 
-        //[HttpGet]
-        //[AllowAnonymous]
-        //public IActionResult Login()
-        //{
-        //    var model = new LoginViewModel();
+        [HttpGet]
+        [AllowAnonymous]
+        public IActionResult Login()
+        {
+            var model = new LoginViewModel();
 
-        //    return View(model);
-        //}
+            return View(model);
+        }
 
-        //[HttpPost]
-        //[AllowAnonymous]
-        //public async Task<IActionResult> Login(LoginViewModel model)
-        //{
-        //    if (!ModelState.IsValid)
-        //    {
-        //        return View(model);
-        //    }
+        [HttpPost]
+        [AllowAnonymous]
+        public async Task<IActionResult> Login(LoginViewModel model)
+        {
+            if (!ModelState.IsValid)
+            {
+                return View(model);
+            }
 
-        //    var user = await userManager.FindByEmailAsync(model.Email);
+            var user = await userManager.FindByEmailAsync(model.Email);
 
-        //    if (user != null)
-        //    {
-        //        if (user.IsActive)
-        //        {
+            if (user != null)
+            {
+                if (user.IsActive)
+                {
 
-        //            var result = await signInManager.PasswordSignInAsync(user, model.Password, false, false);
+                    var result = await signInManager.PasswordSignInAsync(user, model.Password, false, false);
 
-        //            if (result.Succeeded)
-        //            {
-        //                return RedirectToAction("Index", "Home");
-        //            }
-        //        }
-        //    }
+                    if (result.Succeeded)
+                    {
+                        return RedirectToAction("Index", "Home");
+                    }
+                }
+            }
 
-        //    ModelState.AddModelError("", "Invalid login");
+            ModelState.AddModelError("", "Invalid login");
 
-        //    return View(model);
-        //}
+            return View(model);
+        }
 
         public async Task<IActionResult> Logout()
         {

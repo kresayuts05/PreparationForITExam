@@ -1,63 +1,93 @@
 ﻿@model RegisterViewModelForStudent
+
+@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+
 @{
+    ViewData["Title"] = "Регистрация";
 }
+<section>
 
-<div class="form_wrapper">
-    <div class="form_container">
-        <div class="title_container">
-            <h2>Регистрация за ученик</h2>
-        </div>
-        <div class="row clearfix">
-            <div class="">
-                <form method="post" enctype="multipart/form-data">
-                    <div class="row clearfix">
-                        <div class="input_field">
-                            <input asp-for="FirstName" type="text" class="form-control" placeholder="Самуил*" required />
-                            <span asp-validation-for="FirstName" ></span>
-                        </div>
-                        <div class="input_field">
+    <div class="row flex-align-center">
 
-                            <input asp-for="LastName" type="text" class="form-control" placeholder="Иванов*" required />
-                            <span asp-validation-for="LastName" ></span>
-                        </div>
-                        <div class="input_field">
-                            <input asp-for="Email" type="email" class="form-control" placeholder="samuilvanov@gmail.com*" required />
-                            <span asp-validation-for="Email"></span>
-                        </div>
-                        <div class="input_field">
-                            <input asp-for="Password" type="password" class="form-control" placeholder="Парола*" required />
-                            <span asp-validation-for="Password"></span>
-                        </div>
-                        <div class="input_field">
-                            <input asp-for="PasswordRepeat" class="form-control" placeholder="Потвърди парола*" required>
-                            <span asp-validation-for="PasswordRepeat" ></span>
-                        </div>
-                        <div class="input_field">
-                            <input asp-for="PhoneNumber" type="text" class="form-control" placeholder="+359886121260*" required />
-                            <span asp-validation-for="PhoneNumber"></span>
-                        </div>
-                        <div class="input_field">
-                            <input asp-for="City" type="text" class="form-control" placeholder="Казанлък" />
-                            <span asp-validation-for="City"></span>
-                        </div>
-                        <div class="input_field">
-                            <input asp-for="SchoolName" type="text" class="form-control" placeholder="ППМГ &quotНикола Обрешков&quot" />
-                            <span asp-validation-for="SchoolName"></span>
-                        </div>
-                    </div>
+        <div class="column large-6 tab-12">
 
-                    <input class="button" type="submit" value="Регистрирай се" />
-                </form>
+            <div class="register-heading-container">
+                <h3 class="h-add-bottom">Регистрация</h3>
+
+                <div class="game-developer-slider-container h-add-bottom h3">
+                    <label for="sampleInput" class="game-developer-label">I'm game developer</label>
+                    <label class="switch">
+                        <input type="checkbox" id="gameDeveloperCheckBox">
+                        <span class="slider"></span>
+                    </label>
+                </div>
             </div>
-        </div>
-    </div>
-    <div class="center">
-        <a asp-controller="Account" asp-action="RegisterAsTeacher" class="credit">Регистрация като <b>Учител</b></a>
-        <br>
-        <a asp-controller="Account" asp-action="Login" class="credit">Вече имате акаунт? <b>Вход</b></a>
-    </div>
-</div>
 
-@section Scripts {
-    <partial name="_ValidationScriptsPartial" />
-}
+            <form method="post" enctype="multipart/form-data">
+                <div>
+                    <label for="sampleInput">Вашият имейл<span class="mandatory">*</span></label>
+                    <input asp-for="Email" class="h-full-width" type="email" placeholder="ivandimitrov@gmail.com" required>
+                    <span asp-validation-for="Email" class="text-danger"></span>
+                </div>
+                <div>
+                    <label for="sampleInput">Име<span class="mandatory">*</span></label>
+                    <input asp-for="FirstName" class="h-full-width" type="text" placeholder="Иван" required>
+                    <span asp-validation-for="FirstName" class="text-danger"></span>
+                </div>
+                <div>
+                    <label for="sampleInput">Фамилия<span class="mandatory">*</span></label>
+                    <input asp-for="LastName" class="h-full-width" type="text" placeholder="Димитров" required>
+                    <span asp-validation-for="LastName" class="text-danger"></span>
+                </div>
+                <div>
+                    <label for="sampleInput">Парола<span class="mandatory">*</span></label>
+                    <input asp-for="Password" class="h-full-width" type="password" placeholder="123asd123" required>
+                    <span asp-validation-for="Password" class="text-danger"></span>
+                </div>
+                <div>
+                    <label for="sampleInput">Повтори парола<span class="mandatory">*</span></label>
+                    <input asp-for="PasswordRepeat" class="h-full-width" type="password" placeholder="123asd123" required>
+                    <span asp-validation-for="PasswordRepeat" class="text-danger"></span>
+                </div>
+                <div>
+                    <label for="sampleInput">Телефонен номер<span class="mandatory">*</span></label>
+                    <input asp-for="PhoneNumber" class="h-full-width" type="text" placeholder="0823747232" required>
+                    <span asp-validation-for="PhoneNumber" class="text-danger"></span>
+                </div>
+                <div>
+                    <label for="sampleInput">Училище</label>
+                    <input asp-for="SchoolName" class="h-full-width" type="text" placeholder="ППМГ Никола Обрешков">
+                    <span asp-validation-for="SchoolName" class="text-danger"></span>
+                </div>
+                <div>
+                    <label for="sampleInput">Град</label>
+                    <input asp-for="City" class="h-full-width" type="text" placeholder="Казанлък">
+                    <span asp-validation-for="City" class="text-danger"></span>
+                </div>
+                <div class="mb-3">
+                    <label class="profilePictureLabel">Профилна снимка</label>
+                    <label class="btn h-full-width" for="uploadProfilePicture">Прикачи Профилна Снимка</label>
+                    <input asp-for="ProfilePicture" id="uploadProfilePicture" class="upload-photo" for="ProfilePictureUrl" accept="image/gif, image/jpeg, image/png">
+                    <span asp-validation-for="ProfilePicture" class="text-danger"></span>
+                </div>
+                <div class="mb-3">
+                    <img alt="Upload an image" accept="image/gif, image/jpeg, image/png" style="display:none;">
+                </div>
+                @*<div style="display:none;" id="yearOfCreating">
+                <label for="sampleInput">Year of creating</label>
+                <input class="h-full-width" type="text" placeholder="2005">
+                </div>
+                <div style="display:none;" id="additionalInformation">
+                <label for="sampleInput">Additional Information</label>
+                <input class="h-full-width" type="text" placeholder="Lorem ipsum additional information...">
+                </div>*@
+
+                <input asp-controller="Account" asp-action="RegisterAsStudent" class="btn--primary h-full-width" type="submit" value="Регистрирай се">
+            </form>
+
+        </div>
+
+    </div>
+</section>
