@@ -54,7 +54,7 @@ namespace PreparationForITExam.Infrastructure.Data.Constants
         }
         public static class SchoolConstraints
         {
-            public const int NameMaxLength = 60;
+            public const int NameMaxLength = 250;
             public const int NameMinLength = 2;
 
             public const int CitySchoolMaxLength = 169;

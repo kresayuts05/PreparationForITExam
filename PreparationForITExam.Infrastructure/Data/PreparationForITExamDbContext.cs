@@ -57,6 +57,9 @@ namespace PreparationForITExam.Infrastructure.Data
                 .OnDelete(DeleteBehavior.Restrict);
 
             builder.ApplyConfiguration(new RoleConfiguration());
+            builder.ApplyConfiguration(new ModuleOfCurricularConfiguration());
+            builder.ApplyConfiguration(new SectionOfCurricularConfiguration());
+            builder.ApplyConfiguration(new SchoolConfiguration());
 
             base.OnModelCreating(builder);
         }

@@ -7,6 +7,7 @@ using PreparationForITExam.Infrastructure.Data.Entities;
 
 namespace PreparationForITExam.Controllers
 {
+    [Authorize]
     public class AccountController : Controller
     {
         private readonly UserManager<User> userManager;
