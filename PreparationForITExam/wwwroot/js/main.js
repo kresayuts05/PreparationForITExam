@@ -1,33 +1,33 @@
-    /* ===================================================================
- * Abstract 2.0.0 - Main JS
- *
- * ------------------------------------------------------------------- */ 
+/* ===================================================================
+* Abstract 2.0.0 - Main JS
+*
+* ------------------------------------------------------------------- */
 
-(function($) {
+(function ($) {
 
     "use strict";
 
     const cfg = {
-        scrollDuration : 800, // smoothscroll duration
-        mailChimpURL   : 'https://facebook.us8.list-manage.com/subscribe/post?u=cdb7b577e41181934ed6a6a44&amp;id=e6957d85dc' // MailChimp URL
+        scrollDuration: 800, // smoothscroll duration
+        mailChimpURL: 'https://facebook.us8.list-manage.com/subscribe/post?u=cdb7b577e41181934ed6a6a44&amp;id=e6957d85dc' // MailChimp URL
     }
 
 
-   /* preloader
-    * -------------------------------------------------- */
-    const ssPreloader = function() {
+    /* preloader
+     * -------------------------------------------------- */
+    const ssPreloader = function () {
 
         const preloader = document.querySelector('#preloader');
         if (!preloader) return;
 
         document.querySelector('html').classList.add('ss-preload');
-        
-        window.addEventListener('load', function() {
-            
+
+        window.addEventListener('load', function () {
+
             document.querySelector('html').classList.remove('ss-preload');
             document.querySelector('html').classList.add('ss-loaded');
 
-            preloader.addEventListener('transitionend', function(e) {
+            preloader.addEventListener('transitionend', function (e) {
                 if (e.target.matches("#preloader")) {
                     this.style.display = 'none';
                 }
@@ -43,24 +43,24 @@
 
 
 
-   /* alert boxes
-    * ------------------------------------------------------ */
-    const ssAlertBoxes = function() {
+    /* alert boxes
+     * ------------------------------------------------------ */
+    const ssAlertBoxes = function () {
 
         const boxes = document.querySelectorAll('.alert-box');
         if (!boxes) return;
 
-        boxes.forEach(function(box) {
+        boxes.forEach(function (box) {
 
-            box.addEventListener('click', function(e){
+            box.addEventListener('click', function (e) {
                 if (e.target.matches(".alert-box__close")) {
                     e.stopPropagation();
                     e.target.parentElement.classList.add("hideit");
 
-                    setTimeout(function() {
+                    setTimeout(function () {
                         box.style.display = "none";
                     }, 500)
-                }    
+                }
             });
 
         })
@@ -68,27 +68,27 @@
     }; // end ssAlertBoxes
 
 
-   /* Mobile Menu
-    * ---------------------------------------------------- */ 
-    const ssMobileMenu = function() {
+    /* Mobile Menu
+     * ---------------------------------------------------- */
+    const ssMobileMenu = function () {
 
         const $navWrap = $('.s-header__nav-wrap');
         const $closeNavWrap = $navWrap.find('.s-header__overlay-close');
         const $menuToggle = $('.s-header__toggle-menu');
         const $siteBody = $('body');
-        
-        $menuToggle.on('click', function(e) {
+
+        $menuToggle.on('click', function (e) {
             e.preventDefault();
             e.stopPropagation();
 
             $siteBody.addClass('nav-wrap-is-visible');
         });
 
-        $closeNavWrap.on('click', function(e) {
+        $closeNavWrap.on('click', function (e) {
             e.preventDefault();
             e.stopPropagation();
-        
-            if($siteBody.hasClass('nav-wrap-is-visible')) {
+
+            if ($siteBody.hasClass('nav-wrap-is-visible')) {
                 $siteBody.removeClass('nav-wrap-is-visible');
             }
         });
@@ -117,9 +117,9 @@
     }; // end ssMobileMenu
 
 
-   /* search
-    * ------------------------------------------------------ */
-    const ssSearch = function() {
+    /* search
+     * ------------------------------------------------------ */
+    const ssSearch = function () {
 
         const searchWrap = document.querySelector('.s-header__search');
         const searchTrigger = document.querySelector('.s-header__search-trigger');
@@ -130,34 +130,34 @@
         const closeSearch = searchWrap.querySelector('.s-header__overlay-close');
         const siteBody = document.querySelector('body');
 
-        searchTrigger.addEventListener('click', function(e) {
+        searchTrigger.addEventListener('click', function (e) {
             e.preventDefault();
             e.stopPropagation();
 
             siteBody.classList.add('search-is-visible');
-            setTimeout(function(){
+            setTimeout(function () {
                 searchWrap.querySelector('.s-header__search-field').focus();
             }, 100);
         });
 
-        closeSearch.addEventListener('click', function(e) {
+        closeSearch.addEventListener('click', function (e) {
             e.stopPropagation();
 
-            if(siteBody.classList.contains('search-is-visible')) {
+            if (siteBody.classList.contains('search-is-visible')) {
                 siteBody.classList.remove('search-is-visible');
-                setTimeout(function(){
+                setTimeout(function () {
                     searchWrap.querySelector('.s-header__search-field').blur();
                 }, 100);
             }
         });
 
-        searchWrap.addEventListener('click', function(e) {
-            if( !(e.target.matches('.s-header__search-field')) ) {
+        searchWrap.addEventListener('click', function (e) {
+            if (!(e.target.matches('.s-header__search-field'))) {
                 closeSearch.dispatchEvent(new Event('click'));
             }
         });
 
-        searchField.addEventListener('click', function(e) {
+        searchField.addEventListener('click', function (e) {
             e.stopPropagation();
         })
 
@@ -167,13 +167,13 @@
     }; // end ssSearch
 
 
-   /* masonry
-    * ------------------------------------------------------ */
-    const ssMasonry = function() {
+    /* masonry
+     * ------------------------------------------------------ */
+    const ssMasonry = function () {
         const containerBricks = document.querySelector('.bricks-wrapper');
         if (!containerBricks) return;
 
-        imagesLoaded(containerBricks, function() {
+        imagesLoaded(containerBricks, function () {
 
             const msnry = new Masonry(containerBricks, {
                 itemSelector: '.entry',
@@ -187,29 +187,29 @@
     }; // end ssMasonry
 
 
-   /* animate bricks
-    * ------------------------------------------------------ */
-    const ssBricksAnimate = function() {
+    /* animate bricks
+     * ------------------------------------------------------ */
+    const ssBricksAnimate = function () {
 
         const animateEl = document.querySelectorAll('.animate-this');
         if (!animateEl) return;
 
-        window.addEventListener('load', function() {
+        window.addEventListener('load', function () {
 
-            setTimeout(function() {
-                animateEl.forEach(function(item, ctr) {
+            setTimeout(function () {
+                animateEl.forEach(function (item, ctr) {
                     let el = item;
-                        
-                    setTimeout(function() {
+
+                    setTimeout(function () {
                         el.classList.add('animated', 'fadeInUp');
                     }, ctr * 200);
                 });
             }, 200);
         });
 
-        window.addEventListener('resize', function() {
+        window.addEventListener('resize', function () {
             // remove animation classes
-            animateEl.forEach(function(item) {
+            animateEl.forEach(function (item) {
                 let el = item;
                 el.classList.remove('animate-this', 'animated', 'fadeInUp');
             });
@@ -218,9 +218,9 @@
     }; // end ssBricksAnimate
 
 
-   /* slick slider
-    * ------------------------------------------------------ */
-    const ssSlickSlider = function() {
+    /* slick slider
+     * ------------------------------------------------------ */
+    const ssSlickSlider = function () {
 
         function ssRunFeaturedSlider() {
 
@@ -234,14 +234,14 @@
                 centerMode: true
             });
 
-            $('.featured-post-nav__prev').on('click', function() {
+            $('.featured-post-nav__prev').on('click', function () {
                 $fSlider.slick('slickPrev');
             });
 
-            $('.featured-post-nav__next').on('click', function() {
+            $('.featured-post-nav__next').on('click', function () {
                 $fSlider.slick('slickNext');
             });
-        
+
         } // end ssRunFeaturedSlider
 
         function ssRunGallerySlider() {
@@ -257,11 +257,11 @@
                 fade: true,
                 cssEase: 'linear'
             });
-            
-            $('.slider__slide').on('click', function() {
+
+            $('.slider__slide').on('click', function () {
                 $gallery.slick('slickGoTo', parseInt($gallery.slick('slickCurrentSlide')) + 1);
             });
-            
+
         } // end ssRunGallerySlider
 
         ssRunFeaturedSlider();
@@ -270,31 +270,31 @@
     }; // end ssSlickSlider
 
 
-   /* Smooth Scrolling
-    * ------------------------------------------------------ */
-    const ssSmoothScroll = function() {
+    /* Smooth Scrolling
+     * ------------------------------------------------------ */
+    const ssSmoothScroll = function () {
 
         $('.smoothscroll').on('click', function (e) {
-            let target  = this.hash,
+            let target = this.hash,
                 $target = $(target);
-        
+
             e.preventDefault();
             e.stopPropagation();
 
             $('html, body').stop().animate({
-            'scrollTop': 0 // scrolling was with $target
+                'scrollTop': 0 // scrolling was with $target
             }, cfg.scrollDuration, 'swing').promise().done(function () {
 
-            window.location.hash = target;
+                window.location.hash = target;
             });
         });
 
     }; // endSmoothScroll
 
 
-   /* AjaxChimp
-    * ------------------------------------------------------ */
-    const ssAjaxChimp = function() {
+    /* AjaxChimp
+     * ------------------------------------------------------ */
+    const ssAjaxChimp = function () {
 
         $('#mc-form').ajaxChimp({
             language: 'es',
@@ -320,14 +320,14 @@
             3: '<i class="fa fa-warning"></i> E-mail address is not valid.',
             4: '<i class="fa fa-warning"></i> E-mail address is not valid.',
             5: '<i class="fa fa-warning"></i> E-mail address is not valid.'
-        } 
+        }
 
     }; // end ssAjaxChimp
-    
-    
-   /* back to top
-    * ------------------------------------------------------ */
-    const ssBackToTop = function() {
+
+
+    /* back to top
+     * ------------------------------------------------------ */
+    const ssBackToTop = function () {
 
         const pxShow = 800;
         const goTopButton = document.querySelector(".ss-go-top");
@@ -337,9 +337,9 @@
         // Show or hide the button
         if (window.scrollY >= pxShow) goTopButton.classList.add("link-is-visible");
 
-        window.addEventListener('scroll', function() {
+        window.addEventListener('scroll', function () {
             if (window.scrollY >= pxShow) {
-                if(!goTopButton.classList.contains('link-is-visible')) goTopButton.classList.add("link-is-visible")
+                if (!goTopButton.classList.contains('link-is-visible')) goTopButton.classList.add("link-is-visible")
             } else {
                 goTopButton.classList.remove("link-is-visible")
             }
@@ -348,22 +348,49 @@
     }; // end ssBackToTop
 
     const gameDeveloperCheckBoxClick = function () {
-        $('#gameDeveloperCheckBox').on('click', function () {
-            if (document.getElementById('gameDeveloperCheckBox').checked) {
-                document.getElementById('additionalInformation').style.display = "block";
-                document.getElementById('yearOfCreating').style.display = "block";
+        $('#teacherCheckBox').on('click', function () {
+            if (document.getElementById('teacherCheckBox').checked) {
+                document.getElementById('aboutMe').style.display = "block";
+                document.getElementById('experience').style.display = "block";
+                document.getElementById('registerAsTeacher').style.display = "block";
+                document.getElementById('registerAsStudent').style.display = "none";
             }
             else {
-                document.getElementById('additionalInformation').style.display = "none";
-                document.getElementById('yearOfCreating').style.display = "none";
+                document.getElementById('aboutMe').style.display = "none";
+                document.getElementById('experience').style.display = "none";
+                document.getElementById('registerAsTeacher').style.display = "none";
+                document.getElementById('registerAsStudent').style.display = "block";
             }
         });
-    }; 
+    };
 
-   /* Initialize
-    * ------------------------------------------------------ */
+    const onCityOptionSelect = function () {
+
+        $('#city').on('change', function () {
+            // Clear options
+            var schools = document.getElementById('schools')
+            schools.innerHTML = "";
+            const selectedCity = $('#city').val();
+            console.log(selectedCity);
+            var data = JSON.parse($('#citiesData').val());
+            console.log(data[selectedCity]);
+            var schools = document.getElementById('schools');
+
+            for (var city of data[selectedCity]) {
+                console.log(city);
+                var opt = document.createElement('option');
+                opt.value = city.name;
+                opt.innerHTML = city.name;
+                schools.add(opt);
+            }
+        });
+
+    };
+
+    /* Initialize
+     * ------------------------------------------------------ */
     (function ssInit() {
-
+        onCityOptionSelect();
         ssPreloader();
         ssAlertBoxes();
         ssSearch();

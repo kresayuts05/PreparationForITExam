@@ -9,6 +9,6 @@ namespace PreparationForITExam.Core.Contracts
 {
     public interface ITeacherService
     {
-        Task Create(string userId, RegisterViewModelForTeacher model);
+        Task Create(string userId, RegisterViewModel model);
     }
 }

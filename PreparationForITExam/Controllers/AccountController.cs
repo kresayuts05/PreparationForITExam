@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Win32.SafeHandles;
 using PreparationForITExam.Core.Contracts;
 using PreparationForITExam.Core.Models.Account;
 using PreparationForITExam.Infrastructure.Data.Entities;
@@ -38,16 +39,18 @@ namespace PreparationForITExam.Controllers
 
         [HttpGet]
         [AllowAnonymous]
-        public IActionResult RegisterAsStudent()
+        public async Task<IActionResult> Register()
         {
-            var model = new RegisterViewModelForStudent();
+            var model = new RegisterViewModel();
+
+            model.SchoolsCities = await schoolService.AllSchoolsWithCitiesAsDitionary();
 
             return View(model);
         }
 
         [HttpPost]
         [AllowAnonymous]
-        public async Task<IActionResult> RegisterAsStudent(RegisterViewModelForStudent model)
+        public async Task<IActionResult> RegisterAsStudent(RegisterViewModel model)
         {
             int schoolId = 0;
 
@@ -73,7 +76,7 @@ namespace PreparationForITExam.Controllers
 
             if (!ModelState.IsValid)
             {
-                return View(model);
+                return View("Register", model);
             }
 
             var user = new User()
@@ -109,21 +112,21 @@ namespace PreparationForITExam.Controllers
                 ModelState.AddModelError("", item.Description);
             }
 
-            return View(model);
+            return View("Register", model);
         }
 
         [HttpGet]
         [AllowAnonymous]
         public IActionResult RegisterAsTeacher()
         {
-            var model = new RegisterViewModelForTeacher();
+            var model = new RegisterViewModel();
 
             return View(model);
         }
 
         [HttpPost]
         [AllowAnonymous]
-        public async Task<IActionResult> RegisterAsTeacher(RegisterViewModelForTeacher model)
+        public async Task<IActionResult> RegisterAsTeacher(RegisterViewModel model)
         {
             if (await userService.UserByEmailExists(model.Email))
             {
@@ -137,10 +140,9 @@ namespace PreparationForITExam.Controllers
                 ModelState.AddModelError(nameof(model.City), "Училището не е намерено! Моля опитайте отново!");
             }
 
-
             if (!ModelState.IsValid)
             {
-                return View(model);
+                return View("Register", model);
             }
 
             var user = new User()
@@ -177,7 +179,7 @@ namespace PreparationForITExam.Controllers
                 ModelState.AddModelError("", item.Description);
             }
 
-            return View(model);
+            return View("Register", model);
         }
 
         [HttpGet]

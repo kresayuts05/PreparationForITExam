@@ -2,11 +2,13 @@
 
 using static PreparationForITExam.Infrastructure.Data.Constants.ModelConstraints.UserConstraints;
 using static PreparationForITExam.Infrastructure.Data.Constants.ModelConstraints.SchoolConstraints;
+using static PreparationForITExam.Infrastructure.Data.Constants.ModelConstraints.TeacherConstraints;
 using Microsoft.AspNetCore.Http;
+using PreparationForITExam.Core.Models.School;
 
 namespace PreparationForITExam.Core.Models.Account
 {
-    public class RegisterViewModelForStudent
+    public class RegisterViewModel
     {
 
         [Required]
@@ -41,6 +43,16 @@ namespace PreparationForITExam.Core.Models.Account
         [StringLength(NameMaxLength, MinimumLength = NameMinLength)]
         public string? SchoolName { get; set; }
 
+
+        [Range(ExperienceMinValue, ExperienceMaxValue)]
+        public int Experience { get; set; }
+
+
+        [StringLength(SubjectMaxLength, MinimumLength = SubjectMinLength)]
+        public string? Subject { get; set; } = null!;
+
         public IFormFile? ProfilePicture { get; set; }
+
+        public Dictionary<string, List<SchoolModel>> SchoolsCities { get; set; }
     }
 }

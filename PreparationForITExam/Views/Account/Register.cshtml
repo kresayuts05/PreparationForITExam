@@ -1,11 +1,9 @@
-﻿@model RegisterViewModelForStudent
-
-@*
-    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
-*@
+﻿@model RegisterViewModel
 
 @{
     ViewData["Title"] = "Регистрация";
+    ViewData["Data"] = Json.Serialize(Model.SchoolsCities).ToString();
+    //string cityValue = "София";
 }
 <section>
 
@@ -17,9 +15,9 @@
                 <h3 class="h-add-bottom">Регистрация</h3>
 
                 <div class="game-developer-slider-container h-add-bottom h3">
-                    <label for="sampleInput" class="game-developer-label">I'm game developer</label>
+                    <label for="sampleInput" class="game-developer-label">Аз съм учител</label>
                     <label class="switch">
-                        <input type="checkbox" id="gameDeveloperCheckBox">
+                        <input type="checkbox" id="teacherCheckBox">
                         <span class="slider"></span>
                     </label>
                 </div>
@@ -57,15 +55,37 @@
                     <span asp-validation-for="PhoneNumber" class="text-danger"></span>
                 </div>
                 <div>
-                    <label for="sampleInput">Училище</label>
-                    <input asp-for="SchoolName" class="h-full-width" type="text" placeholder="ППМГ Никола Обрешков">
-                    <span asp-validation-for="SchoolName" class="text-danger"></span>
-                </div>
-                <div>
-                    <label for="sampleInput">Град</label>
+                    <label for="sampleInput">Град<span class="mandatory">*</span></label>
                     <input asp-for="City" class="h-full-width" type="text" placeholder="Казанлък">
                     <span asp-validation-for="City" class="text-danger"></span>
                 </div>
+                <label for="sampleInput">Град:</label>
+                <select asp-for="City" name="city" id="city">
+                    @foreach (var city in Model.SchoolsCities.Keys)
+                    {
+                        <option value="@city">@city</option>
+                    }
+                </select>
+                <input type="hidden" id="citiesData" value="@ViewData["Data"]" />
+                <label for="sampleInput">Училище:</label>
+                <select asp-for="SchoolName" name="schools" id="schools">
+@*                    <optgroup label="@cityValue">
+                        @foreach (var school in Model.SchoolsCities[cityValue])
+                        {
+                            <option value="@school.Name">@school.Name</option>
+                        }
+                    </optgroup>*@
+                </select>
+
+                <div style="display:none;" id="experience">
+                    <label for="sampleInput">Годишен стаж</label>
+                    <input class="h-full-width" type="text" placeholder="10">
+                </div>
+                <div style="display:none;" id="aboutMe">
+                    <label for="sampleInput">За мен</label>
+                    <input class="h-full-width" type="text" placeholder="Аз съм учител по информатика. Главно преподавам C#, SQL, ASP.NET Core и Haskell....">
+                </div>
+
                 <div class="mb-3">
                     <label class="profilePictureLabel">Профилна снимка</label>
                     <label class="btn h-full-width" for="uploadProfilePicture">Прикачи Профилна Снимка</label>
@@ -75,19 +95,22 @@
                 <div class="mb-3">
                     <img alt="Upload an image" accept="image/gif, image/jpeg, image/png" style="display:none;">
                 </div>
-                @*<div style="display:none;" id="yearOfCreating">
-                <label for="sampleInput">Year of creating</label>
-                <input class="h-full-width" type="text" placeholder="2005">
-                </div>
-                <div style="display:none;" id="additionalInformation">
-                <label for="sampleInput">Additional Information</label>
-                <input class="h-full-width" type="text" placeholder="Lorem ipsum additional information...">
-                </div>*@
 
-                <input asp-controller="Account" asp-action="RegisterAsStudent" class="btn--primary h-full-width" type="submit" value="Регистрирай се">
+                <input style="display:block;" id="registerAsStudent" asp-controller="Account" asp-action="RegisterAsStudent" class="btn--primary h-full-width" type="submit" value="Регистрирай се">
+                <input style="display:none;" id="registerAsTeacher" asp-controller="Account" asp-action="RegisterAsTeacher" class="btn--primary h-full-width" type="submit" value="Регистрирай се">
             </form>
 
         </div>
 
     </div>
 </section>
+@*
+<script>
+    let select = document.querySelector("#city");
+
+    select.addEventListener("change", (e) => {
+        console.log("just got it");
+        let opt = e.currentTarget.querySelector("option:selected");
+    @cityValue = opt.value;
+    });
+</script>*@

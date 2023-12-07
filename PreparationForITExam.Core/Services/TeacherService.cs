@@ -19,7 +19,7 @@ namespace PreparationForITExam.Core.Services
             repo = _repo;
         }
 
-        public async Task Create(string userId, RegisterViewModelForTeacher model)
+        public async Task Create(string userId, RegisterViewModel model)
         {
             var teacher = new Teacher()
             {
