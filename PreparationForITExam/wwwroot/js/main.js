@@ -373,13 +373,10 @@
             var schools = document.getElementById('schools')
             schools.innerHTML = "";
             const selectedCity = $('#city').val();
-            console.log(selectedCity);
             var data = JSON.parse($('#citiesData').val());
-            console.log(data[selectedCity]);
             var schools = document.getElementById('schools');
 
             for (var city of data[selectedCity]) {
-                console.log(city);
                 var opt = document.createElement('option');
                 opt.id = city.id;
                 opt.value = city.name;
@@ -393,13 +390,7 @@
     const onSchoolOptionSelect = function () {
 
         $('#schools').on('change', function () {
-            // Clear options
-         //   var schools = document.getElementById('schools')
             const selectedSchool = $('#schools').val();
-
-            console.log(selectedSchool);
-
-           // var school = document.getElementById('schoolData');
             $('#schoolData').val(selectedSchool);
         });
 
