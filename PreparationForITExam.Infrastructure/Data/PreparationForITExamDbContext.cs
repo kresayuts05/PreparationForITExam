@@ -37,6 +37,7 @@ namespace PreparationForITExam.Infrastructure.Data
         public DbSet<SectionOfCurricular> SectionsOfCurricular { get; set; }
         public DbSet<Test> Tests { get; set; }
         public DbSet<Question> Questions { get; set; }
+        public DbSet<LessonMonUser> LessonMonUser { get; set; }
 
 
         protected override void OnModelCreating(ModelBuilder builder)
@@ -56,10 +57,19 @@ namespace PreparationForITExam.Infrastructure.Data
                 .WithOne()
                 .OnDelete(DeleteBehavior.Restrict);
 
+            builder.Entity<LessonMonUser>()
+               .HasKey(pk => new { pk.LessonId, pk.MonUserId });
+
+
             builder.ApplyConfiguration(new RoleConfiguration());
+            builder.ApplyConfiguration(new UserConfiguration());
+            builder.ApplyConfiguration(new MonUserConfiguration());
             builder.ApplyConfiguration(new ModuleOfCurricularConfiguration());
             builder.ApplyConfiguration(new SectionOfCurricularConfiguration());
             builder.ApplyConfiguration(new SchoolConfiguration());
+            builder.ApplyConfiguration(new LessonConfiguration());
+            builder.ApplyConfiguration(new LessonMonUserConfiguration());
+
 
             base.OnModelCreating(builder);
         }

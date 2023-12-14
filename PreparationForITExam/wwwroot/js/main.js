@@ -351,6 +351,7 @@
         $('#teacherCheckBox').on('click', function () {
             if (document.getElementById('teacherCheckBox').checked) {
                 document.getElementById('aboutMe').style.display = "block";
+                document.getElementById('subject').style.display = "block";
                 document.getElementById('experience').style.display = "block";
                 document.getElementById('registerAsTeacher').style.display = "block";
                 document.getElementById('registerAsStudent').style.display = "none";
@@ -358,6 +359,7 @@
             else {
                 document.getElementById('aboutMe').style.display = "none";
                 document.getElementById('experience').style.display = "none";
+                document.getElementById('subject').style.display = "none";
                 document.getElementById('registerAsTeacher').style.display = "none";
                 document.getElementById('registerAsStudent').style.display = "block";
             }
@@ -379,6 +381,7 @@
             for (var city of data[selectedCity]) {
                 console.log(city);
                 var opt = document.createElement('option');
+                opt.id = city.id;
                 opt.value = city.name;
                 opt.innerHTML = city.name;
                 schools.add(opt);
@@ -387,10 +390,26 @@
 
     };
 
+    const onSchoolOptionSelect = function () {
+
+        $('#schools').on('change', function () {
+            // Clear options
+         //   var schools = document.getElementById('schools')
+            const selectedSchool = $('#schools').val();
+
+            console.log(selectedSchool);
+
+           // var school = document.getElementById('schoolData');
+            $('#schoolData').val(selectedSchool);
+        });
+
+    };
+
     /* Initialize
      * ------------------------------------------------------ */
     (function ssInit() {
         onCityOptionSelect();
+        onSchoolOptionSelect();
         ssPreloader();
         ssAlertBoxes();
         ssSearch();

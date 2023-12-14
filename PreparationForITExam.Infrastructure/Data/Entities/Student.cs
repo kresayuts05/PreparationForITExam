@@ -37,8 +37,8 @@ namespace PreparationForITExam.Infrastructure.Data.Entities
         public User User { get; set; }
 
         [ForeignKey(nameof(School))]
-        public int? SchoolId { get; set; }
-        public School? School { get; set; }
+        public int SchoolId { get; set; }
+        public School School { get; set; }
 
         public ICollection<Exercise> FinishedExercises { get; set; } = new HashSet<Exercise>();
     }

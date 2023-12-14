@@ -4,6 +4,7 @@
     ViewData["Title"] = "Регистрация";
     ViewData["Data"] = Json.Serialize(Model.SchoolsCities).ToString();
     //string cityValue = "София";
+
 }
 <section>
 
@@ -55,35 +56,37 @@
                     <span asp-validation-for="PhoneNumber" class="text-danger"></span>
                 </div>
                 <div>
-                    <label for="sampleInput">Град<span class="mandatory">*</span></label>
-                    <input asp-for="City" class="h-full-width" type="text" placeholder="Казанлък">
-                    <span asp-validation-for="City" class="text-danger"></span>
-                </div>
-                <label for="sampleInput">Град:</label>
-                <select asp-for="City" name="city" id="city">
-                    @foreach (var city in Model.SchoolsCities.Keys)
-                    {
-                        <option value="@city">@city</option>
-                    }
-                </select>
-                <input type="hidden" id="citiesData" value="@ViewData["Data"]" />
-                <label for="sampleInput">Училище:</label>
-                <select asp-for="SchoolName" name="schools" id="schools">
-@*                    <optgroup label="@cityValue">
-                        @foreach (var school in Model.SchoolsCities[cityValue])
+                    <label for="sampleInput">Град:<span class="mandatory">*</span></label>
+                    <select asp-for="City" name="city" id="city">
+                        @foreach (var city in Model.SchoolsCities.Keys)
                         {
-                            <option value="@school.Name">@school.Name</option>
+                            <option value="@city">@city</option>
                         }
-                    </optgroup>*@
-                </select>
-
+                    </select>
+                    <input type="hidden" id="citiesData" value="@ViewData["Data"]" />
+                </div>
+                <div>
+                    <label for="sampleInput">Училище:<span class="mandatory">*</span></label>
+                    <select asp-for="SchoolName" name="schools" id="schools">
+                    </select>
+                    <input asp-for="SchoolName" type="hidden" id="schoolData" />
+                </div>
                 <div style="display:none;" id="experience">
                     <label for="sampleInput">Годишен стаж</label>
-                    <input class="h-full-width" type="text" placeholder="10">
+                    <input asp-for="Experience" class="h-full-width" type="text" placeholder="10">
+                    <span asp-validation-for="Experience" class="text-danger"></span>
                 </div>
+
+                <div style="display:none;" id="subject">
+                    <label for="sampleInput">Преподваем предмет</label>
+                    <input asp-for="Subject" class="h-full-width" type="text" placeholder="Информатика">
+                    <span asp-validation-for="Subject" class="text-danger"></span>
+                </div>
+
                 <div style="display:none;" id="aboutMe">
                     <label for="sampleInput">За мен</label>
-                    <input class="h-full-width" type="text" placeholder="Аз съм учител по информатика. Главно преподавам C#, SQL, ASP.NET Core и Haskell....">
+                    <input asp-for="AboutMe" class="h-full-width" type="text" placeholder="Аз съм учител по информатика. Главно преподавам C#, SQL, ASP.NET Core и Haskell....">
+                    <span asp-validation-for="AboutMe" class="text-danger"></span>
                 </div>
 
                 <div class="mb-3">
@@ -104,13 +107,3 @@
 
     </div>
 </section>
-@*
-<script>
-    let select = document.querySelector("#city");
-
-    select.addEventListener("change", (e) => {
-        console.log("just got it");
-        let opt = e.currentTarget.querySelector("option:selected");
-    @cityValue = opt.value;
-    });
-</script>*@

@@ -28,9 +28,6 @@ namespace PreparationForITExam.Infrastructure.Data.Entities
         [MaxLength(SubjectMaxLength)]
         public string? Subject { get; set; }
 
-        [MaxLength(UniversityMaxLength)]
-        public string? University { get; set; } = null!;
-
         [MaxLength(AboutMeMaxLength)]
         public string? AboutMe { get; set; }
 

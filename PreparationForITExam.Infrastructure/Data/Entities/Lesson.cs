@@ -24,8 +24,9 @@ namespace PreparationForITExam.Infrastructure.Data.Entities
         [MaxLength(TitleMaxLength)]
         public string Title { get; set; } = null!;
 
-        [MaxLength(GroupMaxLength)]
-        public string Group { get; set; }
+        [ForeignKey(nameof(SectionOfCurricular))]
+        public int SectionOfCurricularId { get; set; }
+        public SectionOfCurricular SectionOfCurricular { get; set; }
 
         [Required]
         [MaxLength(ContentMaxLength)]
@@ -38,7 +39,7 @@ namespace PreparationForITExam.Infrastructure.Data.Entities
         public Exercise Exercise { get; set; }
 
         [Required]
-        public ICollection<MonUser> Mons { get; set; } = new HashSet<MonUser>();
+        public ICollection<LessonMonUser> LessonMonUser { get; set; } = new HashSet<LessonMonUser>();
         public ICollection<Teacher> Teachers { get; set; } = new HashSet<Teacher>();
         public ICollection<Material> Materials { get; set; } = new HashSet<Material>();
     }

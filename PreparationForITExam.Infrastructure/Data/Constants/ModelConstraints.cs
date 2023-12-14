@@ -99,9 +99,6 @@ namespace PreparationForITExam.Infrastructure.Data.Constants
             public const int TitleMaxLength = 60;
             public const int TitleMinLength = 2;
 
-            public const int GroupMaxLength = 50;
-            public const int GroupMinLength = 2;
-
             public const int ContentMaxLength = 4000;
             public const int ContentMinLength = 2;
         }

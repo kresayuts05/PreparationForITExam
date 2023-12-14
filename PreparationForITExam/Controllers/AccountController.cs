@@ -115,15 +115,6 @@ namespace PreparationForITExam.Controllers
             return View("Register", model);
         }
 
-        [HttpGet]
-        [AllowAnonymous]
-        public IActionResult RegisterAsTeacher()
-        {
-            var model = new RegisterViewModel();
-
-            return View(model);
-        }
-
         [HttpPost]
         [AllowAnonymous]
         public async Task<IActionResult> RegisterAsTeacher(RegisterViewModel model)
@@ -152,7 +143,7 @@ namespace PreparationForITExam.Controllers
                 LastName = model.LastName,
                 UserName = model.Email,
                 PhoneNumber = model.PhoneNumber,
-                City = model.City,
+                City = model.City
             };
 
             var result = await userManager.CreateAsync(user, model.Password);

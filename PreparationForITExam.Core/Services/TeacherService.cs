@@ -26,6 +26,7 @@ namespace PreparationForITExam.Core.Services
                 UserId = userId,
                 Experience = model.Experience,
                 Subject = model.Subject,
+                AboutMe= model.AboutMe,
             };
 
             await repo.AddAsync(teacher);

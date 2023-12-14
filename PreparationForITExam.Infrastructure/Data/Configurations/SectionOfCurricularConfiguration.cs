@@ -71,6 +71,41 @@ namespace PreparationForITExam.Infrastructure.Data.Configurations
                     Title = "Разработване на проект",
                     ModuleOfCurricularId = 2
                 },
+                     new SectionOfCurricular {
+                    Id = 12,
+                    Title = "Въведение",
+                    ModuleOfCurricularId = 3
+                },
+                     new SectionOfCurricular {
+                    Id = 13,
+                    Title = "Релационен модел на Бази от данни",
+                    ModuleOfCurricularId = 3
+                },
+                     new SectionOfCurricular {
+                    Id = 14,
+                    Title = "Система за управление на Бази от данни",
+                    ModuleOfCurricularId = 3
+                },
+                     new SectionOfCurricular {
+                    Id = 15,
+                    Title = "Интегриране на Бази от данни в интернет системи",
+                    ModuleOfCurricularId = 3
+                },
+                     new SectionOfCurricular {
+                    Id = 17,
+                    Title = "Сървър за база от данни",
+                    ModuleOfCurricularId = 4
+                },
+                     new SectionOfCurricular {
+                    Id = 18,
+                    Title = "Пабота по проекти",
+                    ModuleOfCurricularId = 4
+                },
+                     new SectionOfCurricular {
+                    Id = 19,
+                    Title = "SQL SERVER със C#",
+                    ModuleOfCurricularId = 4
+                },
             });
         }
     }

@@ -26,6 +26,7 @@ namespace PreparationForITExam.Infrastructure.Data.Entities
         public bool IsActive { get; set; }
 
         public ICollection<News> News { get; set; }
-        public ICollection<Lesson> Lessons { get; set; }
+        public ICollection<LessonMonUser> LessonMonUser { get; set; } = new HashSet<LessonMonUser>();
+
     }
 }
