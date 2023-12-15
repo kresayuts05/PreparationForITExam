@@ -1,45 +1,41 @@
 ﻿<!DOCTYPE html>
-<html lang="en">
+<html class ="no-js" lang="en">
 <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>@ViewData["Title"] - PreparationForITExam</title>
-    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
-    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
-    <link rel="stylesheet" href="~/css/register.css" asp-append-version="true" />
-    <link rel="stylesheet" href="~/PreparationForITExam.styles.css" asp-append-version="true" />
-    <meta charset="utf-8">
+    <meta charset="utf-8"/>
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>@ViewData["Title"] - PreparationForITExam</title>
+    @*<link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />*@
+  @*  <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />*@
+ @*   <link rel="stylesheet" href="~/css/register.css" asp-append-version="true" />*@
+    <link rel="stylesheet" href="~/PreparationForITExam.styles.css" asp-append-version="true" />
 
     <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
     <!--font-family-->
     <link href="https://fonts.googleapis.com/css?family=Poppins:100,100i,200,200i,300,300i,400,400i,500,500i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet">
 
     <!-- title of site -->
-    <title>Directory Landing Page</title>
+    <title>БлицКод-ДЗИ</title>
 
-    <!-- For favicon png -->
-    <link rel="shortcut icon" type="image/icon" href="assets/logo/favicon.png" />
 
     <!--font-awesome.min.css-->
-    <link rel="stylesheet" href="~/css/font-awesome.min.css">
+    <link rel="stylesheet" href="~/css/font-awesome.min.css" >
 
     <!--linear icon css-->
-    <link rel="stylesheet" href="~/css/linearicons.css">
+    <link rel="stylesheet" href="~/css/linearicons.css" >
 
     <!--animate.css-->
-    <link rel="stylesheet" href="~/css/animate.css">
+    <link rel="stylesheet" href="~/css/animate.css" >
 
     <!--flaticon.css-->
-    <link rel="stylesheet" href="assets/css/flaticon.css">
+    <link rel="stylesheet" href="~/css/flaticon.css" >
 
     <!--slick.css-->
     <link rel="stylesheet" href="~/css/slick.css">
     <link rel="stylesheet" href="~/css/slick-theme.css">
 
     <!--bootstrap.min.css-->
-    <link rel="stylesheet" href="~/css/bootstrap.min.css">
+    <link rel="stylesheet" href="~/css/bootstrap.min.css" >
 
     <!-- bootsnav -->
     <link rel="stylesheet" href="~/css/bootsnav.css">
@@ -48,65 +44,294 @@
     <link rel="stylesheet" href="~/css/style.css">
 
     <!--responsive.css-->
-    <link rel="stylesheet" href="~/css/responsive.css">
+    <link rel="stylesheet" href="~/css/responsive.css" >
 
+    @await RenderSectionAsync("Styles", required: false)
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
     <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
     <!--[if lt IE 9]>
         <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
         <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
     <![endif]-->
-
     <!-- favicons
     ================================================== -->
 </head>
 <body>
-    <header>
-        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
-            <div class="container-fluid">
-                <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">PreparationForITExam</a>
-                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" aria-controls="navbarSupportedContent"
-                        aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-                <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
-                    <ul class="navbar-nav flex-grow-1">
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
-                        </li>
-                    </ul>
-                    <partial name="_LoginPartial" />
-                </div>  
-            </div>
-        </nav>
+    <header id="header-top" class="header-top">
+        <div class="header-top-right">
+            <partial name="_LoginPartial" />
+        </div>
     </header>
+    @*  <header>
+    <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
+    <div class="container-fluid">
+    <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">PreparationForITExam</a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" aria-controls="navbarSupportedContent"
+    aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
+    <ul class="navbar-nav flex-grow-1">
+    <li class="nav-item">
+    <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
+    </li>
+    <li class="nav-item">
+    <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
+    </li>
+    </ul>
+
+    </div>
+    </div>
+    </nav>
+    </header>*@
+
+    <!-- top-area Start -->
+    <section class="top-area">
+        <div class="header-area">
+            <!-- Start Navigation -->
+            <nav class="navbar navbar-default bootsnav  navbar-sticky navbar-scrollspy" data-minus-value-desktop="70"
+                 data-minus-value-mobile="55" data-speed="1000">
+
+                <div class="container">
+                    <!-- Start Header Navigation -->
+                    <div class="navbar-header">
+                        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar-menu">
+                            <i class="fa fa-bars"></i>
+                        </button>
+                        <a class="navbar-brand" href="index.html">Блиц<span>Код</span>-ДЗИ</a>
+
+                    </div><!--/.navbar-header-->
+                    <!-- End Header Navigation -->
+                    <!-- Collect the nav links, forms, and other content for toggling -->
+                    <div class="collapse navbar-collapse menu-ui-design" id="navbar-menu">
+                        <ul class="nav navbar-nav navbar-right" data-in="fadeInDown" data-out="fadeOutUp">
+                            <li class=" scroll active"><a href="#home"><b>начало</b></a></li>
+                            <li class="scroll"><a ><b>обучение</b></a></li>
+                            <li class="scroll"><a ><b>форум</b></a></li>
+                            <li class="scroll"><a ><b>чатове</b></a></li>
+                            <li class="scroll"><a ><b>профил</b></a></li>
+                        </ul><!--/.nav -->
+                    </div><!-- /.navbar-collapse -->
+                </div><!--/.container-->
+
+            </nav><!--/nav-->
+            <!-- End Navigation -->
+        </div><!--/.header-area-->
+        <div class="clearfix"></div>
+
+    </section><!-- /.top-area-->
+    <!-- top-area End -->
+
+    <!--welcome-hero start -->
+    <section id="home" class="welcome-hero">
+        <div class="container bg-transperent">
+            <div class="welcome-hero-txt">
+                <h2>искаш да се представиш отлично на дзи по информатика <br></h2>
+                <p>
+                    Тук е точното място за това! На ваше разположение са безброй полезни материали
+                </p>
+                <p>
+                    Не губи време - Започни сега!
+                </p>
+            </div>
+            <div class="welcome-hero-serch-box">
+
+                <div class="welcome-hero-serch">
+                    <button class="welcome-hero-btn">
+                        НАЧАЛО
+                    </button>
+                </div>
+            </div>
+        </div>
+
+    </section><!--/.welcome-hero-->
+    <!--welcome-hero end -->
+    <section id="list-topics" class="list-topics">
+        <div class="container">
+            <div class="list-topics-content">
+                <ul>
+                    <li>
+                        <div class="single-list-topics-content">
+                            <div class="single-list-topics-icon">
+                                <i class="flaticon-restaurant"></i>
+                            </div>
+                            <h2><a href="#">resturent</a></h2>
+                            <p>150 listings</p>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="single-list-topics-content">
+                            <div class="single-list-topics-icon">
+                                <i class="flaticon-travel"></i>
+                            </div>
+                            <h2><a href="#">destination</a></h2>
+                            <p>214 listings</p>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="single-list-topics-content">
+                            <div class="single-list-topics-icon">
+                                <i class="flaticon-building"></i>
+                            </div>
+                            <h2><a href="#">hotels</a></h2>
+                            <p>185 listings</p>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="single-list-topics-content">
+                            <div class="single-list-topics-icon">
+                                <i class="flaticon-pills"></i>
+                            </div>
+                            <h2><a href="#">healthcaree</a></h2>
+                            <p>200 listings</p>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="single-list-topics-content">
+                            <div class="single-list-topics-icon">
+                                <i class="flaticon-transport"></i>
+                            </div>
+                            <h2><a href="#">automotion</a></h2>
+                            <p>120 listings</p>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </div><!--/.container-->
+
+    </section><!--/.list-topics-->
+    <!--list-topics end-->
+    <!--works start -->
+    <section id="works" class="works">
+        <div class="container">
+            <div class="section-header">
+                <h2>Как работи</h2>
+                <p>Научете повече за това какво Ви преоставя БлицКод</p>
+            </div><!--/.section-header-->
+            <div class="works-content">
+                <div class="row">
+                    <div class="col-md-4 col-sm-6">
+                        <div class="single-how-works">
+                            <div class="single-how-works-icon">
+                                <i class="student"></i>
+                            </div>
+                            <h2><a href="#">Ученици</a></h2>
+                            <p>
+                                Има достъп до различни учебни материали по учебната програма, различни задачи и
+                                упражнения на съответните уроци
+                            </p>
+                            <button class="welcome-hero-btn how-work-btn" onclick="window.location.href='#'">
+                                Повече
+                            </button>
+                        </div>
+                    </div>
+                    <div class="col-md-4 col-sm-6">
+                        <div class="single-how-works">
+                            <div class="single-how-works-icon">
+                                <i class="teacher"></i>
+                            </div>
+                            <h2><a href="#">Учители</a></h2>
+                            <p>
+                                Имат възможността да добавят материали към уроците и упражненията, както и да проверяват
+                                предадени задачи на ученици като оставят рецензия
+                            </p>
+                            <button class="welcome-hero-btn how-work-btn" onclick="window.location.href='#'">
+                                Повече
+                            </button>
+                        </div>
+                    </div>
+                    <div class="col-md-4 col-sm-6">
+                        <div class="single-how-works">
+                            <div class="single-how-works-icon">
+                                <i class="mon"></i>
+                            </div>
+                            <h2><a href="#">МОН</a></h2>
+                            <p>
+                                Администратори на приложението. Спускат новите новини и съобщения. Предоставят главната структура на уроците
+                            </p>
+                            <button class="welcome-hero-btn how-work-btn" onclick="window.location.href='#'">
+                                Повече
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div><!--/.container-->
+
+    </section><!--/.works-->
+    <!--works end -->
+
     <div class="container">
         <main role="main" class="pb-3">
             @RenderBody()
         </main>
     </div>
 
-    <footer class="border-top footer text-muted">
+    <!--footer start-->
+    <footer id="footer" class="footer">
         <div class="container">
-            &copy; 2023 - PreparationForITExam - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
-        </div>
-    </footer>
+            <div class="footer-menu">
+                <div class="row">
+                    <div class="col-sm-3">
+                        <div class="navbar-header">
+                            <a class="navbar-brand" href="index.html">Блиц<span>Код</span>-ДЗИ</a>
+                        </div><!--/.navbar-header-->
+                    </div>
+                    <div class="col-sm-9">
+                        <ul class="footer-menu-item">
+                            <li class=" scroll active"><a href="#home"><b>начало</b></a></li>
+                            <li class="scroll"><a href="#works"><b>обучение</b></a></li>
+                            <li class="scroll"><a href="#explore"><b>форум</b></a></li>
+                            <li class="scroll"><a href="#reviews"><b>чатове</b></a></li>
+                            <li class="scroll"><a href="#reviews"><b>профил</b></a></li>
+                        </ul><!--/.nav -->
+                    </div>
+                </div>
+            </div>
+            <div class="hm-footer-copyright">
+                <div class="row">
+                    <div class="col-sm-5">
+                        <p>
+                            &copy;copyright. designed and developed by Kresa Tsvetkova
+                        </p><!--/p-->
+                    </div>
+                    <div class="col-sm-7">
+                        <div class="footer-social">
+                            <span><i class="fa fa-phone"> +1 (222) 777 8888</i></span>
+                            <button class="appsLand-btn subscribe-btn" onclick="window.location.href='#'">
+                                Регистрация
+                            </button>
+                        </div>
+                    </div>
+                </div>
 
+            </div><!--/.hm-footer-copyright-->
+        </div><!--/.container-->
+
+        <div id="scroll-Top">
+            <div class="return-to-top">
+                <i class="fa fa-angle-up " id="scroll-top" data-toggle="tooltip" data-placement="top" title=""
+                   data-original-title="Back to Top" aria-hidden="true"></i>
+            </div>
+
+        </div><!--/.scroll-Top-->
+
+    </footer><!--/.footer-->
+    <!--footer end-->
     <!-- script
     ================================================== -->
-    <script src="~/lib/jquery/dist/jquery.min.js"></script>
-    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="~/js/site.js" asp-append-version="true"></script>
-    <script src="~/js/modernizr.js"></script>
+   
+
+    @*<script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>*@
+
     <script src="~/js/plugins.js"></script>
     <script src="~/js/main.js" asp-append-version="true" defer></script>
-    <script src="assets/js/jquery.js"></script>
+    <script src="~/js/jquery.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
 
     <!--modernizr.min.js-->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/modernizr/2.8.3/modernizr.min.js"></script>
+    <script src="~/js/modernizr.js"></script>
 
     <!--bootstrap.min.js-->
     <script src="~/js/bootstrap.min.js"></script>
@@ -128,6 +353,7 @@
 
     <!--Custom JS-->
     <script src="~/js/custom.js"></script>
+
     @await RenderSectionAsync("Scripts", required: false)
 </body>
 </html>

@@ -2,25 +2,26 @@
 @inject SignInManager<User> SignInManager
 @inject UserManager<User> UserManager
 
-<ul class="navbar-nav">
-@if (SignInManager.IsSignedIn(User))
-{
-   <li class="nav-item">
+
+<ul>
+    @if (SignInManager.IsSignedIn(User))
+    {
+        <li class="nav-item">
             <a class="nav-link text-dark" asp-area="Identity" asp-page="/Account/Home/Index" title="Manage">Здравейте @User.Identity?.Name!</a>
         </li>
-        <li class="nav-item">
-            <form class="form-inline" asp-area="Identity" asp-page="/Account/Logout" asp-route-returnUrl="@Url.Action("Index", "Home", new { area = "" })">
+        <li class="header-top-contact">
+            <form asp-area="Identity" asp-page="/Account/Logout" asp-route-returnUrl="@Url.Action("Index", "Home", new { area = "" })">
                 <button type="submit" class="nav-link btn btn-link">Изход</button>
             </form>
         </li>
-}
-else
-{
-    <li class="nav-item">
-            <a class="nav-link text-dark" asp-controller="Account" asp-area="" asp-action="Register">Register</a>
-    </li>
-    <li class="nav-item">
-            <a class="nav-link text-dark" asp-controller="Account" asp-area="" asp-action="Login">Login</a>
-    </li>
-}
+    }
+    else
+    {
+        <li class="header-top-contact">
+            <a asp-controller="Account" asp-area="" asp-action="Login">Вход</a>
+        </li>
+        <li class="header-top-contact">
+            <a asp-controller="Account" asp-area="" asp-action="Register">Регистрация</a>
+        </li>
+    }
 </ul>
