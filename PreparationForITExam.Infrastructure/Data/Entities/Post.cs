@@ -48,6 +48,8 @@ namespace PreparationForITExam.Infrastructure.Data.Entities
         public string UserId { get; set; }
         public User User { get; set; }
 
+        //public List<string> KeyWords { get; set; } = new List<string>();
+
         public ICollection<PostComment> Comments { get; set; } = new HashSet<PostComment>();
         public ICollection<Image> Images { get; set; } = new HashSet<Image>();
     }

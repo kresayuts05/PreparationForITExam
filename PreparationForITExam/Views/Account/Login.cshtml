@@ -1,35 +1,36 @@
 ﻿@model LoginViewModel
 @{
 }
+<link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
 
+<section>
 
-<div class="form_wrapper">
-    <div class="form_container">
-        <div class="title_container">
-            <h2>Registration Form For Firm</h2>
+    <div class="row flex-align-center">
+
+        <div class="column large-6 tab-12">
+
+            <h3 class="h-add-bottom">Вход</h3>
+
+            <form method="post" enctype="multipart/form-data">
+                <div>
+                    <label for="sampleInput">Имейл</label>
+                    <input asp-for="Email" class="h-full-width" type="email" placeholder="test@mailbox.com" id="sampleInput">
+                    <span asp-validation-for="Email" class="text-danger"></span>
+                </div>
+
+                <div>
+                    <label for="sampleInput">Парола</label>
+                    <input asp-for="Password" class="h-full-width" type="password" placeholder="123asd123" id="sampleInput">
+                    <span asp-validation-for="Password" class="text-danger"></span>
+                </div>
+
+                <input asp-controller="Account" asp-action="Login" class="btn--primary h-full-width" type="submit" value="Вход">
+            </form>
+
         </div>
-        <div class="row clearfix">
-            <div class="">
-                <form method="post">
-                    <div class="row clearfix">
-                        <div class="input_field">
-                            <input asp-for="Email" type="email" class="form-control" placeholder="samuilvanov@gmail.com*" required />
-                            <span asp-validation-for="Email"></span>
-                        </div>
-                        <div class="input_field">
-                            <input asp-for="Password" type="password" class="form-control" placeholder="Парола*" required />
-                            <span asp-validation-for="Password"></span>
-                        </div>
-                    </div>
-                    <br>
-                    <input class="button" type="submit" value="Login" />
-                </form>
-            </div>
-        </div>
+
     </div>
-    <a asp-controller="Account" asp-action="RegisterAsStudent" class="credit">I am not registrated. Click <b>here</b></a>
-    <br>
-</div>
+</section>
 
 @section Scripts {
     <partial name="_ValidationScriptsPartial" />

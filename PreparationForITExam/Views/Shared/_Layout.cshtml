@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>@ViewData["Title"] - PreparationForITExam</title>
     @*<link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />*@
-  @*  <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />*@
+
  @*   <link rel="stylesheet" href="~/css/register.css" asp-append-version="true" />*@
     <link rel="stylesheet" href="~/PreparationForITExam.styles.css" asp-append-version="true" />
 
@@ -63,28 +63,6 @@
             <partial name="_LoginPartial" />
         </div>
     </header>
-    @*  <header>
-    <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
-    <div class="container-fluid">
-    <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">PreparationForITExam</a>
-    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" aria-controls="navbarSupportedContent"
-    aria-expanded="false" aria-label="Toggle navigation">
-    <span class="navbar-toggler-icon"></span>
-    </button>
-    <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
-    <ul class="navbar-nav flex-grow-1">
-    <li class="nav-item">
-    <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
-    </li>
-    <li class="nav-item">
-    <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
-    </li>
-    </ul>
-
-    </div>
-    </div>
-    </nav>
-    </header>*@
 
     <!-- top-area Start -->
     <section class="top-area">
@@ -106,7 +84,7 @@
                     <!-- Collect the nav links, forms, and other content for toggling -->
                     <div class="collapse navbar-collapse menu-ui-design" id="navbar-menu">
                         <ul class="nav navbar-nav navbar-right" data-in="fadeInDown" data-out="fadeOutUp">
-                            <li class=" scroll active"><a href="#home"><b>начало</b></a></li>
+                            <li class=""><a asp-controller="Home" asp-area="" asp-action="Index">начало</a></li>
                             <li class="scroll"><a ><b>обучение</b></a></li>
                             <li class="scroll"><a ><b>форум</b></a></li>
                             <li class="scroll"><a ><b>чатове</b></a></li>
@@ -123,146 +101,8 @@
     </section><!-- /.top-area-->
     <!-- top-area End -->
 
-    <!--welcome-hero start -->
-    <section id="home" class="welcome-hero">
-        <div class="container bg-transperent">
-            <div class="welcome-hero-txt">
-                <h2>искаш да се представиш отлично на дзи по информатика <br></h2>
-                <p>
-                    Тук е точното място за това! На ваше разположение са безброй полезни материали
-                </p>
-                <p>
-                    Не губи време - Започни сега!
-                </p>
-            </div>
-            <div class="welcome-hero-serch-box">
 
-                <div class="welcome-hero-serch">
-                    <button class="welcome-hero-btn">
-                        НАЧАЛО
-                    </button>
-                </div>
-            </div>
-        </div>
-
-    </section><!--/.welcome-hero-->
-    <!--welcome-hero end -->
-    <section id="list-topics" class="list-topics">
-        <div class="container">
-            <div class="list-topics-content">
-                <ul>
-                    <li>
-                        <div class="single-list-topics-content">
-                            <div class="single-list-topics-icon">
-                                <i class="flaticon-restaurant"></i>
-                            </div>
-                            <h2><a href="#">resturent</a></h2>
-                            <p>150 listings</p>
-                        </div>
-                    </li>
-                    <li>
-                        <div class="single-list-topics-content">
-                            <div class="single-list-topics-icon">
-                                <i class="flaticon-travel"></i>
-                            </div>
-                            <h2><a href="#">destination</a></h2>
-                            <p>214 listings</p>
-                        </div>
-                    </li>
-                    <li>
-                        <div class="single-list-topics-content">
-                            <div class="single-list-topics-icon">
-                                <i class="flaticon-building"></i>
-                            </div>
-                            <h2><a href="#">hotels</a></h2>
-                            <p>185 listings</p>
-                        </div>
-                    </li>
-                    <li>
-                        <div class="single-list-topics-content">
-                            <div class="single-list-topics-icon">
-                                <i class="flaticon-pills"></i>
-                            </div>
-                            <h2><a href="#">healthcaree</a></h2>
-                            <p>200 listings</p>
-                        </div>
-                    </li>
-                    <li>
-                        <div class="single-list-topics-content">
-                            <div class="single-list-topics-icon">
-                                <i class="flaticon-transport"></i>
-                            </div>
-                            <h2><a href="#">automotion</a></h2>
-                            <p>120 listings</p>
-                        </div>
-                    </li>
-                </ul>
-            </div>
-        </div><!--/.container-->
-
-    </section><!--/.list-topics-->
-    <!--list-topics end-->
-    <!--works start -->
-    <section id="works" class="works">
-        <div class="container">
-            <div class="section-header">
-                <h2>Как работи</h2>
-                <p>Научете повече за това какво Ви преоставя БлицКод</p>
-            </div><!--/.section-header-->
-            <div class="works-content">
-                <div class="row">
-                    <div class="col-md-4 col-sm-6">
-                        <div class="single-how-works">
-                            <div class="single-how-works-icon">
-                                <i class="student"></i>
-                            </div>
-                            <h2><a href="#">Ученици</a></h2>
-                            <p>
-                                Има достъп до различни учебни материали по учебната програма, различни задачи и
-                                упражнения на съответните уроци
-                            </p>
-                            <button class="welcome-hero-btn how-work-btn" onclick="window.location.href='#'">
-                                Повече
-                            </button>
-                        </div>
-                    </div>
-                    <div class="col-md-4 col-sm-6">
-                        <div class="single-how-works">
-                            <div class="single-how-works-icon">
-                                <i class="teacher"></i>
-                            </div>
-                            <h2><a href="#">Учители</a></h2>
-                            <p>
-                                Имат възможността да добавят материали към уроците и упражненията, както и да проверяват
-                                предадени задачи на ученици като оставят рецензия
-                            </p>
-                            <button class="welcome-hero-btn how-work-btn" onclick="window.location.href='#'">
-                                Повече
-                            </button>
-                        </div>
-                    </div>
-                    <div class="col-md-4 col-sm-6">
-                        <div class="single-how-works">
-                            <div class="single-how-works-icon">
-                                <i class="mon"></i>
-                            </div>
-                            <h2><a href="#">МОН</a></h2>
-                            <p>
-                                Администратори на приложението. Спускат новите новини и съобщения. Предоставят главната структура на уроците
-                            </p>
-                            <button class="welcome-hero-btn how-work-btn" onclick="window.location.href='#'">
-                                Повече
-                            </button>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div><!--/.container-->
-
-    </section><!--/.works-->
-    <!--works end -->
-
-    <div class="container">
+    <div class="main">
         <main role="main" class="pb-3">
             @RenderBody()
         </main>
@@ -327,7 +167,7 @@
 
     <script src="~/js/plugins.js"></script>
     <script src="~/js/main.js" asp-append-version="true" defer></script>
-    <script src="~/js/jquery.js"></script>
+    <script src="~/lib/jquery/dist/jquery.js"></script>
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
 
     <!--modernizr.min.js-->
