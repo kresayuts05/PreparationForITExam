@@ -1,0 +1,98 @@
+﻿@*@model CurricularViewModel*@
+
+<section id="curricular" class="curricular">
+    <div class="container">
+        <div class="curricular-head">
+            <h3>Учебна програма</h3>
+            <p>Учебната програма се състои от 4 модула. Зрелостният изпит включва изучаваният материал от суптветните модули. </p>
+        </div>
+        <div class="curricular-modules-info">
+            <ul class="curricular-modules">
+                <li>
+                    <a asp-controller="ModuleOfCurricular" asp-action="Index">
+                        <div class="single-list-topics-content">
+                            <div class="single-list-topics-icon">
+                                <i class="oop"></i>
+                            </div>
+                            <h2><a><b>ООП</b></a></h2>
+                            <p>11 клас I ви срок</p>
+                        </div>
+                    </a>
+
+                    <ul class="sections-of-curricular">
+                        <li class="section-of-curricular">
+                            <div class="section-header">
+                                <a>Въведение</a>
+                            </div>
+                            <div class="section-info">
+                                5 урока
+                                <span class="separator">|</span>
+                                5 упражнения
+                            </div>
+                        </li>
+                    </ul>
+                </li>
+                <li>
+                    <div class="single-list-topics-content">
+                        <div class="single-list-topics-icon">
+                            <i class="algorithm"></i>
+                        </div>
+                        <h2><a href="#">Data Structures and Algorithms</a></h2>
+                        <p>185 listings</p>
+                    </div>
+                </li>
+                <li>
+                    <div class="single-list-topics-content">
+                        <div class="single-list-topics-icon">
+                            <i class="sql"></i>
+                        </div>
+                        <h2><a href="#">Relation Databases</a></h2>
+                        <p>214 listings</p>
+                    </div>
+                    <ul class="sections-of-curricular">
+                        <li class="section-of-curricular">
+                            <div class="section-header">
+                                <a>Въведение</a>
+                            </div>
+                            <div class="section-info">
+                                5 урока
+                                <span class="separator">|</span>
+                                5 упражнения
+                            </div>
+                        </li>
+                        <li class="section-of-curricular">
+                            <div class="section-header">
+                                <a>Въведение</a>
+                            </div>
+                            <div class="section-info">
+                                5 урока
+                                <span class="separator">|</span>
+                                5 упражнения
+                            </div>
+                        </li>
+                        <li class="section-of-curricular">
+                            <div class="section-header">
+                                <a>Въведение</a>
+                            </div>
+                            <div class="section-info">
+                                5 урока
+                                <span class="separator">|</span>
+                                5 упражнения
+                            </div>
+                        </li>
+                    </ul>
+                </li>
+                <li>
+                    <div class="single-list-topics-content">
+                        <div class="single-list-topics-icon">
+                            <i class="system"></i>
+                        </div>
+                        <h2><a href="#">Programming of IT systems</a></h2>
+                        <p>200 listings</p>
+                    </div>
+                </li>
+            </ul>
+        </div>
+    </div><!--/.container-->
+
+</section>

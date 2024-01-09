@@ -92,17 +92,17 @@ namespace PreparationForITExam.Infrastructure.Data.Configurations
                     ModuleOfCurricularId = 3
                 },
                      new SectionOfCurricular {
-                    Id = 17,
+                    Id = 16,
                     Title = "Сървър за база от данни",
                     ModuleOfCurricularId = 4
                 },
                      new SectionOfCurricular {
-                    Id = 18,
+                    Id = 17,
                     Title = "Пабота по проекти",
                     ModuleOfCurricularId = 4
                 },
                      new SectionOfCurricular {
-                    Id = 19,
+                    Id = 18,
                     Title = "SQL SERVER със C#",
                     ModuleOfCurricularId = 4
                 },

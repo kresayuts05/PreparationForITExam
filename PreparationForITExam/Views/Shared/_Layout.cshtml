@@ -1,13 +1,16 @@
-﻿<!DOCTYPE html>
-<html class ="no-js" lang="en">
+﻿@using Microsoft.AspNetCore.Identity;
+@inject SignInManager<User> SignInManager
+
+<!DOCTYPE html>
+<html class="no-js" lang="en">
 <head>
-    <meta charset="utf-8"/>
+    <meta charset="utf-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>@ViewData["Title"] - PreparationForITExam</title>
     @*<link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />*@
 
- @*   <link rel="stylesheet" href="~/css/register.css" asp-append-version="true" />*@
+    @*   <link rel="stylesheet" href="~/css/register.css" asp-append-version="true" />*@
     <link rel="stylesheet" href="~/PreparationForITExam.styles.css" asp-append-version="true" />
 
     <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
@@ -19,23 +22,23 @@
 
 
     <!--font-awesome.min.css-->
-    <link rel="stylesheet" href="~/css/font-awesome.min.css" >
+    <link rel="stylesheet" href="~/css/font-awesome.min.css">
 
     <!--linear icon css-->
-    <link rel="stylesheet" href="~/css/linearicons.css" >
+    <link rel="stylesheet" href="~/css/linearicons.css">
 
     <!--animate.css-->
-    <link rel="stylesheet" href="~/css/animate.css" >
+    <link rel="stylesheet" href="~/css/animate.css">
 
     <!--flaticon.css-->
-    <link rel="stylesheet" href="~/css/flaticon.css" >
+    <link rel="stylesheet" href="~/css/flaticon.css">
 
     <!--slick.css-->
     <link rel="stylesheet" href="~/css/slick.css">
     <link rel="stylesheet" href="~/css/slick-theme.css">
 
     <!--bootstrap.min.css-->
-    <link rel="stylesheet" href="~/css/bootstrap.min.css" >
+    <link rel="stylesheet" href="~/css/bootstrap.min.css">
 
     <!-- bootsnav -->
     <link rel="stylesheet" href="~/css/bootsnav.css">
@@ -44,7 +47,7 @@
     <link rel="stylesheet" href="~/css/style.css">
 
     <!--responsive.css-->
-    <link rel="stylesheet" href="~/css/responsive.css" >
+    <link rel="stylesheet" href="~/css/responsive.css">
 
     @await RenderSectionAsync("Styles", required: false)
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
@@ -84,11 +87,11 @@
                     <!-- Collect the nav links, forms, and other content for toggling -->
                     <div class="collapse navbar-collapse menu-ui-design" id="navbar-menu">
                         <ul class="nav navbar-nav navbar-right" data-in="fadeInDown" data-out="fadeOutUp">
-                            <li class=""><a asp-controller="Home" asp-area="" asp-action="Index">начало</a></li>
-                            <li class="scroll"><a ><b>обучение</b></a></li>
-                            <li class="scroll"><a ><b>форум</b></a></li>
-                            <li class="scroll"><a ><b>чатове</b></a></li>
-                            <li class="scroll"><a ><b>профил</b></a></li>
+                            <li><a asp-controller="Home" asp-area="" asp-action="Index"><b>начало</b></a></li>
+                            <li><a asp-controller="Curricular" asp-area="" asp-action="Index"><b>обучение</b></a></li>
+                            <li><a><b>форум</b></a></li>
+                            <li><a><b>чатове</b></a></li>
+                            <li><a><b>профил</b></a></li>
                         </ul><!--/.nav -->
                     </div><!-- /.navbar-collapse -->
                 </div><!--/.container-->
@@ -120,8 +123,8 @@
                     </div>
                     <div class="col-sm-9">
                         <ul class="footer-menu-item">
-                            <li class=" scroll active"><a href="#home"><b>начало</b></a></li>
-                            <li class="scroll"><a href="#works"><b>обучение</b></a></li>
+                            <li><a asp-controller="Home" asp-area="" asp-action="Index"><b>начало</b></a></li>
+                            <li><a asp-controller="Curricular" asp-area="" asp-action="Index"><b>обучение</b></a></li>
                             <li class="scroll"><a href="#explore"><b>форум</b></a></li>
                             <li class="scroll"><a href="#reviews"><b>чатове</b></a></li>
                             <li class="scroll"><a href="#reviews"><b>профил</b></a></li>
@@ -139,9 +142,12 @@
                     <div class="col-sm-7">
                         <div class="footer-social">
                             <span><i class="fa fa-phone"> +1 (222) 777 8888</i></span>
-                            <button class="appsLand-btn subscribe-btn" onclick="window.location.href='#'">
-                                Регистрация
-                            </button>
+                            @if (!SignInManager.IsSignedIn(User))
+                            {
+                                <a class="welcome-hero-btn" asp-controller="Account" asp-action="Register">
+                                    Регистрация
+                                </a>
+                            }
                         </div>
                     </div>
                 </div>
@@ -161,8 +167,6 @@
     <!--footer end-->
     <!-- script
     ================================================== -->
-   
-
     @*<script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>*@
 
     <script src="~/js/plugins.js"></script>

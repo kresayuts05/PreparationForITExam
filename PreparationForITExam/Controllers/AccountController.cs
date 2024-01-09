@@ -115,63 +115,6 @@ namespace PreparationForITExam.Controllers
             return View("Register", model);
         }
 
-        [HttpPost]
-        [AllowAnonymous]
-        public async Task<IActionResult> RegisterAsTeacher(RegisterViewModel model)
-        {
-            if (await userService.UserByEmailExists(model.Email))
-            {
-                ModelState.AddModelError(nameof(model.Email), "Регистрация с този имейл вече съществува!");
-            }
-
-            int schoolId = await schoolService.GetSchoolByNameAndCity(model.SchoolName, model.City);
-
-            if (schoolId == 0)//може да е -1???????????????
-            {
-                ModelState.AddModelError(nameof(model.City), "Училището не е намерено! Моля опитайте отново!");
-            }
-
-            if (!ModelState.IsValid)
-            {
-                return View("Register", model);
-            }
-
-            var user = new User()
-            {
-                Email = model.Email,
-                FirstName = model.FirstName,
-                LastName = model.LastName,
-                UserName = model.Email,
-                PhoneNumber = model.PhoneNumber,
-                City = model.City
-            };
-
-            var result = await userManager.CreateAsync(user, model.Password);
-
-            await userManager.AddToRoleAsync(user, "Teacher");
-            await teacherService.Create(user.Id, model);
-
-
-            if (model.ProfilePicture != null)
-            {
-                user.ProfilePictureUrl = await this.imageService.UploadImage(model.ProfilePicture, "images", user);
-                await userManager.UpdateAsync(user);
-            }
-
-            if (result.Succeeded)
-            {
-                await signInManager.SignInAsync(user, isPersistent: false);
-
-                return RedirectToAction("Index", "Home");
-            }
-
-            foreach (var item in result.Errors)
-            {
-                ModelState.AddModelError("", item.Description);
-            }
-
-            return View("Register", model);
-        }
 
         [HttpGet]
         [AllowAnonymous]
