@@ -98,7 +98,7 @@ namespace PreparationForITExam.Infrastructure.Data.Configurations
                 },
                      new SectionOfCurricular {
                     Id = 17,
-                    Title = "Пабота по проекти",
+                    Title = "Работа по проекти",
                     ModuleOfCurricularId = 4
                 },
                      new SectionOfCurricular {

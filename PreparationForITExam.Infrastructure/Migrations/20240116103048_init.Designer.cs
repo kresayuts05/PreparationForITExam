@@ -12,8 +12,8 @@ using PreparationForITExam.Infrastructure.Data;
 namespace PreparationForITExam.Infrastructure.Migrations
 {
     [DbContext(typeof(PreparationForITExamDbContext))]
-    [Migration("20231212022333_more")]
-    partial class more
+    [Migration("20240116103048_init")]
+    partial class init
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -23,21 +23,6 @@ namespace PreparationForITExam.Infrastructure.Migrations
                 .HasAnnotation("Relational:MaxIdentifierLength", 128);
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder, 1L, 1);
-
-            modelBuilder.Entity("ExerciseStudent", b =>
-                {
-                    b.Property<int>("FinishedExercisesId")
-                        .HasColumnType("int");
-
-                    b.Property<int>("StudentsId")
-                        .HasColumnType("int");
-
-                    b.HasKey("FinishedExercisesId", "StudentsId");
-
-                    b.HasIndex("StudentsId");
-
-                    b.ToTable("ExerciseStudent");
-                });
 
             modelBuilder.Entity("LessonTeacher", b =>
                 {
@@ -84,28 +69,28 @@ namespace PreparationForITExam.Infrastructure.Migrations
                         new
                         {
                             Id = "0f761db2-ab55-416c-83b9-70abded3d908",
-                            ConcurrencyStamp = "cd233ccb-82a7-4cc8-99f1-0d872c39d477",
+                            ConcurrencyStamp = "07eecaa1-4b37-4365-a6a2-3fc1dad9298c",
                             Name = "Administrator",
                             NormalizedName = "ADMINISTRATOR"
                         },
                         new
                         {
                             Id = "e66d730b-bcf1-41b5-b7e0-3e66056e61d9",
-                            ConcurrencyStamp = "6dc34f6f-264f-4741-b6a2-b73e52a7b878",
+                            ConcurrencyStamp = "4c9ebcca-eb97-4c7f-874b-b122f7b88fbd",
                             Name = "Student",
                             NormalizedName = "STUDENT"
                         },
                         new
                         {
                             Id = "71281cf3-9730-4d7e-acbb-213edee8291c",
-                            ConcurrencyStamp = "6693c4a6-4972-4c89-96fe-93df7c5b3230",
+                            ConcurrencyStamp = "5556ea24-4516-49b4-a11e-b018a24b2a11",
                             Name = "Teacher",
                             NormalizedName = "TEACHER"
                         },
                         new
                         {
                             Id = "fe750b82-6fe9-472c-bdc5-61f5433d429e",
-                            ConcurrencyStamp = "6423c417-3464-490c-9436-16c95ea8cb71",
+                            ConcurrencyStamp = "20291427-06bc-437d-9a30-8209c1f87121",
                             Name = "MonUser",
                             NormalizedName = "MONUSER"
                         });
@@ -237,9 +222,6 @@ namespace PreparationForITExam.Infrastructure.Migrations
                     b.Property<bool>("IsActive")
                         .HasColumnType("bit");
 
-                    b.Property<int>("LessonId")
-                        .HasColumnType("int");
-
                     b.Property<int?>("TeacherId")
                         .HasColumnType("int");
 
@@ -250,12 +232,788 @@ namespace PreparationForITExam.Infrastructure.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("LessonId")
-                        .IsUnique();
-
                     b.HasIndex("TeacherId");
 
                     b.ToTable("Exercises");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            Content = "",
+                            IsActive = true,
+                            Title = "Компютърът"
+                        },
+                        new
+                        {
+                            Id = 2,
+                            Content = "",
+                            IsActive = true,
+                            Title = "Езици за програмиране"
+                        },
+                        new
+                        {
+                            Id = 3,
+                            Content = "",
+                            IsActive = true,
+                            Title = "Инструменти и IDE"
+                        },
+                        new
+                        {
+                            Id = 4,
+                            Content = "",
+                            IsActive = true,
+                            Title = "IDE Visual Studio"
+                        },
+                        new
+                        {
+                            Id = 5,
+                            Content = "",
+                            IsActive = true,
+                            Title = "Елементи на програмата"
+                        },
+                        new
+                        {
+                            Id = 6,
+                            Content = "",
+                            IsActive = true,
+                            Title = "Основни типове операции и оператори"
+                        },
+                        new
+                        {
+                            Id = 7,
+                            Content = "",
+                            IsActive = true,
+                            Title = "Изчислителни процеси. Линейни процеси"
+                        },
+                        new
+                        {
+                            Id = 8,
+                            Content = "",
+                            IsActive = true,
+                            Title = "Линейни изчислителни процеси. Упражнение"
+                        },
+                        new
+                        {
+                            Id = 9,
+                            Content = "",
+                            IsActive = true,
+                            Title = "Сравнения и логически операции"
+                        },
+                        new
+                        {
+                            Id = 10,
+                            Content = "",
+                            IsActive = true,
+                            Title = "Разклонени изчислителни процеси"
+                        },
+                        new
+                        {
+                            Id = 11,
+                            Content = "",
+                            IsActive = true,
+                            Title = "Циклични изчислителни процеси"
+                        },
+                        new
+                        {
+                            Id = 12,
+                            Content = "",
+                            IsActive = true,
+                            Title = "Оператори за цикъл с условие"
+                        },
+                        new
+                        {
+                            Id = 13,
+                            Content = "",
+                            IsActive = true,
+                            Title = "Оператори за цикъл. Упражнение"
+                        },
+                        new
+                        {
+                            Id = 14,
+                            Content = "",
+                            IsActive = true,
+                            Title = "Обекти и класове от обекти"
+                        },
+                        new
+                        {
+                            Id = 15,
+                            Content = "",
+                            IsActive = true,
+                            Title = "Класове"
+                        },
+                        new
+                        {
+                            Id = 16,
+                            Content = "",
+                            IsActive = true,
+                            Title = "Клас с контролирани атрибути"
+                        },
+                        new
+                        {
+                            Id = 17,
+                            Content = "",
+                            IsActive = true,
+                            Title = "Функции и методи"
+                        },
+                        new
+                        {
+                            Id = 18,
+                            Content = "",
+                            IsActive = true,
+                            Title = "Конструктори"
+                        },
+                        new
+                        {
+                            Id = 19,
+                            Content = "",
+                            IsActive = true,
+                            Title = "Предаване на аргументи"
+                        },
+                        new
+                        {
+                            Id = 20,
+                            Content = "",
+                            IsActive = true,
+                            Title = "Упражнение"
+                        },
+                        new
+                        {
+                            Id = 21,
+                            Content = "",
+                            IsActive = true,
+                            Title = "Елементи на графичние интерфейс"
+                        },
+                        new
+                        {
+                            Id = 22,
+                            Content = "",
+                            IsActive = true,
+                            Title = "Графични компоненти"
+                        },
+                        new
+                        {
+                            Id = 23,
+                            Content = "",
+                            IsActive = true,
+                            Title = "Упражнение"
+                        },
+                        new
+                        {
+                            Id = 24,
+                            Content = "",
+                            IsActive = true,
+                            Title = "Упражнение"
+                        },
+                        new
+                        {
+                            Id = 25,
+                            Content = "",
+                            IsActive = true,
+                            Title = "Агрегатни типове"
+                        },
+                        new
+                        {
+                            Id = 26,
+                            Content = "",
+                            IsActive = true,
+                            Title = "Файлове"
+                        },
+                        new
+                        {
+                            Id = 27,
+                            Content = "",
+                            IsActive = true,
+                            Title = "Четене на обекти от файл"
+                        },
+                        new
+                        {
+                            Id = 28,
+                            Content = "",
+                            IsActive = true,
+                            Title = "Документиране на клас. Сериализация"
+                        },
+                        new
+                        {
+                            Id = 29,
+                            Content = "",
+                            IsActive = true,
+                            Title = "Капсулиране. Статични атрибути и методи"
+                        },
+                        new
+                        {
+                            Id = 30,
+                            Content = "",
+                            IsActive = true,
+                            Title = "Йерархия от класове"
+                        },
+                        new
+                        {
+                            Id = 31,
+                            Content = "",
+                            IsActive = true,
+                            Title = "Полиморфизъм"
+                        },
+                        new
+                        {
+                            Id = 32,
+                            Content = "",
+                            IsActive = true,
+                            Title = "Абстракция класове. Интерфейси"
+                        },
+                        new
+                        {
+                            Id = 33,
+                            Content = "",
+                            IsActive = true,
+                            Title = "Изключения"
+                        },
+                        new
+                        {
+                            Id = 34,
+                            Content = "",
+                            IsActive = true,
+                            Title = "Информация и данни"
+                        },
+                        new
+                        {
+                            Id = 35,
+                            Content = "",
+                            IsActive = true,
+                            Title = "Информационни системи и процеси"
+                        },
+                        new
+                        {
+                            Id = 36,
+                            Content = "",
+                            IsActive = true,
+                            Title = "Файлов подход и подход с бази от данни"
+                        },
+                        new
+                        {
+                            Id = 37,
+                            Content = "",
+                            IsActive = true,
+                            Title = "Упражнение"
+                        },
+                        new
+                        {
+                            Id = 38,
+                            Content = "",
+                            IsActive = true,
+                            Title = "Множества и релации"
+                        },
+                        new
+                        {
+                            Id = 39,
+                            Content = "",
+                            IsActive = true,
+                            Title = "Релационна база от данни"
+                        },
+                        new
+                        {
+                            Id = 40,
+                            Content = "",
+                            IsActive = true,
+                            Title = "Операции с релации"
+                        },
+                        new
+                        {
+                            Id = 41,
+                            Content = "",
+                            IsActive = true,
+                            Title = "Типове данни с релации"
+                        },
+                        new
+                        {
+                            Id = 42,
+                            Content = "",
+                            IsActive = true,
+                            Title = "Типове данни. Ключове"
+                        },
+                        new
+                        {
+                            Id = 43,
+                            Content = "",
+                            IsActive = true,
+                            Title = "Нормализация"
+                        },
+                        new
+                        {
+                            Id = 44,
+                            Content = "",
+                            IsActive = true,
+                            Title = "Модел обект-взаимодействие"
+                        },
+                        new
+                        {
+                            Id = 45,
+                            Content = "",
+                            IsActive = true,
+                            Title = "Нива на абстракция. Аномалии"
+                        },
+                        new
+                        {
+                            Id = 46,
+                            Content = "",
+                            IsActive = true,
+                            Title = "Проектиране на БД. Упражнение"
+                        },
+                        new
+                        {
+                            Id = 47,
+                            Content = "",
+                            IsActive = true,
+                            Title = "Програмата MS Access"
+                        },
+                        new
+                        {
+                            Id = 48,
+                            Content = "",
+                            IsActive = true,
+                            Title = "Езикът SQL. Заявки"
+                        },
+                        new
+                        {
+                            Id = 49,
+                            Content = "",
+                            IsActive = true,
+                            Title = "Заявка SELECT"
+                        },
+                        new
+                        {
+                            Id = 50,
+                            Content = "",
+                            IsActive = true,
+                            Title = "Клаузите ORDER BY и GROUP BY"
+                        },
+                        new
+                        {
+                            Id = 51,
+                            Content = "",
+                            IsActive = true,
+                            Title = "Екранни форми. Контрол на данните"
+                        },
+                        new
+                        {
+                            Id = 52,
+                            Content = "",
+                            IsActive = true,
+                            Title = "Търсене на данни"
+                        },
+                        new
+                        {
+                            Id = 53,
+                            Content = "",
+                            IsActive = true,
+                            Title = "Създаване и редактиране на таблици със SQL"
+                        },
+                        new
+                        {
+                            Id = 54,
+                            Content = "",
+                            IsActive = true,
+                            Title = "Упражнение"
+                        },
+                        new
+                        {
+                            Id = 55,
+                            Content = "",
+                            IsActive = true,
+                            Title = "Отчети"
+                        },
+                        new
+                        {
+                            Id = 56,
+                            Content = "",
+                            IsActive = true,
+                            Title = "Връзки между таблиците. Съединиение"
+                        },
+                        new
+                        {
+                            Id = 57,
+                            Content = "",
+                            IsActive = true,
+                            Title = "Влагане на заявки"
+                        },
+                        new
+                        {
+                            Id = 58,
+                            Content = "",
+                            IsActive = true,
+                            Title = "Упражнение"
+                        },
+                        new
+                        {
+                            Id = 59,
+                            Content = "",
+                            IsActive = true,
+                            Title = "Интегриране на БД в MS Access"
+                        },
+                        new
+                        {
+                            Id = 60,
+                            Content = "",
+                            IsActive = true,
+                            Title = "Интегриране на БД със C#"
+                        },
+                        new
+                        {
+                            Id = 61,
+                            Content = "",
+                            IsActive = true,
+                            Title = "Упражнение"
+                        },
+                        new
+                        {
+                            Id = 62,
+                            Content = "",
+                            IsActive = true,
+                            Title = "Алгоритми"
+                        },
+                        new
+                        {
+                            Id = 63,
+                            Content = "",
+                            IsActive = true,
+                            Title = "UML-диаграми упражнение"
+                        },
+                        new
+                        {
+                            Id = 64,
+                            Content = "",
+                            IsActive = true,
+                            Title = "Сложност на алгоритми"
+                        },
+                        new
+                        {
+                            Id = 65,
+                            Content = "",
+                            IsActive = true,
+                            Title = "Обектно-ориентирано програмиране - преговор"
+                        },
+                        new
+                        {
+                            Id = 66,
+                            Content = "",
+                            IsActive = true,
+                            Title = "Реализация на алгоритми чрез методи"
+                        },
+                        new
+                        {
+                            Id = 67,
+                            Content = "",
+                            IsActive = true,
+                            Title = "Рекурсия и интеграция"
+                        },
+                        new
+                        {
+                            Id = 68,
+                            Content = "",
+                            IsActive = true,
+                            Title = "Сложност на програми"
+                        },
+                        new
+                        {
+                            Id = 69,
+                            Content = "",
+                            IsActive = true,
+                            Title = "Едномерен масив - преговор"
+                        },
+                        new
+                        {
+                            Id = 70,
+                            Content = "",
+                            IsActive = true,
+                            Title = "Сортиране на масив"
+                        },
+                        new
+                        {
+                            Id = 71,
+                            Content = "",
+                            IsActive = true,
+                            Title = "Работа със сортирани масиви"
+                        },
+                        new
+                        {
+                            Id = 72,
+                            Content = "",
+                            IsActive = true,
+                            Title = "Сортиране на масив"
+                        },
+                        new
+                        {
+                            Id = 73,
+                            Content = "",
+                            IsActive = true,
+                            Title = "Работа със сортирани масиви"
+                        },
+                        new
+                        {
+                            Id = 74,
+                            Content = "",
+                            IsActive = true,
+                            Title = "Низове"
+                        },
+                        new
+                        {
+                            Id = 75,
+                            Content = "",
+                            IsActive = true,
+                            Title = "Масиви от знаци"
+                        },
+                        new
+                        {
+                            Id = 76,
+                            Content = "",
+                            IsActive = true,
+                            Title = "Многомерни масиви"
+                        },
+                        new
+                        {
+                            Id = 77,
+                            Content = "",
+                            IsActive = true,
+                            Title = "Основни понятия"
+                        },
+                        new
+                        {
+                            Id = 78,
+                            Content = "",
+                            IsActive = true,
+                            Title = "Вградени АТ в C#"
+                        },
+                        new
+                        {
+                            Id = 79,
+                            Content = "",
+                            IsActive = true,
+                            Title = "Списъци"
+                        },
+                        new
+                        {
+                            Id = 80,
+                            Content = "",
+                            IsActive = true,
+                            Title = "Опашки"
+                        },
+                        new
+                        {
+                            Id = 81,
+                            Content = "",
+                            IsActive = true,
+                            Title = "Стек"
+                        },
+                        new
+                        {
+                            Id = 82,
+                            Content = "",
+                            IsActive = true,
+                            Title = "Упражнение"
+                        },
+                        new
+                        {
+                            Id = 83,
+                            Content = "",
+                            IsActive = true,
+                            Title = "Графи"
+                        },
+                        new
+                        {
+                            Id = 84,
+                            Content = "",
+                            IsActive = true,
+                            Title = "Дървета"
+                        },
+                        new
+                        {
+                            Id = 85,
+                            Content = "",
+                            IsActive = true,
+                            Title = "Обхождане на графи"
+                        },
+                        new
+                        {
+                            Id = 86,
+                            Content = "",
+                            IsActive = true,
+                            Title = "Най-къс път в граф"
+                        },
+                        new
+                        {
+                            Id = 87,
+                            Content = "",
+                            IsActive = true,
+                            Title = "Хеш-таблица. Речник"
+                        },
+                        new
+                        {
+                            Id = 88,
+                            Content = "",
+                            IsActive = true,
+                            Title = "Работа по проект"
+                        },
+                        new
+                        {
+                            Id = 89,
+                            Content = "",
+                            IsActive = true,
+                            Title = "Примерни проекти"
+                        },
+                        new
+                        {
+                            Id = 90,
+                            Content = "",
+                            IsActive = true,
+                            Title = "Информационни системи и бази от данни"
+                        },
+                        new
+                        {
+                            Id = 91,
+                            Content = "",
+                            IsActive = true,
+                            Title = "Упражнение - преговор"
+                        },
+                        new
+                        {
+                            Id = 92,
+                            Content = "",
+                            IsActive = true,
+                            Title = "Сървър база от данни"
+                        },
+                        new
+                        {
+                            Id = 93,
+                            Content = "",
+                            IsActive = true,
+                            Title = "Таблици"
+                        },
+                        new
+                        {
+                            Id = 94,
+                            Content = "",
+                            IsActive = true,
+                            Title = "Въвеждане на данни"
+                        },
+                        new
+                        {
+                            Id = 95,
+                            Content = "",
+                            IsActive = true,
+                            Title = "Езикът SQL - преговор с допълнение"
+                        },
+                        new
+                        {
+                            Id = 96,
+                            Content = "",
+                            IsActive = true,
+                            Title = "Създаване н=и изпълнение на заявки"
+                        },
+                        new
+                        {
+                            Id = 97,
+                            Content = "",
+                            IsActive = true,
+                            Title = "Съхранени процедури"
+                        },
+                        new
+                        {
+                            Id = 98,
+                            Content = "",
+                            IsActive = true,
+                            Title = "Още за съхранените процедури"
+                        },
+                        new
+                        {
+                            Id = 99,
+                            Content = "",
+                            IsActive = true,
+                            Title = "Подържане на база от данни"
+                        },
+                        new
+                        {
+                            Id = 100,
+                            Content = "",
+                            IsActive = true,
+                            Title = "Клиентът Azure Data Studio"
+                        },
+                        new
+                        {
+                            Id = 101,
+                            Content = "",
+                            IsActive = true,
+                            Title = "Упражнение"
+                        },
+                        new
+                        {
+                            Id = 102,
+                            Content = "",
+                            IsActive = true,
+                            Title = "Фази при разработване на проекти"
+                        },
+                        new
+                        {
+                            Id = 103,
+                            Content = "",
+                            IsActive = true,
+                            Title = "Екип, документиране и защита на проекти"
+                        },
+                        new
+                        {
+                            Id = 104,
+                            Content = "",
+                            IsActive = true,
+                            Title = "Езикът C# - преговор"
+                        },
+                        new
+                        {
+                            Id = 105,
+                            Content = "",
+                            IsActive = true,
+                            Title = "Свързване с базата данни"
+                        },
+                        new
+                        {
+                            Id = 106,
+                            Content = "",
+                            IsActive = true,
+                            Title = "Четене от база данни"
+                        },
+                        new
+                        {
+                            Id = 107,
+                            Content = "",
+                            IsActive = true,
+                            Title = "Приложение с графичен интерфейс"
+                        },
+                        new
+                        {
+                            Id = 108,
+                            Content = "",
+                            IsActive = true,
+                            Title = "Редактиране на данни"
+                        },
+                        new
+                        {
+                            Id = 109,
+                            Content = "",
+                            IsActive = true,
+                            Title = "Упражнение"
+                        },
+                        new
+                        {
+                            Id = 110,
+                            Content = "",
+                            IsActive = true,
+                            Title = "Интегриране с лента от менюта"
+                        },
+                        new
+                        {
+                            Id = 111,
+                            Content = "",
+                            IsActive = true,
+                            Title = "Още функционалност в ИС УЧИСЕ"
+                        });
                 });
 
             modelBuilder.Entity("PreparationForITExam.Infrastructure.Data.Entities.Image", b =>
@@ -310,6 +1068,9 @@ namespace PreparationForITExam.Infrastructure.Migrations
                     b.Property<int>("SectionOfCurricularId")
                         .HasColumnType("int");
 
+                    b.Property<int?>("StudentId")
+                        .HasColumnType("int");
+
                     b.Property<string>("Title")
                         .IsRequired()
                         .HasMaxLength(60)
@@ -320,6 +1081,8 @@ namespace PreparationForITExam.Infrastructure.Migrations
                     b.HasIndex("ExerciseId");
 
                     b.HasIndex("SectionOfCurricularId");
+
+                    b.HasIndex("StudentId");
 
                     b.ToTable("Lessons");
 
@@ -332,6 +1095,996 @@ namespace PreparationForITExam.Infrastructure.Migrations
                             IsActive = true,
                             SectionOfCurricularId = 1,
                             Title = "Компютърът"
+                        },
+                        new
+                        {
+                            Id = 2,
+                            Content = "",
+                            ExerciseId = 2,
+                            IsActive = true,
+                            SectionOfCurricularId = 1,
+                            Title = "Езици за програмиране"
+                        },
+                        new
+                        {
+                            Id = 3,
+                            Content = "",
+                            ExerciseId = 3,
+                            IsActive = true,
+                            SectionOfCurricularId = 1,
+                            Title = "Инструменти и IDE"
+                        },
+                        new
+                        {
+                            Id = 4,
+                            Content = "",
+                            ExerciseId = 4,
+                            IsActive = true,
+                            SectionOfCurricularId = 1,
+                            Title = "IDE Visual Studio"
+                        },
+                        new
+                        {
+                            Id = 5,
+                            Content = "",
+                            ExerciseId = 5,
+                            IsActive = true,
+                            SectionOfCurricularId = 2,
+                            Title = "Елементи на програмата"
+                        },
+                        new
+                        {
+                            Id = 6,
+                            Content = "",
+                            ExerciseId = 6,
+                            IsActive = true,
+                            SectionOfCurricularId = 2,
+                            Title = "Основни типове операции и оператори"
+                        },
+                        new
+                        {
+                            Id = 7,
+                            Content = "",
+                            ExerciseId = 7,
+                            IsActive = true,
+                            SectionOfCurricularId = 2,
+                            Title = "Изчислителни процеси. Линейни процеси"
+                        },
+                        new
+                        {
+                            Id = 8,
+                            Content = "",
+                            ExerciseId = 8,
+                            IsActive = true,
+                            SectionOfCurricularId = 2,
+                            Title = "Линейни изчислителни процеси. Упражнение"
+                        },
+                        new
+                        {
+                            Id = 9,
+                            Content = "",
+                            ExerciseId = 9,
+                            IsActive = true,
+                            SectionOfCurricularId = 2,
+                            Title = "Сравнения и логически операции"
+                        },
+                        new
+                        {
+                            Id = 10,
+                            Content = "",
+                            ExerciseId = 10,
+                            IsActive = true,
+                            SectionOfCurricularId = 2,
+                            Title = "Разклонени изчислителни процеси"
+                        },
+                        new
+                        {
+                            Id = 11,
+                            Content = "",
+                            ExerciseId = 11,
+                            IsActive = true,
+                            SectionOfCurricularId = 2,
+                            Title = "Циклични изчислителни процеси"
+                        },
+                        new
+                        {
+                            Id = 12,
+                            Content = "",
+                            ExerciseId = 12,
+                            IsActive = true,
+                            SectionOfCurricularId = 2,
+                            Title = "Оператори за цикъл с условие"
+                        },
+                        new
+                        {
+                            Id = 13,
+                            Content = "",
+                            ExerciseId = 13,
+                            IsActive = true,
+                            SectionOfCurricularId = 2,
+                            Title = "Оператори за цикъл. Упражнение"
+                        },
+                        new
+                        {
+                            Id = 14,
+                            Content = "",
+                            ExerciseId = 14,
+                            IsActive = true,
+                            SectionOfCurricularId = 3,
+                            Title = "Обекти и класове от обекти"
+                        },
+                        new
+                        {
+                            Id = 15,
+                            Content = "",
+                            ExerciseId = 15,
+                            IsActive = true,
+                            SectionOfCurricularId = 3,
+                            Title = "Класове"
+                        },
+                        new
+                        {
+                            Id = 16,
+                            Content = "",
+                            ExerciseId = 16,
+                            IsActive = true,
+                            SectionOfCurricularId = 3,
+                            Title = "Клас с контролирани атрибути"
+                        },
+                        new
+                        {
+                            Id = 17,
+                            Content = "",
+                            ExerciseId = 17,
+                            IsActive = true,
+                            SectionOfCurricularId = 3,
+                            Title = "Функции и методи"
+                        },
+                        new
+                        {
+                            Id = 18,
+                            Content = "",
+                            ExerciseId = 18,
+                            IsActive = true,
+                            SectionOfCurricularId = 3,
+                            Title = "Конструктори"
+                        },
+                        new
+                        {
+                            Id = 19,
+                            Content = "",
+                            ExerciseId = 19,
+                            IsActive = true,
+                            SectionOfCurricularId = 3,
+                            Title = "Предаване на аргументи"
+                        },
+                        new
+                        {
+                            Id = 20,
+                            Content = "",
+                            ExerciseId = 20,
+                            IsActive = true,
+                            SectionOfCurricularId = 3,
+                            Title = "Упражнение"
+                        },
+                        new
+                        {
+                            Id = 21,
+                            Content = "",
+                            ExerciseId = 21,
+                            IsActive = true,
+                            SectionOfCurricularId = 4,
+                            Title = "Елементи на графичние интерфейс"
+                        },
+                        new
+                        {
+                            Id = 22,
+                            Content = "",
+                            ExerciseId = 22,
+                            IsActive = true,
+                            SectionOfCurricularId = 4,
+                            Title = "Графични компоненти"
+                        },
+                        new
+                        {
+                            Id = 23,
+                            Content = "",
+                            ExerciseId = 23,
+                            IsActive = true,
+                            SectionOfCurricularId = 4,
+                            Title = "Упражнение"
+                        },
+                        new
+                        {
+                            Id = 24,
+                            Content = "",
+                            ExerciseId = 24,
+                            IsActive = true,
+                            SectionOfCurricularId = 4,
+                            Title = "Упражнение"
+                        },
+                        new
+                        {
+                            Id = 25,
+                            Content = "",
+                            ExerciseId = 25,
+                            IsActive = true,
+                            SectionOfCurricularId = 4,
+                            Title = "Агрегатни типове"
+                        },
+                        new
+                        {
+                            Id = 26,
+                            Content = "",
+                            ExerciseId = 26,
+                            IsActive = true,
+                            SectionOfCurricularId = 4,
+                            Title = "Файлове"
+                        },
+                        new
+                        {
+                            Id = 27,
+                            Content = "",
+                            ExerciseId = 27,
+                            IsActive = true,
+                            SectionOfCurricularId = 4,
+                            Title = "Четене на обекти от файл"
+                        },
+                        new
+                        {
+                            Id = 28,
+                            Content = "",
+                            ExerciseId = 28,
+                            IsActive = true,
+                            SectionOfCurricularId = 5,
+                            Title = "Документиране на клас. Сериализация"
+                        },
+                        new
+                        {
+                            Id = 29,
+                            Content = "",
+                            ExerciseId = 29,
+                            IsActive = true,
+                            SectionOfCurricularId = 5,
+                            Title = "Капсулиране. Статични атрибути и методи"
+                        },
+                        new
+                        {
+                            Id = 30,
+                            Content = "",
+                            ExerciseId = 30,
+                            IsActive = true,
+                            SectionOfCurricularId = 5,
+                            Title = "Йерархия от класове"
+                        },
+                        new
+                        {
+                            Id = 31,
+                            Content = "",
+                            ExerciseId = 31,
+                            IsActive = true,
+                            SectionOfCurricularId = 5,
+                            Title = "Полиморфизъм"
+                        },
+                        new
+                        {
+                            Id = 32,
+                            Content = "",
+                            ExerciseId = 32,
+                            IsActive = true,
+                            SectionOfCurricularId = 5,
+                            Title = "Абстракция класове. Интерфейси"
+                        },
+                        new
+                        {
+                            Id = 33,
+                            Content = "",
+                            ExerciseId = 33,
+                            IsActive = true,
+                            SectionOfCurricularId = 5,
+                            Title = "Изключения"
+                        },
+                        new
+                        {
+                            Id = 34,
+                            Content = "",
+                            ExerciseId = 34,
+                            IsActive = true,
+                            SectionOfCurricularId = 12,
+                            Title = "Информация и данни"
+                        },
+                        new
+                        {
+                            Id = 35,
+                            Content = "",
+                            ExerciseId = 35,
+                            IsActive = true,
+                            SectionOfCurricularId = 12,
+                            Title = "Информационни системи и процеси"
+                        },
+                        new
+                        {
+                            Id = 36,
+                            Content = "",
+                            ExerciseId = 36,
+                            IsActive = true,
+                            SectionOfCurricularId = 12,
+                            Title = "Файлов подход и подход с бази от данни"
+                        },
+                        new
+                        {
+                            Id = 37,
+                            Content = "",
+                            ExerciseId = 37,
+                            IsActive = true,
+                            SectionOfCurricularId = 12,
+                            Title = "Упражнение"
+                        },
+                        new
+                        {
+                            Id = 38,
+                            Content = "",
+                            ExerciseId = 38,
+                            IsActive = true,
+                            SectionOfCurricularId = 13,
+                            Title = "Множества и релации"
+                        },
+                        new
+                        {
+                            Id = 39,
+                            Content = "",
+                            ExerciseId = 39,
+                            IsActive = true,
+                            SectionOfCurricularId = 13,
+                            Title = "Релационна база от данни"
+                        },
+                        new
+                        {
+                            Id = 40,
+                            Content = "",
+                            ExerciseId = 40,
+                            IsActive = true,
+                            SectionOfCurricularId = 13,
+                            Title = "Операции с релации"
+                        },
+                        new
+                        {
+                            Id = 41,
+                            Content = "",
+                            ExerciseId = 41,
+                            IsActive = true,
+                            SectionOfCurricularId = 7,
+                            Title = "Типове данни с релации"
+                        },
+                        new
+                        {
+                            Id = 42,
+                            Content = "",
+                            ExerciseId = 42,
+                            IsActive = true,
+                            SectionOfCurricularId = 13,
+                            Title = "Типове данни. Ключове"
+                        },
+                        new
+                        {
+                            Id = 43,
+                            Content = "",
+                            ExerciseId = 43,
+                            IsActive = true,
+                            SectionOfCurricularId = 13,
+                            Title = "Нормализация"
+                        },
+                        new
+                        {
+                            Id = 44,
+                            Content = "",
+                            ExerciseId = 44,
+                            IsActive = true,
+                            SectionOfCurricularId = 13,
+                            Title = "Модел обект-взаимодействие"
+                        },
+                        new
+                        {
+                            Id = 45,
+                            Content = "",
+                            ExerciseId = 45,
+                            IsActive = true,
+                            SectionOfCurricularId = 13,
+                            Title = "Нива на абстракция. Аномалии"
+                        },
+                        new
+                        {
+                            Id = 46,
+                            Content = "",
+                            ExerciseId = 46,
+                            IsActive = true,
+                            SectionOfCurricularId = 13,
+                            Title = "Проектиране на БД. Упражнение"
+                        },
+                        new
+                        {
+                            Id = 47,
+                            Content = "",
+                            ExerciseId = 47,
+                            IsActive = true,
+                            SectionOfCurricularId = 14,
+                            Title = "Програмата MS Access"
+                        },
+                        new
+                        {
+                            Id = 48,
+                            Content = "",
+                            ExerciseId = 48,
+                            IsActive = true,
+                            SectionOfCurricularId = 14,
+                            Title = "Езикът SQL. Заявки"
+                        },
+                        new
+                        {
+                            Id = 49,
+                            Content = "",
+                            ExerciseId = 49,
+                            IsActive = true,
+                            SectionOfCurricularId = 14,
+                            Title = "Заявка SELECT"
+                        },
+                        new
+                        {
+                            Id = 50,
+                            Content = "",
+                            ExerciseId = 50,
+                            IsActive = true,
+                            SectionOfCurricularId = 14,
+                            Title = "Клаузите ORDER BY и GROUP BY"
+                        },
+                        new
+                        {
+                            Id = 51,
+                            Content = "",
+                            ExerciseId = 51,
+                            IsActive = true,
+                            SectionOfCurricularId = 14,
+                            Title = "Екранни форми. Контрол на данните"
+                        },
+                        new
+                        {
+                            Id = 52,
+                            Content = "",
+                            ExerciseId = 52,
+                            IsActive = true,
+                            SectionOfCurricularId = 14,
+                            Title = "Търсене на данни"
+                        },
+                        new
+                        {
+                            Id = 53,
+                            Content = "",
+                            ExerciseId = 53,
+                            IsActive = true,
+                            SectionOfCurricularId = 14,
+                            Title = "Създаване и редактиране на таблици със SQL"
+                        },
+                        new
+                        {
+                            Id = 54,
+                            Content = "",
+                            ExerciseId = 54,
+                            IsActive = true,
+                            SectionOfCurricularId = 14,
+                            Title = "Упражнение"
+                        },
+                        new
+                        {
+                            Id = 55,
+                            Content = "",
+                            ExerciseId = 55,
+                            IsActive = true,
+                            SectionOfCurricularId = 14,
+                            Title = "Отчети"
+                        },
+                        new
+                        {
+                            Id = 56,
+                            Content = "",
+                            ExerciseId = 56,
+                            IsActive = true,
+                            SectionOfCurricularId = 14,
+                            Title = "Връзки между таблиците. Съединиение"
+                        },
+                        new
+                        {
+                            Id = 57,
+                            Content = "",
+                            ExerciseId = 57,
+                            IsActive = true,
+                            SectionOfCurricularId = 14,
+                            Title = "Влагане на заявки"
+                        },
+                        new
+                        {
+                            Id = 58,
+                            Content = "",
+                            ExerciseId = 58,
+                            IsActive = true,
+                            SectionOfCurricularId = 14,
+                            Title = "Упражнение"
+                        },
+                        new
+                        {
+                            Id = 59,
+                            Content = "",
+                            ExerciseId = 59,
+                            IsActive = true,
+                            SectionOfCurricularId = 15,
+                            Title = "Интегриране на БД в MS Access"
+                        },
+                        new
+                        {
+                            Id = 60,
+                            Content = "",
+                            ExerciseId = 60,
+                            IsActive = true,
+                            SectionOfCurricularId = 15,
+                            Title = "Интегриране на БД със C#"
+                        },
+                        new
+                        {
+                            Id = 61,
+                            Content = "",
+                            ExerciseId = 61,
+                            IsActive = true,
+                            SectionOfCurricularId = 15,
+                            Title = "Упражнение"
+                        },
+                        new
+                        {
+                            Id = 62,
+                            Content = "",
+                            ExerciseId = 62,
+                            IsActive = true,
+                            SectionOfCurricularId = 6,
+                            Title = "Алгоритми"
+                        },
+                        new
+                        {
+                            Id = 63,
+                            Content = "",
+                            ExerciseId = 63,
+                            IsActive = true,
+                            SectionOfCurricularId = 6,
+                            Title = "UML-диаграми упражнение"
+                        },
+                        new
+                        {
+                            Id = 64,
+                            Content = "",
+                            ExerciseId = 64,
+                            IsActive = true,
+                            SectionOfCurricularId = 6,
+                            Title = "Сложност на алгоритми"
+                        },
+                        new
+                        {
+                            Id = 65,
+                            Content = "",
+                            ExerciseId = 65,
+                            IsActive = true,
+                            SectionOfCurricularId = 6,
+                            Title = "Обектно-ориентирано програмиране - преговор"
+                        },
+                        new
+                        {
+                            Id = 66,
+                            Content = "",
+                            ExerciseId = 66,
+                            IsActive = true,
+                            SectionOfCurricularId = 6,
+                            Title = "Реализация на алгоритми чрез методи"
+                        },
+                        new
+                        {
+                            Id = 67,
+                            Content = "",
+                            ExerciseId = 67,
+                            IsActive = true,
+                            SectionOfCurricularId = 6,
+                            Title = "Рекурсия и интеграция"
+                        },
+                        new
+                        {
+                            Id = 68,
+                            Content = "",
+                            ExerciseId = 68,
+                            IsActive = true,
+                            SectionOfCurricularId = 6,
+                            Title = "Сложност на програми"
+                        },
+                        new
+                        {
+                            Id = 69,
+                            Content = "",
+                            ExerciseId = 69,
+                            IsActive = true,
+                            SectionOfCurricularId = 7,
+                            Title = "Едномерен масив - преговор"
+                        },
+                        new
+                        {
+                            Id = 70,
+                            Content = "",
+                            ExerciseId = 70,
+                            IsActive = true,
+                            SectionOfCurricularId = 7,
+                            Title = "Сортиране на масив"
+                        },
+                        new
+                        {
+                            Id = 71,
+                            Content = "",
+                            ExerciseId = 71,
+                            IsActive = true,
+                            SectionOfCurricularId = 7,
+                            Title = "Работа със сортирани масиви"
+                        },
+                        new
+                        {
+                            Id = 72,
+                            Content = "",
+                            ExerciseId = 72,
+                            IsActive = true,
+                            SectionOfCurricularId = 7,
+                            Title = "Сортиране на масив"
+                        },
+                        new
+                        {
+                            Id = 73,
+                            Content = "",
+                            ExerciseId = 73,
+                            IsActive = true,
+                            SectionOfCurricularId = 7,
+                            Title = "Работа със сортирани масиви"
+                        },
+                        new
+                        {
+                            Id = 74,
+                            Content = "",
+                            ExerciseId = 74,
+                            IsActive = true,
+                            SectionOfCurricularId = 7,
+                            Title = "Низове"
+                        },
+                        new
+                        {
+                            Id = 75,
+                            Content = "",
+                            ExerciseId = 75,
+                            IsActive = true,
+                            SectionOfCurricularId = 7,
+                            Title = "Масиви от знаци"
+                        },
+                        new
+                        {
+                            Id = 76,
+                            Content = "",
+                            ExerciseId = 76,
+                            IsActive = true,
+                            SectionOfCurricularId = 7,
+                            Title = "Многомерни масиви"
+                        },
+                        new
+                        {
+                            Id = 77,
+                            Content = "",
+                            ExerciseId = 77,
+                            IsActive = true,
+                            SectionOfCurricularId = 8,
+                            Title = "Основни понятия"
+                        },
+                        new
+                        {
+                            Id = 78,
+                            Content = "",
+                            ExerciseId = 78,
+                            IsActive = true,
+                            SectionOfCurricularId = 8,
+                            Title = "Вградени АТ в C#"
+                        },
+                        new
+                        {
+                            Id = 79,
+                            Content = "",
+                            ExerciseId = 79,
+                            IsActive = true,
+                            SectionOfCurricularId = 8,
+                            Title = "Списъци"
+                        },
+                        new
+                        {
+                            Id = 80,
+                            Content = "",
+                            ExerciseId = 80,
+                            IsActive = true,
+                            SectionOfCurricularId = 8,
+                            Title = "Опашки"
+                        },
+                        new
+                        {
+                            Id = 81,
+                            Content = "",
+                            ExerciseId = 81,
+                            IsActive = true,
+                            SectionOfCurricularId = 8,
+                            Title = "Стек"
+                        },
+                        new
+                        {
+                            Id = 82,
+                            Content = "",
+                            ExerciseId = 82,
+                            IsActive = true,
+                            SectionOfCurricularId = 8,
+                            Title = "Упражнение"
+                        },
+                        new
+                        {
+                            Id = 83,
+                            Content = "",
+                            ExerciseId = 83,
+                            IsActive = true,
+                            SectionOfCurricularId = 9,
+                            Title = "Графи"
+                        },
+                        new
+                        {
+                            Id = 84,
+                            Content = "",
+                            ExerciseId = 84,
+                            IsActive = true,
+                            SectionOfCurricularId = 9,
+                            Title = "Дървета"
+                        },
+                        new
+                        {
+                            Id = 85,
+                            Content = "",
+                            ExerciseId = 85,
+                            IsActive = true,
+                            SectionOfCurricularId = 9,
+                            Title = "Обхождане на графи"
+                        },
+                        new
+                        {
+                            Id = 86,
+                            Content = "",
+                            ExerciseId = 86,
+                            IsActive = true,
+                            SectionOfCurricularId = 9,
+                            Title = "Най-къс път в граф"
+                        },
+                        new
+                        {
+                            Id = 87,
+                            Content = "",
+                            ExerciseId = 87,
+                            IsActive = true,
+                            SectionOfCurricularId = 9,
+                            Title = "Хеш-таблица. Речник"
+                        },
+                        new
+                        {
+                            Id = 88,
+                            Content = "",
+                            ExerciseId = 88,
+                            IsActive = true,
+                            SectionOfCurricularId = 10,
+                            Title = "Работа по проект"
+                        },
+                        new
+                        {
+                            Id = 89,
+                            Content = "",
+                            ExerciseId = 89,
+                            IsActive = true,
+                            SectionOfCurricularId = 10,
+                            Title = "Примерни проекти"
+                        },
+                        new
+                        {
+                            Id = 90,
+                            Content = "",
+                            ExerciseId = 90,
+                            IsActive = true,
+                            SectionOfCurricularId = 16,
+                            Title = "Информационни системи и бази от данни"
+                        },
+                        new
+                        {
+                            Id = 91,
+                            Content = "",
+                            ExerciseId = 91,
+                            IsActive = true,
+                            SectionOfCurricularId = 16,
+                            Title = "Упражнение - преговор"
+                        },
+                        new
+                        {
+                            Id = 92,
+                            Content = "",
+                            ExerciseId = 92,
+                            IsActive = true,
+                            SectionOfCurricularId = 16,
+                            Title = "Сървър база от данни"
+                        },
+                        new
+                        {
+                            Id = 93,
+                            Content = "",
+                            ExerciseId = 93,
+                            IsActive = true,
+                            SectionOfCurricularId = 16,
+                            Title = "Таблици"
+                        },
+                        new
+                        {
+                            Id = 94,
+                            Content = "",
+                            ExerciseId = 94,
+                            IsActive = true,
+                            SectionOfCurricularId = 16,
+                            Title = "Въвеждане на данни"
+                        },
+                        new
+                        {
+                            Id = 95,
+                            Content = "",
+                            ExerciseId = 95,
+                            IsActive = true,
+                            SectionOfCurricularId = 16,
+                            Title = "Езикът SQL - преговор с допълнение"
+                        },
+                        new
+                        {
+                            Id = 96,
+                            Content = "",
+                            ExerciseId = 96,
+                            IsActive = true,
+                            SectionOfCurricularId = 16,
+                            Title = "Създаване н=и изпълнение на заявки"
+                        },
+                        new
+                        {
+                            Id = 97,
+                            Content = "",
+                            ExerciseId = 97,
+                            IsActive = true,
+                            SectionOfCurricularId = 16,
+                            Title = "Съхранени процедури"
+                        },
+                        new
+                        {
+                            Id = 98,
+                            Content = "",
+                            ExerciseId = 98,
+                            IsActive = true,
+                            SectionOfCurricularId = 16,
+                            Title = "Още за съхранените процедури"
+                        },
+                        new
+                        {
+                            Id = 99,
+                            Content = "",
+                            ExerciseId = 99,
+                            IsActive = true,
+                            SectionOfCurricularId = 16,
+                            Title = "Подържане на база от данни"
+                        },
+                        new
+                        {
+                            Id = 100,
+                            Content = "",
+                            ExerciseId = 100,
+                            IsActive = true,
+                            SectionOfCurricularId = 16,
+                            Title = "Клиентът Azure Data Studio"
+                        },
+                        new
+                        {
+                            Id = 101,
+                            Content = "",
+                            ExerciseId = 101,
+                            IsActive = true,
+                            SectionOfCurricularId = 16,
+                            Title = "Упражнение"
+                        },
+                        new
+                        {
+                            Id = 102,
+                            Content = "",
+                            ExerciseId = 102,
+                            IsActive = true,
+                            SectionOfCurricularId = 17,
+                            Title = "Фази при разработване на проекти"
+                        },
+                        new
+                        {
+                            Id = 103,
+                            Content = "",
+                            ExerciseId = 103,
+                            IsActive = true,
+                            SectionOfCurricularId = 17,
+                            Title = "Екип, документиране и защита на проекти"
+                        },
+                        new
+                        {
+                            Id = 104,
+                            Content = "",
+                            ExerciseId = 104,
+                            IsActive = true,
+                            SectionOfCurricularId = 18,
+                            Title = "Езикът C# - преговор"
+                        },
+                        new
+                        {
+                            Id = 105,
+                            Content = "",
+                            ExerciseId = 105,
+                            IsActive = true,
+                            SectionOfCurricularId = 18,
+                            Title = "Свързване с базата данни"
+                        },
+                        new
+                        {
+                            Id = 106,
+                            Content = "",
+                            ExerciseId = 106,
+                            IsActive = true,
+                            SectionOfCurricularId = 18,
+                            Title = "Четене от база данни"
+                        },
+                        new
+                        {
+                            Id = 107,
+                            Content = "",
+                            ExerciseId = 107,
+                            IsActive = true,
+                            SectionOfCurricularId = 18,
+                            Title = "Приложение с графичен интерфейс"
+                        },
+                        new
+                        {
+                            Id = 108,
+                            Content = "",
+                            ExerciseId = 108,
+                            IsActive = true,
+                            SectionOfCurricularId = 18,
+                            Title = "Редактиране на данни"
+                        },
+                        new
+                        {
+                            Id = 109,
+                            Content = "",
+                            ExerciseId = 109,
+                            IsActive = true,
+                            SectionOfCurricularId = 18,
+                            Title = "Упражнение"
+                        },
+                        new
+                        {
+                            Id = 110,
+                            Content = "",
+                            ExerciseId = 110,
+                            IsActive = true,
+                            SectionOfCurricularId = 18,
+                            Title = "Интегриране с лента от менюта"
+                        },
+                        new
+                        {
+                            Id = 111,
+                            Content = "",
+                            ExerciseId = 111,
+                            IsActive = true,
+                            SectionOfCurricularId = 18,
+                            Title = "Още функционалност в ИС УЧИСЕ"
                         });
                 });
 
@@ -6192,21 +7945,21 @@ namespace PreparationForITExam.Infrastructure.Migrations
                         },
                         new
                         {
-                            Id = 17,
+                            Id = 16,
                             IsActive = true,
                             ModuleOfCurricularId = 4,
                             Title = "Сървър за база от данни"
                         },
                         new
                         {
-                            Id = 18,
+                            Id = 17,
                             IsActive = true,
                             ModuleOfCurricularId = 4,
-                            Title = "Пабота по проекти"
+                            Title = "Работа по проекти"
                         },
                         new
                         {
-                            Id = 19,
+                            Id = 18,
                             IsActive = true,
                             ModuleOfCurricularId = 4,
                             Title = "SQL SERVER със C#"
@@ -6224,6 +7977,9 @@ namespace PreparationForITExam.Infrastructure.Migrations
                     b.Property<string>("AboutMe")
                         .HasMaxLength(300)
                         .HasColumnType("nvarchar(300)");
+
+                    b.Property<int?>("ExerciseId")
+                        .HasColumnType("int");
 
                     b.Property<int>("Grade")
                         .HasColumnType("int");
@@ -6243,6 +7999,8 @@ namespace PreparationForITExam.Infrastructure.Migrations
                         .HasColumnType("nvarchar(450)");
 
                     b.HasKey("Id");
+
+                    b.HasIndex("ExerciseId");
 
                     b.HasIndex("SchoolId");
 
@@ -6418,7 +8176,7 @@ namespace PreparationForITExam.Infrastructure.Migrations
                             Id = "789061a9-edaa-4a00-9e09-add6a20c8288",
                             AccessFailedCount = 0,
                             City = "Казанлък",
-                            ConcurrencyStamp = "638c7562-884f-4a8e-a5e7-858b286ae6aa",
+                            ConcurrencyStamp = "d9a04820-3dde-4df3-8b9a-858f59d5908f",
                             Email = "kresa@gmail.com",
                             EmailConfirmed = false,
                             FirstName = "Креса",
@@ -6429,25 +8187,10 @@ namespace PreparationForITExam.Infrastructure.Migrations
                             NormalizedUserName = "KRESA@GMAIL.COM",
                             PhoneNumber = "0886121260",
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "a3ac6f8a-9dc3-4524-af10-20ac75ba93b5",
+                            SecurityStamp = "2e489419-10bf-4960-bf51-1d28016cb07f",
                             TwoFactorEnabled = false,
                             UserName = "kresa@gmail.com"
                         });
-                });
-
-            modelBuilder.Entity("ExerciseStudent", b =>
-                {
-                    b.HasOne("PreparationForITExam.Infrastructure.Data.Entities.Exercise", null)
-                        .WithMany()
-                        .HasForeignKey("FinishedExercisesId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("PreparationForITExam.Infrastructure.Data.Entities.Student", null)
-                        .WithMany()
-                        .HasForeignKey("StudentsId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
                 });
 
             modelBuilder.Entity("LessonTeacher", b =>
@@ -6518,17 +8261,9 @@ namespace PreparationForITExam.Infrastructure.Migrations
 
             modelBuilder.Entity("PreparationForITExam.Infrastructure.Data.Entities.Exercise", b =>
                 {
-                    b.HasOne("PreparationForITExam.Infrastructure.Data.Entities.Lesson", "Lesson")
-                        .WithOne()
-                        .HasForeignKey("PreparationForITExam.Infrastructure.Data.Entities.Exercise", "LessonId")
-                        .OnDelete(DeleteBehavior.Restrict)
-                        .IsRequired();
-
                     b.HasOne("PreparationForITExam.Infrastructure.Data.Entities.Teacher", null)
                         .WithMany("Exercises")
                         .HasForeignKey("TeacherId");
-
-                    b.Navigation("Lesson");
                 });
 
             modelBuilder.Entity("PreparationForITExam.Infrastructure.Data.Entities.Image", b =>
@@ -6555,6 +8290,10 @@ namespace PreparationForITExam.Infrastructure.Migrations
                         .HasForeignKey("SectionOfCurricularId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
+
+                    b.HasOne("PreparationForITExam.Infrastructure.Data.Entities.Student", null)
+                        .WithMany("FinishedExercises")
+                        .HasForeignKey("StudentId");
 
                     b.Navigation("Exercise");
 
@@ -6679,7 +8418,7 @@ namespace PreparationForITExam.Infrastructure.Migrations
 
             modelBuilder.Entity("PreparationForITExam.Infrastructure.Data.Entities.RequestExercise", b =>
                 {
-                    b.HasOne("PreparationForITExam.Infrastructure.Data.Entities.Exercise", "Exercise")
+                    b.HasOne("PreparationForITExam.Infrastructure.Data.Entities.Lesson", "Exercise")
                         .WithMany()
                         .HasForeignKey("ExerciseId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -6728,6 +8467,10 @@ namespace PreparationForITExam.Infrastructure.Migrations
 
             modelBuilder.Entity("PreparationForITExam.Infrastructure.Data.Entities.Student", b =>
                 {
+                    b.HasOne("PreparationForITExam.Infrastructure.Data.Entities.Exercise", null)
+                        .WithMany("Students")
+                        .HasForeignKey("ExerciseId");
+
                     b.HasOne("PreparationForITExam.Infrastructure.Data.Entities.School", "School")
                         .WithMany("Students")
                         .HasForeignKey("SchoolId")
@@ -6786,6 +8529,8 @@ namespace PreparationForITExam.Infrastructure.Migrations
             modelBuilder.Entity("PreparationForITExam.Infrastructure.Data.Entities.Exercise", b =>
                 {
                     b.Navigation("Materials");
+
+                    b.Navigation("Students");
                 });
 
             modelBuilder.Entity("PreparationForITExam.Infrastructure.Data.Entities.Lesson", b =>
@@ -6841,6 +8586,11 @@ namespace PreparationForITExam.Infrastructure.Migrations
                     b.Navigation("Lessons");
 
                     b.Navigation("Tests");
+                });
+
+            modelBuilder.Entity("PreparationForITExam.Infrastructure.Data.Entities.Student", b =>
+                {
+                    b.Navigation("FinishedExercises");
                 });
 
             modelBuilder.Entity("PreparationForITExam.Infrastructure.Data.Entities.Teacher", b =>

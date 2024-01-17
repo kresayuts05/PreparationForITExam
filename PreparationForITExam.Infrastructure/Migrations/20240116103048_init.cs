@@ -280,35 +280,6 @@ namespace PreparationForITExam.Infrastructure.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "Students",
-                columns: table => new
-                {
-                    Id = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    Speciality = table.Column<string>(type: "nvarchar(40)", maxLength: 40, nullable: true),
-                    Grade = table.Column<int>(type: "int", nullable: false),
-                    AboutMe = table.Column<string>(type: "nvarchar(300)", maxLength: 300, nullable: true),
-                    IsActive = table.Column<bool>(type: "bit", nullable: false),
-                    UserId = table.Column<string>(type: "nvarchar(450)", nullable: false),
-                    SchoolId = table.Column<int>(type: "int", nullable: true)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_Students", x => x.Id);
-                    table.ForeignKey(
-                        name: "FK_Students_AspNetUsers_UserId",
-                        column: x => x.UserId,
-                        principalTable: "AspNetUsers",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
-                    table.ForeignKey(
-                        name: "FK_Students_Schools_SchoolId",
-                        column: x => x.SchoolId,
-                        principalTable: "Schools",
-                        principalColumn: "Id");
-                });
-
-            migrationBuilder.CreateTable(
                 name: "Teachers",
                 columns: table => new
                 {
@@ -316,7 +287,6 @@ namespace PreparationForITExam.Infrastructure.Migrations
                         .Annotation("SqlServer:Identity", "1, 1"),
                     Experience = table.Column<int>(type: "int", nullable: false),
                     Subject = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: true),
-                    University = table.Column<string>(type: "nvarchar(60)", maxLength: 60, nullable: true),
                     AboutMe = table.Column<string>(type: "nvarchar(300)", maxLength: 300, nullable: true),
                     Status = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     IsActive = table.Column<bool>(type: "bit", nullable: false),
@@ -424,6 +394,27 @@ namespace PreparationForITExam.Infrastructure.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "Exercises",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    Title = table.Column<string>(type: "nvarchar(60)", maxLength: 60, nullable: false),
+                    Content = table.Column<string>(type: "nvarchar(4000)", maxLength: 4000, nullable: false),
+                    IsActive = table.Column<bool>(type: "bit", nullable: false),
+                    TeacherId = table.Column<int>(type: "int", nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Exercises", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_Exercises_Teachers_TeacherId",
+                        column: x => x.TeacherId,
+                        principalTable: "Teachers",
+                        principalColumn: "Id");
+                });
+
+            migrationBuilder.CreateTable(
                 name: "Images",
                 columns: table => new
                 {
@@ -474,47 +465,37 @@ namespace PreparationForITExam.Infrastructure.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "Exercises",
+                name: "Students",
                 columns: table => new
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    Title = table.Column<string>(type: "nvarchar(60)", maxLength: 60, nullable: false),
-                    Content = table.Column<string>(type: "nvarchar(4000)", maxLength: 4000, nullable: false),
+                    Speciality = table.Column<string>(type: "nvarchar(40)", maxLength: 40, nullable: true),
+                    Grade = table.Column<int>(type: "int", nullable: false),
+                    AboutMe = table.Column<string>(type: "nvarchar(300)", maxLength: 300, nullable: true),
                     IsActive = table.Column<bool>(type: "bit", nullable: false),
-                    LessonId = table.Column<int>(type: "int", nullable: false),
-                    TeacherId = table.Column<int>(type: "int", nullable: true)
+                    UserId = table.Column<string>(type: "nvarchar(450)", nullable: false),
+                    SchoolId = table.Column<int>(type: "int", nullable: false),
+                    ExerciseId = table.Column<int>(type: "int", nullable: true)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Exercises", x => x.Id);
+                    table.PrimaryKey("PK_Students", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_Exercises_Teachers_TeacherId",
-                        column: x => x.TeacherId,
-                        principalTable: "Teachers",
-                        principalColumn: "Id");
-                });
-
-            migrationBuilder.CreateTable(
-                name: "ExerciseStudent",
-                columns: table => new
-                {
-                    FinishedExercisesId = table.Column<int>(type: "int", nullable: false),
-                    StudentsId = table.Column<int>(type: "int", nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_ExerciseStudent", x => new { x.FinishedExercisesId, x.StudentsId });
-                    table.ForeignKey(
-                        name: "FK_ExerciseStudent_Exercises_FinishedExercisesId",
-                        column: x => x.FinishedExercisesId,
-                        principalTable: "Exercises",
+                        name: "FK_Students_AspNetUsers_UserId",
+                        column: x => x.UserId,
+                        principalTable: "AspNetUsers",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
-                        name: "FK_ExerciseStudent_Students_StudentsId",
-                        column: x => x.StudentsId,
-                        principalTable: "Students",
+                        name: "FK_Students_Exercises_ExerciseId",
+                        column: x => x.ExerciseId,
+                        principalTable: "Exercises",
+                        principalColumn: "Id");
+                    table.ForeignKey(
+                        name: "FK_Students_Schools_SchoolId",
+                        column: x => x.SchoolId,
+                        principalTable: "Schools",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                 });
@@ -526,11 +507,11 @@ namespace PreparationForITExam.Infrastructure.Migrations
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     Title = table.Column<string>(type: "nvarchar(60)", maxLength: 60, nullable: false),
-                    Group = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: false),
+                    SectionOfCurricularId = table.Column<int>(type: "int", nullable: false),
                     Content = table.Column<string>(type: "nvarchar(4000)", maxLength: 4000, nullable: false),
                     IsActive = table.Column<bool>(type: "bit", nullable: false),
                     ExerciseId = table.Column<int>(type: "int", nullable: false),
-                    SectionOfCurricularId = table.Column<int>(type: "int", nullable: true)
+                    StudentId = table.Column<int>(type: "int", nullable: true)
                 },
                 constraints: table =>
                 {
@@ -545,57 +526,34 @@ namespace PreparationForITExam.Infrastructure.Migrations
                         name: "FK_Lessons_SectionsOfCurricular_SectionOfCurricularId",
                         column: x => x.SectionOfCurricularId,
                         principalTable: "SectionsOfCurricular",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_Lessons_Students_StudentId",
+                        column: x => x.StudentId,
+                        principalTable: "Students",
                         principalColumn: "Id");
-                });
-
-            migrationBuilder.CreateTable(
-                name: "RequestsExercises",
-                columns: table => new
-                {
-                    Id = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    TeacherId = table.Column<int>(type: "int", nullable: false),
-                    ExerciseId = table.Column<int>(type: "int", nullable: false),
-                    ChangedContent = table.Column<string>(type: "nvarchar(4000)", maxLength: 4000, nullable: false),
-                    Suggestion = table.Column<string>(type: "nvarchar(4000)", maxLength: 4000, nullable: false),
-                    IsActive = table.Column<bool>(type: "bit", nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_RequestsExercises", x => x.Id);
-                    table.ForeignKey(
-                        name: "FK_RequestsExercises_Exercises_ExerciseId",
-                        column: x => x.ExerciseId,
-                        principalTable: "Exercises",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
-                    table.ForeignKey(
-                        name: "FK_RequestsExercises_Teachers_TeacherId",
-                        column: x => x.TeacherId,
-                        principalTable: "Teachers",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateTable(
                 name: "LessonMonUser",
                 columns: table => new
                 {
-                    LessonsId = table.Column<int>(type: "int", nullable: false),
-                    MonsId = table.Column<int>(type: "int", nullable: false)
+                    LessonId = table.Column<int>(type: "int", nullable: false),
+                    MonUserId = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_LessonMonUser", x => new { x.LessonsId, x.MonsId });
+                    table.PrimaryKey("PK_LessonMonUser", x => new { x.LessonId, x.MonUserId });
                     table.ForeignKey(
-                        name: "FK_LessonMonUser_Lessons_LessonsId",
-                        column: x => x.LessonsId,
+                        name: "FK_LessonMonUser_Lessons_LessonId",
+                        column: x => x.LessonId,
                         principalTable: "Lessons",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
-                        name: "FK_LessonMonUser_MonUsers_MonsId",
-                        column: x => x.MonsId,
+                        name: "FK_LessonMonUser_MonUsers_MonUserId",
+                        column: x => x.MonUserId,
                         principalTable: "MonUsers",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
@@ -620,6 +578,35 @@ namespace PreparationForITExam.Infrastructure.Migrations
                     table.ForeignKey(
                         name: "FK_LessonTeacher_Teachers_TeachersId",
                         column: x => x.TeachersId,
+                        principalTable: "Teachers",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "RequestsExercises",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    TeacherId = table.Column<int>(type: "int", nullable: false),
+                    ExerciseId = table.Column<int>(type: "int", nullable: false),
+                    ChangedContent = table.Column<string>(type: "nvarchar(4000)", maxLength: 4000, nullable: false),
+                    Suggestion = table.Column<string>(type: "nvarchar(4000)", maxLength: 4000, nullable: false),
+                    IsActive = table.Column<bool>(type: "bit", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_RequestsExercises", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_RequestsExercises_Lessons_ExerciseId",
+                        column: x => x.ExerciseId,
+                        principalTable: "Lessons",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_RequestsExercises_Teachers_TeacherId",
+                        column: x => x.TeacherId,
                         principalTable: "Teachers",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
@@ -705,10 +692,147 @@ namespace PreparationForITExam.Infrastructure.Migrations
                 columns: new[] { "Id", "ConcurrencyStamp", "Name", "NormalizedName" },
                 values: new object[,]
                 {
-                    { "0f761db2-ab55-416c-83b9-70abded3d908", "76f823bf-dc74-4370-957d-59e07972195a", "Administrator", "ADMINISTRATOR" },
-                    { "71281cf3-9730-4d7e-acbb-213edee8291c", "1d8d74f0-4751-49e8-be95-615b7a9ae7e2", "Teacher", "TEACHER" },
-                    { "e66d730b-bcf1-41b5-b7e0-3e66056e61d9", "42f26007-d55a-4e77-9d56-e53e11f58d49", "Student", "STUDENT" },
-                    { "fe750b82-6fe9-472c-bdc5-61f5433d429e", "355e20a2-60d6-4e92-adfa-d389ccd4cd11", "MonUser", "MONUSER" }
+                    { "0f761db2-ab55-416c-83b9-70abded3d908", "07eecaa1-4b37-4365-a6a2-3fc1dad9298c", "Administrator", "ADMINISTRATOR" },
+                    { "71281cf3-9730-4d7e-acbb-213edee8291c", "5556ea24-4516-49b4-a11e-b018a24b2a11", "Teacher", "TEACHER" },
+                    { "e66d730b-bcf1-41b5-b7e0-3e66056e61d9", "4c9ebcca-eb97-4c7f-874b-b122f7b88fbd", "Student", "STUDENT" },
+                    { "fe750b82-6fe9-472c-bdc5-61f5433d429e", "20291427-06bc-437d-9a30-8209c1f87121", "MonUser", "MONUSER" }
+                });
+
+            migrationBuilder.InsertData(
+                table: "AspNetUsers",
+                columns: new[] { "Id", "AccessFailedCount", "City", "ConcurrencyStamp", "Email", "EmailConfirmed", "FirstName", "IsActive", "LastName", "LockoutEnabled", "LockoutEnd", "NormalizedEmail", "NormalizedUserName", "PasswordHash", "PhoneNumber", "PhoneNumberConfirmed", "ProfilePictureUrl", "SecurityStamp", "TwoFactorEnabled", "UserName" },
+                values: new object[] { "789061a9-edaa-4a00-9e09-add6a20c8288", 0, "Казанлък", "d9a04820-3dde-4df3-8b9a-858f59d5908f", "kresa@gmail.com", false, "Креса", true, "Цветкова", false, null, "KRESA@GMAIL.COM", "KRESA@GMAIL.COM", null, "0886121260", false, null, "2e489419-10bf-4960-bf51-1d28016cb07f", false, "kresa@gmail.com" });
+
+            migrationBuilder.InsertData(
+                table: "Exercises",
+                columns: new[] { "Id", "Content", "IsActive", "TeacherId", "Title" },
+                values: new object[,]
+                {
+                    { 1, "", true, null, "Компютърът" },
+                    { 2, "", true, null, "Езици за програмиране" },
+                    { 3, "", true, null, "Инструменти и IDE" },
+                    { 4, "", true, null, "IDE Visual Studio" },
+                    { 5, "", true, null, "Елементи на програмата" },
+                    { 6, "", true, null, "Основни типове операции и оператори" },
+                    { 7, "", true, null, "Изчислителни процеси. Линейни процеси" },
+                    { 8, "", true, null, "Линейни изчислителни процеси. Упражнение" },
+                    { 9, "", true, null, "Сравнения и логически операции" },
+                    { 10, "", true, null, "Разклонени изчислителни процеси" },
+                    { 11, "", true, null, "Циклични изчислителни процеси" },
+                    { 12, "", true, null, "Оператори за цикъл с условие" },
+                    { 13, "", true, null, "Оператори за цикъл. Упражнение" },
+                    { 14, "", true, null, "Обекти и класове от обекти" },
+                    { 15, "", true, null, "Класове" },
+                    { 16, "", true, null, "Клас с контролирани атрибути" },
+                    { 17, "", true, null, "Функции и методи" },
+                    { 18, "", true, null, "Конструктори" },
+                    { 19, "", true, null, "Предаване на аргументи" },
+                    { 20, "", true, null, "Упражнение" },
+                    { 21, "", true, null, "Елементи на графичние интерфейс" },
+                    { 22, "", true, null, "Графични компоненти" },
+                    { 23, "", true, null, "Упражнение" },
+                    { 24, "", true, null, "Упражнение" },
+                    { 25, "", true, null, "Агрегатни типове" },
+                    { 26, "", true, null, "Файлове" },
+                    { 27, "", true, null, "Четене на обекти от файл" },
+                    { 28, "", true, null, "Документиране на клас. Сериализация" },
+                    { 29, "", true, null, "Капсулиране. Статични атрибути и методи" },
+                    { 30, "", true, null, "Йерархия от класове" },
+                    { 31, "", true, null, "Полиморфизъм" },
+                    { 32, "", true, null, "Абстракция класове. Интерфейси" },
+                    { 33, "", true, null, "Изключения" },
+                    { 34, "", true, null, "Информация и данни" },
+                    { 35, "", true, null, "Информационни системи и процеси" },
+                    { 36, "", true, null, "Файлов подход и подход с бази от данни" },
+                    { 37, "", true, null, "Упражнение" }
+                });
+
+            migrationBuilder.InsertData(
+                table: "Exercises",
+                columns: new[] { "Id", "Content", "IsActive", "TeacherId", "Title" },
+                values: new object[,]
+                {
+                    { 38, "", true, null, "Множества и релации" },
+                    { 39, "", true, null, "Релационна база от данни" },
+                    { 40, "", true, null, "Операции с релации" },
+                    { 41, "", true, null, "Типове данни с релации" },
+                    { 42, "", true, null, "Типове данни. Ключове" },
+                    { 43, "", true, null, "Нормализация" },
+                    { 44, "", true, null, "Модел обект-взаимодействие" },
+                    { 45, "", true, null, "Нива на абстракция. Аномалии" },
+                    { 46, "", true, null, "Проектиране на БД. Упражнение" },
+                    { 47, "", true, null, "Програмата MS Access" },
+                    { 48, "", true, null, "Езикът SQL. Заявки" },
+                    { 49, "", true, null, "Заявка SELECT" },
+                    { 50, "", true, null, "Клаузите ORDER BY и GROUP BY" },
+                    { 51, "", true, null, "Екранни форми. Контрол на данните" },
+                    { 52, "", true, null, "Търсене на данни" },
+                    { 53, "", true, null, "Създаване и редактиране на таблици със SQL" },
+                    { 54, "", true, null, "Упражнение" },
+                    { 55, "", true, null, "Отчети" },
+                    { 56, "", true, null, "Връзки между таблиците. Съединиение" },
+                    { 57, "", true, null, "Влагане на заявки" },
+                    { 58, "", true, null, "Упражнение" },
+                    { 59, "", true, null, "Интегриране на БД в MS Access" },
+                    { 60, "", true, null, "Интегриране на БД със C#" },
+                    { 61, "", true, null, "Упражнение" },
+                    { 62, "", true, null, "Алгоритми" },
+                    { 63, "", true, null, "UML-диаграми упражнение" },
+                    { 64, "", true, null, "Сложност на алгоритми" },
+                    { 65, "", true, null, "Обектно-ориентирано програмиране - преговор" },
+                    { 66, "", true, null, "Реализация на алгоритми чрез методи" },
+                    { 67, "", true, null, "Рекурсия и интеграция" },
+                    { 68, "", true, null, "Сложност на програми" },
+                    { 69, "", true, null, "Едномерен масив - преговор" },
+                    { 70, "", true, null, "Сортиране на масив" },
+                    { 71, "", true, null, "Работа със сортирани масиви" },
+                    { 72, "", true, null, "Сортиране на масив" },
+                    { 73, "", true, null, "Работа със сортирани масиви" },
+                    { 74, "", true, null, "Низове" },
+                    { 75, "", true, null, "Масиви от знаци" },
+                    { 76, "", true, null, "Многомерни масиви" },
+                    { 77, "", true, null, "Основни понятия" },
+                    { 78, "", true, null, "Вградени АТ в C#" },
+                    { 79, "", true, null, "Списъци" }
+                });
+
+            migrationBuilder.InsertData(
+                table: "Exercises",
+                columns: new[] { "Id", "Content", "IsActive", "TeacherId", "Title" },
+                values: new object[,]
+                {
+                    { 80, "", true, null, "Опашки" },
+                    { 81, "", true, null, "Стек" },
+                    { 82, "", true, null, "Упражнение" },
+                    { 83, "", true, null, "Графи" },
+                    { 84, "", true, null, "Дървета" },
+                    { 85, "", true, null, "Обхождане на графи" },
+                    { 86, "", true, null, "Най-къс път в граф" },
+                    { 87, "", true, null, "Хеш-таблица. Речник" },
+                    { 88, "", true, null, "Работа по проект" },
+                    { 89, "", true, null, "Примерни проекти" },
+                    { 90, "", true, null, "Информационни системи и бази от данни" },
+                    { 91, "", true, null, "Упражнение - преговор" },
+                    { 92, "", true, null, "Сървър база от данни" },
+                    { 93, "", true, null, "Таблици" },
+                    { 94, "", true, null, "Въвеждане на данни" },
+                    { 95, "", true, null, "Езикът SQL - преговор с допълнение" },
+                    { 96, "", true, null, "Създаване н=и изпълнение на заявки" },
+                    { 97, "", true, null, "Съхранени процедури" },
+                    { 98, "", true, null, "Още за съхранените процедури" },
+                    { 99, "", true, null, "Подържане на база от данни" },
+                    { 100, "", true, null, "Клиентът Azure Data Studio" },
+                    { 101, "", true, null, "Упражнение" },
+                    { 102, "", true, null, "Фази при разработване на проекти" },
+                    { 103, "", true, null, "Екип, документиране и защита на проекти" },
+                    { 104, "", true, null, "Езикът C# - преговор" },
+                    { 105, "", true, null, "Свързване с базата данни" },
+                    { 106, "", true, null, "Четене от база данни" },
+                    { 107, "", true, null, "Приложение с графичен интерфейс" },
+                    { 108, "", true, null, "Редактиране на данни" },
+                    { 109, "", true, null, "Упражнение" },
+                    { 110, "", true, null, "Интегриране с лента от менюта" },
+                    { 111, "", true, null, "Още функционалност в ИС УЧИСЕ" }
                 });
 
             migrationBuilder.InsertData(
@@ -732,7 +856,14 @@ namespace PreparationForITExam.Infrastructure.Migrations
                     { 3, "София", true, "118 Средно Общообразователно Училище \"Академик Людмил Стоянов\"", "118 средно общообразователно училище \"академик людмил стоянов\"" },
                     { 4, "София", true, "192 СОУ \"Христо Ботев\"", "192 соу \"христо ботев\"" },
                     { 5, "София", true, "81 Средно Общообразователно Училище \"Виктор Юго\"", "81 средно общообразователно училище \"виктор юго\"" },
-                    { 6, "София", true, "Англо-американско училище в София", "англо-американско училище в софия" },
+                    { 6, "София", true, "Англо-американско училище в София", "англо-американско училище в софия" }
+                });
+
+            migrationBuilder.InsertData(
+                table: "Schools",
+                columns: new[] { "Id", "City", "IsActive", "Name", "NormalizedName" },
+                values: new object[,]
+                {
                     { 7, "София", true, "Руски лицей \"Архиепископ Серафим\"", "руски лицей \"архиепископ серафим\"" },
                     { 8, "София", true, "Средно Художествено Училище За Приложни Изкуства \"Свети Лука\"", "средно художествено училище за приложни изкуства \"свети лука\"" },
                     { 9, "София", true, "Частен Английска Гимназия \"Евростандарт\"", "частен английска гимназия \"евростандарт\"" },
@@ -760,14 +891,7 @@ namespace PreparationForITExam.Infrastructure.Migrations
                     { 31, "София", true, "119 Средно Общообазователно Училище \"Академик Михаил Арнаудов\"", "119 средно общообазователно училище \"академик михаил арнаудов\"" },
                     { 32, "София", true, "Софийска Професионална Гимназия по Електроника \"Джон Атанасов\"", "софийска професионална гимназия по електроника \"джон атанасов\"" },
                     { 33, "София", true, "Частна Езикова Гимназия \"Проф. Иван Апостолов\"", "частна езикова гимназия \"проф. иван апостолов\"" },
-                    { 34, "София", true, "Частна Професионална Гимназия по Мениджмънт и Бизнес Администрация \"Хелиос 2000\"", "частна професионална гимназия по мениджмънт и бизнес администрация \"хелиос 2000\"" }
-                });
-
-            migrationBuilder.InsertData(
-                table: "Schools",
-                columns: new[] { "Id", "City", "IsActive", "Name", "NormalizedName" },
-                values: new object[,]
-                {
+                    { 34, "София", true, "Частна Професионална Гимназия по Мениджмънт и Бизнес Администрация \"Хелиос 2000\"", "частна професионална гимназия по мениджмънт и бизнес администрация \"хелиос 2000\"" },
                     { 35, "София", true, "113 Средно Общообразователно Училище \"Сава Филаретов\"", "113 средно общообразователно училище \"сава филаретов\"" },
                     { 36, "София", true, "Втора Английска Езикова Гимназия \"Томас Джеферсън\"", "втора английска езикова гимназия \"томас джеферсън\"" },
                     { 37, "София", true, "Професионална Гимназия по Транспорт и Енергетика \"Хенри Форд\"", "професионална гимназия по транспорт и енергетика \"хенри форд\"" },
@@ -781,7 +905,14 @@ namespace PreparationForITExam.Infrastructure.Migrations
                     { 45, "София", true, "132-ро Средно Общообразователно Училище \"Ваня Войнова\"", "132-ро средно общообразователно училище \"ваня войнова\"" },
                     { 46, "София", true, "Частно Езиково Средно Общообразователно Училище \"Дорис Тенеди\"", "частно езиково средно общообразователно училище \"дорис тенеди\"" },
                     { 47, "София", true, "Частна Математическа Гимназия \"Евклид\"", "частна математическа гимназия \"евклид\"" },
-                    { 48, "София", true, "85 Средно Общообразователно Училище \"Отец Паисий\"", "85 средно общообразователно училище \"отец паисий\"" },
+                    { 48, "София", true, "85 Средно Общообразователно Училище \"Отец Паисий\"", "85 средно общообразователно училище \"отец паисий\"" }
+                });
+
+            migrationBuilder.InsertData(
+                table: "Schools",
+                columns: new[] { "Id", "City", "IsActive", "Name", "NormalizedName" },
+                values: new object[,]
+                {
                     { 49, "София", true, "21-во Средно Общообразователно Училище \"Христо Ботев\"", "21-во средно общообразователно училище \"христо ботев\"" },
                     { 50, "София", true, "35 Средно Общообразователно Училище \"Добри Войников\"", "35 средно общообразователно училище \"добри войников\"" },
                     { 51, "София", true, "Национална Природо-Математическа Гимназия \"Акад. Л. Чакалов\"", "национална природо-математическа гимназия \"акад. л. чакалов\"" },
@@ -809,14 +940,7 @@ namespace PreparationForITExam.Infrastructure.Migrations
                     { 73, "София", true, "Частна Профилирана Гимназия с Чуждоезиково Обучение \"Меридиан 22\"", "частна профилирана гимназия с чуждоезиково обучение \"меридиан 22\"" },
                     { 74, "София", true, "Частно Средно Общообразователно Училище с Ранно Чуждоезиково Обучение Еспа", "частно средно общообразователно училище с ранно чуждоезиково обучение еспа" },
                     { 75, "София", true, "Професионална Гимназия \"Интербизнес\"", "професионална гимназия \"интербизнес\"" },
-                    { 76, "София", true, "101 Средно Общообразователно Училище \"Бачо Киро\"", "101 средно общообразователно училище \"бачо киро\"" }
-                });
-
-            migrationBuilder.InsertData(
-                table: "Schools",
-                columns: new[] { "Id", "City", "IsActive", "Name", "NormalizedName" },
-                values: new object[,]
-                {
+                    { 76, "София", true, "101 Средно Общообразователно Училище \"Бачо Киро\"", "101 средно общообразователно училище \"бачо киро\"" },
                     { 77, "София", true, "153-та Профилирана Гимназия \"Неофит Рилски\"", "153-та профилирана гимназия \"неофит рилски\"" },
                     { 78, "София", true, "Частна Професионална Гимназия по Туризъм \"Свети Мина\"", "частна професионална гимназия по туризъм \"свети мина\"" },
                     { 79, "София", true, "170 Средно Общообразователно Училище \"Васил Левски\" кв.Курило", "170 средно общообразователно училище \"васил левски\" кв.курило" },
@@ -830,7 +954,14 @@ namespace PreparationForITExam.Infrastructure.Migrations
                     { 87, "София", true, "66-то СОУ \"Филип Станиславов\"", "66-то соу \"филип станиславов\"" },
                     { 88, "София", true, "88 Средно Общообразователно Училище \"Димитър Попниколов\"", "88 средно общообразователно училище \"димитър попниколов\"" },
                     { 89, "София", true, "Национално Средно Общообразователно Училище \"София\"", "национално средно общообразователно училище \"софия\"" },
-                    { 90, "София", true, "Частна Профилирана Езикова Гимназия \"Д-Р Мария Монтесори\"", "частна профилирана езикова гимназия \"д-р мария монтесори\"" },
+                    { 90, "София", true, "Частна Профилирана Езикова Гимназия \"Д-Р Мария Монтесори\"", "частна профилирана езикова гимназия \"д-р мария монтесори\"" }
+                });
+
+            migrationBuilder.InsertData(
+                table: "Schools",
+                columns: new[] { "Id", "City", "IsActive", "Name", "NormalizedName" },
+                values: new object[,]
+                {
                     { 91, "София", true, "Частно Средно Общообразователно Училище \"Евростар\"", "частно средно общообразователно училище \"евростар\"" },
                     { 92, "София", true, "95 СОУ \"Проф. Иван Шишманов\"", "95 соу \"проф. иван шишманов\"" },
                     { 93, "София", true, "130 Средно Общообразователно Училище \"Стефан Караджа\"", "130 средно общообразователно училище \"стефан караджа\"" },
@@ -858,14 +989,7 @@ namespace PreparationForITExam.Infrastructure.Migrations
                     { 115, "София", true, "121 Средно Общообразователно Училище \"Георги Измирлиев\"", "121 средно общообразователно училище \"георги измирлиев\"" },
                     { 116, "София", true, "Професионална Гимназия по Текстил и Моден Дизайн", "професионална гимназия по текстил и моден дизайн" },
                     { 117, "София", true, "Частно Соу по Изкуства и Чужди Езици \"Артис\"", "частно соу по изкуства и чужди езици \"артис\"" },
-                    { 118, "София", true, "Частно Средно Общообразувателно Училище \"Авицена\"", "частно средно общообразувателно училище \"авицена\"" }
-                });
-
-            migrationBuilder.InsertData(
-                table: "Schools",
-                columns: new[] { "Id", "City", "IsActive", "Name", "NormalizedName" },
-                values: new object[,]
-                {
+                    { 118, "София", true, "Частно Средно Общообразувателно Училище \"Авицена\"", "частно средно общообразувателно училище \"авицена\"" },
                     { 119, "София", true, "18 Средно Общообразователно Училище \"Уилям Гладстон\"", "18 средно общообразователно училище \"уилям гладстон\"" },
                     { 120, "София", true, "Професионална Гимназия по Туризъм \"Алеко Константинов\"", "професионална гимназия по туризъм \"алеко константинов\"" },
                     { 121, "София", true, "2 Средно Общообразователно Училище \"Академик Емилиян Станев\"", "2 средно общообразователно училище \"академик емилиян станев\"" },
@@ -879,7 +1003,14 @@ namespace PreparationForITExam.Infrastructure.Migrations
                     { 129, "София", true, "Софийска Техническа Гимназия", "софийска техническа гимназия" },
                     { 130, "София", true, "Професионална Гимназия по Строителство и Енергетика", "професионална гимназия по строителство и енергетика" },
                     { 131, "София", true, "Частна Профилирана Гимназия \"Веда\"", "частна профилирана гимназия \"веда\"" },
-                    { 132, "София", true, "Професионална Гимназия по Фризьорство и Козметика \"Княгиня Евдокия\"", "професионална гимназия по фризьорство и козметика \"княгиня евдокия\"" },
+                    { 132, "София", true, "Професионална Гимназия по Фризьорство и Козметика \"Княгиня Евдокия\"", "професионална гимназия по фризьорство и козметика \"княгиня евдокия\"" }
+                });
+
+            migrationBuilder.InsertData(
+                table: "Schools",
+                columns: new[] { "Id", "City", "IsActive", "Name", "NormalizedName" },
+                values: new object[,]
+                {
                     { 133, "София", true, "Професионална Гимназия по Хранително Вкусови Технологии \"Проф.Д-Р Г. Павлов\"", "професионална гимназия по хранително вкусови технологии \"проф.д-р г. павлов\"" },
                     { 134, "София", true, "68 Средно Общообразователно Училище \"Академик Никола Обрешков\"", "68 средно общообразователно училище \"академик никола обрешков\"" },
                     { 135, "София", true, "69 Средно Общообразователно Училище \"Димитър Маринов\"", "69 средно общообразователно училище \"димитър маринов\"" },
@@ -907,14 +1038,7 @@ namespace PreparationForITExam.Infrastructure.Migrations
                     { 157, "София", true, "Професионална Гимназия по Селско Стопанство \"Бузема\"", "професионална гимназия по селско стопанство \"бузема\"" },
                     { 158, "София", true, "71 Средно Общообразователно Училище \"Пейо Яворов\"", "71 средно общообразователно училище \"пейо яворов\"" },
                     { 159, "София", true, "24 Средно Общообразователно Училище \"П. К. Яворов\"", "24 средно общообразователно училище \"п. к. яворов\"" },
-                    { 160, "София", true, "44 Средно Общообразователно Училище \"Неофит Бозвели\"", "44 средно общообразователно училище \"неофит бозвели\"" }
-                });
-
-            migrationBuilder.InsertData(
-                table: "Schools",
-                columns: new[] { "Id", "City", "IsActive", "Name", "NormalizedName" },
-                values: new object[,]
-                {
+                    { 160, "София", true, "44 Средно Общообразователно Училище \"Неофит Бозвели\"", "44 средно общообразователно училище \"неофит бозвели\"" },
                     { 161, "София", true, "Професионална Гимназия по Топлинна и Хладилна Техника \"Карл Фон Линде\"", "професионална гимназия по топлинна и хладилна техника \"карл фон линде\"" },
                     { 162, "София", true, "93-То Средно Общообразователно Училище \"Александър Теодоров - Балан\"", "93-то средно общообразователно училище \"александър теодоров - балан\"" },
                     { 163, "София", true, "94-То Средно Общообразователно Училище \"Димитър Страшимиров\"", "94-то средно общообразователно училище \"димитър страшимиров\"" },
@@ -928,7 +1052,14 @@ namespace PreparationForITExam.Infrastructure.Migrations
                     { 171, "София", true, "Частна професионална гимназия по мениджмънт в спорта и в туризма \"Свети Йоан Кръстител и Света Анна\"", "частна професионална гимназия по мениджмънт в спорта и в туризма \"свети йоан кръстител и света анна\"" },
                     { 172, "София", true, "Частна Профилирана Гимназия \"Пейо К. Яворов\"", "частна профилирана гимназия \"пейо к. яворов\"" },
                     { 173, "София", true, "Частна Профилирана Гимназия Балканика", "частна профилирана гимназия балканика" },
-                    { 174, "София", true, "Частна Профилирана Гимназия с Изучаване на Английски Език \"Софийска Езикова Гимназия\"", "частна профилирана гимназия с изучаване на английски език \"софийска езикова гимназия\"" },
+                    { 174, "София", true, "Частна Профилирана Гимназия с Изучаване на Английски Език \"Софийска Езикова Гимназия\"", "частна профилирана гимназия с изучаване на английски език \"софийска езикова гимназия\"" }
+                });
+
+            migrationBuilder.InsertData(
+                table: "Schools",
+                columns: new[] { "Id", "City", "IsActive", "Name", "NormalizedName" },
+                values: new object[,]
+                {
                     { 175, "Пловдив", true, "Средно Общообразователно Училище \"Свети Свети Кирил и Методий\"", "средно общообразователно училище \"свети свети кирил и методий\"" },
                     { 176, "Пловдив", true, "Средно Общообразователно Училище \"Любен Каравелов\"", "средно общообразователно училище \"любен каравелов\"" },
                     { 177, "Пловдив", true, "Професионална Гимназия по Облекло \"Ана Май\"", "професионална гимназия по облекло \"ана май\"" },
@@ -956,14 +1087,7 @@ namespace PreparationForITExam.Infrastructure.Migrations
                     { 199, "Пловдив", true, "Средно Общообразователно Училище \"Никола Йонков Вапцаров\"", "средно общообразователно училище \"никола йонков вапцаров\"" },
                     { 200, "Пловдив", true, "Средно Общообразователноучилище \"Пейо Крачолов Яворов\"", "средно общообразователноучилище \"пейо крачолов яворов\"" },
                     { 201, "Пловдив", true, "Френска Езикова Гимназия \"Антоан Дьо Сент Екзюпери\"", "френска езикова гимназия \"антоан дьо сент екзюпери\"" },
-                    { 202, "Пловдив", true, "Вечерна Гимназия \"Христо Смирненски\"", "вечерна гимназия \"христо смирненски\"" }
-                });
-
-            migrationBuilder.InsertData(
-                table: "Schools",
-                columns: new[] { "Id", "City", "IsActive", "Name", "NormalizedName" },
-                values: new object[,]
-                {
+                    { 202, "Пловдив", true, "Вечерна Гимназия \"Христо Смирненски\"", "вечерна гимназия \"христо смирненски\"" },
                     { 203, "Пловдив", true, "Професионална Гимназия по Хранителни Технологии и Техника", "професионална гимназия по хранителни технологии и техника" },
                     { 204, "Пловдив", true, "Професионална Гимназия по Механотехника \"Професор Цветан Лазаров\"", "професионална гимназия по механотехника \"професор цветан лазаров\"" },
                     { 205, "Пловдив", true, "Средно Общообразователно Училище \"Свети Седмочисленици\"", "средно общообразователно училище \"свети седмочисленици\"" },
@@ -977,7 +1101,14 @@ namespace PreparationForITExam.Infrastructure.Migrations
                     { 213, "Пловдив", true, "Езикова Гимназия \"Пловдив\"", "езикова гимназия \"пловдив\"" },
                     { 214, "Пловдив", true, "Професионална Гимназия по Подемна, Строителна и Транспортна Техника", "професионална гимназия по подемна, строителна и транспортна техника" },
                     { 215, "Пловдив", true, "Средно Общообразователно Училище \"Братя Миладинови\"", "средно общообразователно училище \"братя миладинови\"" },
-                    { 216, "Пловдив", true, "Средно Общообразователно Училище \"Константин Величков\"", "средно общообразователно училище \"константин величков\"" },
+                    { 216, "Пловдив", true, "Средно Общообразователно Училище \"Константин Величков\"", "средно общообразователно училище \"константин величков\"" }
+                });
+
+            migrationBuilder.InsertData(
+                table: "Schools",
+                columns: new[] { "Id", "City", "IsActive", "Name", "NormalizedName" },
+                values: new object[,]
+                {
                     { 217, "Пловдив", true, "Средно-Общообразователно Училище \"Черноризец Храбър\"", "средно-общообразователно училище \"черноризец храбър\"" },
                     { 218, "Пловдив", true, "Частна Профилиранагимназия с Профил Чуждоезиков \"Едмънд Бърк\"", "частна профилиранагимназия с профил чуждоезиков \"едмънд бърк\"" },
                     { 219, "Пловдив", true, "Частна Професионална Гимназия по Икономика и Управление", "частна професионална гимназия по икономика и управление" },
@@ -1005,14 +1136,7 @@ namespace PreparationForITExam.Infrastructure.Migrations
                     { 241, "Варна", true, "Варненска Търговска Гимназия \"Георги Стойков Раковски\"", "варненска търговска гимназия \"георги стойков раковски\"" },
                     { 242, "Варна", true, "Професионална Гимназия по Текстил и Моден Дизайн", "професионална гимназия по текстил и моден дизайн" },
                     { 243, "Варна", true, "Професионална Гимназия по Горско Стопанство и Дървообработване \"Николай Хайтов\"", "професионална гимназия по горско стопанство и дървообработване \"николай хайтов\"" },
-                    { 244, "Варна", true, "Професионална Гимназия по Електротехника", "професионална гимназия по електротехника" }
-                });
-
-            migrationBuilder.InsertData(
-                table: "Schools",
-                columns: new[] { "Id", "City", "IsActive", "Name", "NormalizedName" },
-                values: new object[,]
-                {
+                    { 244, "Варна", true, "Професионална Гимназия по Електротехника", "професионална гимназия по електротехника" },
                     { 245, "Варна", true, "Професионална Гимназия по Туризъм \"Проф. Д-Р Асен Златаров\"", "професионална гимназия по туризъм \"проф. д-р асен златаров\"" },
                     { 246, "Варна", true, "Първо СОУ \"Димчо Дебелянов\"", "първо соу \"димчо дебелянов\"" },
                     { 247, "Варна", true, "Частна Езикова Гимназия \"Никанор\"", "частна езикова гимназия \"никанор\"" },
@@ -1026,7 +1150,14 @@ namespace PreparationForITExam.Infrastructure.Migrations
                     { 255, "Варна", true, "Частна Професионална Гимназия Със Специалности с Интензивно Изучаване на Чужди Езици", "частна професионална гимназия със специалности с интензивно изучаване на чужди езици" },
                     { 256, "Варна", true, "Варненска Морска Гимназия \"Свети Николай Чудотворец\"", "варненска морска гимназия \"свети николай чудотворец\"" },
                     { 257, "Варна", true, "Второ Средно Общообразователно Училище", "второ средно общообразователно училище" },
-                    { 258, "Варна", true, "Американска гимназия на България", "американска гимназия на българия" },
+                    { 258, "Варна", true, "Американска гимназия на България", "американска гимназия на българия" }
+                });
+
+            migrationBuilder.InsertData(
+                table: "Schools",
+                columns: new[] { "Id", "City", "IsActive", "Name", "NormalizedName" },
+                values: new object[,]
+                {
                     { 259, "Бургас", true, "Професионална Гимназия по Химични Технологии \"Академик Н. Д. Зелинский\"", "професионална гимназия по химични технологии \"академик н. д. зелинский\"" },
                     { 260, "Бургас", true, "Природоматематическа Гимназия \"Академик Никола Обрешков\"", "природоматематическа гимназия \"академик никола обрешков\"" },
                     { 261, "Бургас", true, "Професионална Гимназия по Строителство, Архитектура и Геодезия \"Кольо Фичето\"", "професионална гимназия по строителство, архитектура и геодезия \"кольо фичето\"" },
@@ -1054,14 +1185,7 @@ namespace PreparationForITExam.Infrastructure.Migrations
                     { 283, "Бургас", true, "Професионална Гимназия по Дървообработване \"Георги Кондолов\"", "професионална гимназия по дървообработване \"георги кондолов\"" },
                     { 284, "Бургас", true, "Професионална Гимназия по Сградостроителство и Инсталации \"Пеньо Пенев\"", "професионална гимназия по сградостроителство и инсталации \"пеньо пенев\"" },
                     { 285, "Бургас", true, "Първо Частно Прогимназиално Училище", "първо частно прогимназиално училище" },
-                    { 286, "Русе", true, "Професионална Гимназия по Механотехника", "професионална гимназия по механотехника" }
-                });
-
-            migrationBuilder.InsertData(
-                table: "Schools",
-                columns: new[] { "Id", "City", "IsActive", "Name", "NormalizedName" },
-                values: new object[,]
-                {
+                    { 286, "Русе", true, "Професионална Гимназия по Механотехника", "професионална гимназия по механотехника" },
                     { 287, "Русе", true, "Частна Профилирана Гимназия \"Джордж Байрон\"", "частна профилирана гимназия \"джордж байрон\"" },
                     { 288, "Русе", true, "Средно Общообразователноучилище \"Васил Левски\"", "средно общообразователноучилище \"васил левски\"" },
                     { 289, "Русе", true, "Професионална Гимназия по Зърнопреработвателни и Хранителни Технологии \"Проф.Д-р Асен Златаров\"", "професионална гимназия по зърнопреработвателни и хранителни технологии \"проф.д-р асен златаров\"" },
@@ -1075,7 +1199,14 @@ namespace PreparationForITExam.Infrastructure.Migrations
                     { 297, "Русе", true, "Първо Частно Средно Общообразователно Училище \"Леонардо Да Винчи\"", "първо частно средно общообразователно училище \"леонардо да винчи\"" },
                     { 298, "Русе", true, "Професионална Гимназия по Електротехника и Електроника \"Апостол Арнаудов\"", "професионална гимназия по електротехника и електроника \"апостол арнаудов\"" },
                     { 299, "Русе", true, "Професионална Гимназия по Облекло \"Недка Иван Лазарова\"", "професионална гимназия по облекло \"недка иван лазарова\"" },
-                    { 300, "Русе", true, "Професионална Гимназия по Туризъм \"Иван П. Павлов\"", "професионална гимназия по туризъм \"иван п. павлов\"" },
+                    { 300, "Русе", true, "Професионална Гимназия по Туризъм \"Иван П. Павлов\"", "професионална гимназия по туризъм \"иван п. павлов\"" }
+                });
+
+            migrationBuilder.InsertData(
+                table: "Schools",
+                columns: new[] { "Id", "City", "IsActive", "Name", "NormalizedName" },
+                values: new object[,]
+                {
                     { 301, "Русе", true, "Професионална Гимназия по Речно Корабостроене и Корабоплаване", "професионална гимназия по речно корабостроене и корабоплаване" },
                     { 302, "Русе", true, "Професионална Гимназия по Транспорт", "професионална гимназия по транспорт" },
                     { 303, "Русе", true, "Професионална Гимназия по Строителство, Архитектура и Геодезия \"Пеньо Пенев\"", "професионална гимназия по строителство, архитектура и геодезия \"пеньо пенев\"" },
@@ -1103,14 +1234,7 @@ namespace PreparationForITExam.Infrastructure.Migrations
                     { 325, "Стара Загора", true, "Гимназия \"Христо Ботев\" Стара Загора", "гимназия \"христо ботев\" стара загора" },
                     { 326, "Стара Загора", true, "Вечерно Соу \"Захари Стоянов\"", "вечерно соу \"захари стоянов\"" },
                     { 327, "Стара Загора", true, "Професионална Гимназияпо Електротехника \"Г. С. Раковски\"", "професионална гимназияпо електротехника \"г. с. раковски\"" },
-                    { 328, "Стара Загора", true, "Професионална Гимназия по Строителствои Дървообработване \"Инж. Недьо Ранчев\"", "професионална гимназия по строителствои дървообработване \"инж. недьо ранчев\"" }
-                });
-
-            migrationBuilder.InsertData(
-                table: "Schools",
-                columns: new[] { "Id", "City", "IsActive", "Name", "NormalizedName" },
-                values: new object[,]
-                {
+                    { 328, "Стара Загора", true, "Професионална Гимназия по Строителствои Дървообработване \"Инж. Недьо Ранчев\"", "професионална гимназия по строителствои дървообработване \"инж. недьо ранчев\"" },
                     { 329, "Стара Загора", true, "Професионална Гимназия по Облекло и Хранене \"Райна Княгиня\"", "професионална гимназия по облекло и хранене \"райна княгиня\"" },
                     { 330, "Стара Загора", true, "Частна Профилирана Гимназия \"Траяна\"", "частна профилирана гимназия \"траяна\"" },
                     { 331, "Стара Загора", true, "Частна Професионална Гимназия по Управление на Туризма \"Константин Фотинов\"", "частна професионална гимназия по управление на туризма \"константин фотинов\"" },
@@ -1124,7 +1248,14 @@ namespace PreparationForITExam.Infrastructure.Migrations
                     { 339, "Плевен", true, "Професионална Гимназия по Строителство, Архитектура и Геодезия \"Никола Фичев\"", "професионална гимназия по строителство, архитектура и геодезия \"никола фичев\"" },
                     { 340, "Плевен", true, "Професионална Гимназия по Транспорт \"Проф. Цветан Лазаров\"", "професионална гимназия по транспорт \"проф. цветан лазаров\"" },
                     { 341, "Плевен", true, "Професионална Гимназия по Електроника и Химични Технологии \"Проф. Асен Златаров\"", "професионална гимназия по електроника и химични технологии \"проф. асен златаров\"" },
-                    { 342, "Плевен", true, "Професионална Гимназия по Лозарство и Винарство \"Александър Стамболийски\"", "професионална гимназия по лозарство и винарство \"александър стамболийски\"" },
+                    { 342, "Плевен", true, "Професионална Гимназия по Лозарство и Винарство \"Александър Стамболийски\"", "професионална гимназия по лозарство и винарство \"александър стамболийски\"" }
+                });
+
+            migrationBuilder.InsertData(
+                table: "Schools",
+                columns: new[] { "Id", "City", "IsActive", "Name", "NormalizedName" },
+                values: new object[,]
+                {
                     { 343, "Плевен", true, "Професионална Гимназия по Подемна, Строителна и Транспортна Техника \"Г.С.Раковски\"", "професионална гимназия по подемна, строителна и транспортна техника \"г.с.раковски\"" },
                     { 344, "Плевен", true, "Професионална Гимназия по Туризъм \"Алеко Константинов\"", "професионална гимназия по туризъм \"алеко константинов\"" },
                     { 345, "Плевен", true, "Професионална Гимназия по Облекло и Текстил", "професионална гимназия по облекло и текстил" },
@@ -1152,14 +1283,7 @@ namespace PreparationForITExam.Infrastructure.Migrations
                     { 367, "Добрич", true, "Средно Общообразователно Училище \"Любен Каравелов\"", "средно общообразователно училище \"любен каравелов\"" },
                     { 368, "Добрич", true, "Финансово-Стопанска Гимназия \"Васил Левски\"", "финансово-стопанска гимназия \"васил левски\"" },
                     { 369, "Добрич", true, "Професионална Гимназия по Строителство и Архитектура \"Пеньо Пенев\"", "професионална гимназия по строителство и архитектура \"пеньо пенев\"" },
-                    { 370, "Добрич", true, "Професионална Гимназия по Туризъм \"П. К. Яворов\"", "професионална гимназия по туризъм \"п. к. яворов\"" }
-                });
-
-            migrationBuilder.InsertData(
-                table: "Schools",
-                columns: new[] { "Id", "City", "IsActive", "Name", "NormalizedName" },
-                values: new object[,]
-                {
+                    { 370, "Добрич", true, "Професионална Гимназия по Туризъм \"П. К. Яворов\"", "професионална гимназия по туризъм \"п. к. яворов\"" },
                     { 371, "Сливен", true, "Професионална Гимназия по Текстил и Облекло \"Добри Желязков\"", "професионална гимназия по текстил и облекло \"добри желязков\"" },
                     { 372, "Сливен", true, "Природо - Математическа Гимназия \"Добри П. Чинтулов\"", "природо - математическа гимназия \"добри п. чинтулов\"" },
                     { 373, "Сливен", true, "10-то Средно Общообразователно Училище \"Йордан Йовков\"", "10-то средно общообразователно училище \"йордан йовков\"" },
@@ -1173,7 +1297,14 @@ namespace PreparationForITExam.Infrastructure.Migrations
                     { 381, "Сливен", true, "5-то Средно Общообразователно Училище \"Пейо Крачолов Яворов\"", "5-то средно общообразователно училище \"пейо крачолов яворов\"" },
                     { 382, "Шумен", true, "Професионална Гимназия по Строителство, Архитектура и Геодезия", "професионална гимназия по строителство, архитектура и геодезия" },
                     { 383, "Шумен", true, "Професионална Гимназия по Облекло, Хранене и Химични Технологии \"Проф. Д-Р Асен Златаров\"", "професионална гимназия по облекло, хранене и химични технологии \"проф. д-р асен златаров\"" },
-                    { 384, "Шумен", true, "Средно Общообразователно Училище \"Панайот Волов\"", "средно общообразователно училище \"панайот волов\"" },
+                    { 384, "Шумен", true, "Средно Общообразователно Училище \"Панайот Волов\"", "средно общообразователно училище \"панайот волов\"" }
+                });
+
+            migrationBuilder.InsertData(
+                table: "Schools",
+                columns: new[] { "Id", "City", "IsActive", "Name", "NormalizedName" },
+                values: new object[,]
+                {
                     { 385, "Шумен", true, "Гимназия с Преподаване на Чужди Езици \"Никола Йонков Вапцаров\"", "гимназия с преподаване на чужди езици \"никола йонков вапцаров\"" },
                     { 386, "Шумен", true, "Средно Общообразователно Училище \"Васил Левски\"", "средно общообразователно училище \"васил левски\"" },
                     { 387, "Шумен", true, "Професионална Гимназия по Механотехника, Електроника, Телекомуникации и Транспорт \"Христо Ботев\"", "професионална гимназия по механотехника, електроника, телекомуникации и транспорт \"христо ботев\"" },
@@ -1201,14 +1332,7 @@ namespace PreparationForITExam.Infrastructure.Migrations
                     { 410, "Ямбол", true, "Професионална Гимназия по Икономика \"Георги Стойков Раковски\"", "професионална гимназия по икономика \"георги стойков раковски\"" },
                     { 411, "Ямбол", true, "Професионална Гимназия по Строителство и Геодезия \"К. Фичето\"", "професионална гимназия по строителство и геодезия \"к. фичето\"" },
                     { 412, "Ямбол", true, "Професионална Гимназия по Подемна, Строителна и Транспортна Техника \"Н. Й. Вапцаров\"", "професионална гимназия по подемна, строителна и транспортна техника \"н. й. вапцаров\"" },
-                    { 413, "Ямбол", true, "Професионална Гимназия по Лека Промишленост, Екология и Химични Технологии", "професионална гимназия по лека промишленост, екология и химични технологии" }
-                });
-
-            migrationBuilder.InsertData(
-                table: "Schools",
-                columns: new[] { "Id", "City", "IsActive", "Name", "NormalizedName" },
-                values: new object[,]
-                {
+                    { 413, "Ямбол", true, "Професионална Гимназия по Лека Промишленост, Екология и Химични Технологии", "професионална гимназия по лека промишленост, екология и химични технологии" },
                     { 414, "Ямбол", true, "Професионална Гимназия по Земеделие \"Христо Ботев\"", "професионална гимназия по земеделие \"христо ботев\"" },
                     { 415, "Хасково", true, "Професионална Гимназия по Туризъм \"Александър Паскалев\"", "професионална гимназия по туризъм \"александър паскалев\"" },
                     { 416, "Хасково", true, "Гимназия с Преподаванена Чужди Езици \"Проф. Д-Р Асен Златаров\"", "гимназия с преподаванена чужди езици \"проф. д-р асен златаров\"" },
@@ -1222,7 +1346,14 @@ namespace PreparationForITExam.Infrastructure.Migrations
                     { 424, "Хасково", true, "Професионална Гимназия по Селско Стопанство", "професионална гимназия по селско стопанство" },
                     { 425, "Хасково", true, "Професионална Гимназия по Лека Промишленост", "професионална гимназия по лека промишленост" },
                     { 426, "Пазарджик", true, "Професионална Гимназия по Облекло", "професионална гимназия по облекло" },
-                    { 427, "Пазарджик", true, "Професионална Гимназия по Промишлени Технологии", "професионална гимназия по промишлени технологии" },
+                    { 427, "Пазарджик", true, "Професионална Гимназия по Промишлени Технологии", "професионална гимназия по промишлени технологии" }
+                });
+
+            migrationBuilder.InsertData(
+                table: "Schools",
+                columns: new[] { "Id", "City", "IsActive", "Name", "NormalizedName" },
+                values: new object[,]
+                {
                     { 428, "Пазарджик", true, "Средно Общообразователно Училище \"Георги Брегов\"", "средно общообразователно училище \"георги брегов\"" },
                     { 429, "Пазарджик", true, "Професионална Гимназия по Строителство и Архитектура", "професионална гимназия по строителство и архитектура" },
                     { 430, "Пазарджик", true, "Математическа Гимназия \"Константин Величков\"", "математическа гимназия \"константин величков\"" },
@@ -1250,14 +1381,7 @@ namespace PreparationForITExam.Infrastructure.Migrations
                     { 452, "Благоевград", true, "Средно Общообразователно Училище \"Иван Вазов\"", "средно общообразователно училище \"иван вазов\"" },
                     { 453, "Благоевград", true, "Пето Средно Общообразователно Училище \"Георги Измирлиев\"", "пето средно общообразователно училище \"георги измирлиев\"" },
                     { 454, "Благоевград", true, "Частна Вечерна Гимназия \"Димитър & Йоан\"", "частна вечерна гимназия \"димитър & йоан\"" },
-                    { 455, "Велико Търново", true, "Професионална Гимназия по Строителство, Архитектура и Геодезия \"Ангел Попов\"", "професионална гимназия по строителство, архитектура и геодезия \"ангел попов\"" }
-                });
-
-            migrationBuilder.InsertData(
-                table: "Schools",
-                columns: new[] { "Id", "City", "IsActive", "Name", "NormalizedName" },
-                values: new object[,]
-                {
+                    { 455, "Велико Търново", true, "Професионална Гимназия по Строителство, Архитектура и Геодезия \"Ангел Попов\"", "професионална гимназия по строителство, архитектура и геодезия \"ангел попов\"" },
                     { 456, "Велико Търново", true, "Хуманитарна Гимназия \"Св.Св. Кирил и Методий\"", "хуманитарна гимназия \"св.св. кирил и методий\"" },
                     { 457, "Велико Търново", true, "Частна Профилирана Гимназия \"Американски Колеж - Аркус\"", "частна профилирана гимназия \"американски колеж - аркус\"" },
                     { 458, "Велико Търново", true, "Природо-математическа Гимназия \"Васил Друмев\"", "природо-математическа гимназия \"васил друмев\"" },
@@ -1271,7 +1395,14 @@ namespace PreparationForITExam.Infrastructure.Migrations
                     { 466, "Велико Търново", true, "Средно Общообразователно Училище \"Емилиян Станев\"", "средно общообразователно училище \"емилиян станев\"" },
                     { 467, "Велико Търново", true, "Средно Общообразователно Училище \"Вела Благоева\"", "средно общообразователно училище \"вела благоева\"" },
                     { 468, "Велико Търново", true, "Средно Общообразователно Училище \"Георги Стойков Раковски\"", "средно общообразователно училище \"георги стойков раковски\"" },
-                    { 469, "Велико Търново", true, "Професионална Гимназия по Електроника \"Александър Степанович Попов\"", "професионална гимназия по електроника \"александър степанович попов\"" },
+                    { 469, "Велико Търново", true, "Професионална Гимназия по Електроника \"Александър Степанович Попов\"", "професионална гимназия по електроника \"александър степанович попов\"" }
+                });
+
+            migrationBuilder.InsertData(
+                table: "Schools",
+                columns: new[] { "Id", "City", "IsActive", "Name", "NormalizedName" },
+                values: new object[,]
+                {
                     { 470, "Враца", true, "Професионална Гимназия по Строителство и Архитектура", "професионална гимназия по строителство и архитектура" },
                     { 471, "Враца", true, "Професионална Гимназия по Търговия и Ресторантьорство", "професионална гимназия по търговия и ресторантьорство" },
                     { 472, "Враца", true, "Средно Общообразователно Училище \"Козма Тричков\"", "средно общообразователно училище \"козма тричков\"" },
@@ -1299,14 +1430,7 @@ namespace PreparationForITExam.Infrastructure.Migrations
                     { 494, "Видин", true, "Средно Общообразователно Училище \"Цар Симеон Велики\"", "средно общообразователно училище \"цар симеон велики\"" },
                     { 495, "Видин", true, "Природоматематическа Гимназия \"Екзарх Антим I\"", "природоматематическа гимназия \"екзарх антим i\"" },
                     { 496, "Видин", true, "Гимназия с Преподаване на Чужди Езици \"Йордан Радичков\"", "гимназия с преподаване на чужди езици \"йордан радичков\"" },
-                    { 497, "Видин", true, "Средно Общообразователно Училище \"Христо Ботев\"", "средно общообразователно училище \"христо ботев\"" }
-                });
-
-            migrationBuilder.InsertData(
-                table: "Schools",
-                columns: new[] { "Id", "City", "IsActive", "Name", "NormalizedName" },
-                values: new object[,]
-                {
+                    { 497, "Видин", true, "Средно Общообразователно Училище \"Христо Ботев\"", "средно общообразователно училище \"христо ботев\"" },
                     { 498, "Видин", true, "Средно Общообразователно Училище \"Св. Св. Кирил и Методий\"", "средно общообразователно училище \"св. св. кирил и методий\"" },
                     { 499, "Асеновград", true, "Средно Общообразователно Училище \"Свети Свети Кирил и Методий\"", "средно общообразователно училище \"свети свети кирил и методий\"" },
                     { 500, "Асеновград", true, "Професионална Гимназия по Хранително-Вкусови Технологии \"Св. Димитрий Солунски\"", "професионална гимназия по хранително-вкусови технологии \"св. димитрий солунски\"" },
@@ -1320,7 +1444,14 @@ namespace PreparationForITExam.Infrastructure.Migrations
                     { 508, "Казанлък", true, "Средно Общообразователно Училище \"Екзарх Антим I\"", "средно общообразователно училище \"екзарх антим i\"" },
                     { 509, "Казанлък", true, "Професионална Гимназия по Лека Промишленост и Туризъм", "професионална гимназия по лека промишленост и туризъм" },
                     { 510, "Казанлък", true, "Хуманитарна Гимназия \"Св.Св.Кирил и Методий\"", "хуманитарна гимназия \"св.св.кирил и методий\"" },
-                    { 511, "Казанлък", true, "Професионална Гимназия по Транспорт и Транспортен Мениджмънт", "професионална гимназия по транспорт и транспортен мениджмънт" },
+                    { 511, "Казанлък", true, "Професионална Гимназия по Транспорт и Транспортен Мениджмънт", "професионална гимназия по транспорт и транспортен мениджмънт" }
+                });
+
+            migrationBuilder.InsertData(
+                table: "Schools",
+                columns: new[] { "Id", "City", "IsActive", "Name", "NormalizedName" },
+                values: new object[,]
+                {
                     { 512, "Казанлък", true, "Професионална Гимназия по Строителство", "професионална гимназия по строителство" },
                     { 513, "Кюстендил", true, "Професионална Гимназия по Дървообработване и Горско Стопанство \"Г. С. Раковски\"", "професионална гимназия по дървообработване и горско стопанство \"г. с. раковски\"" },
                     { 514, "Кюстендил", true, "Природоматематическа Гимназия \"Проф. Емануил Иванов\"", "природоматематическа гимназия \"проф. емануил иванов\"" },
@@ -1348,14 +1479,7 @@ namespace PreparationForITExam.Infrastructure.Migrations
                     { 536, "Монтана", true, "Второ Средно Общообразователно Училище \"Никола Йонков Вапцаров\"", "второ средно общообразователно училище \"никола йонков вапцаров\"" },
                     { 537, "Монтана", true, "Професионална Техническа Гимназия \"Юрий Гагарин\"", "професионална техническа гимназия \"юрий гагарин\"" },
                     { 538, "Монтана", true, "Финансово-Стопанска Гимназия \"Васил Левски\"", "финансово-стопанска гимназия \"васил левски\"" },
-                    { 539, "Монтана", true, "Гимназия с Преподаване на Чужди Езици \"Петърбогдан\"", "гимназия с преподаване на чужди езици \"петърбогдан\"" }
-                });
-
-            migrationBuilder.InsertData(
-                table: "Schools",
-                columns: new[] { "Id", "City", "IsActive", "Name", "NormalizedName" },
-                values: new object[,]
-                {
+                    { 539, "Монтана", true, "Гимназия с Преподаване на Чужди Езици \"Петърбогдан\"", "гимназия с преподаване на чужди езици \"петърбогдан\"" },
                     { 540, "Монтана", true, "Пето Средно Общообразователно Училище \"Христо Ботев\"", "пето средно общообразователно училище \"христо ботев\"" },
                     { 541, "Монтана", true, "Осмо Средно Общообразователно Училище \"Отец Паисий\"", "осмо средно общообразователно училище \"отец паисий\"" },
                     { 542, "Монтана", true, "Девето Средно Общообразователно Училище \"Йордан Радичков\"", "девето средно общообразователно училище \"йордан радичков\"" },
@@ -1369,7 +1493,14 @@ namespace PreparationForITExam.Infrastructure.Migrations
                     { 550, "Димитровград", true, "Средно Общообразователно Училище \"Васил Левски\"", "средно общообразователно училище \"васил левски\"" },
                     { 551, "Търговище", true, "Второ Средно Общообразователно Училище \"Професор Никола Маринов\"", "второ средно общообразователно училище \"професор никола маринов\"" },
                     { 552, "Търговище", true, "Първо Средно Общообразователно Училище \"Свети Седмочисленици\"", "първо средно общообразователно училище \"свети седмочисленици\"" },
-                    { 553, "Търговище", true, "Профилирана Гимназия с Изучаване на Чужди Езици \"Митрополит Андрей\"", "профилирана гимназия с изучаване на чужди езици \"митрополит андрей\"" },
+                    { 553, "Търговище", true, "Профилирана Гимназия с Изучаване на Чужди Езици \"Митрополит Андрей\"", "профилирана гимназия с изучаване на чужди езици \"митрополит андрей\"" }
+                });
+
+            migrationBuilder.InsertData(
+                table: "Schools",
+                columns: new[] { "Id", "City", "IsActive", "Name", "NormalizedName" },
+                values: new object[,]
+                {
                     { 554, "Търговище", true, "Пг по Икономическа Информатика \"Джон Атанасов\"", "пг по икономическа информатика \"джон атанасов\"" },
                     { 555, "Търговище", true, "Професионална Техническа Гимназия \"Цар Симеон Велики\"", "професионална техническа гимназия \"цар симеон велики\"" },
                     { 556, "Търговище", true, "Професионална Гимназия по Туризъм и Хранително-Вкусови Технологии \"Алеко Константинов\"", "професионална гимназия по туризъм и хранително-вкусови технологии \"алеко константинов\"" },
@@ -1397,14 +1528,7 @@ namespace PreparationForITExam.Infrastructure.Migrations
                     { 578, "Ловеч", true, "Професионална Гимназия по Механоелектротехника", "професионална гимназия по механоелектротехника" },
                     { 579, "Дупница", true, "Средно Общообразователно Училище \"Св. Паисий Хилендарски\"", "средно общообразователно училище \"св. паисий хилендарски\"" },
                     { 580, "Дупница", true, "Гимназия \"Христо Ботев\"", "гимназия \"христо ботев\"" },
-                    { 581, "Дупница", true, "Вечерно Средно Общообразователно Училище \"Димчо Дебелянов\"", "вечерно средно общообразователно училище \"димчо дебелянов\"" }
-                });
-
-            migrationBuilder.InsertData(
-                table: "Schools",
-                columns: new[] { "Id", "City", "IsActive", "Name", "NormalizedName" },
-                values: new object[,]
-                {
+                    { 581, "Дупница", true, "Вечерно Средно Общообразователно Училище \"Димчо Дебелянов\"", "вечерно средно общообразователно училище \"димчо дебелянов\"" },
                     { 582, "Дупница", true, "Професионална Гимназия по Облекло и Стопанско Управление", "професионална гимназия по облекло и стопанско управление" },
                     { 583, "Дупница", true, "Професионална Гимназия по Транспорт", "професионална гимназия по транспорт" },
                     { 584, "Дупница", true, "Професионална Гимназия \"Акад. Сергей П. Корольов\"", "професионална гимназия \"акад. сергей п. корольов\"" },
@@ -1418,7 +1542,14 @@ namespace PreparationForITExam.Infrastructure.Migrations
                     { 592, "Разград", true, "Гимназия с Преподаване на Чужди Езици \"Екзарх Йосиф\"", "гимназия с преподаване на чужди езици \"екзарх йосиф\"" },
                     { 593, "Разград", true, "Средно Общообразователно Училище \"Христо Ботев\"", "средно общообразователно училище \"христо ботев\"" },
                     { 594, "Разград", true, "Професионална Гимназия по Облекло \"Станка Николица Спасо-Еленина\"", "професионална гимназия по облекло \"станка николица спасо-еленина\"" },
-                    { 595, "Разград", true, "Общежитие За Средношколци Гр. Разград", "общежитие за средношколци гр. разград" },
+                    { 595, "Разград", true, "Общежитие За Средношколци Гр. Разград", "общежитие за средношколци гр. разград" }
+                });
+
+            migrationBuilder.InsertData(
+                table: "Schools",
+                columns: new[] { "Id", "City", "IsActive", "Name", "NormalizedName" },
+                values: new object[,]
+                {
                     { 596, "Разград", true, "Средно Общообразователно Училище \"Цветан Радославов\"", "средно общообразователно училище \"цветан радославов\"" },
                     { 597, "Разград", true, "Средно Общообразователноучилище \"Николай Катранов\"", "средно общообразователноучилище \"николай катранов\"" },
                     { 598, "Разград", true, "Държавна Търговска Гимназия \"Димитър Хадживасилев\"", "държавна търговска гимназия \"димитър хадживасилев\"" },
@@ -1446,14 +1577,7 @@ namespace PreparationForITExam.Infrastructure.Migrations
                     { 621, "Петрич", true, "Средно Общообразователно Училище \"Никола Йонков Вапцаров\"", "средно общообразователно училище \"никола йонков вапцаров\"" },
                     { 622, "Петрич", true, "Гимназия \"Пейо К. Яворов\"", "гимназия \"пейо к. яворов\"" },
                     { 623, "Петрич", true, "Средно Общообразователно Училище \"Антон Попов\"", "средно общообразователно училище \"антон попов\"" },
-                    { 624, "Петрич", true, "Професионална Гимназия по Лека Промишленост \"А.А. - Малчика\"", "професионална гимназия по лека промишленост \"а.а. - малчика\"" }
-                });
-
-            migrationBuilder.InsertData(
-                table: "Schools",
-                columns: new[] { "Id", "City", "IsActive", "Name", "NormalizedName" },
-                values: new object[,]
-                {
+                    { 624, "Петрич", true, "Професионална Гимназия по Лека Промишленост \"А.А. - Малчика\"", "професионална гимназия по лека промишленост \"а.а. - малчика\"" },
                     { 625, "Самоков", true, "Професионална Гимназия по Туризъм", "професионална гимназия по туризъм" },
                     { 626, "Самоков", true, "Профилирана Гимназия \"Константин Фотинов\"", "профилирана гимназия \"константин фотинов\"" },
                     { 627, "Самоков", true, "Професионална Техническа Гимназия \"Никола Й. Вапцаров\"", "професионална техническа гимназия \"никола й. вапцаров\"" },
@@ -1467,7 +1591,14 @@ namespace PreparationForITExam.Infrastructure.Migrations
                     { 635, "Карлово", true, "Професионална Гимназия по Железопътен Транспорт \"Христо Смирненски\"", "професионална гимназия по железопътен транспорт \"христо смирненски\"" },
                     { 636, "Карлово", true, "Средно Общообразователно Училище \"Васил Левски\"", "средно общообразователно училище \"васил левски\"" },
                     { 637, "Карлово", true, "Средно Общообразователно Училище \"Христо Проданов\"", "средно общообразователно училище \"христо проданов\"" },
-                    { 638, "Нова Загора", true, "Средно Общообразователно Училище \"Христо Ботев\"", "средно общообразователно училище \"христо ботев\"" },
+                    { 638, "Нова Загора", true, "Средно Общообразователно Училище \"Христо Ботев\"", "средно общообразователно училище \"христо ботев\"" }
+                });
+
+            migrationBuilder.InsertData(
+                table: "Schools",
+                columns: new[] { "Id", "City", "IsActive", "Name", "NormalizedName" },
+                values: new object[,]
+                {
                     { 639, "Нова Загора", true, " Средно Общообразователно Училище \"Иван Вазов\"", " средно общообразователно училище \"иван вазов\"" },
                     { 640, "Нова Загора", true, "Професионална Гимназия по Селско Стопанство", "професионална гимназия по селско стопанство" },
                     { 641, "Нова Загора", true, "Професионална Гимназия по Техника и Технологии \"Атанас Димитров\"", "професионална гимназия по техника и технологии \"атанас димитров\"" },
@@ -1494,6 +1625,11 @@ namespace PreparationForITExam.Infrastructure.Migrations
                 });
 
             migrationBuilder.InsertData(
+                table: "MonUsers",
+                columns: new[] { "Id", "IsActive", "UserId" },
+                values: new object[] { 1, true, "789061a9-edaa-4a00-9e09-add6a20c8288" });
+
+            migrationBuilder.InsertData(
                 table: "SectionsOfCurricular",
                 columns: new[] { "Id", "IsActive", "ModuleOfCurricularId", "Title" },
                 values: new object[,]
@@ -1508,8 +1644,152 @@ namespace PreparationForITExam.Infrastructure.Migrations
                     { 8, true, 2, "Абстрактни типове" },
                     { 9, true, 2, "Комбинаторни структури" },
                     { 10, true, 2, "Нелинейни и други АТ" },
-                    { 11, true, 2, "Разработване на проект" }
+                    { 11, true, 2, "Разработване на проект" },
+                    { 12, true, 3, "Въведение" },
+                    { 13, true, 3, "Релационен модел на Бази от данни" },
+                    { 14, true, 3, "Система за управление на Бази от данни" },
+                    { 15, true, 3, "Интегриране на Бази от данни в интернет системи" },
+                    { 16, true, 4, "Сървър за база от данни" },
+                    { 17, true, 4, "Работа по проекти" },
+                    { 18, true, 4, "SQL SERVER със C#" }
                 });
+
+            migrationBuilder.InsertData(
+                table: "Lessons",
+                columns: new[] { "Id", "Content", "ExerciseId", "IsActive", "SectionOfCurricularId", "StudentId", "Title" },
+                values: new object[,]
+                {
+                    { 1, "", 1, true, 1, null, "Компютърът" },
+                    { 2, "", 2, true, 1, null, "Езици за програмиране" },
+                    { 3, "", 3, true, 1, null, "Инструменти и IDE" },
+                    { 4, "", 4, true, 1, null, "IDE Visual Studio" },
+                    { 5, "", 5, true, 2, null, "Елементи на програмата" },
+                    { 6, "", 6, true, 2, null, "Основни типове операции и оператори" },
+                    { 7, "", 7, true, 2, null, "Изчислителни процеси. Линейни процеси" },
+                    { 8, "", 8, true, 2, null, "Линейни изчислителни процеси. Упражнение" },
+                    { 9, "", 9, true, 2, null, "Сравнения и логически операции" },
+                    { 10, "", 10, true, 2, null, "Разклонени изчислителни процеси" },
+                    { 11, "", 11, true, 2, null, "Циклични изчислителни процеси" },
+                    { 12, "", 12, true, 2, null, "Оператори за цикъл с условие" },
+                    { 13, "", 13, true, 2, null, "Оператори за цикъл. Упражнение" },
+                    { 14, "", 14, true, 3, null, "Обекти и класове от обекти" },
+                    { 15, "", 15, true, 3, null, "Класове" },
+                    { 16, "", 16, true, 3, null, "Клас с контролирани атрибути" },
+                    { 17, "", 17, true, 3, null, "Функции и методи" },
+                    { 18, "", 18, true, 3, null, "Конструктори" },
+                    { 19, "", 19, true, 3, null, "Предаване на аргументи" },
+                    { 20, "", 20, true, 3, null, "Упражнение" },
+                    { 21, "", 21, true, 4, null, "Елементи на графичние интерфейс" },
+                    { 22, "", 22, true, 4, null, "Графични компоненти" },
+                    { 23, "", 23, true, 4, null, "Упражнение" },
+                    { 24, "", 24, true, 4, null, "Упражнение" },
+                    { 25, "", 25, true, 4, null, "Агрегатни типове" },
+                    { 26, "", 26, true, 4, null, "Файлове" },
+                    { 27, "", 27, true, 4, null, "Четене на обекти от файл" },
+                    { 28, "", 28, true, 5, null, "Документиране на клас. Сериализация" },
+                    { 29, "", 29, true, 5, null, "Капсулиране. Статични атрибути и методи" },
+                    { 30, "", 30, true, 5, null, "Йерархия от класове" },
+                    { 31, "", 31, true, 5, null, "Полиморфизъм" },
+                    { 32, "", 32, true, 5, null, "Абстракция класове. Интерфейси" },
+                    { 33, "", 33, true, 5, null, "Изключения" },
+                    { 34, "", 34, true, 12, null, "Информация и данни" },
+                    { 35, "", 35, true, 12, null, "Информационни системи и процеси" },
+                    { 36, "", 36, true, 12, null, "Файлов подход и подход с бази от данни" },
+                    { 37, "", 37, true, 12, null, "Упражнение" },
+                    { 38, "", 38, true, 13, null, "Множества и релации" },
+                    { 39, "", 39, true, 13, null, "Релационна база от данни" },
+                    { 40, "", 40, true, 13, null, "Операции с релации" },
+                    { 41, "", 41, true, 7, null, "Типове данни с релации" },
+                    { 42, "", 42, true, 13, null, "Типове данни. Ключове" }
+                });
+
+            migrationBuilder.InsertData(
+                table: "Lessons",
+                columns: new[] { "Id", "Content", "ExerciseId", "IsActive", "SectionOfCurricularId", "StudentId", "Title" },
+                values: new object[,]
+                {
+                    { 43, "", 43, true, 13, null, "Нормализация" },
+                    { 44, "", 44, true, 13, null, "Модел обект-взаимодействие" },
+                    { 45, "", 45, true, 13, null, "Нива на абстракция. Аномалии" },
+                    { 46, "", 46, true, 13, null, "Проектиране на БД. Упражнение" },
+                    { 47, "", 47, true, 14, null, "Програмата MS Access" },
+                    { 48, "", 48, true, 14, null, "Езикът SQL. Заявки" },
+                    { 49, "", 49, true, 14, null, "Заявка SELECT" },
+                    { 50, "", 50, true, 14, null, "Клаузите ORDER BY и GROUP BY" },
+                    { 51, "", 51, true, 14, null, "Екранни форми. Контрол на данните" },
+                    { 52, "", 52, true, 14, null, "Търсене на данни" },
+                    { 53, "", 53, true, 14, null, "Създаване и редактиране на таблици със SQL" },
+                    { 54, "", 54, true, 14, null, "Упражнение" },
+                    { 55, "", 55, true, 14, null, "Отчети" },
+                    { 56, "", 56, true, 14, null, "Връзки между таблиците. Съединиение" },
+                    { 57, "", 57, true, 14, null, "Влагане на заявки" },
+                    { 58, "", 58, true, 14, null, "Упражнение" },
+                    { 59, "", 59, true, 15, null, "Интегриране на БД в MS Access" },
+                    { 60, "", 60, true, 15, null, "Интегриране на БД със C#" },
+                    { 61, "", 61, true, 15, null, "Упражнение" },
+                    { 62, "", 62, true, 6, null, "Алгоритми" },
+                    { 63, "", 63, true, 6, null, "UML-диаграми упражнение" },
+                    { 64, "", 64, true, 6, null, "Сложност на алгоритми" },
+                    { 65, "", 65, true, 6, null, "Обектно-ориентирано програмиране - преговор" },
+                    { 66, "", 66, true, 6, null, "Реализация на алгоритми чрез методи" },
+                    { 67, "", 67, true, 6, null, "Рекурсия и интеграция" },
+                    { 68, "", 68, true, 6, null, "Сложност на програми" },
+                    { 69, "", 69, true, 7, null, "Едномерен масив - преговор" },
+                    { 70, "", 70, true, 7, null, "Сортиране на масив" },
+                    { 71, "", 71, true, 7, null, "Работа със сортирани масиви" },
+                    { 72, "", 72, true, 7, null, "Сортиране на масив" },
+                    { 73, "", 73, true, 7, null, "Работа със сортирани масиви" },
+                    { 74, "", 74, true, 7, null, "Низове" },
+                    { 75, "", 75, true, 7, null, "Масиви от знаци" },
+                    { 76, "", 76, true, 7, null, "Многомерни масиви" },
+                    { 77, "", 77, true, 8, null, "Основни понятия" },
+                    { 78, "", 78, true, 8, null, "Вградени АТ в C#" },
+                    { 79, "", 79, true, 8, null, "Списъци" },
+                    { 80, "", 80, true, 8, null, "Опашки" },
+                    { 81, "", 81, true, 8, null, "Стек" },
+                    { 82, "", 82, true, 8, null, "Упражнение" },
+                    { 83, "", 83, true, 9, null, "Графи" },
+                    { 84, "", 84, true, 9, null, "Дървета" }
+                });
+
+            migrationBuilder.InsertData(
+                table: "Lessons",
+                columns: new[] { "Id", "Content", "ExerciseId", "IsActive", "SectionOfCurricularId", "StudentId", "Title" },
+                values: new object[,]
+                {
+                    { 85, "", 85, true, 9, null, "Обхождане на графи" },
+                    { 86, "", 86, true, 9, null, "Най-къс път в граф" },
+                    { 87, "", 87, true, 9, null, "Хеш-таблица. Речник" },
+                    { 88, "", 88, true, 10, null, "Работа по проект" },
+                    { 89, "", 89, true, 10, null, "Примерни проекти" },
+                    { 90, "", 90, true, 16, null, "Информационни системи и бази от данни" },
+                    { 91, "", 91, true, 16, null, "Упражнение - преговор" },
+                    { 92, "", 92, true, 16, null, "Сървър база от данни" },
+                    { 93, "", 93, true, 16, null, "Таблици" },
+                    { 94, "", 94, true, 16, null, "Въвеждане на данни" },
+                    { 95, "", 95, true, 16, null, "Езикът SQL - преговор с допълнение" },
+                    { 96, "", 96, true, 16, null, "Създаване н=и изпълнение на заявки" },
+                    { 97, "", 97, true, 16, null, "Съхранени процедури" },
+                    { 98, "", 98, true, 16, null, "Още за съхранените процедури" },
+                    { 99, "", 99, true, 16, null, "Подържане на база от данни" },
+                    { 100, "", 100, true, 16, null, "Клиентът Azure Data Studio" },
+                    { 101, "", 101, true, 16, null, "Упражнение" },
+                    { 102, "", 102, true, 17, null, "Фази при разработване на проекти" },
+                    { 103, "", 103, true, 17, null, "Екип, документиране и защита на проекти" },
+                    { 104, "", 104, true, 18, null, "Езикът C# - преговор" },
+                    { 105, "", 105, true, 18, null, "Свързване с базата данни" },
+                    { 106, "", 106, true, 18, null, "Четене от база данни" },
+                    { 107, "", 107, true, 18, null, "Приложение с графичен интерфейс" },
+                    { 108, "", 108, true, 18, null, "Редактиране на данни" },
+                    { 109, "", 109, true, 18, null, "Упражнение" },
+                    { 110, "", 110, true, 18, null, "Интегриране с лента от менюта" },
+                    { 111, "", 111, true, 18, null, "Още функционалност в ИС УЧИСЕ" }
+                });
+
+            migrationBuilder.InsertData(
+                table: "LessonMonUser",
+                columns: new[] { "LessonId", "MonUserId" },
+                values: new object[] { 1, 1 });
 
             migrationBuilder.CreateIndex(
                 name: "IX_AspNetRoleClaims_RoleId",
@@ -1551,20 +1831,9 @@ namespace PreparationForITExam.Infrastructure.Migrations
                 filter: "[NormalizedUserName] IS NOT NULL");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Exercises_LessonId",
-                table: "Exercises",
-                column: "LessonId",
-                unique: true);
-
-            migrationBuilder.CreateIndex(
                 name: "IX_Exercises_TeacherId",
                 table: "Exercises",
                 column: "TeacherId");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_ExerciseStudent_StudentsId",
-                table: "ExerciseStudent",
-                column: "StudentsId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Images_NewsId",
@@ -1577,9 +1846,9 @@ namespace PreparationForITExam.Infrastructure.Migrations
                 column: "PostId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_LessonMonUser_MonsId",
+                name: "IX_LessonMonUser_MonUserId",
                 table: "LessonMonUser",
-                column: "MonsId");
+                column: "MonUserId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Lessons_ExerciseId",
@@ -1590,6 +1859,11 @@ namespace PreparationForITExam.Infrastructure.Migrations
                 name: "IX_Lessons_SectionOfCurricularId",
                 table: "Lessons",
                 column: "SectionOfCurricularId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Lessons_StudentId",
+                table: "Lessons",
+                column: "StudentId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_LessonTeacher_TeachersId",
@@ -1682,6 +1956,11 @@ namespace PreparationForITExam.Infrastructure.Migrations
                 column: "ModuleOfCurricularId");
 
             migrationBuilder.CreateIndex(
+                name: "IX_Students_ExerciseId",
+                table: "Students",
+                column: "ExerciseId");
+
+            migrationBuilder.CreateIndex(
                 name: "IX_Students_SchoolId",
                 table: "Students",
                 column: "SchoolId");
@@ -1710,26 +1989,10 @@ namespace PreparationForITExam.Infrastructure.Migrations
                 name: "IX_Tests_UserId",
                 table: "Tests",
                 column: "UserId");
-
-            migrationBuilder.AddForeignKey(
-                name: "FK_Exercises_Lessons_LessonId",
-                table: "Exercises",
-                column: "LessonId",
-                principalTable: "Lessons",
-                principalColumn: "Id",
-                onDelete: ReferentialAction.Restrict);
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
         {
-            migrationBuilder.DropForeignKey(
-                name: "FK_Teachers_AspNetUsers_UserId",
-                table: "Teachers");
-
-            migrationBuilder.DropForeignKey(
-                name: "FK_Exercises_Lessons_LessonId",
-                table: "Exercises");
-
             migrationBuilder.DropTable(
                 name: "AspNetRoleClaims");
 
@@ -1744,9 +2007,6 @@ namespace PreparationForITExam.Infrastructure.Migrations
 
             migrationBuilder.DropTable(
                 name: "AspNetUserTokens");
-
-            migrationBuilder.DropTable(
-                name: "ExerciseStudent");
 
             migrationBuilder.DropTable(
                 name: "Images");
@@ -1773,9 +2033,6 @@ namespace PreparationForITExam.Infrastructure.Migrations
                 name: "AspNetRoles");
 
             migrationBuilder.DropTable(
-                name: "Students");
-
-            migrationBuilder.DropTable(
                 name: "News");
 
             migrationBuilder.DropTable(
@@ -1794,22 +2051,25 @@ namespace PreparationForITExam.Infrastructure.Migrations
                 name: "MonUsers");
 
             migrationBuilder.DropTable(
-                name: "AspNetUsers");
-
-            migrationBuilder.DropTable(
                 name: "Lessons");
-
-            migrationBuilder.DropTable(
-                name: "Exercises");
 
             migrationBuilder.DropTable(
                 name: "SectionsOfCurricular");
 
             migrationBuilder.DropTable(
-                name: "Teachers");
+                name: "Students");
 
             migrationBuilder.DropTable(
                 name: "ModuleOfCurricular");
+
+            migrationBuilder.DropTable(
+                name: "Exercises");
+
+            migrationBuilder.DropTable(
+                name: "Teachers");
+
+            migrationBuilder.DropTable(
+                name: "AspNetUsers");
 
             migrationBuilder.DropTable(
                 name: "Schools");

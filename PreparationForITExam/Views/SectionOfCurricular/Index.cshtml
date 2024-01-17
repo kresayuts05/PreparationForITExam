@@ -1,0 +1,17 @@
+﻿@model SectionLessonViewModel
+
+<link rel="stylesheet" href="~/css/lessonsStyle.css" asp-append-version="true" />
+
+<section id="lessons">
+    <div class="curricular-head">
+        <h3>@Model.Module</h3>
+        <p> @Model.Title</p>
+    </div>
+
+    <ol class="gradient-list">
+        @foreach (var lesson in Model.Lessons)
+        {
+            <li>@lesson.Title</li>
+        }
+    </ol>
+</section>

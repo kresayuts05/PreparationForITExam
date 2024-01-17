@@ -52,10 +52,10 @@ namespace PreparationForITExam.Infrastructure.Data
                 .HasMaxLength(EmailMaxLength)
                 .IsRequired();
 
-            builder.Entity<Exercise>()
-                .HasOne(e => e.Lesson)
-                .WithOne()
-                .OnDelete(DeleteBehavior.Restrict);
+            //builder.Entity<Lesson>()
+            // .HasOne(e => e.Exercise)
+            // .WithOne()
+            // .OnDelete(DeleteBehavior.Restrict);
 
             builder.Entity<LessonMonUser>()
                .HasKey(pk => new { pk.LessonId, pk.MonUserId });
@@ -67,6 +67,7 @@ namespace PreparationForITExam.Infrastructure.Data
             builder.ApplyConfiguration(new ModuleOfCurricularConfiguration());
             builder.ApplyConfiguration(new SectionOfCurricularConfiguration());
             builder.ApplyConfiguration(new SchoolConfiguration());
+            builder.ApplyConfiguration(new ExcersiseConfiguration());
             builder.ApplyConfiguration(new LessonConfiguration());
             builder.ApplyConfiguration(new LessonMonUserConfiguration());
 

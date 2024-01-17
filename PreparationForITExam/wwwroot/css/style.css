@@ -52,10 +52,10 @@ body {
 }
 
 a,
-a:hover,
 a:active,
+a:hover,
 a:focus {
-    display: inline-flex;
+    display: block;
     text-decoration: none;
     color: #343a3f;
     font-size: 16px;
@@ -468,6 +468,26 @@ nav.navbar.bootsnav .navbar-toggle {
 /*-------------------------------------
         4.1. Curricular
 --------------------------------------*/
+.curricular-element {
+    display: block;
+    text-decoration: none;
+    color: #343a3f;
+    font-size: 16px;
+    padding: 0;
+    font-weight: 500;
+    text-transform: capitalize;
+    text-align: center;
+}
+.curricular-title {
+    display: inline-flex;
+    text-decoration: none;
+    color: #343a3f;
+    font-size: 16px;
+    padding: 0;
+    font-weight: 500;
+    text-transform: none;
+    text-align: center;
+}
 
 .curricular-head {
     max-height: 225px;
@@ -505,19 +525,23 @@ nav.navbar.bootsnav .navbar-toggle {
     top: -96px;
     display: flex;
     justify-content: center;
+    margin: 0 2.4em;
 }
 
-
+/*.curricular-modules li .section-of-curricular:nth-child(1){
+    width: 265px;
+}*/
 .section-of-curricular {
-    display:list-item;
+    display: list-item;
     box-shadow: 0 2px 2px 0 rgba(0,0,0,.14), 0 3px 1px -2px rgba(0,0,0,.12), 0 1px 5px 0 rgba(0,0,0,.2);
     position: relative;
     border-radius: 6px;
     color: #919191;
-    margin: 16px 18px 0 0 ;
+    margin: 16px 18px 0 0;
     z-index: 1;
-    text-align:center;
-    background-color:#fff;
+    text-align: center;
+    background-color: #fff;
+    height: 7.5em;
 }
 
 .section-header {
@@ -560,7 +584,7 @@ nav.navbar.bootsnav .navbar-toggle {
     justify-content: center;
     width: 245px;
     height: 170px;
-    background: #fff;
+    background: #e0e7fc;
     border-radius: 3px;
     margin-right: 20px;
     margin-bottom: 20px;
@@ -577,7 +601,7 @@ nav.navbar.bootsnav .navbar-toggle {
     }
 
 /*.single-list-topics-content:last-child{margin-right: 0;}*/
-
+/*
 .single-list-topics-icon [class^="flaticon-"]:before,
 .single-list-topics-icon [class*=" flaticon-"]:before,
 .single-list-topics-icon [class^="flaticon-"]:after,
@@ -591,9 +615,9 @@ nav.navbar.bootsnav .navbar-toggle {
 .single-list-topics-content:hover .single-list-topics-icon [class^="flaticon-"]:after,
 .single-list-topics-content:hover .single-list-topics-icon [class*=" flaticon-"]:after {
     color: #fff;
-}
+}*/
 
-.single-list-topics-content:hover h2 > a,
+/*.single-list-topics-content:hover h2 > a,
 .single-list-topics-content:hover p {
     color: #fff !important;
 }
@@ -602,7 +626,18 @@ nav.navbar.bootsnav .navbar-toggle {
     color: #fff;
     background: #FD7378;
     box-shadow: 0 5px 10px rgba(71, 71, 71, .4);
+}*/
+
+.section-of-curricular:hover {
+    color: #fff !important;
+    background: #FD7378;
+    box-shadow: 0 5px 10px rgba(71, 71, 71, .4);
 }
+    .section-of-curricular:hover p,
+    .section-of-curricular:hover a{
+        color: #fff;
+        text-decoration: none;
+    }
 
 /*-------------------------------------
         6. Works 

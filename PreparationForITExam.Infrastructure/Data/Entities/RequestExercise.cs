@@ -29,7 +29,7 @@ namespace PreparationForITExam.Infrastructure.Data.Entities
         [Required]
         [ForeignKey(nameof(Exercise))]
         public int ExerciseId { get; set; }
-        public Exercise Exercise { get; set; }
+        public Lesson Exercise { get; set; }
 
         [Required]
         [MaxLength(ChangedContentMaxLength)]
