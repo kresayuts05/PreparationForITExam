@@ -20,11 +20,18 @@
     </PackageReference>
     <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="6.0.11" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="6.0.11" />
+    <PackageReference Include="Microsoft.SharePoint.Client" Version="14.0.4762.1000" />
+    <PackageReference Include="Microsoft.SharePoint.Client.Online.CSOM" Version="15.0.4919.1000" />
+    <PackageReference Include="SharePoint.Client.Office.Tools" Version="15.0.4907.1002" />
     <PackageReference Include="Syncfusion.PresentationRenderer.Net.Core" Version="24.1.45" />
   </ItemGroup>
 
   <ItemGroup>
     <ProjectReference Include="..\PreparationForITExam.Core\PreparationForITExam.Core.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="wwwroot\presentation\" />
   </ItemGroup>
 
 </Project>

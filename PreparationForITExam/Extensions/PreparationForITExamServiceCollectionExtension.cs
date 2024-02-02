@@ -17,6 +17,7 @@ namespace Microsoft.Extensions.DependencyInjection
             services.AddScoped<ISectionOfCurricularService, SectionOfCurricularService>();
             services.AddScoped<ILessonService, LessonService>();
             services.AddScoped<IModuleOfCurricularService, ModuleOfCurricularService>();
+            services.AddScoped<IMaterialService, MaterialService>();
 
             return services;
         }

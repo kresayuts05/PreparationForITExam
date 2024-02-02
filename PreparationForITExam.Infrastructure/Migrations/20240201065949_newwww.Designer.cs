@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using PreparationForITExam.Infrastructure.Data;
 
@@ -11,9 +12,10 @@ using PreparationForITExam.Infrastructure.Data;
 namespace PreparationForITExam.Infrastructure.Migrations
 {
     [DbContext(typeof(PreparationForITExamDbContext))]
-    partial class PreparationForITExamDbContextModelSnapshot : ModelSnapshot
+    [Migration("20240201065949_newwww")]
+    partial class newwww
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -67,28 +69,28 @@ namespace PreparationForITExam.Infrastructure.Migrations
                         new
                         {
                             Id = "0f761db2-ab55-416c-83b9-70abded3d908",
-                            ConcurrencyStamp = "e12163cf-cf23-4556-aed1-37198d80381c",
+                            ConcurrencyStamp = "5f6729ca-5c3f-4f2e-bcf8-d4b4345811a3",
                             Name = "Administrator",
                             NormalizedName = "ADMINISTRATOR"
                         },
                         new
                         {
                             Id = "e66d730b-bcf1-41b5-b7e0-3e66056e61d9",
-                            ConcurrencyStamp = "8ecab0f1-c281-4e48-9c80-1b8f3eddf3c9",
+                            ConcurrencyStamp = "e095b7c5-a908-4e64-b436-58101eb357a6",
                             Name = "Student",
                             NormalizedName = "STUDENT"
                         },
                         new
                         {
                             Id = "71281cf3-9730-4d7e-acbb-213edee8291c",
-                            ConcurrencyStamp = "012639a6-2884-4230-bdae-2bd083ad657f",
+                            ConcurrencyStamp = "20e4c8d1-17b0-4c3f-8d49-cdb45308a644",
                             Name = "Teacher",
                             NormalizedName = "TEACHER"
                         },
                         new
                         {
                             Id = "fe750b82-6fe9-472c-bdc5-61f5433d429e",
-                            ConcurrencyStamp = "bfae65ac-022e-4644-805c-52cbfc6a08d1",
+                            ConcurrencyStamp = "d6885b21-b26d-4489-bdf4-336a0351695d",
                             Name = "MonUser",
                             NormalizedName = "MONUSER"
                         });
@@ -2126,6 +2128,7 @@ namespace PreparationForITExam.Infrastructure.Migrations
                         .HasColumnType("int");
 
                     b.Property<string>("Name")
+                        .IsRequired()
                         .HasMaxLength(50)
                         .HasColumnType("nvarchar(50)");
 
@@ -8173,7 +8176,7 @@ namespace PreparationForITExam.Infrastructure.Migrations
                             Id = "789061a9-edaa-4a00-9e09-add6a20c8288",
                             AccessFailedCount = 0,
                             City = "Казанлък",
-                            ConcurrencyStamp = "f38565f7-812e-40f5-b3ac-1fe71665fec2",
+                            ConcurrencyStamp = "37d9a6d8-2b64-46ce-a152-682078822199",
                             Email = "kresa@gmail.com",
                             EmailConfirmed = false,
                             FirstName = "Креса",
@@ -8184,7 +8187,7 @@ namespace PreparationForITExam.Infrastructure.Migrations
                             NormalizedUserName = "KRESA@GMAIL.COM",
                             PhoneNumber = "0886121260",
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "ab124ee8-bf21-4d36-9a74-1a3299899fa9",
+                            SecurityStamp = "5c40d918-3cfd-4afc-abb8-bf9d9a4fff44",
                             TwoFactorEnabled = false,
                             UserName = "kresa@gmail.com"
                         });

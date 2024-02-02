@@ -21,7 +21,7 @@ namespace PreparationForITExam.Infrastructure.Data.Entities
         public int Id { get; set; }
 
         [MaxLength(NameMaxLength)]
-        public string Name { get; set; }
+        public string? Name { get; set; }
 
         [Required]
         public string UrlPath { get; set; } = null!;
@@ -32,6 +32,11 @@ namespace PreparationForITExam.Infrastructure.Data.Entities
         [ForeignKey(nameof(User))]
         public string UserId { get; set; }
         public User User { get; set; }
+
+        [ForeignKey(nameof(Lesson))]
+        public int LessonId { get; set; }
+
+        public Lesson Lesson { get; set; }
 
     }
 }
