@@ -13,6 +13,9 @@ using PreparationForITExam.Infrastructure.Data.Common;
 using Microsoft.AspNetCore.Http;
 using System.IO;
 using Microsoft.Office.Server.Search.Query;
+using Syncfusion.Pdf;
+using SkiaSharp;
+using static Microsoft.Office.Server.Search.Internal.UI.CrawlLogPageBase;
 
 namespace PreparationForITExam.Core.Services
 {
@@ -29,6 +32,43 @@ namespace PreparationForITExam.Core.Services
             repo = _repo;
         }
 
+        public async Task ConvertPresentationToPdf(IFormFile file, string userId, int lessonId)
+        {
+            Material material = new Material();
+
+            using (var input = file.OpenReadStream())
+            {
+                using(IPresentation pptxDoc = Presentation.Open(input))
+                {
+                    PdfDocument pdfDcument = PresentationToPdfConverter.Convert(pptxDoc);
+                    MemoryStream ms = new MemoryStream();
+                    pdfDcument.Save(ms);
+                    ms.Position = 0;
+
+                    var uploadParams = new ImageUploadParams()
+                    {
+                        File = new FileDescription("lesson.pdf", ms)
+                    };
+
+                    var result = await this.cloudinary.UploadAsync(uploadParams);
+
+                    if (result.Error != null)
+                    {
+                        throw new InvalidOperationException(result.Error.Message);
+                    }
+
+                    material = new Material
+                    {
+                        UrlPath = result.Url.ToString(),
+                        LessonId = lessonId,
+                        UserId = userId
+                    };
+
+                }
+            }
+                    await repo.AddAsync<Material>(material);
+                    await repo.SaveChangesAsync();
+        }
         public async Task ConvertPresentationToJpeg(IFormFile file, string userId, int lessonId)
         {
             List<Material> urls = new List<Material>();
@@ -82,35 +122,6 @@ namespace PreparationForITExam.Core.Services
             await repo.SaveChangesAsync();
         }
 
-        public async Task ZipUpload(IFormFile file, string userId, int lessonId)
-        {
-            using (var input = file.OpenReadStream())
-            {
-                var uploadParams = new ImageUploadParams()
-                {
-                    File = new FileDescription(userId, input),
-                    Folder = "zips"
-                };
-
-                var result = await this.cloudinary.UploadAsync(uploadParams);
-
-                if (result.Error != null)
-                {
-                    throw new InvalidOperationException(result.Error.Message);
-                }
-
-                var material = new Material
-                {
-                    UrlPath = result.Url.ToString(),
-                    LessonId = lessonId,
-                    UserId = userId
-                };
-
-
-                await repo.AddAsync<Material>(material);
-                await repo.SaveChangesAsync();
-            }
-        }
 
         public async Task ZipUpload(byte[] file, string userId, int lessonId)
         {
@@ -146,3 +157,32 @@ namespace PreparationForITExam.Core.Services
     }
     
 }
+        //public async Task ZipUpload(IFormFile file, string userId, int lessonId)
+        //{
+        //    using (var input = file.OpenReadStream())
+        //    {
+        //        var uploadParams = new ImageUploadParams()
+        //        {
+        //            File = new FileDescription(userId, input),
+        //            Folder = "zips"
+        //        };
+
+        //        var result = await this.cloudinary.UploadAsync(uploadParams);
+
+        //        if (result.Error != null)
+        //        {
+        //            throw new InvalidOperationException(result.Error.Message);
+        //        }
+
+        //        var material = new Material
+        //        {
+        //            UrlPath = result.Url.ToString(),
+        //            LessonId = lessonId,
+        //            UserId = userId
+        //        };
+
+
+        //        await repo.AddAsync<Material>(material);
+        //        await repo.SaveChangesAsync();
+        //    }
+        //}

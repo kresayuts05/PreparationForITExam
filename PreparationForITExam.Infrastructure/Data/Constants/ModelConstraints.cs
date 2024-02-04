@@ -135,8 +135,11 @@ namespace PreparationForITExam.Infrastructure.Data.Constants
 
         public static class QuestionConstraints
         {
-            public const int QuestionMaxLength = 250;
-            public const int QuestionMinLength = 3;
+            public const int QuestionMaxLength = 1000;
+            public const int QuestionMinLength = 3;      
+            
+            public const int TitleMaxLength = 1000;
+            public const int TitleMinLength = 3;
 
             public const int CorrectAnswerMaxLength = 150;
             public const int CorrectAnswerMinLength = 2;

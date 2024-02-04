@@ -31,7 +31,10 @@ namespace PreparationForITExam.Infrastructure.Data.Entities
 
         public bool IsActive { get; set; }
 
+        public ICollection<LessonQuestion> Questions { get; set; } = new HashSet<LessonQuestion>();
+
         public ICollection<Material> Materials { get; set; } = new HashSet<Material>();
+
         public ICollection<Student> Students { get; set; } = new HashSet<Student>();
     }
 }

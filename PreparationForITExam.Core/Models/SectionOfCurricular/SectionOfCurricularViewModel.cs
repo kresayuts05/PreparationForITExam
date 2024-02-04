@@ -16,7 +16,7 @@ namespace PreparationForITExam.Core.Models.SectionOfCurricular
 
         public int Lessons { get; set; }
 
-        public int Tests { get; set; }
+        public int Exercises { get; set; }
 
         public bool IsActive { get; set; }
 

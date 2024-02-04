@@ -11,5 +11,7 @@ namespace PreparationForITExam.Core.Contracts
     public interface ILessonService
     {
         Task<List<LessonModel>> AllLessonsBySectionOfCurricularId(int sectionId);
+        Task<string> GetLessonNameById(int id);
+        Task<LessonViewModel> GetLessonById(int id);
     }
 }

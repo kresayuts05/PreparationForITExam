@@ -13,7 +13,11 @@ namespace PreparationForITExam.Core.Models.Lesson
 
         public string Title { get; set; }
 
-        public List<MaterialViewModel> Presentation { get; set; }
+        public string Module { get; set; }
+
+        public string SectionOfCurricular { get; set; }
+
+        public string PresentationUrl { get; set; }
 
         public List<MaterialViewModel> Materials { get; set; }
     }

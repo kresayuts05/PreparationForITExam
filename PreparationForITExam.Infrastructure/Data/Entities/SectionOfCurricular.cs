@@ -33,6 +33,8 @@ namespace PreparationForITExam.Infrastructure.Data.Entities
         public ModuleOfCurricular ModuleOfCurricular { get; set; }
 
         public ICollection<Lesson> Lessons { get; set; } = new HashSet<Lesson>();
-        public ICollection<Test> Tests { get; set; } = new HashSet<Test>();
+        public ICollection<Exercise> Exercises { get; set; } = new HashSet<Exercise>();
+
+        //public ICollection<Test> Tests { get; set; } = new HashSet<Test>();
     }
 }

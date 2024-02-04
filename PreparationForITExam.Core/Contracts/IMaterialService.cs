@@ -11,7 +11,9 @@ namespace PreparationForITExam.Core.Contracts
     public interface IMaterialService
     {
         Task ConvertPresentationToJpeg(IFormFile file, string userId, int lessonId);
-        Task ZipUpload(IFormFile file, string userId, int lessonId);
+        Task ConvertPresentationToPdf(IFormFile file, string userId, int lessonId);
         Task ZipUpload(byte[] file, string userId, int lessonId);
+
+        //Task ZipUpload(IFormFile file, string userId, int lessonId);
     }
 }

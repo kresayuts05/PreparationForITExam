@@ -39,7 +39,7 @@ namespace PreparationForITExam.Core.Services
                         Id = s.Id,
                         Title = s.Title,
                         Lessons = s.Lessons.Count,
-                        Tests = s.Tests.Count,
+                        Exercises = s.Exercises.Count,
                         ModuleOfCurricularId = s.ModuleOfCurricularId
                     })
                     .ToListAsync();

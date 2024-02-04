@@ -35,10 +35,11 @@ namespace PreparationForITExam.Infrastructure.Data
         public DbSet<RequestExercise> RequestsExercises { get; set; }
         public DbSet<Material> Materials { get; set; }
         public DbSet<SectionOfCurricular> SectionsOfCurricular { get; set; }
-        public DbSet<Test> Tests { get; set; }
-        public DbSet<Question> Questions { get; set; }
+        public DbSet<LessonQuestion> LessonQuestions { get; set; }
+        public DbSet<LessonQuestion> ExerciseQuestions { get; set; }
         public DbSet<LessonMonUser> LessonMonUser { get; set; }
 
+        //public DbSet<Test> Tests { get; set; }
 
         protected override void OnModelCreating(ModelBuilder builder)
         {
@@ -52,10 +53,10 @@ namespace PreparationForITExam.Infrastructure.Data
                 .HasMaxLength(EmailMaxLength)
                 .IsRequired();
 
-            //builder.Entity<Lesson>()
-            // .HasOne(e => e.Exercise)
-            // .WithOne()
-            // .OnDelete(DeleteBehavior.Restrict);
+            builder.Entity<Lesson>()
+             .HasOne(e => e.Exercise)
+             .WithOne()
+             .OnDelete(DeleteBehavior.Restrict);
 
             builder.Entity<LessonMonUser>()
                .HasKey(pk => new { pk.LessonId, pk.MonUserId });
