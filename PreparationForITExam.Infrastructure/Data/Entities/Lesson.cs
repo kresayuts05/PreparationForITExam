@@ -38,6 +38,8 @@ namespace PreparationForITExam.Infrastructure.Data.Entities
         public int ExerciseId { get; set; }
         public Exercise Exercise { get; set; }
 
+        //public string Presentation { get; set; }
+
         [Required]
         public ICollection<LessonMonUser> LessonMonUser { get; set; } = new HashSet<LessonMonUser>();
         public ICollection<Teacher> Teachers { get; set; } = new HashSet<Teacher>();

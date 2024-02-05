@@ -1,4 +1,5 @@
 ﻿using PreparationForITExam.Core.Models.Material;
+using PreparationForITExam.Core.Models.Question;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -19,6 +20,8 @@ namespace PreparationForITExam.Core.Models.Lesson
 
         public string PresentationUrl { get; set; }
 
-        public List<MaterialViewModel> Materials { get; set; }
+        public List<MaterialModel> Materials { get; set; }
+
+        public List<QuestionViewModel> Questions { get; set; }
     }
 }

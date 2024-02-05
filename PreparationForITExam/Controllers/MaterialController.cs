@@ -21,12 +21,7 @@ namespace PreparationForITExam.Controllers
         {
             var userId = this.User.Id();
 
-            //await using var memoryStream = new MemoryStream();
-            //await model.FileInfo.CopyToAsync(memoryStream);
-            //var r = memoryStream.ToArray();
-
-            //await materialService.ZipUpload(r, userId, model.LessonId);
-            await materialService.ConvertPresentationToPdf(model.FileInfo, userId,1);
+            await materialService.ConvertPresentationToPdf(model.FileInfo, userId, 1);
 
             return View();
         }

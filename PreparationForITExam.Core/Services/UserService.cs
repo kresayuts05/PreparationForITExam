@@ -1,4 +1,6 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.AspNetCore.Authorization.Infrastructure;
+using Microsoft.AspNetCore.Identity;
+using Microsoft.EntityFrameworkCore;
 using PreparationForITExam.Core.Contracts;
 using PreparationForITExam.Infrastructure.Data.Common;
 using PreparationForITExam.Infrastructure.Data.Entities;
@@ -13,10 +15,13 @@ namespace PreparationForITExam.Core.Services
     public class UserService:IUserService
     {
         private readonly IRepository repo;
+        private readonly UserManager<User> userManager;
 
-        public UserService(IRepository _repo)
+        public UserService(IRepository _repo,
+            UserManager<User> _userManager)
         {
             repo = _repo;
+            userManager = _userManager;
         }
         
         public async Task<bool> UserByEmailExists(string email)

@@ -11,7 +11,7 @@
     <ol class="gradient-list">
         @foreach (var lesson in Model.Lessons)
         {
-            <li>@lesson.Title</li>
+            <li><a class="curricular-element" asp-controller="Lesson" asp-area="" asp-action="Index" asp-route-id="@lesson.Id">@lesson.Title</a></li>
         }
     </ol>
 </section>

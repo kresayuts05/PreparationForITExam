@@ -24,7 +24,8 @@ namespace PreparationForITExam.Infrastructure.Data.Configurations
                     FirstName= "Креса",
                     LastName = "Цветкова",
                     City = "Казанлък",
-                    PhoneNumber = "0886121260"
+                    PhoneNumber = "0886121260",
+                    RoleName = "administrator"
                 }
 
             });

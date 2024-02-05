@@ -87,12 +87,81 @@ namespace PreparationForITExam.Controllers
                 UserName = model.Email,
                 PhoneNumber = model.PhoneNumber,
                 City = model.City,
+                RoleName = "Student"
             };
 
             var result = await userManager.CreateAsync(user, model.Password);
 
             await userManager.AddToRoleAsync(user, "Student");
             await studentService.Create(user.Id, schoolId);
+
+            if (model.ProfilePicture != null)
+            {
+                user.ProfilePictureUrl = await this.imageService.UploadImage(model.ProfilePicture, "images", user);
+                await userManager.UpdateAsync(user);
+            }
+
+            if (result.Succeeded)
+            {
+                await signInManager.SignInAsync(user, isPersistent: false);
+
+                return RedirectToAction("Index", "Home");
+            }
+
+            foreach (var item in result.Errors)
+            {
+                ModelState.AddModelError("", item.Description);
+            }
+
+            return View("Register", model);
+        }
+
+        [HttpPost]
+        [AllowAnonymous]
+        public async Task<IActionResult> RegisterAsTeacher(RegisterViewModel model)
+        {
+            int schoolId = 0;
+
+            if (await userService.UserByEmailExists(model.Email))
+            {
+                ModelState.AddModelError(nameof(model.Email), "Вече съществува регистрация с този имейл!");
+            }
+
+            if (model.SchoolName != null)
+            {
+                if (model.City == null)
+                {
+                    ModelState.AddModelError(nameof(model.City), "Моля въведете града, в който е съответното учиище!");
+                }
+
+                schoolId = await schoolService.GetSchoolByNameAndCity(model.SchoolName, model.City);
+
+                if (schoolId == 0)
+                {
+                    ModelState.AddModelError(nameof(model.City), "Училището не е намерено! Моля опитайте отново!");
+                }
+            }
+
+            if (!ModelState.IsValid)
+            {
+                return View("Register", model);
+            }
+
+            var user = new User()
+            {
+                Email = model.Email,
+                FirstName = model.FirstName,
+                LastName = model.LastName,
+                UserName = model.Email,
+                PhoneNumber = model.PhoneNumber,
+                City = model.City,
+                RoleName = "Teacher"
+            };
+
+            var result = await userManager.CreateAsync(user, model.Password);
+
+            await userManager.AddToRoleAsync(user, "Teacher");
+            await teacherService.Create(user.Id, model, schoolId);
 
             if (model.ProfilePicture != null)
             {

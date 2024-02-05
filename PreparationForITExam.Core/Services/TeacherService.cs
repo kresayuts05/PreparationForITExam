@@ -19,7 +19,7 @@ namespace PreparationForITExam.Core.Services
             repo = _repo;
         }
 
-        public async Task Create(string userId, RegisterViewModel model)
+        public async Task Create(string userId, RegisterViewModel model, int schoolId)
         {
             var teacher = new Teacher()
             {
@@ -27,6 +27,7 @@ namespace PreparationForITExam.Core.Services
                 Experience = model.Experience,
                 Subject = model.Subject,
                 AboutMe= model.AboutMe,
+                SchoolId = schoolId
             };
 
             await repo.AddAsync(teacher);

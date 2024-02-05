@@ -40,6 +40,6 @@ namespace PreparationForITExam.Infrastructure.Data.Entities
         public int SchoolId { get; set; }
         public School School { get; set; }
 
-        public ICollection<Lesson> FinishedExercises { get; set; } = new HashSet<Lesson>();
+        public ICollection<Exercise> FinishedExercises { get; set; } = new HashSet<Exercise>();
     }
 }

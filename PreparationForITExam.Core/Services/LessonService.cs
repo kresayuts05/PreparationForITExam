@@ -1,6 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using PreparationForITExam.Core.Contracts;
 using PreparationForITExam.Core.Models.Lesson;
+using PreparationForITExam.Core.Models.User;
 using PreparationForITExam.Infrastructure.Data.Common;
 using PreparationForITExam.Infrastructure.Data.Entities;
 using System;
@@ -14,10 +15,16 @@ namespace PreparationForITExam.Core.Services
     public class LessonService : ILessonService
     {
         private readonly IRepository repo;
+        private readonly IQuestionService questionService;
+        private readonly IMaterialService materialService;
 
-        public LessonService(IRepository _repo)
+        public LessonService(IRepository _repo,
+           IQuestionService _questionService,
+           IMaterialService _materialService)
         {
             repo = _repo;
+            questionService = _questionService;
+            materialService = _materialService;
         }
 
         public async Task<List<LessonModel>> AllLessonsBySectionOfCurricularId(int sectionId)
@@ -36,6 +43,31 @@ namespace PreparationForITExam.Core.Services
             return lessons;
         }
 
+        public async Task<LessonViewModel> GetLessonById(int id)
+        {
+            var lesson = await repo.AllReadonly<Lesson>()
+                .Where(l => l.Id == id && l.IsActive == true)
+                .Select( l => new LessonViewModel
+                {
+                    Id = l.Id,
+                    Title = l.Title,
+                    Module = l.SectionOfCurricular.ModuleOfCurricular.Title,
+                    SectionOfCurricular = l.SectionOfCurricular.Title                    
+                })
+                .FirstOrDefaultAsync();
 
+            lesson.PresentationUrl = await materialService.GetPresentationUrlByLessonId(id);
+            lesson.Questions = await questionService.GetAllLessonQuestionsByLessonId(id);
+            lesson.Materials = await materialService.GetAllMaterialsForLessonById(id);
+
+            return lesson;
+        }
+
+        public async Task<string> GetLessonNameById(int id)
+        {
+            var lesson = await repo.GetByIdAsync<Lesson>(id);
+
+            return lesson.Title;
+        }
     }
 }

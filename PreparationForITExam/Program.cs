@@ -15,6 +15,7 @@ public class Program
         var builder = WebApplication.CreateBuilder(args);
 
         var connectionString = builder.Configuration.GetConnectionString("DefaultConnection");
+        var syncfusionKey = builder.Configuration.GetValue<string>("Syncfusion:Key");
 
         builder.Services.AddDbContext<PreparationForITExamDbContext>(options =>
             options.UseSqlServer(connectionString));
@@ -47,6 +48,8 @@ public class Program
         ConfigureCloudaryService(builder.Services, builder.Configuration);
 
         builder.Services.AddResponseCaching();
+
+        Syncfusion.Licensing.SyncfusionLicenseProvider.RegisterLicense(syncfusionKey);
 
         //CreateFolderToSharePoint();
         //UploadfileToFolderInSharePoint();

@@ -31,6 +31,7 @@ namespace PreparationForITExam.Infrastructure.Migrations
                     FirstName = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: false),
                     LastName = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: false),
                     City = table.Column<string>(type: "nvarchar(169)", maxLength: 169, nullable: true),
+                    RoleName = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     ProfilePictureUrl = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     IsActive = table.Column<bool>(type: "bit", nullable: false),
                     UserName = table.Column<string>(type: "nvarchar(256)", maxLength: 256, nullable: false),
@@ -280,6 +281,36 @@ namespace PreparationForITExam.Infrastructure.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "Students",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    Speciality = table.Column<string>(type: "nvarchar(40)", maxLength: 40, nullable: true),
+                    Grade = table.Column<int>(type: "int", nullable: false),
+                    AboutMe = table.Column<string>(type: "nvarchar(300)", maxLength: 300, nullable: true),
+                    IsActive = table.Column<bool>(type: "bit", nullable: false),
+                    UserId = table.Column<string>(type: "nvarchar(450)", nullable: false),
+                    SchoolId = table.Column<int>(type: "int", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Students", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_Students_AspNetUsers_UserId",
+                        column: x => x.UserId,
+                        principalTable: "AspNetUsers",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_Students_Schools_SchoolId",
+                        column: x => x.SchoolId,
+                        principalTable: "Schools",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "Teachers",
                 columns: table => new
                 {
@@ -418,37 +449,25 @@ namespace PreparationForITExam.Infrastructure.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "Students",
+                name: "ExerciseStudent",
                 columns: table => new
                 {
-                    Id = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    Speciality = table.Column<string>(type: "nvarchar(40)", maxLength: 40, nullable: true),
-                    Grade = table.Column<int>(type: "int", nullable: false),
-                    AboutMe = table.Column<string>(type: "nvarchar(300)", maxLength: 300, nullable: true),
-                    IsActive = table.Column<bool>(type: "bit", nullable: false),
-                    UserId = table.Column<string>(type: "nvarchar(450)", nullable: false),
-                    SchoolId = table.Column<int>(type: "int", nullable: false),
-                    ExerciseId = table.Column<int>(type: "int", nullable: true)
+                    FinishedExercisesId = table.Column<int>(type: "int", nullable: false),
+                    StudentsId = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Students", x => x.Id);
+                    table.PrimaryKey("PK_ExerciseStudent", x => new { x.FinishedExercisesId, x.StudentsId });
                     table.ForeignKey(
-                        name: "FK_Students_AspNetUsers_UserId",
-                        column: x => x.UserId,
-                        principalTable: "AspNetUsers",
+                        name: "FK_ExerciseStudent_Exercises_FinishedExercisesId",
+                        column: x => x.FinishedExercisesId,
+                        principalTable: "Exercises",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
-                        name: "FK_Students_Exercises_ExerciseId",
-                        column: x => x.ExerciseId,
-                        principalTable: "Exercises",
-                        principalColumn: "Id");
-                    table.ForeignKey(
-                        name: "FK_Students_Schools_SchoolId",
-                        column: x => x.SchoolId,
-                        principalTable: "Schools",
+                        name: "FK_ExerciseStudent_Students_StudentsId",
+                        column: x => x.StudentsId,
+                        principalTable: "Students",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                 });
@@ -463,8 +482,7 @@ namespace PreparationForITExam.Infrastructure.Migrations
                     SectionOfCurricularId = table.Column<int>(type: "int", nullable: false),
                     Content = table.Column<string>(type: "nvarchar(4000)", maxLength: 4000, nullable: false),
                     IsActive = table.Column<bool>(type: "bit", nullable: false),
-                    ExerciseId = table.Column<int>(type: "int", nullable: false),
-                    StudentId = table.Column<int>(type: "int", nullable: true)
+                    ExerciseId = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -481,11 +499,6 @@ namespace PreparationForITExam.Infrastructure.Migrations
                         principalTable: "SectionsOfCurricular",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
-                    table.ForeignKey(
-                        name: "FK_Lessons_Students_StudentId",
-                        column: x => x.StudentId,
-                        principalTable: "Students",
-                        principalColumn: "Id");
                 });
 
             migrationBuilder.CreateTable(
@@ -523,6 +536,7 @@ namespace PreparationForITExam.Infrastructure.Migrations
                     IsActive = table.Column<bool>(type: "bit", nullable: false),
                     LessonId = table.Column<int>(type: "int", nullable: false),
                     UserId = table.Column<string>(type: "nvarchar(450)", nullable: false),
+                    Url = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     ExerciseId = table.Column<int>(type: "int", nullable: true)
                 },
                 constraints: table =>
@@ -681,16 +695,16 @@ namespace PreparationForITExam.Infrastructure.Migrations
                 columns: new[] { "Id", "ConcurrencyStamp", "Name", "NormalizedName" },
                 values: new object[,]
                 {
-                    { "0f761db2-ab55-416c-83b9-70abded3d908", "21f0b980-210b-4921-9203-a19b382989ad", "Administrator", "ADMINISTRATOR" },
-                    { "71281cf3-9730-4d7e-acbb-213edee8291c", "ba121b35-c0e2-4cae-8280-e92ed2524489", "Teacher", "TEACHER" },
-                    { "e66d730b-bcf1-41b5-b7e0-3e66056e61d9", "8bcf9868-6cc6-4c97-acb0-612c62dad93c", "Student", "STUDENT" },
-                    { "fe750b82-6fe9-472c-bdc5-61f5433d429e", "7bd019cf-911a-4ac6-a6ff-775529d88469", "MonUser", "MONUSER" }
+                    { "0f761db2-ab55-416c-83b9-70abded3d908", "11a740ce-6e0c-4b90-8030-088f01b699dc", "Administrator", "ADMINISTRATOR" },
+                    { "71281cf3-9730-4d7e-acbb-213edee8291c", "b1901a92-d4ec-49aa-8e38-26d9f1131ceb", "Teacher", "TEACHER" },
+                    { "e66d730b-bcf1-41b5-b7e0-3e66056e61d9", "18bf6760-ea62-41bf-b5d3-02615c81eee2", "Student", "STUDENT" },
+                    { "fe750b82-6fe9-472c-bdc5-61f5433d429e", "616d3c3d-6907-4941-a2e9-e41ce3407996", "MonUser", "MONUSER" }
                 });
 
             migrationBuilder.InsertData(
                 table: "AspNetUsers",
-                columns: new[] { "Id", "AccessFailedCount", "City", "ConcurrencyStamp", "Email", "EmailConfirmed", "FirstName", "IsActive", "LastName", "LockoutEnabled", "LockoutEnd", "NormalizedEmail", "NormalizedUserName", "PasswordHash", "PhoneNumber", "PhoneNumberConfirmed", "ProfilePictureUrl", "SecurityStamp", "TwoFactorEnabled", "UserName" },
-                values: new object[] { "789061a9-edaa-4a00-9e09-add6a20c8288", 0, "Казанлък", "8a9d2f8a-9182-4d44-ab15-a99311e187b3", "kresa@gmail.com", false, "Креса", true, "Цветкова", false, null, "KRESA@GMAIL.COM", "KRESA@GMAIL.COM", null, "0886121260", false, null, "1a659b0b-fe07-4c50-8abc-d8fcdab51fe3", false, "kresa@gmail.com" });
+                columns: new[] { "Id", "AccessFailedCount", "City", "ConcurrencyStamp", "Email", "EmailConfirmed", "FirstName", "IsActive", "LastName", "LockoutEnabled", "LockoutEnd", "NormalizedEmail", "NormalizedUserName", "PasswordHash", "PhoneNumber", "PhoneNumberConfirmed", "ProfilePictureUrl", "RoleName", "SecurityStamp", "TwoFactorEnabled", "UserName" },
+                values: new object[] { "789061a9-edaa-4a00-9e09-add6a20c8288", 0, "Казанлък", "b18e2c08-3fc4-49a6-b45a-23256d379d9d", "kresa@gmail.com", false, "Креса", true, "Цветкова", false, null, "KRESA@GMAIL.COM", "KRESA@GMAIL.COM", null, "0886121260", false, null, "administrator", "a5209cd9-83f1-4050-ab30-2135aba3a19d", false, "kresa@gmail.com" });
 
             migrationBuilder.InsertData(
                 table: "Exercises",
@@ -1645,134 +1659,134 @@ namespace PreparationForITExam.Infrastructure.Migrations
 
             migrationBuilder.InsertData(
                 table: "Lessons",
-                columns: new[] { "Id", "Content", "ExerciseId", "IsActive", "SectionOfCurricularId", "StudentId", "Title" },
+                columns: new[] { "Id", "Content", "ExerciseId", "IsActive", "SectionOfCurricularId", "Title" },
                 values: new object[,]
                 {
-                    { 1, "", 1, true, 1, null, "Компютърът" },
-                    { 2, "", 2, true, 1, null, "Езици за програмиране" },
-                    { 3, "", 3, true, 1, null, "Инструменти и IDE" },
-                    { 4, "", 4, true, 1, null, "IDE Visual Studio" },
-                    { 5, "", 5, true, 2, null, "Елементи на програмата" },
-                    { 6, "", 6, true, 2, null, "Основни типове операции и оператори" },
-                    { 7, "", 7, true, 2, null, "Изчислителни процеси. Линейни процеси" },
-                    { 8, "", 8, true, 2, null, "Линейни изчислителни процеси. Упражнение" },
-                    { 9, "", 9, true, 2, null, "Сравнения и логически операции" },
-                    { 10, "", 10, true, 2, null, "Разклонени изчислителни процеси" },
-                    { 11, "", 11, true, 2, null, "Циклични изчислителни процеси" },
-                    { 12, "", 12, true, 2, null, "Оператори за цикъл с условие" },
-                    { 13, "", 13, true, 2, null, "Оператори за цикъл. Упражнение" },
-                    { 14, "", 14, true, 3, null, "Обекти и класове от обекти" },
-                    { 15, "", 15, true, 3, null, "Класове" },
-                    { 16, "", 16, true, 3, null, "Клас с контролирани атрибути" },
-                    { 17, "", 17, true, 3, null, "Функции и методи" },
-                    { 18, "", 18, true, 3, null, "Конструктори" },
-                    { 19, "", 19, true, 3, null, "Предаване на аргументи" },
-                    { 20, "", 20, true, 3, null, "Упражнение" },
-                    { 21, "", 21, true, 4, null, "Елементи на графичние интерфейс" },
-                    { 22, "", 22, true, 4, null, "Графични компоненти" },
-                    { 23, "", 23, true, 4, null, "Упражнение" },
-                    { 24, "", 24, true, 4, null, "Упражнение" },
-                    { 25, "", 25, true, 4, null, "Агрегатни типове" },
-                    { 26, "", 26, true, 4, null, "Файлове" },
-                    { 27, "", 27, true, 4, null, "Четене на обекти от файл" },
-                    { 28, "", 28, true, 5, null, "Документиране на клас. Сериализация" },
-                    { 29, "", 29, true, 5, null, "Капсулиране. Статични атрибути и методи" },
-                    { 30, "", 30, true, 5, null, "Йерархия от класове" },
-                    { 31, "", 31, true, 5, null, "Полиморфизъм" },
-                    { 32, "", 32, true, 5, null, "Абстракция класове. Интерфейси" },
-                    { 33, "", 33, true, 5, null, "Изключения" },
-                    { 34, "", 34, true, 12, null, "Информация и данни" },
-                    { 35, "", 35, true, 12, null, "Информационни системи и процеси" },
-                    { 36, "", 36, true, 12, null, "Файлов подход и подход с бази от данни" },
-                    { 37, "", 37, true, 12, null, "Упражнение" },
-                    { 38, "", 38, true, 13, null, "Множества и релации" },
-                    { 39, "", 39, true, 13, null, "Релационна база от данни" },
-                    { 40, "", 40, true, 13, null, "Операции с релации" },
-                    { 41, "", 41, true, 7, null, "Типове данни с релации" },
-                    { 42, "", 42, true, 13, null, "Типове данни. Ключове" }
+                    { 1, "", 1, true, 1, "Компютърът" },
+                    { 2, "", 2, true, 1, "Езици за програмиране" },
+                    { 3, "", 3, true, 1, "Инструменти и IDE" },
+                    { 4, "", 4, true, 1, "IDE Visual Studio" },
+                    { 5, "", 5, true, 2, "Елементи на програмата" },
+                    { 6, "", 6, true, 2, "Основни типове операции и оператори" },
+                    { 7, "", 7, true, 2, "Изчислителни процеси. Линейни процеси" },
+                    { 8, "", 8, true, 2, "Линейни изчислителни процеси. Упражнение" },
+                    { 9, "", 9, true, 2, "Сравнения и логически операции" },
+                    { 10, "", 10, true, 2, "Разклонени изчислителни процеси" },
+                    { 11, "", 11, true, 2, "Циклични изчислителни процеси" },
+                    { 12, "", 12, true, 2, "Оператори за цикъл с условие" },
+                    { 13, "", 13, true, 2, "Оператори за цикъл. Упражнение" },
+                    { 14, "", 14, true, 3, "Обекти и класове от обекти" },
+                    { 15, "", 15, true, 3, "Класове" },
+                    { 16, "", 16, true, 3, "Клас с контролирани атрибути" },
+                    { 17, "", 17, true, 3, "Функции и методи" },
+                    { 18, "", 18, true, 3, "Конструктори" },
+                    { 19, "", 19, true, 3, "Предаване на аргументи" },
+                    { 20, "", 20, true, 3, "Упражнение" },
+                    { 21, "", 21, true, 4, "Елементи на графичние интерфейс" },
+                    { 22, "", 22, true, 4, "Графични компоненти" },
+                    { 23, "", 23, true, 4, "Упражнение" },
+                    { 24, "", 24, true, 4, "Упражнение" },
+                    { 25, "", 25, true, 4, "Агрегатни типове" },
+                    { 26, "", 26, true, 4, "Файлове" },
+                    { 27, "", 27, true, 4, "Четене на обекти от файл" },
+                    { 28, "", 28, true, 5, "Документиране на клас. Сериализация" },
+                    { 29, "", 29, true, 5, "Капсулиране. Статични атрибути и методи" },
+                    { 30, "", 30, true, 5, "Йерархия от класове" },
+                    { 31, "", 31, true, 5, "Полиморфизъм" },
+                    { 32, "", 32, true, 5, "Абстракция класове. Интерфейси" },
+                    { 33, "", 33, true, 5, "Изключения" },
+                    { 34, "", 34, true, 12, "Информация и данни" },
+                    { 35, "", 35, true, 12, "Информационни системи и процеси" },
+                    { 36, "", 36, true, 12, "Файлов подход и подход с бази от данни" },
+                    { 37, "", 37, true, 12, "Упражнение" },
+                    { 38, "", 38, true, 13, "Множества и релации" },
+                    { 39, "", 39, true, 13, "Релационна база от данни" },
+                    { 40, "", 40, true, 13, "Операции с релации" },
+                    { 41, "", 41, true, 7, "Типове данни с релации" },
+                    { 42, "", 42, true, 13, "Типове данни. Ключове" }
                 });
 
             migrationBuilder.InsertData(
                 table: "Lessons",
-                columns: new[] { "Id", "Content", "ExerciseId", "IsActive", "SectionOfCurricularId", "StudentId", "Title" },
+                columns: new[] { "Id", "Content", "ExerciseId", "IsActive", "SectionOfCurricularId", "Title" },
                 values: new object[,]
                 {
-                    { 43, "", 43, true, 13, null, "Нормализация" },
-                    { 44, "", 44, true, 13, null, "Модел обект-взаимодействие" },
-                    { 45, "", 45, true, 13, null, "Нива на абстракция. Аномалии" },
-                    { 46, "", 46, true, 13, null, "Проектиране на БД. Упражнение" },
-                    { 47, "", 47, true, 14, null, "Програмата MS Access" },
-                    { 48, "", 48, true, 14, null, "Езикът SQL. Заявки" },
-                    { 49, "", 49, true, 14, null, "Заявка SELECT" },
-                    { 50, "", 50, true, 14, null, "Клаузите ORDER BY и GROUP BY" },
-                    { 51, "", 51, true, 14, null, "Екранни форми. Контрол на данните" },
-                    { 52, "", 52, true, 14, null, "Търсене на данни" },
-                    { 53, "", 53, true, 14, null, "Създаване и редактиране на таблици със SQL" },
-                    { 54, "", 54, true, 14, null, "Упражнение" },
-                    { 55, "", 55, true, 14, null, "Отчети" },
-                    { 56, "", 56, true, 14, null, "Връзки между таблиците. Съединиение" },
-                    { 57, "", 57, true, 14, null, "Влагане на заявки" },
-                    { 58, "", 58, true, 14, null, "Упражнение" },
-                    { 59, "", 59, true, 15, null, "Интегриране на БД в MS Access" },
-                    { 60, "", 60, true, 15, null, "Интегриране на БД със C#" },
-                    { 61, "", 61, true, 15, null, "Упражнение" },
-                    { 62, "", 62, true, 6, null, "Алгоритми" },
-                    { 63, "", 63, true, 6, null, "UML-диаграми упражнение" },
-                    { 64, "", 64, true, 6, null, "Сложност на алгоритми" },
-                    { 65, "", 65, true, 6, null, "Обектно-ориентирано програмиране - преговор" },
-                    { 66, "", 66, true, 6, null, "Реализация на алгоритми чрез методи" },
-                    { 67, "", 67, true, 6, null, "Рекурсия и интеграция" },
-                    { 68, "", 68, true, 6, null, "Сложност на програми" },
-                    { 69, "", 69, true, 7, null, "Едномерен масив - преговор" },
-                    { 70, "", 70, true, 7, null, "Сортиране на масив" },
-                    { 71, "", 71, true, 7, null, "Работа със сортирани масиви" },
-                    { 72, "", 72, true, 7, null, "Сортиране на масив" },
-                    { 73, "", 73, true, 7, null, "Работа със сортирани масиви" },
-                    { 74, "", 74, true, 7, null, "Низове" },
-                    { 75, "", 75, true, 7, null, "Масиви от знаци" },
-                    { 76, "", 76, true, 7, null, "Многомерни масиви" },
-                    { 77, "", 77, true, 8, null, "Основни понятия" },
-                    { 78, "", 78, true, 8, null, "Вградени АТ в C#" },
-                    { 79, "", 79, true, 8, null, "Списъци" },
-                    { 80, "", 80, true, 8, null, "Опашки" },
-                    { 81, "", 81, true, 8, null, "Стек" },
-                    { 82, "", 82, true, 8, null, "Упражнение" },
-                    { 83, "", 83, true, 9, null, "Графи" },
-                    { 84, "", 84, true, 9, null, "Дървета" }
+                    { 43, "", 43, true, 13, "Нормализация" },
+                    { 44, "", 44, true, 13, "Модел обект-взаимодействие" },
+                    { 45, "", 45, true, 13, "Нива на абстракция. Аномалии" },
+                    { 46, "", 46, true, 13, "Проектиране на БД. Упражнение" },
+                    { 47, "", 47, true, 14, "Програмата MS Access" },
+                    { 48, "", 48, true, 14, "Езикът SQL. Заявки" },
+                    { 49, "", 49, true, 14, "Заявка SELECT" },
+                    { 50, "", 50, true, 14, "Клаузите ORDER BY и GROUP BY" },
+                    { 51, "", 51, true, 14, "Екранни форми. Контрол на данните" },
+                    { 52, "", 52, true, 14, "Търсене на данни" },
+                    { 53, "", 53, true, 14, "Създаване и редактиране на таблици със SQL" },
+                    { 54, "", 54, true, 14, "Упражнение" },
+                    { 55, "", 55, true, 14, "Отчети" },
+                    { 56, "", 56, true, 14, "Връзки между таблиците. Съединиение" },
+                    { 57, "", 57, true, 14, "Влагане на заявки" },
+                    { 58, "", 58, true, 14, "Упражнение" },
+                    { 59, "", 59, true, 15, "Интегриране на БД в MS Access" },
+                    { 60, "", 60, true, 15, "Интегриране на БД със C#" },
+                    { 61, "", 61, true, 15, "Упражнение" },
+                    { 62, "", 62, true, 6, "Алгоритми" },
+                    { 63, "", 63, true, 6, "UML-диаграми упражнение" },
+                    { 64, "", 64, true, 6, "Сложност на алгоритми" },
+                    { 65, "", 65, true, 6, "Обектно-ориентирано програмиране - преговор" },
+                    { 66, "", 66, true, 6, "Реализация на алгоритми чрез методи" },
+                    { 67, "", 67, true, 6, "Рекурсия и интеграция" },
+                    { 68, "", 68, true, 6, "Сложност на програми" },
+                    { 69, "", 69, true, 7, "Едномерен масив - преговор" },
+                    { 70, "", 70, true, 7, "Сортиране на масив" },
+                    { 71, "", 71, true, 7, "Работа със сортирани масиви" },
+                    { 72, "", 72, true, 7, "Сортиране на масив" },
+                    { 73, "", 73, true, 7, "Работа със сортирани масиви" },
+                    { 74, "", 74, true, 7, "Низове" },
+                    { 75, "", 75, true, 7, "Масиви от знаци" },
+                    { 76, "", 76, true, 7, "Многомерни масиви" },
+                    { 77, "", 77, true, 8, "Основни понятия" },
+                    { 78, "", 78, true, 8, "Вградени АТ в C#" },
+                    { 79, "", 79, true, 8, "Списъци" },
+                    { 80, "", 80, true, 8, "Опашки" },
+                    { 81, "", 81, true, 8, "Стек" },
+                    { 82, "", 82, true, 8, "Упражнение" },
+                    { 83, "", 83, true, 9, "Графи" },
+                    { 84, "", 84, true, 9, "Дървета" }
                 });
 
             migrationBuilder.InsertData(
                 table: "Lessons",
-                columns: new[] { "Id", "Content", "ExerciseId", "IsActive", "SectionOfCurricularId", "StudentId", "Title" },
+                columns: new[] { "Id", "Content", "ExerciseId", "IsActive", "SectionOfCurricularId", "Title" },
                 values: new object[,]
                 {
-                    { 85, "", 85, true, 9, null, "Обхождане на графи" },
-                    { 86, "", 86, true, 9, null, "Най-къс път в граф" },
-                    { 87, "", 87, true, 9, null, "Хеш-таблица. Речник" },
-                    { 88, "", 88, true, 10, null, "Работа по проект" },
-                    { 89, "", 89, true, 10, null, "Примерни проекти" },
-                    { 90, "", 90, true, 16, null, "Информационни системи и бази от данни" },
-                    { 91, "", 91, true, 16, null, "Упражнение - преговор" },
-                    { 92, "", 92, true, 16, null, "Сървър база от данни" },
-                    { 93, "", 93, true, 16, null, "Таблици" },
-                    { 94, "", 94, true, 16, null, "Въвеждане на данни" },
-                    { 95, "", 95, true, 16, null, "Езикът SQL - преговор с допълнение" },
-                    { 96, "", 96, true, 16, null, "Създаване н=и изпълнение на заявки" },
-                    { 97, "", 97, true, 16, null, "Съхранени процедури" },
-                    { 98, "", 98, true, 16, null, "Още за съхранените процедури" },
-                    { 99, "", 99, true, 16, null, "Подържане на база от данни" },
-                    { 100, "", 100, true, 16, null, "Клиентът Azure Data Studio" },
-                    { 101, "", 101, true, 16, null, "Упражнение" },
-                    { 102, "", 102, true, 17, null, "Фази при разработване на проекти" },
-                    { 103, "", 103, true, 17, null, "Екип, документиране и защита на проекти" },
-                    { 104, "", 104, true, 18, null, "Езикът C# - преговор" },
-                    { 105, "", 105, true, 18, null, "Свързване с базата данни" },
-                    { 106, "", 106, true, 18, null, "Четене от база данни" },
-                    { 107, "", 107, true, 18, null, "Приложение с графичен интерфейс" },
-                    { 108, "", 108, true, 18, null, "Редактиране на данни" },
-                    { 109, "", 109, true, 18, null, "Упражнение" },
-                    { 110, "", 110, true, 18, null, "Интегриране с лента от менюта" },
-                    { 111, "", 111, true, 18, null, "Още функционалност в ИС УЧИСЕ" }
+                    { 85, "", 85, true, 9, "Обхождане на графи" },
+                    { 86, "", 86, true, 9, "Най-къс път в граф" },
+                    { 87, "", 87, true, 9, "Хеш-таблица. Речник" },
+                    { 88, "", 88, true, 10, "Работа по проект" },
+                    { 89, "", 89, true, 10, "Примерни проекти" },
+                    { 90, "", 90, true, 16, "Информационни системи и бази от данни" },
+                    { 91, "", 91, true, 16, "Упражнение - преговор" },
+                    { 92, "", 92, true, 16, "Сървър база от данни" },
+                    { 93, "", 93, true, 16, "Таблици" },
+                    { 94, "", 94, true, 16, "Въвеждане на данни" },
+                    { 95, "", 95, true, 16, "Езикът SQL - преговор с допълнение" },
+                    { 96, "", 96, true, 16, "Създаване н=и изпълнение на заявки" },
+                    { 97, "", 97, true, 16, "Съхранени процедури" },
+                    { 98, "", 98, true, 16, "Още за съхранените процедури" },
+                    { 99, "", 99, true, 16, "Подържане на база от данни" },
+                    { 100, "", 100, true, 16, "Клиентът Azure Data Studio" },
+                    { 101, "", 101, true, 16, "Упражнение" },
+                    { 102, "", 102, true, 17, "Фази при разработване на проекти" },
+                    { 103, "", 103, true, 17, "Екип, документиране и защита на проекти" },
+                    { 104, "", 104, true, 18, "Езикът C# - преговор" },
+                    { 105, "", 105, true, 18, "Свързване с базата данни" },
+                    { 106, "", 106, true, 18, "Четене от база данни" },
+                    { 107, "", 107, true, 18, "Приложение с графичен интерфейс" },
+                    { 108, "", 108, true, 18, "Редактиране на данни" },
+                    { 109, "", 109, true, 18, "Упражнение" },
+                    { 110, "", 110, true, 18, "Интегриране с лента от менюта" },
+                    { 111, "", 111, true, 18, "Още функционалност в ИС УЧИСЕ" }
                 });
 
             migrationBuilder.InsertData(
@@ -1830,6 +1844,11 @@ namespace PreparationForITExam.Infrastructure.Migrations
                 column: "TeacherId");
 
             migrationBuilder.CreateIndex(
+                name: "IX_ExerciseStudent_StudentsId",
+                table: "ExerciseStudent",
+                column: "StudentsId");
+
+            migrationBuilder.CreateIndex(
                 name: "IX_Images_NewsId",
                 table: "Images",
                 column: "NewsId");
@@ -1869,11 +1888,6 @@ namespace PreparationForITExam.Infrastructure.Migrations
                 name: "IX_Lessons_SectionOfCurricularId",
                 table: "Lessons",
                 column: "SectionOfCurricularId");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_Lessons_StudentId",
-                table: "Lessons",
-                column: "StudentId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_LessonTeacher_TeachersId",
@@ -1961,11 +1975,6 @@ namespace PreparationForITExam.Infrastructure.Migrations
                 column: "ModuleOfCurricularId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Students_ExerciseId",
-                table: "Students",
-                column: "ExerciseId");
-
-            migrationBuilder.CreateIndex(
                 name: "IX_Students_SchoolId",
                 table: "Students",
                 column: "SchoolId");
@@ -2004,6 +2013,9 @@ namespace PreparationForITExam.Infrastructure.Migrations
                 name: "AspNetUserTokens");
 
             migrationBuilder.DropTable(
+                name: "ExerciseStudent");
+
+            migrationBuilder.DropTable(
                 name: "Images");
 
             migrationBuilder.DropTable(
@@ -2028,6 +2040,9 @@ namespace PreparationForITExam.Infrastructure.Migrations
                 name: "AspNetRoles");
 
             migrationBuilder.DropTable(
+                name: "Students");
+
+            migrationBuilder.DropTable(
                 name: "News");
 
             migrationBuilder.DropTable(
@@ -2044,9 +2059,6 @@ namespace PreparationForITExam.Infrastructure.Migrations
 
             migrationBuilder.DropTable(
                 name: "Lessons");
-
-            migrationBuilder.DropTable(
-                name: "Students");
 
             migrationBuilder.DropTable(
                 name: "Exercises");

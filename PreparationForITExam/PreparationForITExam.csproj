@@ -23,6 +23,7 @@
     <PackageReference Include="Microsoft.SharePoint.Client" Version="14.0.4762.1000" />
     <PackageReference Include="Microsoft.SharePoint.Client.Online.CSOM" Version="15.0.4919.1000" />
     <PackageReference Include="SharePoint.Client.Office.Tools" Version="15.0.4907.1002" />
+    <PackageReference Include="Syncfusion.DocIORenderer.Net.Core" Version="24.2.3" />
     <PackageReference Include="Syncfusion.PresentationRenderer.Net.Core" Version="24.1.45" />
   </ItemGroup>
 

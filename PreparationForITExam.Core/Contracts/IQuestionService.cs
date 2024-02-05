@@ -1,4 +1,4 @@
-﻿using PreparationForITExam.Core.Models.Account;
+﻿using PreparationForITExam.Core.Models.Question;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -7,8 +7,8 @@ using System.Threading.Tasks;
 
 namespace PreparationForITExam.Core.Contracts
 {
-    public interface ITeacherService
+    public interface IQuestionService
     {
-        Task Create(string userId, RegisterViewModel model, int schoolId);
+        Task<List<QuestionViewModel>> GetAllLessonQuestionsByLessonId(int lessonId);
     }
 }

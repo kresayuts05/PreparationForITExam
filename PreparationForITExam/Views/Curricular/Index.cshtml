@@ -13,25 +13,25 @@
                         <div class="single-list-topics-icon">
                             <i class="oop"></i>
                         </div>
-                        <h2><a><b>ООП</b></a></h2>
+                        <h2><a class="single-list"><b>ООП</b></a></h2>
                         <p>11 клас I ви срок</p>
                     </div>
 
                     <ul class="sections-of-curricular">
                         @foreach (var s in Model[0])
                         {
-                            <a class="curricular-element" asp-controller="SectionOfCurricular" asp-action="Index" asp-route-id="@s.Id">
                             <li class="section-of-curricular">
+                            <a class="curricular-element" asp-controller="SectionOfCurricular" asp-action="Index" asp-route-id="@s.Id">
                                 <div class="section-header">
-                                    <a class="">@s.Title</a>
+                                    <p class="">@s.Title</p>
                                 </div>
                                 <div class="section-info">
                                         @s.Lessons урока
                                     <span class="separator">|</span>
                                         @s.Exercises тестове
                                 </div>
-                            </li>
                             </a>
+                            </li>
                         }
                     </ul>
                 </li>
@@ -40,66 +40,14 @@
                         <div class="single-list-topics-icon">
                             <i class="algorithm"></i>
                         </div>
-                        <h2><a>Data Structures and Algorithms</a></h2>
+                        <h2><a class="single-list">Data Structures and Algorithms</a></h2>
                         <p>185 listings</p>
                     </div>
                     <ul class="sections-of-curricular">
                         @foreach (var s in Model[1])
                         {
+                            <li class="section-of-curricular">
                             <a class="curricular-element" asp-controller="SectionOfCurricular" asp-action="Index" asp-route-id="@s.Id">
-                            <li class="section-of-curricular">
-                                <div class="section-header">
-                                    <a>@s.Title</a>
-                                </div>
-                                <div class="section-info">
-                                        @s.Lessons урока
-                                    <span class="separator">|</span>
-                                        @s.Exercises тестове
-                                </div>
-                            </li>
-                            </a>
-                        }
-                    </ul>
-                </li>
-                <li>
-                    <div class="single-list-topics-content">
-                        <div class="single-list-topics-icon">
-                            <i class="sql"></i>
-                        </div>
-                        <h2><a>Relation Databases</a></h2>
-                        <p>214 listings</p>
-                    </div>
-                    <ul class="sections-of-curricular">
-                        @foreach (var s in Model[2])
-                        {
-                            <a class="curricular-element" asp-controller="SectionOfCurricular" asp-action="Index" asp-route-id="@s.Id">
-                            <li class="section-of-curricular">
-                                <div class="section-header">
-                                    <a>@s.Title</a>
-                                </div>
-                                <div class="section-info">
-                                        @s.Lessons урока
-                                    <span class="separator">|</span>
-                                        @s.Exercises тестове
-                                </div>
-                            </li>
-                            </a>
-                        }
-                    </ul>
-                </li>
-                <li>
-                    <div class="single-list-topics-content">
-                        <div class="single-list-topics-icon">
-                            <i class="system"></i>
-                        </div>
-                        <h2><a>Programming of IT systems</a></h2>
-                        <p>200 listings</p>
-                    </div>
-                    <ul class="sections-of-curricular">
-                        @foreach (var s in Model[3])
-                        {
-                            <li class="section-of-curricular">
-                                <a class="curricular-element" asp-controller="SectionOfCurricular" asp-action="Index" asp-route-id="@s.Id">
                                 <div class="section-header">
                                     <p>@s.Title</p>
                                 </div>
@@ -110,6 +58,59 @@
                                 </div>
                             </a>
                             </li>
+                        }
+                    </ul>
+                </li>
+                <li>
+                    <div class="single-list-topics-content">
+                        <div class="single-list-topics-icon">
+                            <i class="sql"></i>
+                        </div>
+                        <h2><a class="single-list">Relation Databases</a></h2>
+                        <p>214 listings</p>
+                    </div>
+                    <ul class="sections-of-curricular">
+                        @foreach (var s in Model[2])
+                        {
+                            <li class="section-of-curricular">
+                            <a class="curricular-element" asp-controller="SectionOfCurricular" asp-action="Index" asp-route-id="@s.Id">
+                                <div class="section-header">
+                                    <p>@s.Title</p>
+                                </div>
+                                <div class="section-info">
+                                        @s.Lessons урока
+                                    <span class="separator">|</span>
+                                        @s.Exercises тестове
+                                </div>
+                            </a>
+                            </li>
+                        }
+                    </ul>
+                </li>
+                <li>
+                    <div class="single-list-topics-content">
+                        <div class="single-list-topics-icon">
+                            <i class="system"></i>
+                        </div>
+                        <h2><a class="single-list">Programming of IT systems</a></h2>
+                        <p>200 listings</p>
+                    </div>
+                    <ul class="sections-of-curricular">
+                        @foreach (var s in Model[3])
+                        {
+                            <li class="section-of-curricular">
+                                <a class="curricular-element" asp-controller="SectionOfCurricular" asp-action="Index" asp-route-id="@s.Id">
+                                    <div class="section-header">
+                                        <p>@s.Title</p>
+                                    </div>
+                                    <div class="section-info">
+                                        @s.Lessons урока
+                                        <span class="separator">|</span>
+                                        @s.Exercises тестове
+                                    </div>
+                                </a>
+                            </li>
+
                         }
                     </ul>
                 </li>
