@@ -1,10 +1,12 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
+using PreparationForITExam.Core.Constants;
 using PreparationForITExam.Models;
 using System.Diagnostics;
 
 namespace PreparationForITExam.Controllers
 {
-    public class HomeController : Controller
+    public class HomeController : BaseController
     {
         private readonly ILogger<HomeController> _logger;
 
@@ -13,8 +15,14 @@ namespace PreparationForITExam.Controllers
             _logger = logger;
         }
 
+        [AllowAnonymous]
         public IActionResult Index()
         {
+            if (User.IsInRole(RoleConstants.Administrator))
+            {
+                return RedirectToAction("Index", "Admin", new { area = "Admin" });
+            }
+
             return View();
         }
 

@@ -7,8 +7,7 @@ using PreparationForITExam.Extensions;
 
 namespace PreparationForITExam.Controllers
 {
-    [Authorize]
-    public class MaterialController : Controller
+    public class MaterialController : BaseController
     {
         private readonly IMaterialService materialService;
         public MaterialController(IMaterialService _materialService)

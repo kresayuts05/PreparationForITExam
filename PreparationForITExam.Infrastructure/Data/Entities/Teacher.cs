@@ -28,9 +28,6 @@ namespace PreparationForITExam.Infrastructure.Data.Entities
         [MaxLength(SubjectMaxLength)]
         public string? Subject { get; set; }
 
-        [MaxLength(AboutMeMaxLength)]
-        public string? AboutMe { get; set; }
-
         [EnumDataType(typeof(TeacherStatusEnum))]
         public string Status { get; set; }
 

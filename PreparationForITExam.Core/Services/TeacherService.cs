@@ -26,7 +26,6 @@ namespace PreparationForITExam.Core.Services
                 UserId = userId,
                 Experience = model.Experience,
                 Subject = model.Subject,
-                AboutMe= model.AboutMe,
                 SchoolId = schoolId
             };
 

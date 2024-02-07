@@ -6,7 +6,7 @@ using PreparationForITExam.Infrastructure.Data.Entities;
 
 namespace PreparationForITExam.Controllers
 {
-    public class CurricularController : Controller
+    public class CurricularController : BaseController
     {
         private readonly ISectionOfCurricularService sectionOfCurricularService;
 
@@ -17,6 +17,7 @@ namespace PreparationForITExam.Controllers
         }
 
         [HttpGet]
+        [AllowAnonymous]
         public async  Task<IActionResult> Index()
         {
             var model = await sectionOfCurricularService.GetAllSectionsOfModule();

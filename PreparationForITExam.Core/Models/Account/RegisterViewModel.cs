@@ -51,10 +51,6 @@ namespace PreparationForITExam.Core.Models.Account
         [StringLength(SubjectMaxLength, MinimumLength = SubjectMinLength)]
         public string? Subject { get; set; } = null!;
 
-
-        [MaxLength(AboutMeMaxLength)]
-        public string? AboutMe { get; set; }
-
         public IFormFile? ProfilePicture { get; set; }
 
         public Dictionary<string, List<SchoolModel>> SchoolsCities { get; set; } = new Dictionary<string, List<SchoolModel>>();

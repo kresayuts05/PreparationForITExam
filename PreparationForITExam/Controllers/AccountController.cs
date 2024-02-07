@@ -8,8 +8,8 @@ using PreparationForITExam.Infrastructure.Data.Entities;
 
 namespace PreparationForITExam.Controllers
 {
-    [Authorize]
-    public class AccountController : Controller
+
+    public class AccountController : BaseController
     {
         private readonly UserManager<User> userManager;
         private readonly SignInManager<User> signInManager;
@@ -160,7 +160,7 @@ namespace PreparationForITExam.Controllers
 
             var result = await userManager.CreateAsync(user, model.Password);
 
-            await userManager.AddToRoleAsync(user, "Teacher");
+            //await userManager.AddToRoleAsync(user, "Teacher");//need to be approved by admin
             await teacherService.Create(user.Id, model, schoolId);
 
             if (model.ProfilePicture != null)

@@ -21,6 +21,20 @@ namespace PreparationForITExam.Core.Services
             repo = _repo;
         }
 
+        public async Task CreateQuestion(QuestionFormViewModel model)
+        {
+            LessonQuestion question = new LessonQuestion()
+            {
+                Title = model.Title,
+                QuestionContent = model.Content,
+                LessonId = model.LessonId,
+                UserId = model.UserId,
+                Url = model.Url
+            };
+
+            await repo.AddAsync(question);
+            await repo.SaveChangesAsync();
+        }
 
         public async Task<List<QuestionViewModel>> GetAllLessonQuestionsByLessonId(int lessonId)
         {

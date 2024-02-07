@@ -24,6 +24,9 @@ namespace PreparationForITExam.Infrastructure.Data.Constants
 
             public const int UserNameMaxLength = 50;
             public const int UserNameMinLength = 4;
+
+            public const int AboutMeMaxLength = 700;
+            public const int AboutMeMinLength = 10;
         }
 
         public static class TeacherConstraints
@@ -37,7 +40,7 @@ namespace PreparationForITExam.Infrastructure.Data.Constants
             public const int UniversityMaxLength = 60;
             public const int UniversityMinLength = 1;
 
-            public const int AboutMeMaxLength = 300;
+            public const int AboutMeMaxLength = 700;
             public const int AboutMeMinLength = 10;
         }
 
@@ -73,8 +76,8 @@ namespace PreparationForITExam.Infrastructure.Data.Constants
             public const int TitleMinLength = 2;
 
             public const int ShortDescriptionMaxLength = 100;
-            public const int ShortDescriptionMinLength = 1; 
-            
+            public const int ShortDescriptionMinLength = 1;
+
             public const int DescriptionMaxLength = 3000;
             public const int DescriptionMinLength = 1;
         }
@@ -136,8 +139,8 @@ namespace PreparationForITExam.Infrastructure.Data.Constants
         public static class QuestionConstraints
         {
             public const int QuestionMaxLength = 1000;
-            public const int QuestionMinLength = 3;      
-            
+            public const int QuestionMinLength = 3;
+
             public const int TitleMaxLength = 1000;
             public const int TitleMinLength = 3;
 
@@ -145,8 +148,8 @@ namespace PreparationForITExam.Infrastructure.Data.Constants
             public const int CorrectAnswerMinLength = 2;
 
             public const int WrongAnswerMaxLength = 500;
-            public const int WrongAnswerMinLength = 2; 
-            
+            public const int WrongAnswerMinLength = 2;
+
             public const int PointsMaxValue = 500;
             public const int PointsMinValue = 2;
         }

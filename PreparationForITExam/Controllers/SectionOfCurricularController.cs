@@ -1,10 +1,11 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using PreparationForITExam.Core.Contracts;
 using PreparationForITExam.Core.Models.SectionOfCurricular;
 
 namespace PreparationForITExam.Controllers
 {
-    public class SectionOfCurricularController : Controller
+    public class SectionOfCurricularController : BaseController
     {
         private readonly ISectionOfCurricularService sectionOfCurricularService;
         private readonly ILessonService lessonService;
@@ -18,6 +19,7 @@ namespace PreparationForITExam.Controllers
         }
 
         [HttpGet]
+        [AllowAnonymous]
         public async Task<IActionResult> Index(int id)
         {
             SectionLessonViewModel model = new SectionLessonViewModel();

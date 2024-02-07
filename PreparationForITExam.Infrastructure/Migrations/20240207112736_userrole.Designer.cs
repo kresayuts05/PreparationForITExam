@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using PreparationForITExam.Infrastructure.Data;
 
@@ -11,9 +12,10 @@ using PreparationForITExam.Infrastructure.Data;
 namespace PreparationForITExam.Infrastructure.Migrations
 {
     [DbContext(typeof(PreparationForITExamDbContext))]
-    partial class PreparationForITExamDbContextModelSnapshot : ModelSnapshot
+    [Migration("20240207112736_userrole")]
+    partial class userrole
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -82,28 +84,28 @@ namespace PreparationForITExam.Infrastructure.Migrations
                         new
                         {
                             Id = "0f761db2-ab55-416c-83b9-70abded3d908",
-                            ConcurrencyStamp = "1665c666-e1f1-484f-ac74-8faadb64d2bd",
+                            ConcurrencyStamp = "6a5a9d07-a781-46a0-a4b5-ce98c89f97e8",
                             Name = "Administrator",
                             NormalizedName = "ADMINISTRATOR"
                         },
                         new
                         {
                             Id = "e66d730b-bcf1-41b5-b7e0-3e66056e61d9",
-                            ConcurrencyStamp = "0f10b0e9-29c5-4c12-b7e3-03c40b709b7f",
+                            ConcurrencyStamp = "2c0787f7-8734-4796-8332-2a907a8d5373",
                             Name = "Student",
                             NormalizedName = "STUDENT"
                         },
                         new
                         {
                             Id = "71281cf3-9730-4d7e-acbb-213edee8291c",
-                            ConcurrencyStamp = "17e2384e-13da-4ba3-a7d4-b12e1bfe68f4",
+                            ConcurrencyStamp = "cefba318-9691-431b-a01b-401a325ca741",
                             Name = "Teacher",
                             NormalizedName = "TEACHER"
                         },
                         new
                         {
                             Id = "fe750b82-6fe9-472c-bdc5-61f5433d429e",
-                            ConcurrencyStamp = "075f415b-3933-465e-a3e8-620b51dd1b16",
+                            ConcurrencyStamp = "989ef273-276c-40e7-9d78-9a0e52252901",
                             Name = "MonUser",
                             NormalizedName = "MONUSER"
                         });
@@ -196,13 +198,6 @@ namespace PreparationForITExam.Infrastructure.Migrations
                     b.HasIndex("RoleId");
 
                     b.ToTable("AspNetUserRoles", (string)null);
-
-                    b.HasData(
-                        new
-                        {
-                            UserId = "789061a9-edaa-4a00-9e09-add6a20c8288",
-                            RoleId = "0f761db2-ab55-416c-83b9-70abded3d908"
-                        });
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserToken<string>", b =>
@@ -8168,7 +8163,7 @@ namespace PreparationForITExam.Infrastructure.Migrations
                             Id = "789061a9-edaa-4a00-9e09-add6a20c8288",
                             AccessFailedCount = 0,
                             City = "Казанлък",
-                            ConcurrencyStamp = "9337d637-a31f-445d-bca6-dbc059105c6a",
+                            ConcurrencyStamp = "8ddffb93-2781-4f1d-965d-6ea559d43844",
                             Email = "kresa@gmail.com",
                             EmailConfirmed = false,
                             FirstName = "Креса",
@@ -8177,11 +8172,11 @@ namespace PreparationForITExam.Infrastructure.Migrations
                             LockoutEnabled = false,
                             NormalizedEmail = "KRESA@GMAIL.COM",
                             NormalizedUserName = "KRESA@GMAIL.COM",
-                            PasswordHash = "AQAAAAEAACcQAAAAEADaw9V5iN/WhVETjPRWD5/9ZdGV14ko93O9a5TTrhUqn8RvfBu6pKKgmQtUMkE8UA==",
+                            PasswordHash = "AQAAAAEAACcQAAAAEL2+Cu/3Jg3b4AbnbYH66RQkTdjoaybS5Jw1P0Ued7YFs0uZbrcM08c6aO8vgTjtNg==",
                             PhoneNumber = "0886121260",
                             PhoneNumberConfirmed = false,
                             RoleName = "Administrator",
-                            SecurityStamp = "70ce6cf6-3c46-4197-9741-4823375ceb0a",
+                            SecurityStamp = "ead957c7-b4cb-40dc-a6ad-5dda70a139bb",
                             TwoFactorEnabled = false,
                             UserName = "kresa@gmail.com"
                         });

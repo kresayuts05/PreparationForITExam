@@ -29,6 +29,9 @@ namespace PreparationForITExam.Infrastructure.Data.Entities
         [MaxLength(CityMaxLength)]
         public string? City { get; set; }
 
+        [MaxLength(AboutMeMaxLength)]
+        public string? AboutMe { get; set; }
+
         public string RoleName { get; set; }
 
         public string? ProfilePictureUrl { get; set; }

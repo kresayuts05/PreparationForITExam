@@ -8,9 +8,9 @@ namespace PreparationForITExam.Core.Constants
 {
     public static class RoleConstants
     {
-        public const string Client = "Client";
+        public const string Student = "Student";
         public const string Constructor = "Teacher";
-        public const string Administrator = "Student";
+        public const string Administrator = "Administrator";
         public const string MonUser = "MonUser";
     }
 }

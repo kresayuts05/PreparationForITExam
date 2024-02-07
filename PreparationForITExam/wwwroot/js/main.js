@@ -350,14 +350,12 @@
     const gameDeveloperCheckBoxClick = function () {
         $('#teacherCheckBox').on('click', function () {
             if (document.getElementById('teacherCheckBox').checked) {
-                document.getElementById('aboutMe').style.display = "block";
                 document.getElementById('subject').style.display = "block";
                 document.getElementById('experience').style.display = "block";
                 document.getElementById('registerAsTeacher').style.display = "block";
                 document.getElementById('registerAsStudent').style.display = "none";
             }
             else {
-                document.getElementById('aboutMe').style.display = "none";
                 document.getElementById('experience').style.display = "none";
                 document.getElementById('subject').style.display = "none";
                 document.getElementById('registerAsTeacher').style.display = "none";

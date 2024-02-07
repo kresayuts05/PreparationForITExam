@@ -154,6 +154,14 @@ body {
     clear: both;
 }
 
+.logo-image {
+    width: 46px;
+    height: 46px;
+    border-radius: 50%;
+    overflow: hidden;
+    margin-top: -6px;
+}
+
 /*=============Style css=========*/
 
 
@@ -258,9 +266,19 @@ nav.navbar.bootsnav {
 /*.navbar-brand*/
 
 /*.nav li*/
+.nav-logo {
+    margin: 20px -45px !important;
+}
+
+.logo{
+    width: 150px;
+    height: auto;
+    border:none;
+}
+
 nav.navbar.bootsnav ul.nav > li > a {
     color: #859098;
-    font-size: 14px;
+    font-size: 16px;
     font-weight: 500;
     text-transform: uppercase;
     -webkit-transition: 0.3s linear;
@@ -302,6 +320,8 @@ nav.navbar.bootsnav ul.nav > li.dropdown span {
 .menu-ui-design {
     overflow-y: scroll;
     height: 350px;
+    justify-items: center;
+    margin-top: 20px
 }
 
     .menu-ui-design::-webkit-scrollbar {
@@ -508,6 +528,10 @@ nav.navbar.bootsnav .navbar-toggle {
     margin-top: 2rem;
 }
 
+.lesson-head {
+    max-height: 150px !important;
+}
+
     .curricular-head p {
         font-size: 18px;
         line-height: 20px;
@@ -550,7 +574,7 @@ nav.navbar.bootsnav .navbar-toggle {
     z-index: 1;
     text-align: center;
     background-color: #fff;
-    height: 7.5em;
+    height: 8.5em;
 }
 
 .section-header {

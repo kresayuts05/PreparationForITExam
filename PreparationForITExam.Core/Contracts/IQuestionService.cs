@@ -10,5 +10,7 @@ namespace PreparationForITExam.Core.Contracts
     public interface IQuestionService
     {
         Task<List<QuestionViewModel>> GetAllLessonQuestionsByLessonId(int lessonId);
+
+        Task CreateQuestion(QuestionFormViewModel model);
     }
 }
