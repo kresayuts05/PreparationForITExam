@@ -14,6 +14,7 @@ namespace PreparationForITExam.Core.Contracts
         Task ConvertPresentationToJpeg(IFormFile file, string userId, int lessonId);
         Task ConvertPresentationToPdf(IFormFile file, string userId, int lessonId);
         Task ConvertWordDocumentToPdf(IFormFile file, string userId, int lessonId);
+        Task ConvertWordDocumentsToPdf(List<IFormFile> file, string userId, int lessonId);
         Task ZipUpload(byte[] file, string userId, int lessonId);
         Task<string> GetPresentationUrlByLessonId(int lessonId);
         Task<List<MaterialModel>> GetAllMaterialsForLessonById(int lessonId);

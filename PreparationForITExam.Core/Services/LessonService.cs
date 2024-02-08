@@ -36,7 +36,7 @@ namespace PreparationForITExam.Core.Services
                     Id = l.Id,
                     SectionOfCurricularId = l.SectionOfCurricularId,
                     Title = l.Title,
-
+                    HasPresentation = l.Materials.Any(),
                 })
                 .ToListAsync();
 
@@ -69,5 +69,22 @@ namespace PreparationForITExam.Core.Services
 
             return lesson.Title;
         }
+
+        public async Task<int> GetSectionCurricularIdByLessonId(int id)
+        {
+            var lesson = await repo.GetByIdAsync<Lesson>(id);
+
+            return lesson.SectionOfCurricularId;
+        }
+
+        public async Task SetContentToLesson(string content, int id)
+        {
+            var lesson = await repo.GetByIdAsync<Lesson>(id);
+
+            lesson.Content= content;
+            await repo.SaveChangesAsync();
+        }
+
+
     }
 }

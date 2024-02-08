@@ -82,28 +82,28 @@ namespace PreparationForITExam.Infrastructure.Migrations
                         new
                         {
                             Id = "0f761db2-ab55-416c-83b9-70abded3d908",
-                            ConcurrencyStamp = "1665c666-e1f1-484f-ac74-8faadb64d2bd",
+                            ConcurrencyStamp = "737780e9-ac92-4463-bbb1-4dd2eedd7890",
                             Name = "Administrator",
                             NormalizedName = "ADMINISTRATOR"
                         },
                         new
                         {
                             Id = "e66d730b-bcf1-41b5-b7e0-3e66056e61d9",
-                            ConcurrencyStamp = "0f10b0e9-29c5-4c12-b7e3-03c40b709b7f",
+                            ConcurrencyStamp = "f8d3276d-184b-4d68-b03f-df0db760b1ac",
                             Name = "Student",
                             NormalizedName = "STUDENT"
                         },
                         new
                         {
                             Id = "71281cf3-9730-4d7e-acbb-213edee8291c",
-                            ConcurrencyStamp = "17e2384e-13da-4ba3-a7d4-b12e1bfe68f4",
+                            ConcurrencyStamp = "b1b69a9b-bf75-440d-a608-566e53a6308a",
                             Name = "Teacher",
                             NormalizedName = "TEACHER"
                         },
                         new
                         {
                             Id = "fe750b82-6fe9-472c-bdc5-61f5433d429e",
-                            ConcurrencyStamp = "075f415b-3933-465e-a3e8-620b51dd1b16",
+                            ConcurrencyStamp = "3a4886d7-5d31-4447-9e5b-43bdd0f97ada",
                             Name = "MonUser",
                             NormalizedName = "MONUSER"
                         });
@@ -202,6 +202,21 @@ namespace PreparationForITExam.Infrastructure.Migrations
                         {
                             UserId = "789061a9-edaa-4a00-9e09-add6a20c8288",
                             RoleId = "0f761db2-ab55-416c-83b9-70abded3d908"
+                        },
+                        new
+                        {
+                            UserId = "7decfb7d-d2df-40a2-a449-dcec04eb091a",
+                            RoleId = "fe750b82-6fe9-472c-bdc5-61f5433d429e"
+                        },
+                        new
+                        {
+                            UserId = "023bafc9-8b7e-4fbd-bb06-2b178fe8ae8b",
+                            RoleId = "e66d730b-bcf1-41b5-b7e0-3e66056e61d9"
+                        },
+                        new
+                        {
+                            UserId = "9c7f55cd-f0ae-405e-b520-6e1ccc448fcc",
+                            RoleId = "71281cf3-9730-4d7e-acbb-213edee8291c"
                         });
                 });
 
@@ -1474,7 +1489,7 @@ namespace PreparationForITExam.Infrastructure.Migrations
                             Content = "",
                             ExerciseId = 41,
                             IsActive = true,
-                            SectionOfCurricularId = 7,
+                            SectionOfCurricularId = 13,
                             Title = "Типове данни с релации"
                         },
                         new
@@ -2128,6 +2143,556 @@ namespace PreparationForITExam.Infrastructure.Migrations
                         {
                             LessonId = 1,
                             MonUserId = 1
+                        },
+                        new
+                        {
+                            LessonId = 2,
+                            MonUserId = 1
+                        },
+                        new
+                        {
+                            LessonId = 3,
+                            MonUserId = 1
+                        },
+                        new
+                        {
+                            LessonId = 4,
+                            MonUserId = 1
+                        },
+                        new
+                        {
+                            LessonId = 5,
+                            MonUserId = 1
+                        },
+                        new
+                        {
+                            LessonId = 6,
+                            MonUserId = 1
+                        },
+                        new
+                        {
+                            LessonId = 7,
+                            MonUserId = 1
+                        },
+                        new
+                        {
+                            LessonId = 8,
+                            MonUserId = 1
+                        },
+                        new
+                        {
+                            LessonId = 9,
+                            MonUserId = 1
+                        },
+                        new
+                        {
+                            LessonId = 10,
+                            MonUserId = 1
+                        },
+                        new
+                        {
+                            LessonId = 11,
+                            MonUserId = 1
+                        },
+                        new
+                        {
+                            LessonId = 12,
+                            MonUserId = 1
+                        },
+                        new
+                        {
+                            LessonId = 13,
+                            MonUserId = 1
+                        },
+                        new
+                        {
+                            LessonId = 14,
+                            MonUserId = 1
+                        },
+                        new
+                        {
+                            LessonId = 15,
+                            MonUserId = 1
+                        },
+                        new
+                        {
+                            LessonId = 16,
+                            MonUserId = 1
+                        },
+                        new
+                        {
+                            LessonId = 17,
+                            MonUserId = 1
+                        },
+                        new
+                        {
+                            LessonId = 18,
+                            MonUserId = 1
+                        },
+                        new
+                        {
+                            LessonId = 19,
+                            MonUserId = 1
+                        },
+                        new
+                        {
+                            LessonId = 20,
+                            MonUserId = 1
+                        },
+                        new
+                        {
+                            LessonId = 21,
+                            MonUserId = 1
+                        },
+                        new
+                        {
+                            LessonId = 22,
+                            MonUserId = 1
+                        },
+                        new
+                        {
+                            LessonId = 23,
+                            MonUserId = 1
+                        },
+                        new
+                        {
+                            LessonId = 24,
+                            MonUserId = 1
+                        },
+                        new
+                        {
+                            LessonId = 25,
+                            MonUserId = 1
+                        },
+                        new
+                        {
+                            LessonId = 26,
+                            MonUserId = 1
+                        },
+                        new
+                        {
+                            LessonId = 27,
+                            MonUserId = 1
+                        },
+                        new
+                        {
+                            LessonId = 28,
+                            MonUserId = 1
+                        },
+                        new
+                        {
+                            LessonId = 29,
+                            MonUserId = 1
+                        },
+                        new
+                        {
+                            LessonId = 30,
+                            MonUserId = 1
+                        },
+                        new
+                        {
+                            LessonId = 31,
+                            MonUserId = 1
+                        },
+                        new
+                        {
+                            LessonId = 32,
+                            MonUserId = 1
+                        },
+                        new
+                        {
+                            LessonId = 33,
+                            MonUserId = 1
+                        },
+                        new
+                        {
+                            LessonId = 34,
+                            MonUserId = 1
+                        },
+                        new
+                        {
+                            LessonId = 35,
+                            MonUserId = 1
+                        },
+                        new
+                        {
+                            LessonId = 36,
+                            MonUserId = 1
+                        },
+                        new
+                        {
+                            LessonId = 37,
+                            MonUserId = 1
+                        },
+                        new
+                        {
+                            LessonId = 38,
+                            MonUserId = 1
+                        },
+                        new
+                        {
+                            LessonId = 39,
+                            MonUserId = 1
+                        },
+                        new
+                        {
+                            LessonId = 40,
+                            MonUserId = 1
+                        },
+                        new
+                        {
+                            LessonId = 41,
+                            MonUserId = 1
+                        },
+                        new
+                        {
+                            LessonId = 42,
+                            MonUserId = 1
+                        },
+                        new
+                        {
+                            LessonId = 43,
+                            MonUserId = 1
+                        },
+                        new
+                        {
+                            LessonId = 44,
+                            MonUserId = 1
+                        },
+                        new
+                        {
+                            LessonId = 45,
+                            MonUserId = 1
+                        },
+                        new
+                        {
+                            LessonId = 46,
+                            MonUserId = 1
+                        },
+                        new
+                        {
+                            LessonId = 47,
+                            MonUserId = 1
+                        },
+                        new
+                        {
+                            LessonId = 48,
+                            MonUserId = 1
+                        },
+                        new
+                        {
+                            LessonId = 49,
+                            MonUserId = 1
+                        },
+                        new
+                        {
+                            LessonId = 50,
+                            MonUserId = 1
+                        },
+                        new
+                        {
+                            LessonId = 51,
+                            MonUserId = 1
+                        },
+                        new
+                        {
+                            LessonId = 52,
+                            MonUserId = 1
+                        },
+                        new
+                        {
+                            LessonId = 53,
+                            MonUserId = 1
+                        },
+                        new
+                        {
+                            LessonId = 54,
+                            MonUserId = 1
+                        },
+                        new
+                        {
+                            LessonId = 55,
+                            MonUserId = 1
+                        },
+                        new
+                        {
+                            LessonId = 56,
+                            MonUserId = 1
+                        },
+                        new
+                        {
+                            LessonId = 57,
+                            MonUserId = 1
+                        },
+                        new
+                        {
+                            LessonId = 58,
+                            MonUserId = 1
+                        },
+                        new
+                        {
+                            LessonId = 59,
+                            MonUserId = 1
+                        },
+                        new
+                        {
+                            LessonId = 60,
+                            MonUserId = 1
+                        },
+                        new
+                        {
+                            LessonId = 61,
+                            MonUserId = 1
+                        },
+                        new
+                        {
+                            LessonId = 62,
+                            MonUserId = 1
+                        },
+                        new
+                        {
+                            LessonId = 63,
+                            MonUserId = 1
+                        },
+                        new
+                        {
+                            LessonId = 64,
+                            MonUserId = 1
+                        },
+                        new
+                        {
+                            LessonId = 65,
+                            MonUserId = 1
+                        },
+                        new
+                        {
+                            LessonId = 66,
+                            MonUserId = 1
+                        },
+                        new
+                        {
+                            LessonId = 67,
+                            MonUserId = 1
+                        },
+                        new
+                        {
+                            LessonId = 68,
+                            MonUserId = 1
+                        },
+                        new
+                        {
+                            LessonId = 69,
+                            MonUserId = 1
+                        },
+                        new
+                        {
+                            LessonId = 70,
+                            MonUserId = 1
+                        },
+                        new
+                        {
+                            LessonId = 71,
+                            MonUserId = 1
+                        },
+                        new
+                        {
+                            LessonId = 72,
+                            MonUserId = 1
+                        },
+                        new
+                        {
+                            LessonId = 73,
+                            MonUserId = 1
+                        },
+                        new
+                        {
+                            LessonId = 74,
+                            MonUserId = 1
+                        },
+                        new
+                        {
+                            LessonId = 75,
+                            MonUserId = 1
+                        },
+                        new
+                        {
+                            LessonId = 76,
+                            MonUserId = 1
+                        },
+                        new
+                        {
+                            LessonId = 77,
+                            MonUserId = 1
+                        },
+                        new
+                        {
+                            LessonId = 78,
+                            MonUserId = 1
+                        },
+                        new
+                        {
+                            LessonId = 79,
+                            MonUserId = 1
+                        },
+                        new
+                        {
+                            LessonId = 80,
+                            MonUserId = 1
+                        },
+                        new
+                        {
+                            LessonId = 81,
+                            MonUserId = 1
+                        },
+                        new
+                        {
+                            LessonId = 82,
+                            MonUserId = 1
+                        },
+                        new
+                        {
+                            LessonId = 83,
+                            MonUserId = 1
+                        },
+                        new
+                        {
+                            LessonId = 84,
+                            MonUserId = 1
+                        },
+                        new
+                        {
+                            LessonId = 85,
+                            MonUserId = 1
+                        },
+                        new
+                        {
+                            LessonId = 86,
+                            MonUserId = 1
+                        },
+                        new
+                        {
+                            LessonId = 87,
+                            MonUserId = 1
+                        },
+                        new
+                        {
+                            LessonId = 88,
+                            MonUserId = 1
+                        },
+                        new
+                        {
+                            LessonId = 89,
+                            MonUserId = 1
+                        },
+                        new
+                        {
+                            LessonId = 90,
+                            MonUserId = 1
+                        },
+                        new
+                        {
+                            LessonId = 91,
+                            MonUserId = 1
+                        },
+                        new
+                        {
+                            LessonId = 92,
+                            MonUserId = 1
+                        },
+                        new
+                        {
+                            LessonId = 93,
+                            MonUserId = 1
+                        },
+                        new
+                        {
+                            LessonId = 94,
+                            MonUserId = 1
+                        },
+                        new
+                        {
+                            LessonId = 95,
+                            MonUserId = 1
+                        },
+                        new
+                        {
+                            LessonId = 96,
+                            MonUserId = 1
+                        },
+                        new
+                        {
+                            LessonId = 97,
+                            MonUserId = 1
+                        },
+                        new
+                        {
+                            LessonId = 98,
+                            MonUserId = 1
+                        },
+                        new
+                        {
+                            LessonId = 99,
+                            MonUserId = 1
+                        },
+                        new
+                        {
+                            LessonId = 100,
+                            MonUserId = 1
+                        },
+                        new
+                        {
+                            LessonId = 101,
+                            MonUserId = 1
+                        },
+                        new
+                        {
+                            LessonId = 102,
+                            MonUserId = 1
+                        },
+                        new
+                        {
+                            LessonId = 103,
+                            MonUserId = 1
+                        },
+                        new
+                        {
+                            LessonId = 104,
+                            MonUserId = 1
+                        },
+                        new
+                        {
+                            LessonId = 105,
+                            MonUserId = 1
+                        },
+                        new
+                        {
+                            LessonId = 106,
+                            MonUserId = 1
+                        },
+                        new
+                        {
+                            LessonId = 107,
+                            MonUserId = 1
+                        },
+                        new
+                        {
+                            LessonId = 108,
+                            MonUserId = 1
+                        },
+                        new
+                        {
+                            LessonId = 109,
+                            MonUserId = 1
+                        },
+                        new
+                        {
+                            LessonId = 110,
+                            MonUserId = 1
+                        },
+                        new
+                        {
+                            LessonId = 111,
+                            MonUserId = 1
                         });
                 });
 
@@ -2187,6 +2752,10 @@ namespace PreparationForITExam.Infrastructure.Migrations
                     b.Property<int?>("ExerciseId")
                         .HasColumnType("int");
 
+                    b.Property<string>("FileFormat")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<bool>("IsActive")
                         .HasColumnType("bit");
 
@@ -2194,8 +2763,8 @@ namespace PreparationForITExam.Infrastructure.Migrations
                         .HasColumnType("int");
 
                     b.Property<string>("Name")
-                        .HasMaxLength(50)
-                        .HasColumnType("nvarchar(50)");
+                        .HasMaxLength(300)
+                        .HasColumnType("nvarchar(300)");
 
                     b.Property<int?>("RequestExerciseId")
                         .HasColumnType("int");
@@ -2299,7 +2868,7 @@ namespace PreparationForITExam.Infrastructure.Migrations
                         {
                             Id = 1,
                             IsActive = true,
-                            UserId = "789061a9-edaa-4a00-9e09-add6a20c8288"
+                            UserId = "7decfb7d-d2df-40a2-a449-dcec04eb091a"
                         });
                 });
 
@@ -7967,7 +8536,7 @@ namespace PreparationForITExam.Infrastructure.Migrations
                             Id = 15,
                             IsActive = true,
                             ModuleOfCurricularId = 3,
-                            Title = "Интегриране на Бази от данни в интернет системи"
+                            Title = "Интегриране на Бази от данни в ИС"
                         },
                         new
                         {
@@ -8000,10 +8569,6 @@ namespace PreparationForITExam.Infrastructure.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
 
-                    b.Property<string>("AboutMe")
-                        .HasMaxLength(300)
-                        .HasColumnType("nvarchar(300)");
-
                     b.Property<int>("Grade")
                         .HasColumnType("int");
 
@@ -8028,6 +8593,17 @@ namespace PreparationForITExam.Infrastructure.Migrations
                     b.HasIndex("UserId");
 
                     b.ToTable("Students");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            Grade = 12,
+                            IsActive = true,
+                            SchoolId = 152,
+                            Speciality = "Приложен програмист",
+                            UserId = "023bafc9-8b7e-4fbd-bb06-2b178fe8ae8b"
+                        });
                 });
 
             modelBuilder.Entity("PreparationForITExam.Infrastructure.Data.Entities.Teacher", b =>
@@ -8066,6 +8642,18 @@ namespace PreparationForITExam.Infrastructure.Migrations
                     b.HasIndex("UserId");
 
                     b.ToTable("Teachers");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            Experience = 12,
+                            IsActive = true,
+                            SchoolId = 289,
+                            Status = "Waiting",
+                            Subject = "Информатика",
+                            UserId = "9c7f55cd-f0ae-405e-b520-6e1ccc448fcc"
+                        });
                 });
 
             modelBuilder.Entity("PreparationForITExam.Infrastructure.Data.Entities.User", b =>
@@ -8166,24 +8754,98 @@ namespace PreparationForITExam.Infrastructure.Migrations
                         new
                         {
                             Id = "789061a9-edaa-4a00-9e09-add6a20c8288",
+                            AboutMe = "Разработвам това приложение, за да участвам в олимпиада по информационни технологии. Темата си избрах след първата матура по Информатика. Моите учители и приятели, които се явиха на това ДЗИ, имаха проблем с намирането на полезни материали и информация за самата матура. Това приложение се надявам, че би олеснило подготовката, защото хора с еднакви интереси и задачи могат да комуникират и обменят знания. Също така, учители могат да предадат знанията си на ученици, които наистина имат желание да се научат и полагат усилия.",
                             AccessFailedCount = 0,
                             City = "Казанлък",
-                            ConcurrencyStamp = "9337d637-a31f-445d-bca6-dbc059105c6a",
-                            Email = "kresa@gmail.com",
+                            ConcurrencyStamp = "c357bfb5-e636-4cb4-9f6f-ab119e777d6d",
+                            Email = "admin@gmail.com",
                             EmailConfirmed = false,
                             FirstName = "Креса",
                             IsActive = true,
                             LastName = "Цветкова",
                             LockoutEnabled = false,
-                            NormalizedEmail = "KRESA@GMAIL.COM",
-                            NormalizedUserName = "KRESA@GMAIL.COM",
-                            PasswordHash = "AQAAAAEAACcQAAAAEADaw9V5iN/WhVETjPRWD5/9ZdGV14ko93O9a5TTrhUqn8RvfBu6pKKgmQtUMkE8UA==",
+                            NormalizedEmail = "ADMIN@GMAIL.COM",
+                            NormalizedUserName = "ADMIN@GMAIL.COM",
+                            PasswordHash = "AQAAAAEAACcQAAAAEKJmW+sIEqOPbElqXzXIpRvrjb0vzBKAHruQizrsY9tVwvT1/JaXy+WQyeilcfUUow==",
                             PhoneNumber = "0886121260",
                             PhoneNumberConfirmed = false,
+                            ProfilePictureUrl = "https://res.cloudinary.com/dmv8nabul/image/upload/v1707334401/kresa_bkbaoa.jpg",
                             RoleName = "Administrator",
-                            SecurityStamp = "70ce6cf6-3c46-4197-9741-4823375ceb0a",
+                            SecurityStamp = "c1488e3a-421f-41ab-9727-eb2ef20588e0",
                             TwoFactorEnabled = false,
-                            UserName = "kresa@gmail.com"
+                            UserName = "admin@gmail.com"
+                        },
+                        new
+                        {
+                            Id = "7decfb7d-d2df-40a2-a449-dcec04eb091a",
+                            AboutMe = "Работя в МОН от 5 години. Преподавам по Информатика в частна школа. Програмирането е моята страст. Обичам фо повече от приятелката ми.",
+                            AccessFailedCount = 0,
+                            City = "Кърджали",
+                            ConcurrencyStamp = "09c82dc2-e678-4432-8307-1ad796d79d8c",
+                            Email = "monuser@gmail.com",
+                            EmailConfirmed = false,
+                            FirstName = "Валентин",
+                            IsActive = true,
+                            LastName = "Терзиев",
+                            LockoutEnabled = false,
+                            NormalizedEmail = "MONUSER@GMAIL.COM",
+                            NormalizedUserName = "MONUSER@GMAIL.COM",
+                            PasswordHash = "AQAAAAEAACcQAAAAEK+6UfoYCsX4OztwX++WxfDi7htIANHvl5E4/DckwQrU7YxCUWoiMi45FT+magOCyQ==",
+                            PhoneNumber = "0886121261",
+                            PhoneNumberConfirmed = false,
+                            ProfilePictureUrl = "https://res.cloudinary.com/dmv8nabul/image/upload/v1707334408/valentin_u5en92.jpg",
+                            RoleName = "MonUser",
+                            SecurityStamp = "af6e4b79-73e8-4831-8ea2-c30b0c062634",
+                            TwoFactorEnabled = false,
+                            UserName = "monuser@gmail.com"
+                        },
+                        new
+                        {
+                            Id = "023bafc9-8b7e-4fbd-bb06-2b178fe8ae8b",
+                            AboutMe = "Занимавам се с програмиране от 3 години. Интересувам се от кибер сигурност, а именно и това искам да уча след като завърша.",
+                            AccessFailedCount = 0,
+                            City = "Миделбург",
+                            ConcurrencyStamp = "0d417c68-977e-42a7-900b-26283f107eaf",
+                            Email = "student@gmail.com",
+                            EmailConfirmed = false,
+                            FirstName = "Никол",
+                            IsActive = true,
+                            LastName = "Груева",
+                            LockoutEnabled = false,
+                            NormalizedEmail = "STUDENT@GMAIL.COM",
+                            NormalizedUserName = "STUDENT@GMAIL.COM",
+                            PasswordHash = "AQAAAAEAACcQAAAAEGALl6itsiCxoOO0lvAGwInNEM2yysgFmoIj87Bgim9KDDkwv59iQxVFGYo5SKuHAg==",
+                            PhoneNumber = "0886121262",
+                            PhoneNumberConfirmed = false,
+                            ProfilePictureUrl = "https://res.cloudinary.com/dmv8nabul/image/upload/v1707334404/nikol_prlrcl.jpg",
+                            RoleName = "Student",
+                            SecurityStamp = "2dffaf1c-955b-47d7-b654-0d5f2ae02db1",
+                            TwoFactorEnabled = false,
+                            UserName = "student@gmail.com"
+                        },
+                        new
+                        {
+                            Id = "9c7f55cd-f0ae-405e-b520-6e1ccc448fcc",
+                            AboutMe = "Учителка съм от 12 години. Избрах тази професия, защото работата с деца е моята страст. В работата си опитвам да предам знанията си колкото повече мога. Мой интерес е работата с ASP.NET.",
+                            AccessFailedCount = 0,
+                            City = "София",
+                            ConcurrencyStamp = "fca600e3-bbad-4cee-aaed-0fcb8c941865",
+                            Email = "teacher@gmail.com",
+                            EmailConfirmed = false,
+                            FirstName = "Ивета",
+                            IsActive = true,
+                            LastName = "Найденова",
+                            LockoutEnabled = false,
+                            NormalizedEmail = "TEACHER@GMAIL.COM",
+                            NormalizedUserName = "TEACHER@GMAIL.COM",
+                            PasswordHash = "AQAAAAEAACcQAAAAEGTtL1gIDet9Nk+j0wkFFTT5mqZYMKOM1sjM8svFoLE2g+S6Bu0i5tI2rKYDWkjrqA==",
+                            PhoneNumber = "0886121262",
+                            PhoneNumberConfirmed = false,
+                            ProfilePictureUrl = "https://res.cloudinary.com/dmv8nabul/image/upload/v1707334395/iveta_rknyn3.jpg",
+                            RoleName = "Teacher",
+                            SecurityStamp = "b96e1e74-dad8-4dcf-9d27-8acd0994e90e",
+                            TwoFactorEnabled = false,
+                            UserName = "teacher@gmail.com"
                         });
                 });
 

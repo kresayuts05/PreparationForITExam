@@ -16,7 +16,7 @@ namespace PreparationForITExam.Core.Models.Lesson
 
         public int SectionOfCurricularId { get; set; }
 
-        public string Content { get; set; }
+        public bool HasPresentation { get; set; }
 
         public bool IsActive { get; set; }
     }

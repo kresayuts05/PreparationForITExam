@@ -8,6 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 
 using static PreparationForITExam.Infrastructure.Data.Constants.ModelConstraints.QuestionConstraints;
+using PreparationForITExam.Core.Models.Lesson;
 
 namespace PreparationForITExam.Core.Models.Question
 {
@@ -26,5 +27,6 @@ namespace PreparationForITExam.Core.Models.Question
         public string UserId { get; set; }
 
         public string? Url { get; set; }
+
     }
 }

@@ -72,6 +72,8 @@ namespace PreparationForITExam.Infrastructure.Data
             builder.ApplyConfiguration(new LessonConfiguration());
             builder.ApplyConfiguration(new LessonMonUserConfiguration());
             builder.ApplyConfiguration(new UserRoleConifiguration());
+            builder.ApplyConfiguration(new TeacherConfiguration());
+            builder.ApplyConfiguration(new StudentConfiguration());
 
 
             base.OnModelCreating(builder);

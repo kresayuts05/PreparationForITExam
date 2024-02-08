@@ -13,13 +13,22 @@ namespace PreparationForITExam.Infrastructure.Data.Configurations
     {
         public void Configure(EntityTypeBuilder<MonUser> builder)
         {
-            builder.HasData(new List<MonUser>
+            builder.HasData(CreateMonUsers());
+        }
+
+        private List<MonUser> CreateMonUsers()
+        {
+            var monUsers = new List<MonUser>();
+
+            var monUser = new MonUser
             {
-                 new MonUser {
-                    Id = 1,
-                    UserId = "789061a9-edaa-4a00-9e09-add6a20c8288",
-                 },
-            });
+                Id = 1,
+                UserId = "7decfb7d-d2df-40a2-a449-dcec04eb091a"
+            };
+
+            monUsers.Add(monUser);
+
+            return monUsers;
         }
     }
 }

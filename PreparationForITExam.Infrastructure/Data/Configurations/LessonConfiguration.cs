@@ -298,7 +298,7 @@ namespace PreparationForITExam.Infrastructure.Data.Configurations
                 new Lesson {
                     Id = 41,
                     Title = "Типове данни с релации",
-                    SectionOfCurricularId = 7,
+                    SectionOfCurricularId = 13,
                     Content = "",
                     ExerciseId = 41,
                 },

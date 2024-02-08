@@ -1,4 +1,5 @@
-﻿@model SectionLessonViewModel
+﻿@using PreparationForITExam.Core.Constants;
+@model SectionLessonViewModel
 
 <link rel="stylesheet" href="~/css/lessonsStyle.css" asp-append-version="true" />
 
@@ -11,7 +12,25 @@
     <ol class="gradient-list">
         @foreach (var lesson in Model.Lessons)
         {
-            <li><a class="curricular-element" asp-controller="Lesson" asp-area="" asp-action="Index" asp-route-id="@lesson.Id">@lesson.Title</a></li>
+            <li>
+                <div style="overflow:auto;">
+                    <a  style="float: left;" class="curricular-element" asp-controller="Lesson" asp-area="" asp-action="Index" asp-route-id="@lesson.Id">@lesson.Title</a>
+                    <div style="float: right;">
+                        @if (this.User.IsInRole(RoleConstants.MonUser))
+                        {
+                            @if (lesson.HasPresentation)
+                            {
+                                <a asp-controller="Material" asp-area="" asp-action="Add" asp-route-id="@lesson.Id" class="btn btn-info">Промени</a>
+                            }
+                            else
+                            {
+                                <a asp-controller="Material" asp-area="" asp-action="Add" asp-route-id="@lesson.Id" class="btn btn-success">Добави</a>
+
+                            }
+                        }
+                    </div>
+                </div>
+            </li>
         }
     </ol>
 </section>

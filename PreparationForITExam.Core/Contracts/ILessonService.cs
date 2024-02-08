@@ -13,5 +13,8 @@ namespace PreparationForITExam.Core.Contracts
         Task<List<LessonModel>> AllLessonsBySectionOfCurricularId(int sectionId);
         Task<string> GetLessonNameById(int id);
         Task<LessonViewModel> GetLessonById(int id);
+        Task SetContentToLesson(string content, int id);
+
+        Task<int> GetSectionCurricularIdByLessonId(int id);
     }
 }

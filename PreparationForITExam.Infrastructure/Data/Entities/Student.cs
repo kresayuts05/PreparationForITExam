@@ -27,9 +27,6 @@ namespace PreparationForITExam.Infrastructure.Data.Entities
         [Range(GradeMinValue, GradeMaxValue)]
         public int Grade { get; set; }
 
-        [MaxLength(AboutMeMaxLength)]
-        public string? AboutMe { get; set; }
-
         public bool IsActive { get; set; }
 
         [ForeignKey(nameof(User))]

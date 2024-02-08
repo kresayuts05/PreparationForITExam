@@ -58,10 +58,13 @@ namespace PreparationForITExam.Core.Services
                         throw new InvalidOperationException(result.Error.Message);
                     }
 
+                    var url = result.Url.ToString().Replace("http", "https");
+
                     material = new Material
                     {
-                        UrlPath = result.Url.ToString(),
+                        UrlPath = url,
                         Name = lessonTitle + " presentation",
+                        FileFormat = ".pdf",
                         LessonId = lessonId,
                         UserId = userId
                     };
@@ -116,6 +119,7 @@ namespace PreparationForITExam.Core.Services
                             {
                                 UrlPath = result.Url.ToString(),
                                 Name = lessonTitle + " presentation",
+                                FileFormat = ".jpg",
                                 LessonId = lessonId,
                                 UserId = userId
                             });
@@ -156,6 +160,7 @@ namespace PreparationForITExam.Core.Services
                 {
                     Name = $"{userId} zip",
                     UrlPath = url,
+                    FileFormat = ".zip",
                     LessonId = lessonId,
                     UserId = userId
                 };
@@ -164,41 +169,6 @@ namespace PreparationForITExam.Core.Services
                 await repo.SaveChangesAsync();
             }
         }
-
-        public async Task<string> GetPresentationUrlByLessonId(int lessonId)
-        {
-            string url = await repo.AllReadonly<Material>()
-                .Where(m => m.LessonId == lessonId)
-                .Where(m => m.IsActive == true)
-                .Where(m => m.Name.Contains("presentation"))
-                .Select(m => m.UrlPath)
-                .FirstOrDefaultAsync();
-
-            if (url == null)
-            {
-                throw new NullReferenceException(nameof(url));
-            }
-
-            return url;
-        }
-
-        public async Task<List<MaterialModel>> GetAllMaterialsForLessonById(int lessonId)
-        {
-            var materials = await repo.AllReadonly<Material>()
-                .Where(m => m.LessonId == lessonId)
-                .Where(m => m.IsActive == true)
-                .Where(m => m.Name.Contains("presentation") == false)
-                .Select(m => new MaterialModel
-                {
-                    Id = m.Id,
-                    Name = m.Name,
-                    UrlPath = m.UrlPath
-                })
-                .ToListAsync();
-
-            return materials;
-        }
-
         public async Task ConvertWordDocumentToPdf(IFormFile file, string userId, int lessonId)
         {
             string lessonTitle = await repo.AllReadonly<Lesson>()
@@ -232,10 +202,13 @@ namespace PreparationForITExam.Core.Services
                             throw new InvalidOperationException(result.Error.Message);
                         }
 
+                        var url = result.Url.ToString().Replace("http", "https");
+
                         material = new Material
                         {
-                            UrlPath = result.Url.ToString(),
+                            UrlPath = url,
                             Name = lessonTitle + " docx",
+                            FileFormat = ".pdf",
                             LessonId = lessonId,
                             UserId = userId
                         };
@@ -244,6 +217,92 @@ namespace PreparationForITExam.Core.Services
                 await repo.AddAsync<Material>(material);
                 await repo.SaveChangesAsync();
             }
+        }
+        public async Task ConvertWordDocumentsToPdf(List<IFormFile> files, string userId, int lessonId)
+        {
+            string lessonTitle = await repo.AllReadonly<Lesson>()
+                   .Where(l => l.Id == lessonId)
+                   .Where(l => l.IsActive == true)
+                   .Select(l => l.Title)
+                   .FirstOrDefaultAsync();
+
+            List<Material> materials = new List<Material>();
+
+            foreach (var file in files)
+            {
+                using (var docStream = file.OpenReadStream())
+                {
+                    using (WordDocument wordDocument = new WordDocument(docStream, Syncfusion.DocIO.FormatType.Docx))
+                    {
+                        using (DocIORenderer renderer = new DocIORenderer())
+                        {
+                            PdfDocument pdfDocument = renderer.ConvertToPDF(wordDocument);
+                            MemoryStream ms = new MemoryStream();
+                            pdfDocument.Save(ms);
+                            ms.Position = 0;
+
+                            var uploadParams = new ImageUploadParams()
+                            {
+                                File = new FileDescription($"{lessonTitle}.pdf", ms)
+                            };
+
+                            var result = await this.cloudinary.UploadAsync(uploadParams);
+
+                            if (result.Error != null)
+                            {
+                                throw new InvalidOperationException(result.Error.Message);
+                            }
+
+                            var url = result.Url.ToString().Replace("http", "https");
+
+                            materials.Add(new Material
+                            {
+                                UrlPath = url,
+                                Name = lessonTitle + " docx",
+                                FileFormat = ".pdf",
+                                LessonId = lessonId,
+                                UserId = userId
+                            });
+                        }
+                    }
+                }
+            }
+            await repo.AddRangeAsync<Material>(materials);
+            await repo.SaveChangesAsync();
+        }
+        public async Task<string> GetPresentationUrlByLessonId(int lessonId)
+        {
+            string url = await repo.AllReadonly<Material>()
+                .Where(m => m.LessonId == lessonId)
+                .Where(m => m.IsActive == true)
+                .Where(m => m.Name.Contains("presentation"))
+                .Select(m => m.UrlPath)
+                .FirstOrDefaultAsync();
+
+            if (url == null)
+            {
+                throw new NullReferenceException(nameof(url));
+            }
+
+            return url;
+        }
+        public async Task<List<MaterialModel>> GetAllMaterialsForLessonById(int lessonId)
+        {
+            var materials = await repo.AllReadonly<Material>()
+                .Where(m => m.LessonId == lessonId)
+                .Where(m => m.IsActive == true)
+                .Where(m => m.Name.Contains("presentation") == false)
+                .Select(m => new MaterialModel
+                {
+                    Id = m.Id,
+                    Name = m.Name,
+                    UrlPath = m.UrlPath,
+                    FileFormat = m.FileFormat,
+                    UserName = m.User.FirstName + " " + m.User.LastName,
+                })
+                .ToListAsync();
+
+            return materials;
         }
     }
 }

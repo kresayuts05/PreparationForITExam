@@ -93,7 +93,7 @@ namespace PreparationForITExam.Infrastructure.Data.Constants
 
         public static class MaterialConstraints
         {
-            public const int NameMaxLength = 50;
+            public const int NameMaxLength = 300;
             public const int NameMinLength = 2;
         }
 

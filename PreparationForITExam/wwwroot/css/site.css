@@ -21,6 +21,10 @@ body {
     /* Style as you please, it will become the visible UI component. */
 }
 
+.cont{
+    width: auto !important;
+    justify-content: center;
+}
 .upload-photo {
     opacity: 0;
     position: absolute;
@@ -2751,9 +2755,6 @@ select {
         transform: rotate(45deg);
     }
 
-textarea {
-    min-height: calc(8 * var(--space));
-}
 
     input[type="email"]:focus,
     input[type="number"]:focus,

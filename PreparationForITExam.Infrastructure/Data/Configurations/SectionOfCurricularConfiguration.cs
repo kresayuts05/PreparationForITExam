@@ -88,7 +88,7 @@ namespace PreparationForITExam.Infrastructure.Data.Configurations
                 },
                      new SectionOfCurricular {
                     Id = 15,
-                    Title = "Интегриране на Бази от данни в интернет системи",
+                    Title = "Интегриране на Бази от данни в ИС",
                     ModuleOfCurricularId = 3
                 },
                      new SectionOfCurricular {

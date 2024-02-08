@@ -13,6 +13,10 @@ namespace PreparationForITExam.Core.Models.Material
 
         public string? Name { get; set; }
 
+        public string? FileFormat { get; set; }
+
+        public string? UserName { get; set; }
+
         public string UrlPath { get; set; }
 
         public bool IsActive { get; set; }

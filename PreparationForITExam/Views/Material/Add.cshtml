@@ -1,0 +1,19 @@
+﻿@model MaterialFormViewModel
+
+@{
+    ViewBag.Title = "Добави материал в урок";
+}
+
+<link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+<section>
+
+    <h2 class="text-center">@ViewBag.Title</h2>
+    <hr />
+
+    <partial name="_MaterialFormPartial" model="@Model" />
+
+</section>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}

@@ -13,15 +13,17 @@ namespace PreparationForITExam.Controllers
             questionService = _questionService;
         }
 
-        //[HttpPost]
-        //public async Task<IActionResult> Add(QuestionFormViewModel model)
-        //{
-        //    if (!ModelState.IsValid)
-        //    {
-        //        return View(model);
-        //    }
+        [HttpPost]
+        public async Task<IActionResult> Add(QuestionFormViewModel model)
+        {
+            if (!ModelState.IsValid)
+            {
+                return View(model);
+            }
 
-        //    await questionService.Create(model);
-        //}
+            await questionService.Create(model);
+
+            
+        }
     }
 }

@@ -26,6 +26,9 @@ namespace PreparationForITExam.Infrastructure.Data.Entities
         [Required]
         public string UrlPath { get; set; } = null!;
 
+        [Required]
+        public string FileFormat { get; set; }
+
         public bool IsActive { get; set; }
 
         [Required]
