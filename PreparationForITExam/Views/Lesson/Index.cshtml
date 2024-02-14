@@ -1,4 +1,5 @@
 ﻿@model LessonViewModel
+@using PreparationForITExam.Core.Constants;
 
 @*
 <section>
@@ -38,8 +39,22 @@
         <div class="curricular-head" style="max-height: 150px !important;">
             <h3> @Model.Title</h3>
             <p>@Model.Module - @Model.SectionOfCurricular</p>
-
         </div>
+
+       @if (this.User.IsInRole(RoleConstants.Teacher))
+        {
+            <div class="material-add">
+                <p  class="left-btn">Сподели своите материали</p>
+                <a asp-controller="Material" asp-area="" asp-action="AddMaterialToLessonByTeacher" asp-route-id="@Model.Id" class="btn btn-success right-btn">Добави</a>
+            </div>
+        }
+        else
+        {
+             <div class="material-add">
+                <p class="left-btn">Споделени материали от учители</p>
+            </div>
+        }
+
         <div>
             @foreach (var material in Model.Materials)
             {

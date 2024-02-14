@@ -16,5 +16,6 @@ namespace PreparationForITExam.Core.Contracts
         Task SetContentToLesson(string content, int id);
 
         Task<int> GetSectionCurricularIdByLessonId(int id);
+        Task<int> GetLessonByMaterialId(int id);
     }
 }

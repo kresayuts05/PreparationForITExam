@@ -37,7 +37,7 @@ namespace PreparationForITExam.Infrastructure.Data.Entities
         public User User { get; set; }
 
         [ForeignKey(nameof(Lesson))]
-        public int? LessonId { get; set; }
+        public int LessonId { get; set; }
 
         public Lesson Lesson { get; set; }
 

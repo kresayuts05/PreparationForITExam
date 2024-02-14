@@ -44,6 +44,7 @@
     <!-- bootsnav -->
     <link rel="stylesheet" href="~/css/bootsnav.css">
 
+
     <!--style.css-->
     <link rel="stylesheet" href="~/css/style.css">
 
@@ -52,14 +53,6 @@
 
     @await RenderSectionAsync("Styles", required: false)
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
-    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
-    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
-    <!--[if lt IE 9]>
-        <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
-        <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
-    <![endif]-->
-    <!-- favicons
-    ================================================== -->
 </head>
 <body>
     <header id="header-top" class="header-top">
@@ -118,60 +111,60 @@
             @RenderBody()
         </main>
     </div>
-@*
+    @*
     <!--footer start-->
     <footer id="footer" class="footer">
-        <div class="container">
-            <div class="footer-menu">
-                <div class="row">
-                    <div class="col-sm-3">
-                        <div class="navbar-header">
-                            <a class="navbar-brand" href="index.html">Блиц<span>Код</span>-ДЗИ</a>
-                        </div><!--/.navbar-header-->
-                    </div>
-                    <div class="col-sm-9">
-                        <ul class="footer-menu-item">
-                            <li><a asp-controller="Home" asp-area="" asp-action="Index"><b>начало</b></a></li>
-                            <li><a asp-controller="Curricular" asp-area="" asp-action="Index"><b>обучение</b></a></li>
-                            <li><a asp-controller="Curricular" asp-area="" asp-action="Index"><b>форум</b></a></li>
-                            <li><a><b>чатове</b></a></li>
-                            <li><a><b>профил</b></a></li>
-                        </ul><!--/.nav -->
-                    </div>
-                </div>
-            </div>
-            <div class="hm-footer-copyright">
-                <div class="row">
-                    <div class="col-sm-5">
-                        <p>
-                            &copy;copyright. designed and developed by Kresa Tsvetkova
-                        </p><!--/p-->
-                    </div>
-                    <div class="col-sm-7">
-                        <div class="footer-social">
-                            <span><i class="fa fa-phone"> +1 (222) 777 8888</i></span>
-                            @if (!SignInManager.IsSignedIn(User))
-                            {
-                                <a class="welcome-hero-btn" asp-controller="Account" asp-action="Register">
-                                    Регистрация
-                                </a>
-                            }
-                        </div>
-                    </div>
-                </div>
+    <div class="container">
+    <div class="footer-menu">
+    <div class="row">
+    <div class="col-sm-3">
+    <div class="navbar-header">
+    <a class="navbar-brand" href="index.html">Блиц<span>Код</span>-ДЗИ</a>
+    </div><!--/.navbar-header-->
+    </div>
+    <div class="col-sm-9">
+    <ul class="footer-menu-item">
+    <li><a asp-controller="Home" asp-area="" asp-action="Index"><b>начало</b></a></li>
+    <li><a asp-controller="Curricular" asp-area="" asp-action="Index"><b>обучение</b></a></li>
+    <li><a asp-controller="Curricular" asp-area="" asp-action="Index"><b>форум</b></a></li>
+    <li><a><b>чатове</b></a></li>
+    <li><a><b>профил</b></a></li>
+    </ul><!--/.nav -->
+    </div>
+    </div>
+    </div>
+    <div class="hm-footer-copyright">
+    <div class="row">
+    <div class="col-sm-5">
+    <p>
+    &copy;copyright. designed and developed by Kresa Tsvetkova
+    </p><!--/p-->
+    </div>
+    <div class="col-sm-7">
+    <div class="footer-social">
+    <span><i class="fa fa-phone"> +1 (222) 777 8888</i></span>
+    @if (!SignInManager.IsSignedIn(User))
+    {
+    <a class="welcome-hero-btn" asp-controller="Account" asp-action="Register">
+    Регистрация
+    </a>
+    }
+    </div>
+    </div>
+    </div>
 
-            </div><!--/.hm-footer-copyright-->
-        </div><!--/.container-->
+    </div><!--/.hm-footer-copyright-->
+    </div><!--/.container-->
 
-        <div id="scroll-Top">
-            <div class="return-to-top">
-                <i class="fa fa-angle-up " id="scroll-top" data-toggle="tooltip" data-placement="top" title=""
-                   data-original-title="Back to Top" aria-hidden="true"></i>
-            </div>
+    <div id="scroll-Top">
+    <div class="return-to-top">
+    <i class="fa fa-angle-up " id="scroll-top" data-toggle="tooltip" data-placement="top" title=""
+    data-original-title="Back to Top" aria-hidden="true"></i>
+    </div>
 
-        </div><!--/.scroll-Top-->
+    </div><!--/.scroll-Top-->
 
-    </footer><!--/.footer-->*@
+    </footer><!--/.footer-->
     <!--footer end-->
     <!-- script
     ================================================== -->

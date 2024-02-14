@@ -15,6 +15,8 @@ namespace PreparationForITExam.Core.Models.Material
 
         public string? FileFormat { get; set; }
 
+        public string UserId { get; set; }
+
         public string? UserName { get; set; }
 
         public string UrlPath { get; set; }

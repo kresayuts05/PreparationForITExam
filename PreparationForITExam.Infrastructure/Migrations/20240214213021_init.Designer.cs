@@ -12,7 +12,7 @@ using PreparationForITExam.Infrastructure.Data;
 namespace PreparationForITExam.Infrastructure.Migrations
 {
     [DbContext(typeof(PreparationForITExamDbContext))]
-    [Migration("20240214133306_init")]
+    [Migration("20240214213021_init")]
     partial class init
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -84,28 +84,28 @@ namespace PreparationForITExam.Infrastructure.Migrations
                         new
                         {
                             Id = "0f761db2-ab55-416c-83b9-70abded3d908",
-                            ConcurrencyStamp = "aae86fdc-ee7e-42fd-8150-c3a3688f517b",
+                            ConcurrencyStamp = "7bd85a39-5757-4e65-8c37-2e59cc7872aa",
                             Name = "Administrator",
                             NormalizedName = "ADMINISTRATOR"
                         },
                         new
                         {
                             Id = "e66d730b-bcf1-41b5-b7e0-3e66056e61d9",
-                            ConcurrencyStamp = "994f81f3-a799-40dd-9142-78997e78d6ba",
+                            ConcurrencyStamp = "2fb03f44-4eff-44bd-89a9-03d3c2162789",
                             Name = "Student",
                             NormalizedName = "STUDENT"
                         },
                         new
                         {
                             Id = "71281cf3-9730-4d7e-acbb-213edee8291c",
-                            ConcurrencyStamp = "7b72c31c-b513-44bd-8246-97ac76b2195c",
+                            ConcurrencyStamp = "549efdab-1356-4a03-af49-7229043b658f",
                             Name = "Teacher",
                             NormalizedName = "TEACHER"
                         },
                         new
                         {
                             Id = "fe750b82-6fe9-472c-bdc5-61f5433d429e",
-                            ConcurrencyStamp = "77fb8c85-a4d3-4535-b0ec-49920bdfad73",
+                            ConcurrencyStamp = "00c52806-1a68-498d-839c-0e8f7ca52e42",
                             Name = "MonUser",
                             NormalizedName = "MONUSER"
                         });
@@ -1177,8 +1177,7 @@ namespace PreparationForITExam.Infrastructure.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
 
-                    b.Property<int?>("ExerciseId")
-                        .IsRequired()
+                    b.Property<int>("ExerciseId")
                         .HasColumnType("int");
 
                     b.Property<string>("FileFormat")
@@ -2340,7 +2339,7 @@ namespace PreparationForITExam.Infrastructure.Migrations
                     b.Property<bool>("IsActive")
                         .HasColumnType("bit");
 
-                    b.Property<int?>("LessonId")
+                    b.Property<int>("LessonId")
                         .HasColumnType("int");
 
                     b.Property<string>("Name")
@@ -8947,7 +8946,7 @@ namespace PreparationForITExam.Infrastructure.Migrations
                             AboutMe = "Разработвам това приложение, за да участвам в олимпиада по информационни технологии. Темата си избрах след първата матура по Информатика. Моите учители и приятели, които се явиха на това ДЗИ, имаха проблем с намирането на полезни материали и информация за самата матура. Това приложение се надявам, че би олеснило подготовката, защото хора с еднакви интереси и задачи могат да комуникират и обменят знания. Също така, учители могат да предадат знанията си на ученици, които наистина имат желание да се научат и полагат усилия.",
                             AccessFailedCount = 0,
                             City = "Казанлък",
-                            ConcurrencyStamp = "d954de93-c03c-4fcc-8f81-379cf05b6c3c",
+                            ConcurrencyStamp = "1792712e-c64b-4501-95db-195d1a47c41d",
                             Email = "admin@gmail.com",
                             EmailConfirmed = false,
                             FirstName = "Креса",
@@ -8956,12 +8955,12 @@ namespace PreparationForITExam.Infrastructure.Migrations
                             LockoutEnabled = false,
                             NormalizedEmail = "ADMIN@GMAIL.COM",
                             NormalizedUserName = "ADMIN@GMAIL.COM",
-                            PasswordHash = "AQAAAAEAACcQAAAAEK2cINaea2HJrYIR0sTztfXpjQCwQKiaWd0YaiLFkSfyht51gisKhEEBXjIJtb3U9g==",
+                            PasswordHash = "AQAAAAEAACcQAAAAEPAYPwc36VPAmm7SxtHkxQ/ZVhATnhtSk/+/3HOeaWlrHukpaubE15gp3PQm9UAAaw==",
                             PhoneNumber = "0886121260",
                             PhoneNumberConfirmed = false,
                             ProfilePictureUrl = "https://res.cloudinary.com/dmv8nabul/image/upload/v1707334401/kresa_bkbaoa.jpg",
                             RoleName = "Administrator",
-                            SecurityStamp = "e67fea8b-2b9a-4041-9463-bc75767cb1b6",
+                            SecurityStamp = "8f0aea65-1f7d-4d2d-ad0d-77797d26b9e7",
                             TwoFactorEnabled = false,
                             UserName = "admin@gmail.com"
                         },
@@ -8971,7 +8970,7 @@ namespace PreparationForITExam.Infrastructure.Migrations
                             AboutMe = "Работя в МОН от 5 години. Преподавам по Информатика в частна школа. Програмирането е моята страст. Обичам фо повече от приятелката ми.",
                             AccessFailedCount = 0,
                             City = "Кърджали",
-                            ConcurrencyStamp = "8e3fa194-bc36-4f21-b724-6331739a0392",
+                            ConcurrencyStamp = "8f59b479-b83c-40d1-bc13-c8e79184e42d",
                             Email = "monuser@gmail.com",
                             EmailConfirmed = false,
                             FirstName = "Валентин",
@@ -8980,12 +8979,12 @@ namespace PreparationForITExam.Infrastructure.Migrations
                             LockoutEnabled = false,
                             NormalizedEmail = "MONUSER@GMAIL.COM",
                             NormalizedUserName = "MONUSER@GMAIL.COM",
-                            PasswordHash = "AQAAAAEAACcQAAAAEJBqXdhDXTukMsuP2bnyoPBQOeF6DnTUklS46zc5ntcW/O5gHX1sCFyBr4qLcbzxLw==",
+                            PasswordHash = "AQAAAAEAACcQAAAAEFpWj5Q1yyLjPgU2qBisHmfVKqaVL5ZwO2tEdyZAmCU7oG+XH9+42nl1Mx56X+53jA==",
                             PhoneNumber = "0886121261",
                             PhoneNumberConfirmed = false,
                             ProfilePictureUrl = "https://res.cloudinary.com/dmv8nabul/image/upload/v1707334408/valentin_u5en92.jpg",
                             RoleName = "MonUser",
-                            SecurityStamp = "9f594f9d-6a98-4a5e-b739-1dcd04037cef",
+                            SecurityStamp = "b3267c70-2c5d-4950-99d7-5ba2fa2bebb4",
                             TwoFactorEnabled = false,
                             UserName = "monuser@gmail.com"
                         },
@@ -8995,7 +8994,7 @@ namespace PreparationForITExam.Infrastructure.Migrations
                             AboutMe = "Занимавам се с програмиране от 3 години. Интересувам се от кибер сигурност, а именно и това искам да уча след като завърша.",
                             AccessFailedCount = 0,
                             City = "Миделбург",
-                            ConcurrencyStamp = "60569be1-12bc-4ffb-84e7-46f8ce11e1de",
+                            ConcurrencyStamp = "ab7e34bb-4158-4c2e-b2d0-1887efbf094c",
                             Email = "student@gmail.com",
                             EmailConfirmed = false,
                             FirstName = "Никол",
@@ -9004,12 +9003,12 @@ namespace PreparationForITExam.Infrastructure.Migrations
                             LockoutEnabled = false,
                             NormalizedEmail = "STUDENT@GMAIL.COM",
                             NormalizedUserName = "STUDENT@GMAIL.COM",
-                            PasswordHash = "AQAAAAEAACcQAAAAEK27Oez3JyMDLagNuENXiHWVsixWGye5pcbpyioDtfxpWMjkan4gt3y6kZ7U8CAt0w==",
+                            PasswordHash = "AQAAAAEAACcQAAAAEEPDj9EgMyShYCtaQvCzBqAYtOOWJkBzO47oMLXT81rNFvhMugidrQyNVeZ97euO/g==",
                             PhoneNumber = "0886121262",
                             PhoneNumberConfirmed = false,
                             ProfilePictureUrl = "https://res.cloudinary.com/dmv8nabul/image/upload/v1707334404/nikol_prlrcl.jpg",
                             RoleName = "Student",
-                            SecurityStamp = "3ba63e7b-11b9-4253-8655-42788afa7d57",
+                            SecurityStamp = "95ac5164-df92-44e1-91fd-2b799c8ca99e",
                             TwoFactorEnabled = false,
                             UserName = "student@gmail.com"
                         },
@@ -9019,7 +9018,7 @@ namespace PreparationForITExam.Infrastructure.Migrations
                             AboutMe = "Учителка съм от 12 години. Избрах тази професия, защото работата с деца е моята страст. В работата си опитвам да предам знанията си колкото повече мога. Мой интерес е работата с ASP.NET.",
                             AccessFailedCount = 0,
                             City = "София",
-                            ConcurrencyStamp = "aea43480-1026-42e0-8837-a775206472f5",
+                            ConcurrencyStamp = "e4680b26-a12a-48b9-bef8-8dcf12ba9b8a",
                             Email = "teacher@gmail.com",
                             EmailConfirmed = false,
                             FirstName = "Ивета",
@@ -9028,12 +9027,12 @@ namespace PreparationForITExam.Infrastructure.Migrations
                             LockoutEnabled = false,
                             NormalizedEmail = "TEACHER@GMAIL.COM",
                             NormalizedUserName = "TEACHER@GMAIL.COM",
-                            PasswordHash = "AQAAAAEAACcQAAAAEOxL7fzHelH+LY8EUIbl08woX75BPpdnmbtd5QYNYY/1cXlpmpYiF8GvEPeoyLeBBQ==",
+                            PasswordHash = "AQAAAAEAACcQAAAAEEZt0xCjLG8cnk8dyTj6MY6nCb/RIbwzBxCOXejncVAKXVVFroPqHjKc/3PRYXQRvA==",
                             PhoneNumber = "0886121262",
                             PhoneNumberConfirmed = false,
                             ProfilePictureUrl = "https://res.cloudinary.com/dmv8nabul/image/upload/v1707334395/iveta_rknyn3.jpg",
                             RoleName = "Teacher",
-                            SecurityStamp = "9456dd4a-f34d-4554-baaf-b2673cde96fb",
+                            SecurityStamp = "efc0d7fc-f45c-4879-921a-4a3e19e79017",
                             TwoFactorEnabled = false,
                             UserName = "teacher@gmail.com"
                         });
@@ -9211,7 +9210,9 @@ namespace PreparationForITExam.Infrastructure.Migrations
                 {
                     b.HasOne("PreparationForITExam.Infrastructure.Data.Entities.Lesson", "Lesson")
                         .WithMany("Materials")
-                        .HasForeignKey("LessonId");
+                        .HasForeignKey("LessonId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
                     b.HasOne("PreparationForITExam.Infrastructure.Data.Entities.RequestExercise", null)
                         .WithMany("Materials")

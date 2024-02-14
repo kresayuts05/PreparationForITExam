@@ -20,6 +20,7 @@ namespace PreparationForITExam.Core.Contracts
         Task<string> GetDocumentUrlByExerciseId(int exerciseId);
         Task<List<MaterialModel>> GetAllMaterialsForLessonById(int lessonId);
         Task<List<MaterialModel>> GetAllMaterialsForExerciseById(int exerciseId);
+        Task DeleteMaterial(int id, bool IsForExercise);
 
         //Task ZipUpload(IFormFile file, string userId, int lessonId);
     }

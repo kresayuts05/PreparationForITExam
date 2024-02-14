@@ -157,7 +157,7 @@ namespace PreparationForITExam.Core.Services
                 var url = result.Url.ToString().Replace("http", "https");
 
 
-                if (IsForExercise)
+                if (IsForExercise == false)
                 {
                     var material = new LessonMaterial
                     {
@@ -403,6 +403,7 @@ namespace PreparationForITExam.Core.Services
                     UrlPath = m.UrlPath,
                     FileFormat = m.FileFormat,
                     UserName = m.User.FirstName + " " + m.User.LastName,
+                    UserId = m.UserId,
                 })
                 .ToListAsync();
 
@@ -421,10 +422,28 @@ namespace PreparationForITExam.Core.Services
                     UrlPath = m.UrlPath,
                     FileFormat = m.FileFormat,
                     UserName = m.User.FirstName + " " + m.User.LastName,
+                    UserId = m.UserId,
                 })
                 .ToListAsync();
 
             return materials;
         }
+        public async Task DeleteMaterial(int id, bool IsForExercise)
+        {
+            if (IsForExercise)
+            {
+                var material = await repo.GetByIdAsync<ExerciseMaterial>(id);
+                material.IsActive = false;
+            }
+            else
+            {
+                var material = await repo.GetByIdAsync<LessonMaterial>(id);
+                material.IsActive = false;
+            }
+
+            await repo.SaveChangesAsync();
+        }
+        
+
     }
 }

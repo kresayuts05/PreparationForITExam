@@ -24,6 +24,8 @@ font-family: 'Roboto', sans-serif;
 12. Footer
 ==========================================*/
 
+
+
 /*-------------------------------------
 		1.General css (Reset code)
 --------------------------------------*/
@@ -49,6 +51,27 @@ body {
     margin: 0 auto;
     overflow-x: hidden;
     background-color: #F3F3F3;
+}
+
+.right-btn {
+    float: right;
+    margin-right: 1em;
+}
+
+.left-btn {
+    float: left;
+    margin-left: 1em;
+    font-size: 16px;
+    color: white;
+}
+
+.material-add {
+    margin: 1em 0 1em 0;
+    background-color: #3D445F;
+    opacity: 85%;
+    border-radius: 6px;
+    padding-block: 1em;
+    overflow: auto;
 }
 
 .frame {

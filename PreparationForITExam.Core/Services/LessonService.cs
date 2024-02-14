@@ -63,6 +63,13 @@ namespace PreparationForITExam.Core.Services
             return lesson;
         }
 
+        public async Task<int> GetLessonByMaterialId(int id)
+        {
+            var material = await repo.GetByIdAsync<LessonMaterial>(id);
+
+            return material.LessonId;
+        }
+
         public async Task<string> GetLessonNameById(int id)
         {
             var lesson = await repo.GetByIdAsync<Lesson>(id);

@@ -1,4 +1,5 @@
-﻿using PreparationForITExam.Core.Contracts;
+﻿using Microsoft.EntityFrameworkCore;
+using PreparationForITExam.Core.Contracts;
 using PreparationForITExam.Core.Models.Account;
 using PreparationForITExam.Infrastructure.Data.Common;
 using PreparationForITExam.Infrastructure.Data.Entities;
@@ -32,5 +33,15 @@ namespace PreparationForITExam.Core.Services
             await repo.AddAsync(teacher);
             await repo.SaveChangesAsync();
         }
+
+        public async  Task<int> GetTeacherIdByUserId(string id)
+        {
+            var teacher = await repo.All<Teacher>()
+                .Where(t => t.UserId == id)
+                .FirstOrDefaultAsync();
+
+            return teacher.Id;
+        }
+
     }
 }

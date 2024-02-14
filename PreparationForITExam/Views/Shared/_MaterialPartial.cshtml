@@ -5,16 +5,24 @@
 <div class="card-m">
     <a>
         <div class="text-m">
-            <span>@Model.Name</span>
-            <p class="subtitle-m">@Model.UserName</p>
+            <span>@Model.UserName</span>
+            <p class="subtitle-m">@Model.Name</p>
         </div>
     </a>
-    <div class="icons-m">
-        <a class="btn-m" href="@Model.UrlPath" download @*="@material.Name@material.FileFormat"*@>
-            <svg y="0" xmlns="http://www.w3.org/2000/svg" x="0" width="100" viewBox="0 0 100 100" preserveAspectRatio="xMidYMid meet" height="100" class="svg-icon-m">
-                <path stroke-width="8" stroke-linejoin="round" stroke-linecap="round" fill="none" d="M31.8,64.5a14.5,14.5,0,0,1-3.2-28.7,17.5,17.5,0,0,1-.4-4,18.2,18.2,0,0,1,36-3.6h.3a18.2,18.2,0,0,1,3.7,36M39.1,75.4,50,86.3m0,0L60.9,75.4M50,86.3V42.7">
-                </path>
-            </svg>
-        </a>
-    </div>
+    @if (Model.UserId != this.User.Id())
+    {
+        <div class="icons-m">
+            <a class="btn-m" href="@Model.UrlPath" download>
+                <svg y="0" xmlns="http://www.w3.org/2000/svg" x="0" width="100" viewBox="0 0 100 100" preserveAspectRatio="xMidYMid meet" height="100" class="svg-icon-m">
+                    <path stroke-width="8" stroke-linejoin="round" stroke-linecap="round" fill="none" d="M31.8,64.5a14.5,14.5,0,0,1-3.2-28.7,17.5,17.5,0,0,1-.4-4,18.2,18.2,0,0,1,36-3.6h.3a18.2,18.2,0,0,1,3.7,36M39.1,75.4,50,86.3m0,0L60.9,75.4M50,86.3V42.7">
+                    </path>
+                </svg>
+            </a>
+        </div>
+    }
+    else
+    {
+        <a asp-controller="Material" asp-area="" asp-action="DeleteMaterialFromLesson" asp-route-id="@Model.Id" class="btn-m-r">Изтрий</a>
+    }
+
 </div>
