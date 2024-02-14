@@ -34,12 +34,18 @@ namespace PreparationForITExam.Infrastructure.Data.Entities
 
         public string RoleName { get; set; }
 
+        public string? ConnectionId { get; set; }
+
         public string? ProfilePictureUrl { get; set; }
 
         public bool IsActive { get; set; }
 
         public ICollection<Post> Posts { get; set; } = new HashSet<Post>();
 
-        public ICollection<Material> Materials { get; set; } = new HashSet<Material>();
+        public ICollection<LessonMaterial> Materials { get; set; } = new HashSet<LessonMaterial>();
+
+        public ICollection<Message> Messages { get; set; } = new HashSet<Message>();
+
+        public ICollection<LessonComment> LessonComments { get; set; } = new HashSet<LessonComment>();
     }
 }

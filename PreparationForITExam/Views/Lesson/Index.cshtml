@@ -38,6 +38,7 @@
         <div class="curricular-head" style="max-height: 150px !important;">
             <h3> @Model.Title</h3>
             <p>@Model.Module - @Model.SectionOfCurricular</p>
+
         </div>
         <div>
             @foreach (var material in Model.Materials)
@@ -47,9 +48,9 @@
 
         </div>
 
-        <iframe src="https://docs.google.com/viewerng/viewer?url=https://res.cloudinary.com/dmv8nabul/image/upload/v1706896946/su72grvxv50ysh0tsza1.pdf&embedded=true" class="frame" frameborder="0"></iframe>
+        <iframe src="@Model.PresentationUrl" class="frame" frameborder="0"></iframe>
 
-        <div>
+      @*  <div>
             <div class="container" style="padding-left:0 !important; padding-right: 0!important;">
                 <p class="question-title">Въпроси, отговори и дискусии</p>
                 <div class="col-md-12 bootstrap snippets" style="padding: 0!important;">
@@ -75,11 +76,12 @@
                                         <div class="mar-btm">
                                             <p href="#" class="btn-link text-semibold media-heading box-inline">@question.UserInfo.Name</p>
                                             <p class="text-muted text-sm"><i class="fa fa-mobile fa-lg"></i>@question.UserInfo.Role</p>
+                                            <p class="text-muted text-sm"><i class="fa fa-mobile fa-lg"></i>@question.CreatedOn</p>
                                         </div>
                                         <p>@question.Content</p>
-                                        @if (question.Photo != null)
+                                        @if (question.Url != null)
                                         {
-                                            <img class="img-responsive thumbnail" src="@question.Photo" alt="Image">
+                                            <img class="img-responsive thumbnail" src="@question.Url" alt="Image">
                                         }
                                         <div class="pad-ver">
                                             <span class="tag tag-sm"><i class="fa fa-heart text-danger"></i> @question.Likes</span>
@@ -154,10 +156,16 @@
                     </div>
                 </div>
             </div>
-        </div>
+        </div>*@
     </div>
 
 </section>
+
+<script src="https://cdn.jsdelivr.net/npm/@@microsoft/signalr@8.0.0/dist/cjs/index.min.js"></script>
+
+<script>
+    const username = "@ViewBag.CurrUserName"
+</script>
 
 
 

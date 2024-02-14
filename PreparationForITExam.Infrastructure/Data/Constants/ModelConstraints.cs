@@ -136,6 +136,12 @@ namespace PreparationForITExam.Infrastructure.Data.Constants
             public const int TitleMinLength = 2;
         }
 
+        public static class MessageConstraints
+        {
+            public const int MessageTextMaxLength = 300;
+            public const int MessageTextMinLength = 1;
+        }
+
         public static class QuestionConstraints
         {
             public const int QuestionMaxLength = 1000;

@@ -18,7 +18,10 @@ namespace Microsoft.Extensions.DependencyInjection
             services.AddScoped<IModuleOfCurricularService, ModuleOfCurricularService>();
             services.AddScoped<ILessonService, LessonService>();
             services.AddScoped<IMaterialService, MaterialService>();
-            services.AddScoped<IQuestionService, QuestionService>();
+            services.AddScoped<IExerciseService, ExerciseService>();
+            services.AddScoped<ILessonCommentService, LessonCommentService>();
+            services.AddScoped<IChatService, ChatService>();
+            services.AddScoped<IMessageService, MessageService>();
 
             return services;
         }

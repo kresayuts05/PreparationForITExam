@@ -4,6 +4,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
 using Microsoft.SharePoint.Client;
+using PreparationForITExam.Core.Hubs;
 using PreparationForITExam.Infrastructure.Data;
 using PreparationForITExam.Infrastructure.Data.Entities;
 using System.Security;
@@ -48,11 +49,9 @@ public class Program
         ConfigureCloudaryService(builder.Services, builder.Configuration);
 
         builder.Services.AddResponseCaching();
+        builder.Services.AddSignalR();
 
         Syncfusion.Licensing.SyncfusionLicenseProvider.RegisterLicense(syncfusionKey);
-
-        //CreateFolderToSharePoint();
-        //UploadfileToFolderInSharePoint();
 
         var app = builder.Build();
 
@@ -73,7 +72,7 @@ public class Program
         app.UseStaticFiles();
 
         app.UseRouting();
-
+        
         app.UseAuthentication();
         app.UseAuthorization();
 
@@ -89,9 +88,10 @@ public class Program
               name: "areas",
               pattern: "{area:exists}/{controller=Home}/{action=Index}/{id?}"
             );
-        });
-        app.MapRazorPages();
 
+            //endpoints.MapHub<ChatHub>("/Chat/Index");
+        });
+        app.MapRazorPages();        
         app.Run();
     }
 
@@ -110,79 +110,4 @@ public class Program
         services.AddSingleton(new Cloudinary(new Account(cloudName, apiKey, apiSecret)));
     }
 
-    //SharePoint
-    //private static void CreateFolderToSharePoint()
-    //{
-    //    string userName = "kresatsvetkova05@pmgkk.com";
-    //    string Password = "3466YUts";
-
-    //    var securePassword = new SecureString();
-    //    foreach (char c in Password)
-    //    {
-    //        securePassword.AppendChar(c);
-    //    }
-
-    //    using (var ctx = new ClientContext("https://pmgkk.sharepoint.com/sites/PreparationForITExam"))
-    //    {
-    //        ctx.Credentials = new Microsoft.SharePoint.Client.SharePointOnlineCredentials(userName, securePassword);
-    //        Web web = ctx.Web;
-    //        ctx.Load(web);
-    //        ctx.ExecuteQuery();
-    //        List byTitle = ctx.Web.Lists.GetByTitle("Materials");
-
-    //        // New object of "ListItemCreationInformation" class
-    //        ListItemCreationInformation listItemCreationInformation = new ListItemCreationInformation();
-
-    //        // Below are options.
-    //        // (1) File - This will create a file in the list or document library
-    //        // (2) Folder - This will create a foder in list(if folder creation is enabled) or documnt library
-    //        listItemCreationInformation.UnderlyingObjectType = FileSystemObjectType.Folder;
-
-    //        // This will et the internal name/path of the file/folder
-    //        listItemCreationInformation.LeafName = "NewFolderFromCSOM";
-
-    //        ListItem listItem = byTitle.AddItem(listItemCreationInformation);
-
-    //        // Set folder Name
-    //        listItem["Title"] = "NewFolderFromCSOM";
-
-    //        listItem.Update();
-    //        ctx.ExecuteQuery();
-    //    }
-
-        
-    //}
-
-    //private static void UploadfileToFolderInSharePoint()
-    //{
-    //    string userName = "kresatsvetkova05@pmgkk.com";
-    //    string Password = "3466YUts";
-
-    //    var securePassword = new SecureString();
-    //    foreach (char c in Password)
-    //    {
-    //        securePassword.AppendChar(c);
-    //    }
-
-    //    using (var ctx = new ClientContext("https://pmgkk.sharepoint.com/sites/PreparationForITExam/"))
-    //    {
-    //        ctx.Credentials = new Microsoft.SharePoint.Client.SharePointOnlineCredentials(userName, securePassword);
-    //        Web web = ctx.Web;
-    //        ctx.Load(web);
-    //        ctx.ExecuteQuery();
-    //        FileCreationInformation newFile = new FileCreationInformation();
-    //        newFile.Content = System.IO.File.ReadAllBytes("C:\\Users\\kresa\\Downloads\\PPTtoPDF.pdf");
-    //        newFile.Url = @"PPTtoPDF.pdf";
-    //        List byTitle = ctx.Web.Lists.GetByTitle("Documents");
-    //        Folder folder = byTitle.RootFolder.Folders.GetByUrl("NewFolderFromCSOM");
-    //        ctx.Load(folder);
-    //        ctx.ExecuteQuery();
-    //        Microsoft.SharePoint.Client.File uploadFile = folder.Files.Add(newFile);
-    //        uploadFile.CheckIn("checkin", CheckinType.MajorCheckIn);
-    //        ctx.Load(byTitle);
-    //        ctx.Load(uploadFile);
-    //        ctx.ExecuteQuery();
-    //        Console.WriteLine("done");
-    //    }
-    //}
 }

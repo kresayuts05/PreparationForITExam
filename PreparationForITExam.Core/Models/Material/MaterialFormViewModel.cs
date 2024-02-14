@@ -20,6 +20,6 @@ namespace PreparationForITExam.Core.Models.Material
 
         public IFormFile FileInfo { get; set; }
 
-        public List<IFormFile>? Documents { get; set; } 
+        public List<IFormFile> Documents { get; set; } 
     }
 }

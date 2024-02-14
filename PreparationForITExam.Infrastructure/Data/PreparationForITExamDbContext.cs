@@ -33,13 +33,14 @@ namespace PreparationForITExam.Infrastructure.Data
         public DbSet<NewsComment> NewsComments { get; set; }
         public DbSet<RequestLesson> RequestsLessons { get; set; }
         public DbSet<RequestExercise> RequestsExercises { get; set; }
-        public DbSet<Material> Materials { get; set; }
+        public DbSet<LessonMaterial> LessonMaterials { get; set; }
+        public DbSet<ExerciseMaterial> ExerciseMaterials { get; set; }
         public DbSet<SectionOfCurricular> SectionsOfCurricular { get; set; }
-        public DbSet<LessonQuestion> LessonQuestions { get; set; }
-        public DbSet<LessonQuestion> ExerciseQuestions { get; set; }
+        public DbSet<LessonComment> LessonQuestions { get; set; }
+        public DbSet<LessonComment> ExerciseQuestions { get; set; }
         public DbSet<LessonMonUser> LessonMonUser { get; set; }
+        public DbSet<Message> Messages { get; set; }
 
-        //public DbSet<Test> Tests { get; set; }
 
         protected override void OnModelCreating(ModelBuilder builder)
         {
@@ -57,6 +58,7 @@ namespace PreparationForITExam.Infrastructure.Data
              .HasOne(e => e.Exercise)
              .WithOne()
              .OnDelete(DeleteBehavior.Restrict);
+
 
             builder.Entity<LessonMonUser>()
                .HasKey(pk => new { pk.LessonId, pk.MonUserId });

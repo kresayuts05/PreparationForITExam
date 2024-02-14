@@ -8,29 +8,65 @@
         <h3>@Model.Module</h3>
         <p> @Model.Title</p>
     </div>
+    <div style="display: inline-flex; max-width: 100%; width: 100%;">
 
-    <ol class="gradient-list">
-        @foreach (var lesson in Model.Lessons)
-        {
-            <li>
-                <div style="overflow:auto;">
-                    <a  style="float: left;" class="curricular-element" asp-controller="Lesson" asp-area="" asp-action="Index" asp-route-id="@lesson.Id">@lesson.Title</a>
-                    <div style="float: right;">
-                        @if (this.User.IsInRole(RoleConstants.MonUser))
-                        {
-                            @if (lesson.HasPresentation)
-                            {
-                                <a asp-controller="Material" asp-area="" asp-action="Add" asp-route-id="@lesson.Id" class="btn btn-info">Промени</a>
-                            }
-                            else
-                            {
-                                <a asp-controller="Material" asp-area="" asp-action="Add" asp-route-id="@lesson.Id" class="btn btn-success">Добави</a>
+        <div style="margin: 3em 2em 5em 5em; width: 50%;">
+            <ol class="gradient-list">
+                @foreach (var lesson in Model.Lessons)
+                {
+                    <li>
+                        <div style="overflow:auto;">
+                            <a style="float: left;" class="curricular-element" asp-controller="Lesson" asp-area="" asp-action="Index" asp-route-id="@lesson.Id">@lesson.Title</a>
+                            <div style="float: right;">
+                                @if (this.User.IsInRole(RoleConstants.MonUser))
+                                {
+                                    @if (lesson.HasPresentation)
+                                    {
+                                        <a asp-controller="Material" asp-area="" asp-action="EditMaterialToLesson" asp-route-id="@lesson.Id" class="btn btn-info">Промени</a>
+                                    }
+                                    else
+                                    {
+                                        <a asp-controller="Material" asp-area="" asp-action="AddMaterialToLesson" asp-route-id="@lesson.Id" class="btn btn-success">Добави</a>
+                                    }
+                                }
 
-                            }
-                        }
-                    </div>
-                </div>
-            </li>
-        }
-    </ol>
+                            </div>
+                        </div>
+                    </li>
+                }
+
+            </ol>
+        </div>
+        <div style="margin: 3em 2em 5em 5em; width: 50%;">
+            <ol class="gradient-list">
+
+                @foreach (var exercise in Model.Exercises)
+                {
+                    <li>
+                        <div style="overflow:auto;">
+                            <a style="float: left;" class="curricular-element" asp-controller="Exercise" asp-area="" asp-action="Index" asp-route-id="@exercise.Id">@exercise.Title</a>
+                            <div style="float: right;">
+
+                                @if (this.User.IsInRole(RoleConstants.MonUser))
+                                {
+                                    @if (exercise.HasMainDocument)
+                                    {
+                                        <a asp-controller="Material" asp-area="" asp-action="EditMaterialToExercise" asp-route-id="@exercise.Id" class="btn btn-info">Промени</a>
+                                    }
+                                    else
+                                    {
+                                        <a asp-controller="Material" asp-area="" asp-action="AddMaterialToExercise" asp-route-id="@exercise.Id" class="btn btn-success">Добави</a>
+                                    }
+                                }
+                            </div>
+                        </div>
+                    </li>
+
+                }
+
+            </ol>
+        </div>
+
+    </div>
+
 </section>

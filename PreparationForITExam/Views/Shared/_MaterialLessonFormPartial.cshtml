@@ -1,0 +1,30 @@
+﻿@model MaterialFormViewModel
+
+@{
+}
+
+<div class="row cont">
+    <div class="col-sm-12 offset-lg-2 col-lg-8 offset-xl-3 col-xl-6">
+        <form method="post" enctype="multipart/form-data">
+
+            <input type="hidden" asp-for="@Model.LessonId" />
+            <input type="hidden" asp-for="@Model.SectionOfCurricularId" />
+            <div class="form-group">
+                <label for="exampleFormControlTextarea1">Обща информация</label>
+                <textarea asp-for="Content" class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
+            </div>
+
+            <div class="mb-3">
+                <label class="profilePictureLabel">Презентация<span class="mandatory">*</span></label>
+                <label class="btn h-full-width" for="uploadPresentation">Прекачи Главна Презентация</label>
+                <input asp-for="FileInfo" id="uploadPresentation" class="upload-photo" for="FileInfo" accept=".ppt, .pptx">
+                <span asp-validation-for="FileInfo" class="text-danger"></span>
+            </div>
+
+            <div class="mb-3">
+                <input class="btn btn-success" type="submit" value="Запази" />
+                <a asp-controller="SectionOfCurricular" asp-action="Index" asp-route-id="@Model.SectionOfCurricularId" class="btn btn-danger">Отмени</a>
+            </div>
+        </form>
+    </div>
+</div>

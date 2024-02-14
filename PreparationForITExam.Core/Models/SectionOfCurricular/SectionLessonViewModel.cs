@@ -1,4 +1,5 @@
-﻿using PreparationForITExam.Core.Models.Lesson;
+﻿using PreparationForITExam.Core.Models.Exercise;
+using PreparationForITExam.Core.Models.Lesson;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -15,5 +16,6 @@ namespace PreparationForITExam.Core.Models.SectionOfCurricular
         public string Module { get; set; }
 
         public List<LessonModel> Lessons { get; set; }
+        public List<ExerciseModel> Exercises { get; set; }
     }
 }

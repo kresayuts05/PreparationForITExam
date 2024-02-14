@@ -29,13 +29,12 @@ namespace PreparationForITExam.Infrastructure.Data.Entities
 
         public DateTime PostedOn { get; set; }
 
-        [DefaultValue(0)]
-        public int Likes { get; set; }
-
         public bool IsActive { get; set; }
 
         [ForeignKey(nameof(User))]
         public string UserId { get; set; }
         public User User { get; set; }
+
+        //public ICollection<string> Likes { get; set; } = new HashSet<string>();
     }
 }

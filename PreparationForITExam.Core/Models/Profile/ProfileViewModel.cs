@@ -30,6 +30,6 @@ namespace PreparationForITExam.Core.Models.Profile
 
         public Dictionary<int, string> PostsUrls { get; set; }
 
-        public List<QuestionModel> AskedQuestions { get; set; }
+        public List<LessonCommentModel> AskedQuestions { get; set; }
     }
 }

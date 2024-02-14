@@ -31,5 +31,12 @@ namespace PreparationForITExam.Core.Services
 
             return user != null;
         }
+
+        public async Task<string> UserNameById(string id)
+        {
+            var user = await repo.GetByIdAsync<User>(id);
+
+            return user.FirstName + " " + user.LastName;
+        }
     }   
 }

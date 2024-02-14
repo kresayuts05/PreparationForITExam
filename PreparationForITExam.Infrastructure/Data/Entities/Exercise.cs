@@ -31,9 +31,13 @@ namespace PreparationForITExam.Infrastructure.Data.Entities
 
         public bool IsActive { get; set; }
 
-        public ICollection<LessonQuestion> Questions { get; set; } = new HashSet<LessonQuestion>();
+        [ForeignKey(nameof(SectionOfCurricular))]
+        public int SectionOfCurricularId { get; set; }
+        public SectionOfCurricular SectionOfCurricular { get; set; }
 
-        public ICollection<Material> Materials { get; set; } = new HashSet<Material>();
+        public ICollection<LessonComment> Questions { get; set; } = new HashSet<LessonComment>();
+
+        public ICollection<ExerciseMaterial> Materials { get; set; } = new HashSet<ExerciseMaterial>();
 
         public ICollection<Student> Students { get; set; } = new HashSet<Student>();
     }

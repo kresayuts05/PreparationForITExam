@@ -82,28 +82,28 @@ namespace PreparationForITExam.Infrastructure.Migrations
                         new
                         {
                             Id = "0f761db2-ab55-416c-83b9-70abded3d908",
-                            ConcurrencyStamp = "737780e9-ac92-4463-bbb1-4dd2eedd7890",
+                            ConcurrencyStamp = "aae86fdc-ee7e-42fd-8150-c3a3688f517b",
                             Name = "Administrator",
                             NormalizedName = "ADMINISTRATOR"
                         },
                         new
                         {
                             Id = "e66d730b-bcf1-41b5-b7e0-3e66056e61d9",
-                            ConcurrencyStamp = "f8d3276d-184b-4d68-b03f-df0db760b1ac",
+                            ConcurrencyStamp = "994f81f3-a799-40dd-9142-78997e78d6ba",
                             Name = "Student",
                             NormalizedName = "STUDENT"
                         },
                         new
                         {
                             Id = "71281cf3-9730-4d7e-acbb-213edee8291c",
-                            ConcurrencyStamp = "b1b69a9b-bf75-440d-a608-566e53a6308a",
+                            ConcurrencyStamp = "7b72c31c-b513-44bd-8246-97ac76b2195c",
                             Name = "Teacher",
                             NormalizedName = "TEACHER"
                         },
                         new
                         {
                             Id = "fe750b82-6fe9-472c-bdc5-61f5433d429e",
-                            ConcurrencyStamp = "3a4886d7-5d31-4447-9e5b-43bdd0f97ada",
+                            ConcurrencyStamp = "77fb8c85-a4d3-4535-b0ec-49920bdfad73",
                             Name = "MonUser",
                             NormalizedName = "MONUSER"
                         });
@@ -257,7 +257,7 @@ namespace PreparationForITExam.Infrastructure.Migrations
                     b.Property<bool>("IsActive")
                         .HasColumnType("bit");
 
-                    b.Property<int?>("SectionOfCurricularId")
+                    b.Property<int>("SectionOfCurricularId")
                         .HasColumnType("int");
 
                     b.Property<int?>("TeacherId")
@@ -282,6 +282,7 @@ namespace PreparationForITExam.Infrastructure.Migrations
                             Id = 1,
                             Content = "",
                             IsActive = true,
+                            SectionOfCurricularId = 1,
                             Title = "Компютърът"
                         },
                         new
@@ -289,6 +290,7 @@ namespace PreparationForITExam.Infrastructure.Migrations
                             Id = 2,
                             Content = "",
                             IsActive = true,
+                            SectionOfCurricularId = 1,
                             Title = "Езици за програмиране"
                         },
                         new
@@ -296,6 +298,7 @@ namespace PreparationForITExam.Infrastructure.Migrations
                             Id = 3,
                             Content = "",
                             IsActive = true,
+                            SectionOfCurricularId = 1,
                             Title = "Инструменти и IDE"
                         },
                         new
@@ -303,6 +306,7 @@ namespace PreparationForITExam.Infrastructure.Migrations
                             Id = 4,
                             Content = "",
                             IsActive = true,
+                            SectionOfCurricularId = 1,
                             Title = "IDE Visual Studio"
                         },
                         new
@@ -310,6 +314,7 @@ namespace PreparationForITExam.Infrastructure.Migrations
                             Id = 5,
                             Content = "",
                             IsActive = true,
+                            SectionOfCurricularId = 2,
                             Title = "Елементи на програмата"
                         },
                         new
@@ -317,6 +322,7 @@ namespace PreparationForITExam.Infrastructure.Migrations
                             Id = 6,
                             Content = "",
                             IsActive = true,
+                            SectionOfCurricularId = 2,
                             Title = "Основни типове операции и оператори"
                         },
                         new
@@ -324,6 +330,7 @@ namespace PreparationForITExam.Infrastructure.Migrations
                             Id = 7,
                             Content = "",
                             IsActive = true,
+                            SectionOfCurricularId = 2,
                             Title = "Изчислителни процеси. Линейни процеси"
                         },
                         new
@@ -331,6 +338,7 @@ namespace PreparationForITExam.Infrastructure.Migrations
                             Id = 8,
                             Content = "",
                             IsActive = true,
+                            SectionOfCurricularId = 2,
                             Title = "Линейни изчислителни процеси. Упражнение"
                         },
                         new
@@ -338,6 +346,7 @@ namespace PreparationForITExam.Infrastructure.Migrations
                             Id = 9,
                             Content = "",
                             IsActive = true,
+                            SectionOfCurricularId = 2,
                             Title = "Сравнения и логически операции"
                         },
                         new
@@ -345,6 +354,7 @@ namespace PreparationForITExam.Infrastructure.Migrations
                             Id = 10,
                             Content = "",
                             IsActive = true,
+                            SectionOfCurricularId = 2,
                             Title = "Разклонени изчислителни процеси"
                         },
                         new
@@ -352,6 +362,7 @@ namespace PreparationForITExam.Infrastructure.Migrations
                             Id = 11,
                             Content = "",
                             IsActive = true,
+                            SectionOfCurricularId = 2,
                             Title = "Циклични изчислителни процеси"
                         },
                         new
@@ -359,6 +370,7 @@ namespace PreparationForITExam.Infrastructure.Migrations
                             Id = 12,
                             Content = "",
                             IsActive = true,
+                            SectionOfCurricularId = 2,
                             Title = "Оператори за цикъл с условие"
                         },
                         new
@@ -366,6 +378,7 @@ namespace PreparationForITExam.Infrastructure.Migrations
                             Id = 13,
                             Content = "",
                             IsActive = true,
+                            SectionOfCurricularId = 2,
                             Title = "Оператори за цикъл. Упражнение"
                         },
                         new
@@ -373,6 +386,7 @@ namespace PreparationForITExam.Infrastructure.Migrations
                             Id = 14,
                             Content = "",
                             IsActive = true,
+                            SectionOfCurricularId = 3,
                             Title = "Обекти и класове от обекти"
                         },
                         new
@@ -380,6 +394,7 @@ namespace PreparationForITExam.Infrastructure.Migrations
                             Id = 15,
                             Content = "",
                             IsActive = true,
+                            SectionOfCurricularId = 3,
                             Title = "Класове"
                         },
                         new
@@ -387,6 +402,7 @@ namespace PreparationForITExam.Infrastructure.Migrations
                             Id = 16,
                             Content = "",
                             IsActive = true,
+                            SectionOfCurricularId = 3,
                             Title = "Клас с контролирани атрибути"
                         },
                         new
@@ -394,6 +410,7 @@ namespace PreparationForITExam.Infrastructure.Migrations
                             Id = 17,
                             Content = "",
                             IsActive = true,
+                            SectionOfCurricularId = 3,
                             Title = "Функции и методи"
                         },
                         new
@@ -401,6 +418,7 @@ namespace PreparationForITExam.Infrastructure.Migrations
                             Id = 18,
                             Content = "",
                             IsActive = true,
+                            SectionOfCurricularId = 3,
                             Title = "Конструктори"
                         },
                         new
@@ -408,6 +426,7 @@ namespace PreparationForITExam.Infrastructure.Migrations
                             Id = 19,
                             Content = "",
                             IsActive = true,
+                            SectionOfCurricularId = 3,
                             Title = "Предаване на аргументи"
                         },
                         new
@@ -415,6 +434,7 @@ namespace PreparationForITExam.Infrastructure.Migrations
                             Id = 20,
                             Content = "",
                             IsActive = true,
+                            SectionOfCurricularId = 3,
                             Title = "Упражнение"
                         },
                         new
@@ -422,6 +442,7 @@ namespace PreparationForITExam.Infrastructure.Migrations
                             Id = 21,
                             Content = "",
                             IsActive = true,
+                            SectionOfCurricularId = 4,
                             Title = "Елементи на графичние интерфейс"
                         },
                         new
@@ -429,6 +450,7 @@ namespace PreparationForITExam.Infrastructure.Migrations
                             Id = 22,
                             Content = "",
                             IsActive = true,
+                            SectionOfCurricularId = 4,
                             Title = "Графични компоненти"
                         },
                         new
@@ -436,6 +458,7 @@ namespace PreparationForITExam.Infrastructure.Migrations
                             Id = 23,
                             Content = "",
                             IsActive = true,
+                            SectionOfCurricularId = 4,
                             Title = "Упражнение"
                         },
                         new
@@ -443,6 +466,7 @@ namespace PreparationForITExam.Infrastructure.Migrations
                             Id = 24,
                             Content = "",
                             IsActive = true,
+                            SectionOfCurricularId = 4,
                             Title = "Упражнение"
                         },
                         new
@@ -450,6 +474,7 @@ namespace PreparationForITExam.Infrastructure.Migrations
                             Id = 25,
                             Content = "",
                             IsActive = true,
+                            SectionOfCurricularId = 4,
                             Title = "Агрегатни типове"
                         },
                         new
@@ -457,6 +482,7 @@ namespace PreparationForITExam.Infrastructure.Migrations
                             Id = 26,
                             Content = "",
                             IsActive = true,
+                            SectionOfCurricularId = 4,
                             Title = "Файлове"
                         },
                         new
@@ -464,6 +490,7 @@ namespace PreparationForITExam.Infrastructure.Migrations
                             Id = 27,
                             Content = "",
                             IsActive = true,
+                            SectionOfCurricularId = 4,
                             Title = "Четене на обекти от файл"
                         },
                         new
@@ -471,6 +498,7 @@ namespace PreparationForITExam.Infrastructure.Migrations
                             Id = 28,
                             Content = "",
                             IsActive = true,
+                            SectionOfCurricularId = 5,
                             Title = "Документиране на клас. Сериализация"
                         },
                         new
@@ -478,6 +506,7 @@ namespace PreparationForITExam.Infrastructure.Migrations
                             Id = 29,
                             Content = "",
                             IsActive = true,
+                            SectionOfCurricularId = 5,
                             Title = "Капсулиране. Статични атрибути и методи"
                         },
                         new
@@ -485,6 +514,7 @@ namespace PreparationForITExam.Infrastructure.Migrations
                             Id = 30,
                             Content = "",
                             IsActive = true,
+                            SectionOfCurricularId = 5,
                             Title = "Йерархия от класове"
                         },
                         new
@@ -492,6 +522,7 @@ namespace PreparationForITExam.Infrastructure.Migrations
                             Id = 31,
                             Content = "",
                             IsActive = true,
+                            SectionOfCurricularId = 5,
                             Title = "Полиморфизъм"
                         },
                         new
@@ -499,6 +530,7 @@ namespace PreparationForITExam.Infrastructure.Migrations
                             Id = 32,
                             Content = "",
                             IsActive = true,
+                            SectionOfCurricularId = 5,
                             Title = "Абстракция класове. Интерфейси"
                         },
                         new
@@ -506,6 +538,7 @@ namespace PreparationForITExam.Infrastructure.Migrations
                             Id = 33,
                             Content = "",
                             IsActive = true,
+                            SectionOfCurricularId = 5,
                             Title = "Изключения"
                         },
                         new
@@ -513,6 +546,7 @@ namespace PreparationForITExam.Infrastructure.Migrations
                             Id = 34,
                             Content = "",
                             IsActive = true,
+                            SectionOfCurricularId = 12,
                             Title = "Информация и данни"
                         },
                         new
@@ -520,6 +554,7 @@ namespace PreparationForITExam.Infrastructure.Migrations
                             Id = 35,
                             Content = "",
                             IsActive = true,
+                            SectionOfCurricularId = 12,
                             Title = "Информационни системи и процеси"
                         },
                         new
@@ -527,6 +562,7 @@ namespace PreparationForITExam.Infrastructure.Migrations
                             Id = 36,
                             Content = "",
                             IsActive = true,
+                            SectionOfCurricularId = 12,
                             Title = "Файлов подход и подход с бази от данни"
                         },
                         new
@@ -534,6 +570,7 @@ namespace PreparationForITExam.Infrastructure.Migrations
                             Id = 37,
                             Content = "",
                             IsActive = true,
+                            SectionOfCurricularId = 12,
                             Title = "Упражнение"
                         },
                         new
@@ -541,6 +578,7 @@ namespace PreparationForITExam.Infrastructure.Migrations
                             Id = 38,
                             Content = "",
                             IsActive = true,
+                            SectionOfCurricularId = 13,
                             Title = "Множества и релации"
                         },
                         new
@@ -548,6 +586,7 @@ namespace PreparationForITExam.Infrastructure.Migrations
                             Id = 39,
                             Content = "",
                             IsActive = true,
+                            SectionOfCurricularId = 13,
                             Title = "Релационна база от данни"
                         },
                         new
@@ -555,6 +594,7 @@ namespace PreparationForITExam.Infrastructure.Migrations
                             Id = 40,
                             Content = "",
                             IsActive = true,
+                            SectionOfCurricularId = 13,
                             Title = "Операции с релации"
                         },
                         new
@@ -562,6 +602,7 @@ namespace PreparationForITExam.Infrastructure.Migrations
                             Id = 41,
                             Content = "",
                             IsActive = true,
+                            SectionOfCurricularId = 13,
                             Title = "Типове данни с релации"
                         },
                         new
@@ -569,6 +610,7 @@ namespace PreparationForITExam.Infrastructure.Migrations
                             Id = 42,
                             Content = "",
                             IsActive = true,
+                            SectionOfCurricularId = 13,
                             Title = "Типове данни. Ключове"
                         },
                         new
@@ -576,6 +618,7 @@ namespace PreparationForITExam.Infrastructure.Migrations
                             Id = 43,
                             Content = "",
                             IsActive = true,
+                            SectionOfCurricularId = 13,
                             Title = "Нормализация"
                         },
                         new
@@ -583,6 +626,7 @@ namespace PreparationForITExam.Infrastructure.Migrations
                             Id = 44,
                             Content = "",
                             IsActive = true,
+                            SectionOfCurricularId = 13,
                             Title = "Модел обект-взаимодействие"
                         },
                         new
@@ -590,6 +634,7 @@ namespace PreparationForITExam.Infrastructure.Migrations
                             Id = 45,
                             Content = "",
                             IsActive = true,
+                            SectionOfCurricularId = 13,
                             Title = "Нива на абстракция. Аномалии"
                         },
                         new
@@ -597,6 +642,7 @@ namespace PreparationForITExam.Infrastructure.Migrations
                             Id = 46,
                             Content = "",
                             IsActive = true,
+                            SectionOfCurricularId = 13,
                             Title = "Проектиране на БД. Упражнение"
                         },
                         new
@@ -604,6 +650,7 @@ namespace PreparationForITExam.Infrastructure.Migrations
                             Id = 47,
                             Content = "",
                             IsActive = true,
+                            SectionOfCurricularId = 14,
                             Title = "Програмата MS Access"
                         },
                         new
@@ -611,6 +658,7 @@ namespace PreparationForITExam.Infrastructure.Migrations
                             Id = 48,
                             Content = "",
                             IsActive = true,
+                            SectionOfCurricularId = 14,
                             Title = "Езикът SQL. Заявки"
                         },
                         new
@@ -618,6 +666,7 @@ namespace PreparationForITExam.Infrastructure.Migrations
                             Id = 49,
                             Content = "",
                             IsActive = true,
+                            SectionOfCurricularId = 14,
                             Title = "Заявка SELECT"
                         },
                         new
@@ -625,6 +674,7 @@ namespace PreparationForITExam.Infrastructure.Migrations
                             Id = 50,
                             Content = "",
                             IsActive = true,
+                            SectionOfCurricularId = 14,
                             Title = "Клаузите ORDER BY и GROUP BY"
                         },
                         new
@@ -632,6 +682,7 @@ namespace PreparationForITExam.Infrastructure.Migrations
                             Id = 51,
                             Content = "",
                             IsActive = true,
+                            SectionOfCurricularId = 14,
                             Title = "Екранни форми. Контрол на данните"
                         },
                         new
@@ -639,6 +690,7 @@ namespace PreparationForITExam.Infrastructure.Migrations
                             Id = 52,
                             Content = "",
                             IsActive = true,
+                            SectionOfCurricularId = 14,
                             Title = "Търсене на данни"
                         },
                         new
@@ -646,6 +698,7 @@ namespace PreparationForITExam.Infrastructure.Migrations
                             Id = 53,
                             Content = "",
                             IsActive = true,
+                            SectionOfCurricularId = 14,
                             Title = "Създаване и редактиране на таблици със SQL"
                         },
                         new
@@ -653,6 +706,7 @@ namespace PreparationForITExam.Infrastructure.Migrations
                             Id = 54,
                             Content = "",
                             IsActive = true,
+                            SectionOfCurricularId = 14,
                             Title = "Упражнение"
                         },
                         new
@@ -660,6 +714,7 @@ namespace PreparationForITExam.Infrastructure.Migrations
                             Id = 55,
                             Content = "",
                             IsActive = true,
+                            SectionOfCurricularId = 14,
                             Title = "Отчети"
                         },
                         new
@@ -667,6 +722,7 @@ namespace PreparationForITExam.Infrastructure.Migrations
                             Id = 56,
                             Content = "",
                             IsActive = true,
+                            SectionOfCurricularId = 14,
                             Title = "Връзки между таблиците. Съединиение"
                         },
                         new
@@ -674,6 +730,7 @@ namespace PreparationForITExam.Infrastructure.Migrations
                             Id = 57,
                             Content = "",
                             IsActive = true,
+                            SectionOfCurricularId = 14,
                             Title = "Влагане на заявки"
                         },
                         new
@@ -681,6 +738,7 @@ namespace PreparationForITExam.Infrastructure.Migrations
                             Id = 58,
                             Content = "",
                             IsActive = true,
+                            SectionOfCurricularId = 14,
                             Title = "Упражнение"
                         },
                         new
@@ -688,6 +746,7 @@ namespace PreparationForITExam.Infrastructure.Migrations
                             Id = 59,
                             Content = "",
                             IsActive = true,
+                            SectionOfCurricularId = 15,
                             Title = "Интегриране на БД в MS Access"
                         },
                         new
@@ -695,6 +754,7 @@ namespace PreparationForITExam.Infrastructure.Migrations
                             Id = 60,
                             Content = "",
                             IsActive = true,
+                            SectionOfCurricularId = 15,
                             Title = "Интегриране на БД със C#"
                         },
                         new
@@ -702,6 +762,7 @@ namespace PreparationForITExam.Infrastructure.Migrations
                             Id = 61,
                             Content = "",
                             IsActive = true,
+                            SectionOfCurricularId = 15,
                             Title = "Упражнение"
                         },
                         new
@@ -709,6 +770,7 @@ namespace PreparationForITExam.Infrastructure.Migrations
                             Id = 62,
                             Content = "",
                             IsActive = true,
+                            SectionOfCurricularId = 6,
                             Title = "Алгоритми"
                         },
                         new
@@ -716,6 +778,7 @@ namespace PreparationForITExam.Infrastructure.Migrations
                             Id = 63,
                             Content = "",
                             IsActive = true,
+                            SectionOfCurricularId = 6,
                             Title = "UML-диаграми упражнение"
                         },
                         new
@@ -723,6 +786,7 @@ namespace PreparationForITExam.Infrastructure.Migrations
                             Id = 64,
                             Content = "",
                             IsActive = true,
+                            SectionOfCurricularId = 6,
                             Title = "Сложност на алгоритми"
                         },
                         new
@@ -730,6 +794,7 @@ namespace PreparationForITExam.Infrastructure.Migrations
                             Id = 65,
                             Content = "",
                             IsActive = true,
+                            SectionOfCurricularId = 6,
                             Title = "Обектно-ориентирано програмиране - преговор"
                         },
                         new
@@ -737,6 +802,7 @@ namespace PreparationForITExam.Infrastructure.Migrations
                             Id = 66,
                             Content = "",
                             IsActive = true,
+                            SectionOfCurricularId = 6,
                             Title = "Реализация на алгоритми чрез методи"
                         },
                         new
@@ -744,6 +810,7 @@ namespace PreparationForITExam.Infrastructure.Migrations
                             Id = 67,
                             Content = "",
                             IsActive = true,
+                            SectionOfCurricularId = 6,
                             Title = "Рекурсия и интеграция"
                         },
                         new
@@ -751,6 +818,7 @@ namespace PreparationForITExam.Infrastructure.Migrations
                             Id = 68,
                             Content = "",
                             IsActive = true,
+                            SectionOfCurricularId = 6,
                             Title = "Сложност на програми"
                         },
                         new
@@ -758,6 +826,7 @@ namespace PreparationForITExam.Infrastructure.Migrations
                             Id = 69,
                             Content = "",
                             IsActive = true,
+                            SectionOfCurricularId = 7,
                             Title = "Едномерен масив - преговор"
                         },
                         new
@@ -765,6 +834,7 @@ namespace PreparationForITExam.Infrastructure.Migrations
                             Id = 70,
                             Content = "",
                             IsActive = true,
+                            SectionOfCurricularId = 7,
                             Title = "Сортиране на масив"
                         },
                         new
@@ -772,6 +842,7 @@ namespace PreparationForITExam.Infrastructure.Migrations
                             Id = 71,
                             Content = "",
                             IsActive = true,
+                            SectionOfCurricularId = 7,
                             Title = "Работа със сортирани масиви"
                         },
                         new
@@ -779,6 +850,7 @@ namespace PreparationForITExam.Infrastructure.Migrations
                             Id = 72,
                             Content = "",
                             IsActive = true,
+                            SectionOfCurricularId = 7,
                             Title = "Сортиране на масив"
                         },
                         new
@@ -786,6 +858,7 @@ namespace PreparationForITExam.Infrastructure.Migrations
                             Id = 73,
                             Content = "",
                             IsActive = true,
+                            SectionOfCurricularId = 7,
                             Title = "Работа със сортирани масиви"
                         },
                         new
@@ -793,6 +866,7 @@ namespace PreparationForITExam.Infrastructure.Migrations
                             Id = 74,
                             Content = "",
                             IsActive = true,
+                            SectionOfCurricularId = 7,
                             Title = "Низове"
                         },
                         new
@@ -800,6 +874,7 @@ namespace PreparationForITExam.Infrastructure.Migrations
                             Id = 75,
                             Content = "",
                             IsActive = true,
+                            SectionOfCurricularId = 7,
                             Title = "Масиви от знаци"
                         },
                         new
@@ -807,6 +882,7 @@ namespace PreparationForITExam.Infrastructure.Migrations
                             Id = 76,
                             Content = "",
                             IsActive = true,
+                            SectionOfCurricularId = 7,
                             Title = "Многомерни масиви"
                         },
                         new
@@ -814,6 +890,7 @@ namespace PreparationForITExam.Infrastructure.Migrations
                             Id = 77,
                             Content = "",
                             IsActive = true,
+                            SectionOfCurricularId = 8,
                             Title = "Основни понятия"
                         },
                         new
@@ -821,6 +898,7 @@ namespace PreparationForITExam.Infrastructure.Migrations
                             Id = 78,
                             Content = "",
                             IsActive = true,
+                            SectionOfCurricularId = 8,
                             Title = "Вградени АТ в C#"
                         },
                         new
@@ -828,6 +906,7 @@ namespace PreparationForITExam.Infrastructure.Migrations
                             Id = 79,
                             Content = "",
                             IsActive = true,
+                            SectionOfCurricularId = 8,
                             Title = "Списъци"
                         },
                         new
@@ -835,6 +914,7 @@ namespace PreparationForITExam.Infrastructure.Migrations
                             Id = 80,
                             Content = "",
                             IsActive = true,
+                            SectionOfCurricularId = 8,
                             Title = "Опашки"
                         },
                         new
@@ -842,6 +922,7 @@ namespace PreparationForITExam.Infrastructure.Migrations
                             Id = 81,
                             Content = "",
                             IsActive = true,
+                            SectionOfCurricularId = 8,
                             Title = "Стек"
                         },
                         new
@@ -849,6 +930,7 @@ namespace PreparationForITExam.Infrastructure.Migrations
                             Id = 82,
                             Content = "",
                             IsActive = true,
+                            SectionOfCurricularId = 8,
                             Title = "Упражнение"
                         },
                         new
@@ -856,6 +938,7 @@ namespace PreparationForITExam.Infrastructure.Migrations
                             Id = 83,
                             Content = "",
                             IsActive = true,
+                            SectionOfCurricularId = 9,
                             Title = "Графи"
                         },
                         new
@@ -863,6 +946,7 @@ namespace PreparationForITExam.Infrastructure.Migrations
                             Id = 84,
                             Content = "",
                             IsActive = true,
+                            SectionOfCurricularId = 9,
                             Title = "Дървета"
                         },
                         new
@@ -870,6 +954,7 @@ namespace PreparationForITExam.Infrastructure.Migrations
                             Id = 85,
                             Content = "",
                             IsActive = true,
+                            SectionOfCurricularId = 9,
                             Title = "Обхождане на графи"
                         },
                         new
@@ -877,6 +962,7 @@ namespace PreparationForITExam.Infrastructure.Migrations
                             Id = 86,
                             Content = "",
                             IsActive = true,
+                            SectionOfCurricularId = 9,
                             Title = "Най-къс път в граф"
                         },
                         new
@@ -884,6 +970,7 @@ namespace PreparationForITExam.Infrastructure.Migrations
                             Id = 87,
                             Content = "",
                             IsActive = true,
+                            SectionOfCurricularId = 9,
                             Title = "Хеш-таблица. Речник"
                         },
                         new
@@ -891,6 +978,7 @@ namespace PreparationForITExam.Infrastructure.Migrations
                             Id = 88,
                             Content = "",
                             IsActive = true,
+                            SectionOfCurricularId = 10,
                             Title = "Работа по проект"
                         },
                         new
@@ -898,6 +986,7 @@ namespace PreparationForITExam.Infrastructure.Migrations
                             Id = 89,
                             Content = "",
                             IsActive = true,
+                            SectionOfCurricularId = 10,
                             Title = "Примерни проекти"
                         },
                         new
@@ -905,6 +994,7 @@ namespace PreparationForITExam.Infrastructure.Migrations
                             Id = 90,
                             Content = "",
                             IsActive = true,
+                            SectionOfCurricularId = 16,
                             Title = "Информационни системи и бази от данни"
                         },
                         new
@@ -912,6 +1002,7 @@ namespace PreparationForITExam.Infrastructure.Migrations
                             Id = 91,
                             Content = "",
                             IsActive = true,
+                            SectionOfCurricularId = 16,
                             Title = "Упражнение - преговор"
                         },
                         new
@@ -919,6 +1010,7 @@ namespace PreparationForITExam.Infrastructure.Migrations
                             Id = 92,
                             Content = "",
                             IsActive = true,
+                            SectionOfCurricularId = 16,
                             Title = "Сървър база от данни"
                         },
                         new
@@ -926,6 +1018,7 @@ namespace PreparationForITExam.Infrastructure.Migrations
                             Id = 93,
                             Content = "",
                             IsActive = true,
+                            SectionOfCurricularId = 16,
                             Title = "Таблици"
                         },
                         new
@@ -933,6 +1026,7 @@ namespace PreparationForITExam.Infrastructure.Migrations
                             Id = 94,
                             Content = "",
                             IsActive = true,
+                            SectionOfCurricularId = 16,
                             Title = "Въвеждане на данни"
                         },
                         new
@@ -940,6 +1034,7 @@ namespace PreparationForITExam.Infrastructure.Migrations
                             Id = 95,
                             Content = "",
                             IsActive = true,
+                            SectionOfCurricularId = 16,
                             Title = "Езикът SQL - преговор с допълнение"
                         },
                         new
@@ -947,6 +1042,7 @@ namespace PreparationForITExam.Infrastructure.Migrations
                             Id = 96,
                             Content = "",
                             IsActive = true,
+                            SectionOfCurricularId = 16,
                             Title = "Създаване н=и изпълнение на заявки"
                         },
                         new
@@ -954,6 +1050,7 @@ namespace PreparationForITExam.Infrastructure.Migrations
                             Id = 97,
                             Content = "",
                             IsActive = true,
+                            SectionOfCurricularId = 16,
                             Title = "Съхранени процедури"
                         },
                         new
@@ -961,6 +1058,7 @@ namespace PreparationForITExam.Infrastructure.Migrations
                             Id = 98,
                             Content = "",
                             IsActive = true,
+                            SectionOfCurricularId = 16,
                             Title = "Още за съхранените процедури"
                         },
                         new
@@ -968,6 +1066,7 @@ namespace PreparationForITExam.Infrastructure.Migrations
                             Id = 99,
                             Content = "",
                             IsActive = true,
+                            SectionOfCurricularId = 16,
                             Title = "Подържане на база от данни"
                         },
                         new
@@ -975,6 +1074,7 @@ namespace PreparationForITExam.Infrastructure.Migrations
                             Id = 100,
                             Content = "",
                             IsActive = true,
+                            SectionOfCurricularId = 16,
                             Title = "Клиентът Azure Data Studio"
                         },
                         new
@@ -982,6 +1082,7 @@ namespace PreparationForITExam.Infrastructure.Migrations
                             Id = 101,
                             Content = "",
                             IsActive = true,
+                            SectionOfCurricularId = 16,
                             Title = "Упражнение"
                         },
                         new
@@ -989,6 +1090,7 @@ namespace PreparationForITExam.Infrastructure.Migrations
                             Id = 102,
                             Content = "",
                             IsActive = true,
+                            SectionOfCurricularId = 17,
                             Title = "Фази при разработване на проекти"
                         },
                         new
@@ -996,6 +1098,7 @@ namespace PreparationForITExam.Infrastructure.Migrations
                             Id = 103,
                             Content = "",
                             IsActive = true,
+                            SectionOfCurricularId = 17,
                             Title = "Екип, документиране и защита на проекти"
                         },
                         new
@@ -1003,6 +1106,7 @@ namespace PreparationForITExam.Infrastructure.Migrations
                             Id = 104,
                             Content = "",
                             IsActive = true,
+                            SectionOfCurricularId = 18,
                             Title = "Езикът C# - преговор"
                         },
                         new
@@ -1010,6 +1114,7 @@ namespace PreparationForITExam.Infrastructure.Migrations
                             Id = 105,
                             Content = "",
                             IsActive = true,
+                            SectionOfCurricularId = 18,
                             Title = "Свързване с базата данни"
                         },
                         new
@@ -1017,6 +1122,7 @@ namespace PreparationForITExam.Infrastructure.Migrations
                             Id = 106,
                             Content = "",
                             IsActive = true,
+                            SectionOfCurricularId = 18,
                             Title = "Четене от база данни"
                         },
                         new
@@ -1024,6 +1130,7 @@ namespace PreparationForITExam.Infrastructure.Migrations
                             Id = 107,
                             Content = "",
                             IsActive = true,
+                            SectionOfCurricularId = 18,
                             Title = "Приложение с графичен интерфейс"
                         },
                         new
@@ -1031,6 +1138,7 @@ namespace PreparationForITExam.Infrastructure.Migrations
                             Id = 108,
                             Content = "",
                             IsActive = true,
+                            SectionOfCurricularId = 18,
                             Title = "Редактиране на данни"
                         },
                         new
@@ -1038,6 +1146,7 @@ namespace PreparationForITExam.Infrastructure.Migrations
                             Id = 109,
                             Content = "",
                             IsActive = true,
+                            SectionOfCurricularId = 18,
                             Title = "Упражнение"
                         },
                         new
@@ -1045,6 +1154,7 @@ namespace PreparationForITExam.Infrastructure.Migrations
                             Id = 110,
                             Content = "",
                             IsActive = true,
+                            SectionOfCurricularId = 18,
                             Title = "Интегриране с лента от менюта"
                         },
                         new
@@ -1052,8 +1162,49 @@ namespace PreparationForITExam.Infrastructure.Migrations
                             Id = 111,
                             Content = "",
                             IsActive = true,
+                            SectionOfCurricularId = 18,
                             Title = "Още функционалност в ИС УЧИСЕ"
                         });
+                });
+
+            modelBuilder.Entity("PreparationForITExam.Infrastructure.Data.Entities.ExerciseMaterial", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
+
+                    b.Property<int?>("ExerciseId")
+                        .IsRequired()
+                        .HasColumnType("int");
+
+                    b.Property<string>("FileFormat")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<bool>("IsActive")
+                        .HasColumnType("bit");
+
+                    b.Property<string>("Name")
+                        .HasMaxLength(300)
+                        .HasColumnType("nvarchar(300)");
+
+                    b.Property<string>("UrlPath")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("UserId")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(450)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("ExerciseId");
+
+                    b.HasIndex("UserId");
+
+                    b.ToTable("ExerciseMaterials");
                 });
 
             modelBuilder.Entity("PreparationForITExam.Infrastructure.Data.Entities.Image", b =>
@@ -2124,6 +2275,103 @@ namespace PreparationForITExam.Infrastructure.Migrations
                         });
                 });
 
+            modelBuilder.Entity("PreparationForITExam.Infrastructure.Data.Entities.LessonComment", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
+
+                    b.Property<string>("Content")
+                        .IsRequired()
+                        .HasMaxLength(1000)
+                        .HasColumnType("nvarchar(1000)");
+
+                    b.Property<DateTime>("CreatedOn")
+                        .HasColumnType("datetime2");
+
+                    b.Property<int?>("ExerciseId")
+                        .HasColumnType("int");
+
+                    b.Property<bool>("IsActive")
+                        .HasColumnType("bit");
+
+                    b.Property<int>("LessonId")
+                        .HasColumnType("int");
+
+                    b.Property<string>("Title")
+                        .IsRequired()
+                        .HasMaxLength(1000)
+                        .HasColumnType("nvarchar(1000)");
+
+                    b.Property<string>("Url")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("UserId")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(450)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("ExerciseId");
+
+                    b.HasIndex("LessonId");
+
+                    b.HasIndex("UserId");
+
+                    b.ToTable("LessonComment");
+                });
+
+            modelBuilder.Entity("PreparationForITExam.Infrastructure.Data.Entities.LessonMaterial", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
+
+                    b.Property<string>("FileFormat")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<bool>("IsActive")
+                        .HasColumnType("bit");
+
+                    b.Property<int?>("LessonId")
+                        .HasColumnType("int");
+
+                    b.Property<string>("Name")
+                        .HasMaxLength(300)
+                        .HasColumnType("nvarchar(300)");
+
+                    b.Property<int?>("RequestExerciseId")
+                        .HasColumnType("int");
+
+                    b.Property<int?>("RequestLessonId")
+                        .HasColumnType("int");
+
+                    b.Property<string>("UrlPath")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("UserId")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(450)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("LessonId");
+
+                    b.HasIndex("RequestExerciseId");
+
+                    b.HasIndex("RequestLessonId");
+
+                    b.HasIndex("UserId");
+
+                    b.ToTable("LessonMaterials");
+                });
+
             modelBuilder.Entity("PreparationForITExam.Infrastructure.Data.Entities.LessonMonUser", b =>
                 {
                     b.Property<int>("LessonId")
@@ -2696,7 +2944,7 @@ namespace PreparationForITExam.Infrastructure.Migrations
                         });
                 });
 
-            modelBuilder.Entity("PreparationForITExam.Infrastructure.Data.Entities.LessonQuestion", b =>
+            modelBuilder.Entity("PreparationForITExam.Infrastructure.Data.Entities.Message", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -2704,95 +2952,38 @@ namespace PreparationForITExam.Infrastructure.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
 
-                    b.Property<int?>("ExerciseId")
-                        .HasColumnType("int");
+                    b.Property<DateTime>("CreatedOn")
+                        .HasColumnType("datetime2");
 
-                    b.Property<bool>("IsActive")
-                        .HasColumnType("bit");
-
-                    b.Property<int>("LessonId")
-                        .HasColumnType("int");
-
-                    b.Property<string>("QuestionContent")
+                    b.Property<string>("MessageText")
                         .IsRequired()
-                        .HasMaxLength(1000)
-                        .HasColumnType("nvarchar(1000)");
-
-                    b.Property<string>("Title")
-                        .IsRequired()
-                        .HasMaxLength(1000)
-                        .HasColumnType("nvarchar(1000)");
-
-                    b.Property<string>("Url")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("UserId")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(450)");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("ExerciseId");
-
-                    b.HasIndex("LessonId");
-
-                    b.HasIndex("UserId");
-
-                    b.ToTable("LessonQuestion");
-                });
-
-            modelBuilder.Entity("PreparationForITExam.Infrastructure.Data.Entities.Material", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
-
-                    b.Property<int?>("ExerciseId")
-                        .HasColumnType("int");
-
-                    b.Property<string>("FileFormat")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<bool>("IsActive")
-                        .HasColumnType("bit");
-
-                    b.Property<int>("LessonId")
-                        .HasColumnType("int");
-
-                    b.Property<string>("Name")
                         .HasMaxLength(300)
                         .HasColumnType("nvarchar(300)");
 
-                    b.Property<int?>("RequestExerciseId")
-                        .HasColumnType("int");
+                    b.Property<string>("ReceiverId")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
 
-                    b.Property<int?>("RequestLessonId")
-                        .HasColumnType("int");
+                    b.Property<string>("ReceiverName")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("UrlPath")
+                    b.Property<string>("SenderId")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("SenderName")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("UserId")
-                        .IsRequired()
                         .HasColumnType("nvarchar(450)");
 
                     b.HasKey("Id");
 
-                    b.HasIndex("ExerciseId");
-
-                    b.HasIndex("LessonId");
-
-                    b.HasIndex("RequestExerciseId");
-
-                    b.HasIndex("RequestLessonId");
-
                     b.HasIndex("UserId");
 
-                    b.ToTable("Materials");
+                    b.ToTable("Messages");
                 });
 
             modelBuilder.Entity("PreparationForITExam.Infrastructure.Data.Entities.ModuleOfCurricular", b =>
@@ -2928,9 +3119,6 @@ namespace PreparationForITExam.Infrastructure.Migrations
                     b.Property<bool>("IsActive")
                         .HasColumnType("bit");
 
-                    b.Property<int>("Likes")
-                        .HasColumnType("int");
-
                     b.Property<DateTime>("PostedOn")
                         .HasColumnType("datetime2");
 
@@ -3007,9 +3195,6 @@ namespace PreparationForITExam.Infrastructure.Migrations
 
                     b.Property<bool>("IsActive")
                         .HasColumnType("bit");
-
-                    b.Property<int>("Likes")
-                        .HasColumnType("int");
 
                     b.Property<int?>("PostId")
                         .HasColumnType("int");
@@ -8676,6 +8861,9 @@ namespace PreparationForITExam.Infrastructure.Migrations
                         .IsConcurrencyToken()
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<string>("ConnectionId")
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<string>("Email")
                         .IsRequired()
                         .HasMaxLength(256)
@@ -8757,7 +8945,7 @@ namespace PreparationForITExam.Infrastructure.Migrations
                             AboutMe = "Разработвам това приложение, за да участвам в олимпиада по информационни технологии. Темата си избрах след първата матура по Информатика. Моите учители и приятели, които се явиха на това ДЗИ, имаха проблем с намирането на полезни материали и информация за самата матура. Това приложение се надявам, че би олеснило подготовката, защото хора с еднакви интереси и задачи могат да комуникират и обменят знания. Също така, учители могат да предадат знанията си на ученици, които наистина имат желание да се научат и полагат усилия.",
                             AccessFailedCount = 0,
                             City = "Казанлък",
-                            ConcurrencyStamp = "c357bfb5-e636-4cb4-9f6f-ab119e777d6d",
+                            ConcurrencyStamp = "d954de93-c03c-4fcc-8f81-379cf05b6c3c",
                             Email = "admin@gmail.com",
                             EmailConfirmed = false,
                             FirstName = "Креса",
@@ -8766,12 +8954,12 @@ namespace PreparationForITExam.Infrastructure.Migrations
                             LockoutEnabled = false,
                             NormalizedEmail = "ADMIN@GMAIL.COM",
                             NormalizedUserName = "ADMIN@GMAIL.COM",
-                            PasswordHash = "AQAAAAEAACcQAAAAEKJmW+sIEqOPbElqXzXIpRvrjb0vzBKAHruQizrsY9tVwvT1/JaXy+WQyeilcfUUow==",
+                            PasswordHash = "AQAAAAEAACcQAAAAEK2cINaea2HJrYIR0sTztfXpjQCwQKiaWd0YaiLFkSfyht51gisKhEEBXjIJtb3U9g==",
                             PhoneNumber = "0886121260",
                             PhoneNumberConfirmed = false,
                             ProfilePictureUrl = "https://res.cloudinary.com/dmv8nabul/image/upload/v1707334401/kresa_bkbaoa.jpg",
                             RoleName = "Administrator",
-                            SecurityStamp = "c1488e3a-421f-41ab-9727-eb2ef20588e0",
+                            SecurityStamp = "e67fea8b-2b9a-4041-9463-bc75767cb1b6",
                             TwoFactorEnabled = false,
                             UserName = "admin@gmail.com"
                         },
@@ -8781,7 +8969,7 @@ namespace PreparationForITExam.Infrastructure.Migrations
                             AboutMe = "Работя в МОН от 5 години. Преподавам по Информатика в частна школа. Програмирането е моята страст. Обичам фо повече от приятелката ми.",
                             AccessFailedCount = 0,
                             City = "Кърджали",
-                            ConcurrencyStamp = "09c82dc2-e678-4432-8307-1ad796d79d8c",
+                            ConcurrencyStamp = "8e3fa194-bc36-4f21-b724-6331739a0392",
                             Email = "monuser@gmail.com",
                             EmailConfirmed = false,
                             FirstName = "Валентин",
@@ -8790,12 +8978,12 @@ namespace PreparationForITExam.Infrastructure.Migrations
                             LockoutEnabled = false,
                             NormalizedEmail = "MONUSER@GMAIL.COM",
                             NormalizedUserName = "MONUSER@GMAIL.COM",
-                            PasswordHash = "AQAAAAEAACcQAAAAEK+6UfoYCsX4OztwX++WxfDi7htIANHvl5E4/DckwQrU7YxCUWoiMi45FT+magOCyQ==",
+                            PasswordHash = "AQAAAAEAACcQAAAAEJBqXdhDXTukMsuP2bnyoPBQOeF6DnTUklS46zc5ntcW/O5gHX1sCFyBr4qLcbzxLw==",
                             PhoneNumber = "0886121261",
                             PhoneNumberConfirmed = false,
                             ProfilePictureUrl = "https://res.cloudinary.com/dmv8nabul/image/upload/v1707334408/valentin_u5en92.jpg",
                             RoleName = "MonUser",
-                            SecurityStamp = "af6e4b79-73e8-4831-8ea2-c30b0c062634",
+                            SecurityStamp = "9f594f9d-6a98-4a5e-b739-1dcd04037cef",
                             TwoFactorEnabled = false,
                             UserName = "monuser@gmail.com"
                         },
@@ -8805,7 +8993,7 @@ namespace PreparationForITExam.Infrastructure.Migrations
                             AboutMe = "Занимавам се с програмиране от 3 години. Интересувам се от кибер сигурност, а именно и това искам да уча след като завърша.",
                             AccessFailedCount = 0,
                             City = "Миделбург",
-                            ConcurrencyStamp = "0d417c68-977e-42a7-900b-26283f107eaf",
+                            ConcurrencyStamp = "60569be1-12bc-4ffb-84e7-46f8ce11e1de",
                             Email = "student@gmail.com",
                             EmailConfirmed = false,
                             FirstName = "Никол",
@@ -8814,12 +9002,12 @@ namespace PreparationForITExam.Infrastructure.Migrations
                             LockoutEnabled = false,
                             NormalizedEmail = "STUDENT@GMAIL.COM",
                             NormalizedUserName = "STUDENT@GMAIL.COM",
-                            PasswordHash = "AQAAAAEAACcQAAAAEGALl6itsiCxoOO0lvAGwInNEM2yysgFmoIj87Bgim9KDDkwv59iQxVFGYo5SKuHAg==",
+                            PasswordHash = "AQAAAAEAACcQAAAAEK27Oez3JyMDLagNuENXiHWVsixWGye5pcbpyioDtfxpWMjkan4gt3y6kZ7U8CAt0w==",
                             PhoneNumber = "0886121262",
                             PhoneNumberConfirmed = false,
                             ProfilePictureUrl = "https://res.cloudinary.com/dmv8nabul/image/upload/v1707334404/nikol_prlrcl.jpg",
                             RoleName = "Student",
-                            SecurityStamp = "2dffaf1c-955b-47d7-b654-0d5f2ae02db1",
+                            SecurityStamp = "3ba63e7b-11b9-4253-8655-42788afa7d57",
                             TwoFactorEnabled = false,
                             UserName = "student@gmail.com"
                         },
@@ -8829,7 +9017,7 @@ namespace PreparationForITExam.Infrastructure.Migrations
                             AboutMe = "Учителка съм от 12 години. Избрах тази професия, защото работата с деца е моята страст. В работата си опитвам да предам знанията си колкото повече мога. Мой интерес е работата с ASP.NET.",
                             AccessFailedCount = 0,
                             City = "София",
-                            ConcurrencyStamp = "fca600e3-bbad-4cee-aaed-0fcb8c941865",
+                            ConcurrencyStamp = "aea43480-1026-42e0-8837-a775206472f5",
                             Email = "teacher@gmail.com",
                             EmailConfirmed = false,
                             FirstName = "Ивета",
@@ -8838,12 +9026,12 @@ namespace PreparationForITExam.Infrastructure.Migrations
                             LockoutEnabled = false,
                             NormalizedEmail = "TEACHER@GMAIL.COM",
                             NormalizedUserName = "TEACHER@GMAIL.COM",
-                            PasswordHash = "AQAAAAEAACcQAAAAEGTtL1gIDet9Nk+j0wkFFTT5mqZYMKOM1sjM8svFoLE2g+S6Bu0i5tI2rKYDWkjrqA==",
+                            PasswordHash = "AQAAAAEAACcQAAAAEOxL7fzHelH+LY8EUIbl08woX75BPpdnmbtd5QYNYY/1cXlpmpYiF8GvEPeoyLeBBQ==",
                             PhoneNumber = "0886121262",
                             PhoneNumberConfirmed = false,
                             ProfilePictureUrl = "https://res.cloudinary.com/dmv8nabul/image/upload/v1707334395/iveta_rknyn3.jpg",
                             RoleName = "Teacher",
-                            SecurityStamp = "b96e1e74-dad8-4dcf-9d27-8acd0994e90e",
+                            SecurityStamp = "9456dd4a-f34d-4554-baaf-b2673cde96fb",
                             TwoFactorEnabled = false,
                             UserName = "teacher@gmail.com"
                         });
@@ -8932,13 +9120,36 @@ namespace PreparationForITExam.Infrastructure.Migrations
 
             modelBuilder.Entity("PreparationForITExam.Infrastructure.Data.Entities.Exercise", b =>
                 {
-                    b.HasOne("PreparationForITExam.Infrastructure.Data.Entities.SectionOfCurricular", null)
+                    b.HasOne("PreparationForITExam.Infrastructure.Data.Entities.SectionOfCurricular", "SectionOfCurricular")
                         .WithMany("Exercises")
-                        .HasForeignKey("SectionOfCurricularId");
+                        .HasForeignKey("SectionOfCurricularId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
                     b.HasOne("PreparationForITExam.Infrastructure.Data.Entities.Teacher", null)
                         .WithMany("Exercises")
                         .HasForeignKey("TeacherId");
+
+                    b.Navigation("SectionOfCurricular");
+                });
+
+            modelBuilder.Entity("PreparationForITExam.Infrastructure.Data.Entities.ExerciseMaterial", b =>
+                {
+                    b.HasOne("PreparationForITExam.Infrastructure.Data.Entities.Exercise", "Exercise")
+                        .WithMany("Materials")
+                        .HasForeignKey("ExerciseId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("PreparationForITExam.Infrastructure.Data.Entities.User", "User")
+                        .WithMany()
+                        .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Exercise");
+
+                    b.Navigation("User");
                 });
 
             modelBuilder.Entity("PreparationForITExam.Infrastructure.Data.Entities.Image", b =>
@@ -8971,6 +9182,54 @@ namespace PreparationForITExam.Infrastructure.Migrations
                     b.Navigation("SectionOfCurricular");
                 });
 
+            modelBuilder.Entity("PreparationForITExam.Infrastructure.Data.Entities.LessonComment", b =>
+                {
+                    b.HasOne("PreparationForITExam.Infrastructure.Data.Entities.Exercise", null)
+                        .WithMany("Questions")
+                        .HasForeignKey("ExerciseId");
+
+                    b.HasOne("PreparationForITExam.Infrastructure.Data.Entities.Lesson", "Lesson")
+                        .WithMany("LessonComments")
+                        .HasForeignKey("LessonId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("PreparationForITExam.Infrastructure.Data.Entities.User", "User")
+                        .WithMany("LessonComments")
+                        .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Lesson");
+
+                    b.Navigation("User");
+                });
+
+            modelBuilder.Entity("PreparationForITExam.Infrastructure.Data.Entities.LessonMaterial", b =>
+                {
+                    b.HasOne("PreparationForITExam.Infrastructure.Data.Entities.Lesson", "Lesson")
+                        .WithMany("Materials")
+                        .HasForeignKey("LessonId");
+
+                    b.HasOne("PreparationForITExam.Infrastructure.Data.Entities.RequestExercise", null)
+                        .WithMany("Materials")
+                        .HasForeignKey("RequestExerciseId");
+
+                    b.HasOne("PreparationForITExam.Infrastructure.Data.Entities.RequestLesson", null)
+                        .WithMany("Materials")
+                        .HasForeignKey("RequestLessonId");
+
+                    b.HasOne("PreparationForITExam.Infrastructure.Data.Entities.User", "User")
+                        .WithMany("Materials")
+                        .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Lesson");
+
+                    b.Navigation("User");
+                });
+
             modelBuilder.Entity("PreparationForITExam.Infrastructure.Data.Entities.LessonMonUser", b =>
                 {
                     b.HasOne("PreparationForITExam.Infrastructure.Data.Entities.Lesson", "Lesson")
@@ -8990,58 +9249,11 @@ namespace PreparationForITExam.Infrastructure.Migrations
                     b.Navigation("MonUser");
                 });
 
-            modelBuilder.Entity("PreparationForITExam.Infrastructure.Data.Entities.LessonQuestion", b =>
+            modelBuilder.Entity("PreparationForITExam.Infrastructure.Data.Entities.Message", b =>
                 {
-                    b.HasOne("PreparationForITExam.Infrastructure.Data.Entities.Exercise", null)
-                        .WithMany("Questions")
-                        .HasForeignKey("ExerciseId");
-
-                    b.HasOne("PreparationForITExam.Infrastructure.Data.Entities.Lesson", "Lesson")
-                        .WithMany("Questions")
-                        .HasForeignKey("LessonId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("PreparationForITExam.Infrastructure.Data.Entities.User", "User")
-                        .WithMany()
-                        .HasForeignKey("UserId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Lesson");
-
-                    b.Navigation("User");
-                });
-
-            modelBuilder.Entity("PreparationForITExam.Infrastructure.Data.Entities.Material", b =>
-                {
-                    b.HasOne("PreparationForITExam.Infrastructure.Data.Entities.Exercise", null)
-                        .WithMany("Materials")
-                        .HasForeignKey("ExerciseId");
-
-                    b.HasOne("PreparationForITExam.Infrastructure.Data.Entities.Lesson", "Lesson")
-                        .WithMany("Materials")
-                        .HasForeignKey("LessonId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("PreparationForITExam.Infrastructure.Data.Entities.RequestExercise", null)
-                        .WithMany("Materials")
-                        .HasForeignKey("RequestExerciseId");
-
-                    b.HasOne("PreparationForITExam.Infrastructure.Data.Entities.RequestLesson", null)
-                        .WithMany("Materials")
-                        .HasForeignKey("RequestLessonId");
-
-                    b.HasOne("PreparationForITExam.Infrastructure.Data.Entities.User", "User")
-                        .WithMany("Materials")
-                        .HasForeignKey("UserId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Lesson");
-
-                    b.Navigation("User");
+                    b.HasOne("PreparationForITExam.Infrastructure.Data.Entities.User", null)
+                        .WithMany("Messages")
+                        .HasForeignKey("UserId");
                 });
 
             modelBuilder.Entity("PreparationForITExam.Infrastructure.Data.Entities.MonUser", b =>
@@ -9199,11 +9411,11 @@ namespace PreparationForITExam.Infrastructure.Migrations
 
             modelBuilder.Entity("PreparationForITExam.Infrastructure.Data.Entities.Lesson", b =>
                 {
+                    b.Navigation("LessonComments");
+
                     b.Navigation("LessonMonUser");
 
                     b.Navigation("Materials");
-
-                    b.Navigation("Questions");
                 });
 
             modelBuilder.Entity("PreparationForITExam.Infrastructure.Data.Entities.ModuleOfCurricular", b =>
@@ -9261,7 +9473,11 @@ namespace PreparationForITExam.Infrastructure.Migrations
 
             modelBuilder.Entity("PreparationForITExam.Infrastructure.Data.Entities.User", b =>
                 {
+                    b.Navigation("LessonComments");
+
                     b.Navigation("Materials");
+
+                    b.Navigation("Messages");
 
                     b.Navigation("Posts");
                 });

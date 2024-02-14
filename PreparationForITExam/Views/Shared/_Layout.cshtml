@@ -96,10 +96,9 @@
                             <li><a asp-controller="Lesson" asp-area="" asp-action="Index"><b>форум</b></a></li>
                             @if (this.User?.Identity != null && this.User.Identity.IsAuthenticated)
                             {
-                                <li><a><b>чатове</b></a></li>
-                                <li><a><b>профил</b></a></li>
+                                <li><a asp-controller="Chat" asp-area="" asp-action="Index"><b>чатове</b></a></li>
+                                <li><a asp-controller="Profile" asp-area="" asp-action="Index"><b>профил</b></a></li>
                             }
-                            <li><a asp-controller="Profile" asp-area="" asp-action="Index"><b>user</b></a></li>
 
                         </ul><!--/.nav -->
                     </div><!-- /.navbar-collapse -->
@@ -119,7 +118,7 @@
             @RenderBody()
         </main>
     </div>
-
+@*
     <!--footer start-->
     <footer id="footer" class="footer">
         <div class="container">
@@ -172,14 +171,14 @@
 
         </div><!--/.scroll-Top-->
 
-    </footer><!--/.footer-->
+    </footer><!--/.footer-->*@
     <!--footer end-->
     <!-- script
     ================================================== -->
     @*<script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>*@
 
     <script src="~/js/plugins.js"></script>
-    <script src="~/js/main.js" asp-append-version="true" defer></script>
+    @*<script src="~/js/main.js" asp-append-version="true" defer></script>*@
     <script src="~/lib/jquery/dist/jquery.js"></script>
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
 
@@ -201,6 +200,8 @@
 
     <!--slick.min.js-->
     <script src="~/js/slick.min.js"></script>
+
+    <script src="~/js/main.js"></script>
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.4.1/jquery.easing.min.js"></script>
 

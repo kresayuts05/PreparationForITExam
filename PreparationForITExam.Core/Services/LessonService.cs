@@ -15,11 +15,11 @@ namespace PreparationForITExam.Core.Services
     public class LessonService : ILessonService
     {
         private readonly IRepository repo;
-        private readonly IQuestionService questionService;
+        private readonly ILessonCommentService questionService;
         private readonly IMaterialService materialService;
 
         public LessonService(IRepository _repo,
-           IQuestionService _questionService,
+           ILessonCommentService _questionService,
            IMaterialService _materialService)
         {
             repo = _repo;
@@ -57,7 +57,7 @@ namespace PreparationForITExam.Core.Services
                 .FirstOrDefaultAsync();
 
             lesson.PresentationUrl = await materialService.GetPresentationUrlByLessonId(id);
-            lesson.Questions = await questionService.GetAllLessonQuestionsByLessonId(id);
+            lesson.Questions = await questionService.GetAllLessonCommentsByLessonId(id);
             lesson.Materials = await materialService.GetAllMaterialsForLessonById(id);
 
             return lesson;

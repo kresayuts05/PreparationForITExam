@@ -40,6 +40,6 @@ namespace PreparationForITExam.Infrastructure.Data.Entities
 
         public bool IsActive { get; set; }
 
-        public ICollection<Material> Materials { get; set; } = new HashSet<Material>();
+        public ICollection<LessonMaterial> Materials { get; set; } = new HashSet<LessonMaterial>();
     }
 }

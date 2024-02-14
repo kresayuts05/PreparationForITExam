@@ -13,11 +13,13 @@ namespace PreparationForITExam.Core.Contracts
     {
         Task ConvertPresentationToJpeg(IFormFile file, string userId, int lessonId);
         Task ConvertPresentationToPdf(IFormFile file, string userId, int lessonId);
-        Task ConvertWordDocumentToPdf(IFormFile file, string userId, int lessonId);
-        Task ConvertWordDocumentsToPdf(List<IFormFile> file, string userId, int lessonId);
-        Task ZipUpload(byte[] file, string userId, int lessonId);
+        Task ConvertWordDocumentToPdf(IFormFile file, string userId, int lessonId, bool IsForExercise);
+        Task ConvertWordDocumentsToPdf(List<IFormFile> file, string userId, int lessonId, bool IsForExercise);
+        Task ZipUpload(byte[] file, string userId, int lessonId, bool IsForExercise);
         Task<string> GetPresentationUrlByLessonId(int lessonId);
+        Task<string> GetDocumentUrlByExerciseId(int exerciseId);
         Task<List<MaterialModel>> GetAllMaterialsForLessonById(int lessonId);
+        Task<List<MaterialModel>> GetAllMaterialsForExerciseById(int exerciseId);
 
         //Task ZipUpload(IFormFile file, string userId, int lessonId);
     }
