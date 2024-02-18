@@ -170,17 +170,55 @@ namespace PreparationForITExam.Controllers
             return RedirectToAction("Index", "Lesson", RouteInfo);
         }
 
-
-        [HttpPost]
+        [HttpGet]
         public async Task<IActionResult> DeleteMaterialFromLesson(int id)
         {
             var lessonId = await lessonService.GetLessonByMaterialId(id);
-            await materialService.DeleteMaterial(id, false);
+            var model = new MaterialModel
+            {
+                Id = id,
+                LessonId = lessonId
+            };
+
+            return View(model);
+        }
+
+
+        [HttpPost]
+        public async Task<IActionResult> DeleteMaterialFromLesson(MaterialModel model)
+        {            
+            await materialService.DeleteMaterial(model.Id, false);
 
             RouteValueDictionary RouteInfo = new RouteValueDictionary();
-            RouteInfo.Add("id", lessonId);
+            RouteInfo.Add("id", model.LessonId);
 
-            return RedirectToAction("Index", "Exercise", RouteInfo);
+            return RedirectToAction("Index", "Lesson", RouteInfo);
+        }
+
+        [HttpGet]
+        public async Task<IActionResult> DeleteMaterialFromExercise(int id)
+        {
+            var exerciseId = await exersiceService.GetExerciseByMaterialId(id);
+
+            var model = new MaterialModel
+            {
+                Id = id,
+                LessonId = exerciseId
+            };
+
+            return View(model);
+        }
+
+
+        [HttpPost]
+        public async Task<IActionResult> DeleteMaterialFromExercise(MaterialModel model)
+        {
+            await materialService.DeleteMaterial(model.Id, false);
+
+            RouteValueDictionary RouteInfo = new RouteValueDictionary();
+            RouteInfo.Add("id", model.LessonId);
+
+            return RedirectToAction("Index", "Lesson", RouteInfo);
         }
     }
 }

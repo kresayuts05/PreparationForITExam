@@ -22,5 +22,7 @@ namespace PreparationForITExam.Core.Models.Material
         public string UrlPath { get; set; }
 
         public bool IsActive { get; set; }
+
+        public int LessonId { get; set; }
     }
 }

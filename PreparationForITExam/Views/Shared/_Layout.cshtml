@@ -86,10 +86,10 @@
                         <ul class="nav navbar-nav navbar-right" data-in="fadeInDown" data-out="fadeOutUp">
                             <li><a asp-controller="Home" asp-area="" asp-action="Index"><b>начало</b></a></li>
                             <li><a asp-controller="Curricular" asp-area="" asp-action="Index"><b>обучение</b></a></li>
-                            <li><a asp-controller="Lesson" asp-area="" asp-action="Index"><b>форум</b></a></li>
+                            <li><a asp-controller="Post" asp-area="" asp-action="Index"><b>форум</b></a></li>
+                            <li><a asp-controller="Home" asp-area="" asp-action="Contacts"><b>контакти</b></a></li>
                             @if (this.User?.Identity != null && this.User.Identity.IsAuthenticated)
                             {
-                                <li><a asp-controller="Chat" asp-area="" asp-action="Index"><b>чатове</b></a></li>
                                 <li><a asp-controller="Profile" asp-area="" asp-action="Index"><b>профил</b></a></li>
                             }
 
@@ -111,64 +111,67 @@
             @RenderBody()
         </main>
     </div>
-    @*
+
     <!--footer start-->
     <footer id="footer" class="footer">
-    <div class="container">
-    <div class="footer-menu">
-    <div class="row">
-    <div class="col-sm-3">
-    <div class="navbar-header">
-    <a class="navbar-brand" href="index.html">Блиц<span>Код</span>-ДЗИ</a>
-    </div><!--/.navbar-header-->
-    </div>
-    <div class="col-sm-9">
-    <ul class="footer-menu-item">
-    <li><a asp-controller="Home" asp-area="" asp-action="Index"><b>начало</b></a></li>
-    <li><a asp-controller="Curricular" asp-area="" asp-action="Index"><b>обучение</b></a></li>
-    <li><a asp-controller="Curricular" asp-area="" asp-action="Index"><b>форум</b></a></li>
-    <li><a><b>чатове</b></a></li>
-    <li><a><b>профил</b></a></li>
-    </ul><!--/.nav -->
-    </div>
-    </div>
-    </div>
-    <div class="hm-footer-copyright">
-    <div class="row">
-    <div class="col-sm-5">
-    <p>
-    &copy;copyright. designed and developed by Kresa Tsvetkova
-    </p><!--/p-->
-    </div>
-    <div class="col-sm-7">
-    <div class="footer-social">
-    <span><i class="fa fa-phone"> +1 (222) 777 8888</i></span>
-    @if (!SignInManager.IsSignedIn(User))
-    {
-    <a class="welcome-hero-btn" asp-controller="Account" asp-action="Register">
-    Регистрация
-    </a>
-    }
-    </div>
-    </div>
-    </div>
+        <div class="container">
+            <div class="footer-menu">
+                <div class="row">
+                    <div class="col-sm-3">
+                        <div class="navbar-header">
+                            <a class="navbar-brand" href="index.html">Блиц<span>Код</span>-ДЗИ</a>
+                        </div><!--/.navbar-header-->
+                    </div>
+                    <div class="col-sm-9">
+                        <ul class="footer-menu-item">
+                            <li><a asp-controller="Home" asp-area="" asp-action="Index"><b>начало</b></a></li>
+                            <li><a asp-controller="Curricular" asp-area="" asp-action="Index"><b>обучение</b></a></li>
+                            <li><a asp-controller="Post" asp-area="" asp-action="Index"><b>форум</b></a></li>
+                            <li><a asp-controller="Home" asp-area="" asp-action="Contacts"><b>контакти</b></a></li>
+                            @if (this.User?.Identity != null && this.User.Identity.IsAuthenticated)
+                            {
+                                <li><a asp-controller="Profile" asp-area="" asp-action="Index"><b>профил</b></a></li>
+                            }
+                        </ul><!--/.nav -->
+                    </div>
+                </div>
+            </div>
+            <div class="hm-footer-copyright">
+                <div class="row">
+                    <div class="col-sm-5">
+                        <p>
+                            &copy;copyright. designed and developed by Kresa Tsvetkova
+                        </p><!--/p-->
+                    </div>
+                    <div class="col-sm-7">
+                        <div class="footer-social">
+                            <span><i class="fa fa-phone"> +1 (222) 777 8888</i></span>
+                            @if (!SignInManager.IsSignedIn(User))
+                            {
+                                <a class="welcome-hero-btn" asp-controller="Account" asp-action="Register">
+                                    Регистрация
+                                </a>
+                            }
+                        </div>
+                    </div>
+                </div>
 
-    </div><!--/.hm-footer-copyright-->
-    </div><!--/.container-->
+            </div><!--/.hm-footer-copyright-->
+        </div><!--/.container-->
 
-    <div id="scroll-Top">
-    <div class="return-to-top">
-    <i class="fa fa-angle-up " id="scroll-top" data-toggle="tooltip" data-placement="top" title=""
-    data-original-title="Back to Top" aria-hidden="true"></i>
-    </div>
+        <div id="scroll-Top">
+            <div class="return-to-top">
+                <i class="fa fa-angle-up " id="scroll-top" data-toggle="tooltip" data-placement="top" title=""
+                   data-original-title="Back to Top" aria-hidden="true"></i>
+            </div>
 
-    </div><!--/.scroll-Top-->
+        </div><!--/.scroll-Top-->
 
     </footer><!--/.footer-->
     <!--footer end-->
     <!-- script
     ================================================== -->
-    @*<script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>*@
+    @*<script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
 
     <script src="~/js/plugins.js"></script>
     @*<script src="~/js/main.js" asp-append-version="true" defer></script>*@

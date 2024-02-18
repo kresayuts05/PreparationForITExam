@@ -61,6 +61,14 @@ namespace PreparationForITExam.Core.Services
             return exercise;
         }
 
+        public async  Task<int> GetExerciseByMaterialId(int id)
+        {
+
+            var material = await repo.GetByIdAsync<ExerciseMaterial>(id);
+
+            return material.ExerciseId;
+        }
+
         public async Task SetContentToExercise(string content, int id)
         {
             var exercise = await repo.GetByIdAsync<Exercise>(id);

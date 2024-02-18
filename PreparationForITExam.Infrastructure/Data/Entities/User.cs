@@ -47,5 +47,6 @@ namespace PreparationForITExam.Infrastructure.Data.Entities
         public ICollection<Message> Messages { get; set; } = new HashSet<Message>();
 
         public ICollection<LessonComment> LessonComments { get; set; } = new HashSet<LessonComment>();
+        public ICollection<Review> Reviews { get; set; } = new HashSet<Review>();
     }
 }

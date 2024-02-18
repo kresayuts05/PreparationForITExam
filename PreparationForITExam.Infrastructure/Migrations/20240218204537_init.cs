@@ -285,6 +285,28 @@ namespace PreparationForITExam.Infrastructure.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "Reviews",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    Stars = table.Column<int>(type: "int", nullable: false),
+                    Description = table.Column<string>(type: "nvarchar(250)", maxLength: 250, nullable: false),
+                    IsActive = table.Column<bool>(type: "bit", nullable: false),
+                    UserId = table.Column<string>(type: "nvarchar(450)", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Reviews", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_Reviews_AspNetUsers_UserId",
+                        column: x => x.UserId,
+                        principalTable: "AspNetUsers",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "SectionsOfCurricular",
                 columns: table => new
                 {
@@ -744,10 +766,10 @@ namespace PreparationForITExam.Infrastructure.Migrations
                 columns: new[] { "Id", "ConcurrencyStamp", "Name", "NormalizedName" },
                 values: new object[,]
                 {
-                    { "0f761db2-ab55-416c-83b9-70abded3d908", "7bd85a39-5757-4e65-8c37-2e59cc7872aa", "Administrator", "ADMINISTRATOR" },
-                    { "71281cf3-9730-4d7e-acbb-213edee8291c", "549efdab-1356-4a03-af49-7229043b658f", "Teacher", "TEACHER" },
-                    { "e66d730b-bcf1-41b5-b7e0-3e66056e61d9", "2fb03f44-4eff-44bd-89a9-03d3c2162789", "Student", "STUDENT" },
-                    { "fe750b82-6fe9-472c-bdc5-61f5433d429e", "00c52806-1a68-498d-839c-0e8f7ca52e42", "MonUser", "MONUSER" }
+                    { "0f761db2-ab55-416c-83b9-70abded3d908", "08257972-4899-4d08-8700-e2fe32d8c942", "Administrator", "ADMINISTRATOR" },
+                    { "71281cf3-9730-4d7e-acbb-213edee8291c", "e04c5cbe-3907-487c-8882-21a5e1eb7f90", "Teacher", "TEACHER" },
+                    { "e66d730b-bcf1-41b5-b7e0-3e66056e61d9", "eab90dfe-d57f-4773-ab2f-f4ccf94df4f8", "Student", "STUDENT" },
+                    { "fe750b82-6fe9-472c-bdc5-61f5433d429e", "19b4adcf-09a8-492a-8fd4-e1fc24857c1b", "MonUser", "MONUSER" }
                 });
 
             migrationBuilder.InsertData(
@@ -755,10 +777,10 @@ namespace PreparationForITExam.Infrastructure.Migrations
                 columns: new[] { "Id", "AboutMe", "AccessFailedCount", "City", "ConcurrencyStamp", "ConnectionId", "Email", "EmailConfirmed", "FirstName", "IsActive", "LastName", "LockoutEnabled", "LockoutEnd", "NormalizedEmail", "NormalizedUserName", "PasswordHash", "PhoneNumber", "PhoneNumberConfirmed", "ProfilePictureUrl", "RoleName", "SecurityStamp", "TwoFactorEnabled", "UserName" },
                 values: new object[,]
                 {
-                    { "023bafc9-8b7e-4fbd-bb06-2b178fe8ae8b", "Занимавам се с програмиране от 3 години. Интересувам се от кибер сигурност, а именно и това искам да уча след като завърша.", 0, "Миделбург", "ab7e34bb-4158-4c2e-b2d0-1887efbf094c", null, "student@gmail.com", false, "Никол", true, "Груева", false, null, "STUDENT@GMAIL.COM", "STUDENT@GMAIL.COM", "AQAAAAEAACcQAAAAEEPDj9EgMyShYCtaQvCzBqAYtOOWJkBzO47oMLXT81rNFvhMugidrQyNVeZ97euO/g==", "0886121262", false, "https://res.cloudinary.com/dmv8nabul/image/upload/v1707334404/nikol_prlrcl.jpg", "Student", "95ac5164-df92-44e1-91fd-2b799c8ca99e", false, "student@gmail.com" },
-                    { "789061a9-edaa-4a00-9e09-add6a20c8288", "Разработвам това приложение, за да участвам в олимпиада по информационни технологии. Темата си избрах след първата матура по Информатика. Моите учители и приятели, които се явиха на това ДЗИ, имаха проблем с намирането на полезни материали и информация за самата матура. Това приложение се надявам, че би олеснило подготовката, защото хора с еднакви интереси и задачи могат да комуникират и обменят знания. Също така, учители могат да предадат знанията си на ученици, които наистина имат желание да се научат и полагат усилия.", 0, "Казанлък", "1792712e-c64b-4501-95db-195d1a47c41d", null, "admin@gmail.com", false, "Креса", true, "Цветкова", false, null, "ADMIN@GMAIL.COM", "ADMIN@GMAIL.COM", "AQAAAAEAACcQAAAAEPAYPwc36VPAmm7SxtHkxQ/ZVhATnhtSk/+/3HOeaWlrHukpaubE15gp3PQm9UAAaw==", "0886121260", false, "https://res.cloudinary.com/dmv8nabul/image/upload/v1707334401/kresa_bkbaoa.jpg", "Administrator", "8f0aea65-1f7d-4d2d-ad0d-77797d26b9e7", false, "admin@gmail.com" },
-                    { "7decfb7d-d2df-40a2-a449-dcec04eb091a", "Работя в МОН от 5 години. Преподавам по Информатика в частна школа. Програмирането е моята страст. Обичам фо повече от приятелката ми.", 0, "Кърджали", "8f59b479-b83c-40d1-bc13-c8e79184e42d", null, "monuser@gmail.com", false, "Валентин", true, "Терзиев", false, null, "MONUSER@GMAIL.COM", "MONUSER@GMAIL.COM", "AQAAAAEAACcQAAAAEFpWj5Q1yyLjPgU2qBisHmfVKqaVL5ZwO2tEdyZAmCU7oG+XH9+42nl1Mx56X+53jA==", "0886121261", false, "https://res.cloudinary.com/dmv8nabul/image/upload/v1707334408/valentin_u5en92.jpg", "MonUser", "b3267c70-2c5d-4950-99d7-5ba2fa2bebb4", false, "monuser@gmail.com" },
-                    { "9c7f55cd-f0ae-405e-b520-6e1ccc448fcc", "Учителка съм от 12 години. Избрах тази професия, защото работата с деца е моята страст. В работата си опитвам да предам знанията си колкото повече мога. Мой интерес е работата с ASP.NET.", 0, "София", "e4680b26-a12a-48b9-bef8-8dcf12ba9b8a", null, "teacher@gmail.com", false, "Ивета", true, "Найденова", false, null, "TEACHER@GMAIL.COM", "TEACHER@GMAIL.COM", "AQAAAAEAACcQAAAAEEZt0xCjLG8cnk8dyTj6MY6nCb/RIbwzBxCOXejncVAKXVVFroPqHjKc/3PRYXQRvA==", "0886121262", false, "https://res.cloudinary.com/dmv8nabul/image/upload/v1707334395/iveta_rknyn3.jpg", "Teacher", "efc0d7fc-f45c-4879-921a-4a3e19e79017", false, "teacher@gmail.com" }
+                    { "023bafc9-8b7e-4fbd-bb06-2b178fe8ae8b", "Занимавам се с програмиране от 3 години. Интересувам се от кибер сигурност, а именно и това искам да уча след като завърша.", 0, "Миделбург", "acf6d3f1-169c-4101-9bb4-44d61dbebc3d", null, "student@gmail.com", false, "Никол", true, "Груева", false, null, "STUDENT@GMAIL.COM", "STUDENT@GMAIL.COM", "AQAAAAEAACcQAAAAEFO6yhyXFchvmeNu7/srSbEjSBW4FY0eIhYDqk8hGlefD1Q+1+wqQNidBWJt6D6mxA==", "0886121262", false, "https://res.cloudinary.com/dmv8nabul/image/upload/v1707334404/nikol_prlrcl.jpg", "Student", "f6d3e4a4-480a-4304-aa2e-918b86272648", false, "student@gmail.com" },
+                    { "789061a9-edaa-4a00-9e09-add6a20c8288", "Разработвам това приложение, за да участвам в олимпиада по информационни технологии. Темата си избрах след първата матура по Информатика. Моите учители и приятели, които се явиха на това ДЗИ, имаха проблем с намирането на полезни материали и информация за самата матура. Това приложение се надявам, че би олеснило подготовката, защото хора с еднакви интереси и задачи могат да комуникират и обменят знания. Също така, учители могат да предадат знанията си на ученици, които наистина имат желание да се научат и полагат усилия.", 0, "Казанлък", "6da39123-c6f6-4e45-9724-eba854f4fc0d", null, "admin@gmail.com", false, "Креса", true, "Цветкова", false, null, "ADMIN@GMAIL.COM", "ADMIN@GMAIL.COM", "AQAAAAEAACcQAAAAEMPBEAAnAyV8XvMLGvCLrJYJOmrouYNImHNFzKUxjlxvyNvz2sa6t4QHHR/U9n/7GQ==", "0886121260", false, "https://res.cloudinary.com/dmv8nabul/image/upload/v1707334401/kresa_bkbaoa.jpg", "Administrator", "ac0c4306-cc0e-46ef-a7eb-2b00e1f62de4", false, "admin@gmail.com" },
+                    { "7decfb7d-d2df-40a2-a449-dcec04eb091a", "Работя в МОН от 5 години. Преподавам по Информатика в частна школа. Програмирането е моята страст. Обичам фо повече от приятелката ми.", 0, "Кърджали", "bd7ef9f1-da79-4ee2-a460-4ff6e121d3bf", null, "monuser@gmail.com", false, "Валентин", true, "Терзиев", false, null, "MONUSER@GMAIL.COM", "MONUSER@GMAIL.COM", "AQAAAAEAACcQAAAAEO0OIFpBozaJl5aX8Tfy8L0Cvlv3V0HqlkGf/M3rTl07pt+/WW53a0DXj4+Npx8Wug==", "0886121261", false, "https://res.cloudinary.com/dmv8nabul/image/upload/v1707334408/valentin_u5en92.jpg", "MonUser", "681d9d01-d996-454b-98a2-c4467375f325", false, "monuser@gmail.com" },
+                    { "9c7f55cd-f0ae-405e-b520-6e1ccc448fcc", "Учителка съм от 12 години. Избрах тази професия, защото работата с деца е моята страст. В работата си опитвам да предам знанията си колкото повече мога. Мой интерес е работата с ASP.NET.", 0, "София", "c7581bcd-660e-4097-a622-a732869b5fdb", null, "teacher@gmail.com", false, "Ивета", true, "Найденова", false, null, "TEACHER@GMAIL.COM", "TEACHER@GMAIL.COM", "AQAAAAEAACcQAAAAED66WfB66GHhSkQmqMdX4T0WMeKXFCc7tWgVP78vFxeSTjZR9rTZA3S1SP0GbQgejg==", "0886121262", false, "https://res.cloudinary.com/dmv8nabul/image/upload/v1707334395/iveta_rknyn3.jpg", "Teacher", "3346da89-0c0c-4b72-8986-9584e89ededa", false, "teacher@gmail.com" }
                 });
 
             migrationBuilder.InsertData(
@@ -1727,6 +1749,16 @@ namespace PreparationForITExam.Infrastructure.Migrations
                 });
 
             migrationBuilder.InsertData(
+                table: "News",
+                columns: new[] { "Id", "Description", "IsActive", "MonId", "PostedOn", "SeenByPeople", "Title", "UsefulUrls" },
+                values: new object[,]
+                {
+                    { 1, "Изпитните материали от днешният изпит вече са налични онлайн на сайта на МОН.", true, 1, new DateTime(2024, 2, 18, 22, 45, 36, 671, DateTimeKind.Local).AddTicks(3895), 0, "ДЗИ 23 май 2023г", "https://web.mon.bg/bg/101234" },
+                    { 2, "Изпитните материали от днешният изпит вече са налични онлайн на сайта на МОН.", true, 1, new DateTime(2024, 2, 18, 22, 45, 36, 671, DateTimeKind.Local).AddTicks(3900), 0, "ДЗИ 25 август 2023г", "https://web.mon.bg/bg/101234" },
+                    { 3, "Датите за тазгодишната изпитна кампания са 20 май 2024г.", true, 1, new DateTime(2024, 2, 18, 22, 45, 36, 671, DateTimeKind.Local).AddTicks(3902), 0, "Изпитни дати за 2023/2024 г.", "https://danybon.com/wp-content/uploads/2023/09/zap2050_NVO_01092023.pdf" }
+                });
+
+            migrationBuilder.InsertData(
                 table: "Lessons",
                 columns: new[] { "Id", "Content", "ExerciseId", "IsActive", "SectionOfCurricularId", "Title" },
                 values: new object[,]
@@ -2176,6 +2208,11 @@ namespace PreparationForITExam.Infrastructure.Migrations
                 column: "TeacherId");
 
             migrationBuilder.CreateIndex(
+                name: "IX_Reviews_UserId",
+                table: "Reviews",
+                column: "UserId");
+
+            migrationBuilder.CreateIndex(
                 name: "IX_SectionsOfCurricular_ModuleOfCurricularId",
                 table: "SectionsOfCurricular",
                 column: "ModuleOfCurricularId");
@@ -2247,6 +2284,9 @@ namespace PreparationForITExam.Infrastructure.Migrations
 
             migrationBuilder.DropTable(
                 name: "PostComments");
+
+            migrationBuilder.DropTable(
+                name: "Reviews");
 
             migrationBuilder.DropTable(
                 name: "AspNetRoles");

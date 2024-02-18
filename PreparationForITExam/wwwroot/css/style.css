@@ -110,8 +110,8 @@ h4,
 h5,
 h6 {
     margin: 0;
-    /*color: #343a3f;*/
-    /*   font-size: 18px;*/
+    color: #343a3f;
+  /*  font-size: 18px;*/
     font-weight: 500;
     text-transform: capitalize;
 }
@@ -268,6 +268,10 @@ body {
     font-weight: 300;
 }
 
+.add-news a:hover {
+    box-shadow: 0 0px 10px rgba(71, 71, 71, .4);
+    background: #ff545a;
+}
 
 /*-------------------------------------
         3. Top-area
@@ -313,10 +317,10 @@ nav.navbar.bootsnav {
     margin: 20px -45px !important;
 }
 
-.logo{
+.logo {
     width: 150px;
     height: auto;
-    border:none;
+    border: none;
 }
 
 nav.navbar.bootsnav ul.nav > li > a {
@@ -459,7 +463,7 @@ nav.navbar.bootsnav .navbar-toggle {
 }
 
 
-.single-list{
+.single-list {
     display: block;
     color: black;
     text-decoration: none;
@@ -540,7 +544,7 @@ nav.navbar.bootsnav .navbar-toggle {
 .curricular-element {
     text-decoration: none;
     display: block;
- /*   width: 100%;
+    /*   width: 100%;
     height: 100%;*/
     /*color: #343a3f;
     font-size: 16px;
@@ -575,21 +579,21 @@ nav.navbar.bootsnav .navbar-toggle {
     max-height: 150px !important;
 }
 
-    .curricular-head p {
-        font-size: 18px;
-        line-height: 20px;
-        font-weight: 400;
-        width: 70%;
-        margin: 0 auto 12px;
-        color: #fff;
-    }
+.curricular-head p {
+    font-size: 18px;
+    line-height: 20px;
+    font-weight: 400;
+    width: 70%;
+    margin: 0 auto 12px;
+    color: #fff;
+}
 
-    .curricular-head h3 {
-        font-weight: normal;
-        font-style: normal;
-        padding: 32px 0 16px;
-        color: #fff;
-    }
+.curricular-head h3 {
+    font-weight: normal;
+    font-style: normal;
+    padding: 32px 0 16px;
+    color: #fff;
+}
 
 .curricular-modules-info {
     padding-bottom: 4px;
@@ -784,6 +788,22 @@ nav.navbar.bootsnav .navbar-toggle {
 
 .algorithm {
     content: url(../images/icons/algorithm.png);
+}
+
+.curriculars {
+    content: url(../images/icons/curriculars.png);
+}
+
+.forum {
+    content: url(../images/icons/forum.png);
+}
+
+.contacts {
+    content: url(../images/icons/contacts.png);
+}
+
+.plus {
+    content: url(../images/icons/plus.png);
 }
 
 .single-how-works h2 a {
@@ -1230,7 +1250,7 @@ nav.navbar.bootsnav .navbar-toggle {
         10. Blog
 --------------------------------------*/
 .blog {
-    padding: 120px 0 90px;
+    padding: 40px 0 90px;
 }
 
 .blog-content {
@@ -1245,6 +1265,7 @@ nav.navbar.bootsnav .navbar-toggle {
     -ms-transition: .3s;
     -o-transition: .3s;
     transition: .3s;
+    height: 22.5em;
 }
 
 .single-blog-item-txt {
@@ -1271,10 +1292,13 @@ nav.navbar.bootsnav .navbar-toggle {
             text-transform: uppercase;
         }
 
-.single-blog-item:hover h2 a {
+.single-blog-item:hover h2 a{
     color: #ff545a;
 }
 
+.single-blog-item:hover h2 {
+    color: #337ab7;
+}
 .single-blog-item:hover {
     box-shadow: 0 10px 20px rgba(21, 19, 19, .4);
 }

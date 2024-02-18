@@ -19,6 +19,11 @@ namespace Microsoft.Extensions.DependencyInjection
             services.AddScoped<ILessonService, LessonService>();
             services.AddScoped<IMaterialService, MaterialService>();
             services.AddScoped<IExerciseService, ExerciseService>();
+            services.AddScoped<INewsService, NewsService>();
+            services.AddScoped<IMonUserService, MonUserService>();
+            services.AddScoped<IReviewService, ReviewService>();
+
+
             services.AddScoped<ILessonCommentService, LessonCommentService>();
             services.AddScoped<IChatService, ChatService>();
             services.AddScoped<IMessageService, MessageService>();

@@ -21,10 +21,11 @@ body {
     /* Style as you please, it will become the visible UI component. */
 }
 
-.cont{
+.cont {
     width: auto !important;
     justify-content: center;
 }
+
 .upload-photo {
     opacity: 0;
     position: absolute;
@@ -2133,7 +2134,7 @@ html, body {
 }
 
 body {
-  /*  background: var(--color-body);*/
+    /*  background: var(--color-body);*/
     font-family: var(--font-1);
     font-size: var(--text-size);
     font-style: normal;
@@ -2280,7 +2281,7 @@ em, i {
 strong, b {
     font-family: var(--font-1);
     font-weight: 600;
-   /* color: var(--color-text-dark);*/
+    /* color: var(--color-text-dark);*/
 }
 
 small {
@@ -2756,19 +2757,19 @@ select {
     }
 
 
-    input[type="email"]:focus,
-    input[type="number"]:focus,
-    input[type="search"]:focus,
-    input[type="text"]:focus,
-    input[type="tel"]:focus,
-    input[type="url"]:focus,
-    input[type="password"]:focus,
-    textarea:focus,
-    select:focus {
-        color: white;
-/*        background-color: var(--color-gray-16);*/
-        border: 1px solid var(--color-gray-16);
-    }
+input[type="email"]:focus,
+input[type="number"]:focus,
+input[type="search"]:focus,
+input[type="text"]:focus,
+input[type="tel"]:focus,
+input[type="url"]:focus,
+input[type="password"]:focus,
+textarea:focus,
+select:focus {
+    color: white;
+    /*        background-color: var(--color-gray-16);*/
+    border: 1px solid var(--color-gray-16);
+}
 
 label, legend {
     font-family: var(--font-1);
@@ -2855,7 +2856,7 @@ input[type="button"] {
     font-family: var(--font-2);
     font-weight: 600;
     font-size: var(--text-xs);
-    text-transform: uppercase;   
+    text-transform: uppercase;
     height: var(--btn-height);
     line-height: calc(var(--btn-height) - .4rem);
     padding: 0 3.2rem;
@@ -2873,89 +2874,99 @@ input[type="button"] {
     border: 0.2rem solid var(--color-btn);
 }
 
-    .btn:hover,
-    button:hover,
-    input[type="submit"]:hover,
-    input[type="reset"]:hover,
-    input[type="button"]:hover,
-    .btn:focus, button:focus,
-    input[type="submit"]:focus,
-    input[type="reset"]:focus,
-    input[type="button"]:focus {
-        background-color: var(--color-btn-hover);
-        border-color: var(--color-btn-hover);
-        color: var(--color-btn-hover-text);
-        outline: 0;
-    }
+.btn-red-h:hover {
+    background-color: #da190b !important;
+    border-color: #da190b !important;
+}
 
-    /* button primary
+.btn-green-h:hover {
+    background-color: #04AA6D !important;
+    border-color: #04AA6D !important;
+}
+
+.btn:hover,
+button:hover,
+input[type="submit"]:hover,
+input[type="reset"]:hover,
+input[type="button"]:hover,
+.btn:focus, button:focus,
+input[type="submit"]:focus,
+input[type="reset"]:focus,
+input[type="button"]:focus {
+    background-color: var(--color-btn-hover);
+    border-color: var(--color-btn-hover);
+    color: var(--color-btn-hover-text);
+    outline: 0;
+}
+
+/* button primary
  * ------------------------------------------------- */
-    .btn.btn--primary,
-    button.btn--primary,
-    input[type="submit"].btn--primary,
-    input[type="reset"].btn--primary,
-    input[type="button"].btn--primary {
-        background: var(--color-btn-primary);
-        border-color: var(--color-btn-primary);
-        color: var(--color-btn-primary-text);
+.btn.btn--primary,
+button.btn--primary,
+input[type="submit"].btn--primary,
+input[type="reset"].btn--primary,
+input[type="button"].btn--primary {
+    background: var(--color-btn-primary);
+    border-color: var(--color-btn-primary);
+    color: var(--color-btn-primary-text);
+}
+
+    .btn.btn--primary:hover,
+    button.btn--primary:hover,
+    input[type="submit"].btn--primary:hover,
+    input[type="reset"].btn--primary:hover,
+    input[type="button"].btn--primary:hover,
+    .btn.btn--primary:focus,
+    button.btn--primary:focus,
+    input[type="submit"].btn--primary:focus,
+    input[type="reset"].btn--primary:focus,
+    input[type="button"].btn--primary:focus {
+        background: var(--color-btn-primary-hover);
+        border-color: var(--color-btn-primary-hover);
+        color: var(--color-btn-primary-hover-text);
     }
 
-        .btn.btn--primary:hover,
-        button.btn--primary:hover,
-        input[type="submit"].btn--primary:hover,
-        input[type="reset"].btn--primary:hover,
-        input[type="button"].btn--primary:hover,
-        .btn.btn--primary:focus,
-        button.btn--primary:focus,
-        input[type="submit"].btn--primary:focus,
-        input[type="reset"].btn--primary:focus,
-        input[type="button"].btn--primary:focus {
-            background: var(--color-btn-primary-hover);
-            border-color: var(--color-btn-primary-hover);
-            color: var(--color-btn-primary-hover-text);
-        }
-
-    /* button modifiers
+/* button modifiers
  * ------------------------------------------------- */
-    .btn.h-full-width, button.h-full-width {
-        width: 100%;
-        margin-right: 0;
+.btn.h-full-width, button.h-full-width {
+    width: 100%;
+    margin-right: 0;
+}
+
+.btn--small, button.btn--small {
+    --btn-height: calc(var(--vspace-btn) - 1.6rem);
+}
+
+.btn--medium, button.btn--medium {
+    --btn-height: calc(var(--vspace-btn) + .8rem);
+}
+
+.btn--large, button.btn--large {
+    --btn-height: calc(var(--vspace-btn) + 1.6rem);
+}
+
+.btn--stroke, button.btn--stroke {
+    background: transparent !important;
+    border: 0.2rem solid var(--color-btn-stroke);
+    color: var(--color-btn-stroke-text);
+}
+
+    .btn--stroke:hover, button.btn--stroke:hover {
+        background: var(--color-btn-stroke-hover) !important;
+        border: 0.2rem solid var(--color-btn-stroke-hover);
+        color: var(--color-btn-stroke-hover-text);
     }
 
-    .btn--small, button.btn--small {
-        --btn-height: calc(var(--vspace-btn) - 1.6rem);
-    }
+.btn--pill, button.btn--pill {
+    padding-left: 3.2rem !important;
+    padding-right: 3.2rem !important;
+    border-radius: 1000px !important;
+}
 
-    .btn--medium, button.btn--medium {
-        --btn-height: calc(var(--vspace-btn) + .8rem);
-    }
-
-    .btn--large, button.btn--large {
-        --btn-height: calc(var(--vspace-btn) + 1.6rem);
-    }
-
-    .btn--stroke, button.btn--stroke {
-        background: transparent !important;
-        border: 0.2rem solid var(--color-btn-stroke);
-        color: var(--color-btn-stroke-text);
-    }
-
-        .btn--stroke:hover, button.btn--stroke:hover {
-            background: var(--color-btn-stroke-hover) !important;
-            border: 0.2rem solid var(--color-btn-stroke-hover);
-            color: var(--color-btn-stroke-hover-text);
-        }
-
-    .btn--pill, button.btn--pill {
-        padding-left: 3.2rem !important;
-        padding-right: 3.2rem !important;
-        border-radius: 1000px !important;
-    }
-
-    button::-moz-focus-inner, input::-moz-focus-inner {
-        border: 0;
-        padding: 0;
-    }
+button::-moz-focus-inner, input::-moz-focus-inner {
+    border: 0;
+    padding: 0;
+}
 
 
 

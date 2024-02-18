@@ -1,0 +1,84 @@
+﻿@model ReviewViewModel
+
+<link rel="stylesheet" href="~/css/contacts.css" asp-append-version="true" />
+
+<section class="ftco-section">
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-md-6 text-center mb-5">
+                <h2 class="heading-section">Контакти</h2>
+            </div>
+        </div>
+        <div class="row justify-content-center">
+            <div class="col-md-10">
+                <div class="wrapper">
+                    <div class="row no-gutters">
+                        <div class="col-md-6">
+                            <div class="contact-wrap w-100 p-lg-5 p-4">
+                                <h3 class="mb-4">Сподели своето мнение за нас</h3>
+                                <div id="form-message-warning" class="mb-4"></div>
+                                <div id="form-message-success" class="mb-4">
+                                    Вашето ревю беше изпратено! Благодарим!
+                                </div>
+                                <form method="POST" id="contactForm" name="contactForm" class="contactForm" enctype="multipart/form-data">
+                                    <input type="hidden" asp-for="@Model.UserId" />
+                                    <div class="row">
+                                        <div class="col-md-12">
+                                            <div class="form-group">
+                                                <input asp-for="Stars" type="number" class="form-control" id="subject" placeholder="Оценка от 0 до 5">
+                                            </div>
+                                        </div>
+                                        <div class="col-md-12">
+                                            <div class="form-group">
+                                                <textarea asp-for="Description" type="text" class="form-control" id="message" cols="30" rows="6" placeholder="Мнение"></textarea>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-12">
+                                            <br>
+                                            <br>
+                                            <div class="form-group">
+                                                <input type="submit" value="Оцени" class="btn btn-light">
+                                                <div class="submitting"></div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                        <div class="col-md-6 d-flex align-items-stretch">
+                            <div class="info-wrap w-100 p-lg-5 p-4 img">
+                                <h3>Контакти</h3>
+                                <br>
+
+                                <div class="dbox w-100 d-flex align-items-center">
+                                    <div class="icon d-flex align-items-center justify-content-center">
+                                        <span class="fa fa-phone"></span>
+                                    </div>
+                                    <div class="text pl-3">
+                                        <p><span>Телефон:</span> <a>+ 359 886 12 1260</a></p>
+                                    </div>
+                                </div>
+                                <div class="dbox w-100 d-flex align-items-center">
+                                    <div class="icon d-flex align-items-center justify-content-center">
+                                        <span class="fa fa-paper-plane"></span>
+                                    </div>
+                                    <div class="text pl-3">
+                                        <p><span>Email:</span> <a>kresa@gmail.com</a></p>
+                                    </div>
+                                </div>
+                                <div class="dbox w-100 d-flex align-items-center">
+                                    <div class="icon d-flex align-items-center justify-content-center">
+                                        <span class="fa fa-globe"></span>
+                                    </div>
+                                    <div class="text pl-3">
+                                        <p><span>Instagram</span> <a href="#">_tsvetkova_27</a></p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

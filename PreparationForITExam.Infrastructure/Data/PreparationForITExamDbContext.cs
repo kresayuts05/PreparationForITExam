@@ -30,6 +30,7 @@ namespace PreparationForITExam.Infrastructure.Data
         public DbSet<Lesson> Lessons { get; set; }
         public DbSet<Exercise> Exercises { get; set; }
         public DbSet<News> News { get; set; }
+        public DbSet<Review> Reviews { get; set; }
         public DbSet<NewsComment> NewsComments { get; set; }
         public DbSet<RequestLesson> RequestsLessons { get; set; }
         public DbSet<RequestExercise> RequestsExercises { get; set; }
@@ -76,6 +77,7 @@ namespace PreparationForITExam.Infrastructure.Data
             builder.ApplyConfiguration(new UserRoleConifiguration());
             builder.ApplyConfiguration(new TeacherConfiguration());
             builder.ApplyConfiguration(new StudentConfiguration());
+            builder.ApplyConfiguration(new NewsConfiguration());
 
 
             base.OnModelCreating(builder);

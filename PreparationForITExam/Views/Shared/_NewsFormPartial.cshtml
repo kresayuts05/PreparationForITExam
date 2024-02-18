@@ -1,0 +1,32 @@
+﻿@model NewsFormViewModel
+
+<section>
+    <div class="row cont">
+        <div class="col-sm-12 offset-lg-2 col-lg-8 offset-xl-3 col-xl-6">
+            <form method ="post" enctype="multipart/form-data">
+                <input type="hidden" asp-for="@Model.UserId" />
+                <input type="hidden" asp-for="@Model.Id" />
+                <div>
+                    <label for="sampleInput">Заглавие<span class="mandatory">*</span></label>
+                    <input asp-for="Title" class="h-full-width" type="text" placeholder="Това е ново заглавие" required>
+                    <span asp-validation-for="Title" class="text-danger"></span>
+                </div>
+                <div>
+                    <label for="sampleInput">Съдържание<span class="mandatory">*</span></label>
+                    <input asp-for="Description" class="h-full-width" type="text" placeholder="Днешните изпити ..." required>
+                    <span asp-validation-for="Description" class="text-danger"></span>
+                </div>
+                <div>
+                    <label for="sampleInput">Линк<span class="mandatory">*</span></label>
+                    <input asp-for="UsefulUrls" class="h-full-width" type="text" placeholder="https://web.mon.bg/bg/101234" required>
+                    <span asp-validation-for="UsefulUrls" class="text-danger"></span>
+                </div>
+                <div class="mb-3">
+                    <input class="btn h-full-width btn-green-h" type="submit" value="Запази">
+                    <a asp-controller="Home" asp-action="Index" class="btn h-full-width">Отмени</a>
+                </div>
+                </form>
+        </div>
+    </div>
+
+</section>

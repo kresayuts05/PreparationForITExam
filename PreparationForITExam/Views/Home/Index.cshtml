@@ -1,26 +1,381 @@
-﻿<!--welcome-hero start -->
-<section id="home" class="welcome-hero">
-    <div class="container bg-transperent">
-        <div class="welcome-hero-txt">
-            <h2>искаш да се представиш отлично на дзи по информатика <br></h2>
-            <p>
-                Тук вашата подготовката е бърза, лесна и ефикасна с помощта на полезните материали
-            </p>
-            <p>
-                Не губи време - Започни сега!
-            </p>
-        </div>
-        <div class="welcome-hero-serch-box">
+﻿@using Microsoft.AspNetCore.Identity;
+@using PreparationForITExam.Core.Constants;
+@inject SignInManager<User> SignInManager
 
-            <div class="welcome-hero-serch">
-                <a class="welcome-hero-btn" asp-controller="Account" asp-action="Register">
-                    НАЧАЛО
-                </a>
+@model HomeViewModel
+
+@if (SignInManager.IsSignedIn(User))
+{
+    <section id="blog" class="blog">
+        <div class="container">
+
+            <div class="section-header">
+                <h2>Как работи?</h2>
+                <p>Много лесно! Започни погфотовката си като използваш следните функции тук при нас.</p>
+            </div>
+
+
+            <div class="works-content">
+                <div class="row">
+                    <a asp-controller="Curricular" asp-area="" asp-action="Index">
+                        <div class="col-md-4 col-sm-6">
+                            <div class="single-how-works">
+                                <div class="single-how-works-icon">
+                                    <i class="curriculars"></i>
+                                </div>
+                                <p style="font-size:24px;">Обучение</p>
+                                <p>
+                                    Всички уроци и упражнения са структурирани и лесни за работа. Всичко е подредено спрямо образователната програма. Също така всички ваши качени задачи или материали може да достъпите от профилната ви странища.
+                                </p>
+                            </div>
+                        </div>
+                    </a>
+                    <a asp-controller="Post" asp-area="" asp-action="Index">
+                        <div class="col-md-4 col-sm-6">
+                            <div class="single-how-works">
+                                <div class="single-how-works-icon">
+                                    <i class="forum"></i>
+                                </div>
+                                <p style="font-size:24px;">Форум</p>
+                                <p>
+                                    Тук може да видите всички постове на всички потребители. В тях може да намерите полезна допълнителна информация, въпроси и отговори на важни въпроси. Тук може да се свържеш с хора с подобни интереси.
+                                </p>
+                            </div>
+                        </div>
+                    </a>
+                    <a asp-controller="Home" asp-area="" asp-action="Contact">
+                        <div class="col-md-4 col-sm-6">
+                            <div class="single-how-works">
+                                <div class="single-how-works-icon">
+                                    <i class="contacts"></i>
+                                </div>
+                                <p style="font-size:24px;">Контакти</p>
+                                <p>
+                                    При възникнали въпроси или за повече информация винаги можете да се свържете с нашия екип на посочените контакти. При възникнали проблеми се свържете с нашият администратор. Ние сме винаги насреща!
+                                </p>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+            </div>
+
+
+            <div class="section-header" style="padding-top:7em;">
+                <h2>Най-скорошните новини</h2>
+                <p>Тук в БлизКод-ДЗИ сте винаги информирани за последните новости в образователната система свързани с вашия държавен изпит по информатика</p>
+            </div><!--/.section-header-->
+            <div class="blog-content">
+                <div class="row">
+                    @if (this.User.IsInRole(RoleConstants.MonUser))
+                    {
+                        <a asp-controller="News" asp-area="" asp-action="Add">
+                            <div class="col-md-4 col-sm-6 ">
+                                <div class="single-blog-item" style="text-align:center">
+                                    <i style="padding-top: 4em;" class="plus"></i>
+                                    <div class="single-blog-item-txt">
+                                        <h2>
+                                            добави новина
+                                        </h2>
+                                    </div>
+                                </div>
+                            </div>
+                        </a>
+                    }
+                    @foreach (var news in Model.News)
+                    {
+                        <div class="col-md-4 col-sm-6">
+                            <div class="single-blog-item">
+                                <div class="single-blog-item-txt">
+                                    <h2><a href="@news.UsefulUrls">@news.Title</a></h2>
+                                    <h4><a asp-controller="Profile" asp-area="" asp-action="Mine" asp-route-id="@news.UserId">@news.MonName</a> @news.PostedOn</h4>
+                                    <p>
+                                        @news.Description
+                                    </p>
+                                    @if (news.UserId == this.User.Id())
+                                    {
+                                        <br>
+                                        <a asp-controller="News" asp-area="" asp-action="Edit" asp-route-id="@news.Id" class="btn btn-primary">Промени</a>
+                                        <a asp-controller="News" asp-area="" asp-action="Delete" asp-route-id="@news.Id" class="btn btn-danger">Изтрий</a>
+                                    }
+                                </div>
+                            </div>
+                        </div>
+                    }
+                </div>
+            </div>
+        </div><!--/.container-->
+
+    </section>
+
+}
+else
+{
+    <section id="home" class="welcome-hero">
+        <div class="container bg-transperent">
+            <div class="welcome-hero-txt">
+                <h2>искаш да се представиш отлично на дзи по информатика <br></h2>
+                <p>
+                    Тук вашата подготовката е бърза, лесна и ефикасна с помощта на полезните материали
+                </p>
+                <p>
+                    Не губи време - Започни сега!
+                </p>
+            </div>
+            <div class="welcome-hero-serch-box">
+
+                <div class="welcome-hero-serch">
+                    <a class="welcome-hero-btn" asp-controller="Account" asp-action="Register">
+                        НАЧАЛО
+                    </a>
+                </div>
+            </div>
+        </div>
+
+    </section>
+    <section id="statistics" class="statistics">
+        <div class="container">
+            <div class="statistics-counter">
+                <div class="col-md-3 col-sm-6">
+                    <div class="single-ststistics-box">
+                        <div class="statistics-content">
+                            <div class="counter">90 </div> <span>K+</span>
+                        </div><!--/.statistics-content-->
+                        <h3>listings</h3>
+                    </div><!--/.single-ststistics-box-->
+                </div><!--/.col-->
+                <div class="col-md-3 col-sm-6">
+                    <div class="single-ststistics-box">
+                        <div class="statistics-content">
+                            <div class="counter">40</div> <span>k+</span>
+                        </div><!--/.statistics-content-->
+                        <h3>listing categories</h3>
+                    </div><!--/.single-ststistics-box-->
+                </div><!--/.col-->
+                <div class="col-md-3 col-sm-6">
+                    <div class="single-ststistics-box">
+                        <div class="statistics-content">
+                            <div class="counter">65</div> <span>k+</span>
+                        </div><!--/.statistics-content-->
+                        <h3>visitors</h3>
+                    </div><!--/.single-ststistics-box-->
+                </div><!--/.col-->
+                <div class="col-md-3 col-sm-6">
+                    <div class="single-ststistics-box">
+                        <div class="statistics-content">
+                            <div class="counter">50</div> <span>k+</span>
+                        </div><!--/.statistics-content-->
+                        <h3>happy clients</h3>
+                    </div><!--/.single-ststistics-box-->
+                </div><!--/.col-->
+            </div><!--/.statistics-counter-->
+        </div><!--/.container-->
+
+    </section>
+    <section id="works" class="works">
+        <div class="container">
+            <div class="section-header">
+                <h2>Как работи</h2>
+                <p>Научете повече за това какво Ви преоставя БлицКод</p>
+            </div><!--/.section-header-->
+            <div class="works-content">
+                <div class="row">
+                    <div class="col-md-4 col-sm-6">
+                        <div class="single-how-works">
+                            <div class="single-how-works-icon">
+                                <i class="student"></i>
+                            </div>
+                            <h2><a href="#">Ученици</a></h2>
+                            <p>
+                                Има достъп до различни учебни материали по учебната програма, различни задачи и
+                                упражнения на съответните уроци
+                            </p>
+                            <button class="welcome-hero-btn how-work-btn" onclick="window.location.href='#'">
+                                Повече
+                            </button>
+                        </div>
+                    </div>
+                    <div class="col-md-4 col-sm-6">
+                        <div class="single-how-works">
+                            <div class="single-how-works-icon">
+                                <i class="teacher"></i>
+                            </div>
+                            <h2><a href="#">Учители</a></h2>
+                            <p>
+                                Имат възможността да добавят материали към уроците и упражненията, както и да проверяват
+                                предадени задачи на ученици като оставят рецензия
+                            </p>
+                            <button class="welcome-hero-btn how-work-btn" onclick="window.location.href='#'">
+                                Повече
+                            </button>
+                        </div>
+                    </div>
+                    <div class="col-md-4 col-sm-6">
+                        <div class="single-how-works">
+                            <div class="single-how-works-icon">
+                                <i class="mon"></i>
+                            </div>
+                            <h2><a href="#">МОН</a></h2>
+                            <p>
+                                Администратори на приложението. Спускат новите новини и съобщения. Предоставят главната структура на уроците
+                            </p>
+                            <button class="welcome-hero-btn how-work-btn" onclick="window.location.href='#'">
+                                Повече
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div><!--/.container-->
+
+    </section>
+}
+
+<section id="reviews" class="reviews">
+    <div class="section-header">
+        <h2>Ревюта от потребители</h2>
+        <p>Какво мислят нашите потребители за БлицКод-ДЗИ</p>
+    </div><!--/.section-header-->
+    <div class="reviews-content">
+        <div class="testimonial-carousel">
+            @foreach (var review in Model.Reviews)
+            {
+                <div class="single-testimonial-box">
+                    <div class="testimonial-description">
+                        <div class="testimonial-info">
+                            <div class="testimonial-img">
+                                <img src="@review.UserProfileUrl" alt="clients">
+                            </div>
+                            <div class="testimonial-person">
+                                <h2>@review.UserName</h2>
+                                <h4>@review.RoleName</h4>
+                                <div class="testimonial-person-star">
+                                    @for (int i = 0; i < review.Stars; i++)
+                                    {
+                                        <i class="fa fa-star"></i>
+                                    }
+                                </div>
+                            </div>
+                        </div>
+                        <div class="testimonial-comment">
+                            <p>
+                                @review.Description
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            }
+
+            <div class="single-testimonial-box">
+                <div class="testimonial-description">
+                    <div class="testimonial-info">
+                        <div class="testimonial-img">
+                            <img src="~/images/clients/c1.png" alt="clients">
+                        </div><!--/.testimonial-img-->
+                        <div class="testimonial-person">
+                            <h2>Tom Leakar</h2>
+                            <h4>london, UK</h4>
+                            <div class="testimonial-person-star">
+                                <i class="fa fa-star"></i>
+                                <i class="fa fa-star"></i>
+                                <i class="fa fa-star"></i>
+                                <i class="fa fa-star"></i>
+                                <i class="fa fa-star"></i>
+                            </div>
+                        </div><!--/.testimonial-person-->
+                    </div><!--/.testimonial-info-->
+                    <div class="testimonial-comment">
+                        <p>
+                            Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt
+                            mollit anim id est laborum. Sed ut perspiciatis eaque.
+                        </p>
+                    </div><!--/.testimonial-comment-->
+                </div><!--/.testimonial-description-->
+            </div><!--/.single-testimonial-box-->
+            <div class="single-testimonial-box">
+                <div class="testimonial-description">
+                    <div class="testimonial-info">
+                        <div class="testimonial-img">
+                            <img src="~/images/clients/c1.png" alt="clients">
+                        </div><!--/.testimonial-img-->
+                        <div class="testimonial-person">
+                            <h2>monirul islam</h2>
+                            <h4>london, UK</h4>
+                            <div class="testimonial-person-star">
+                                <i class="fa fa-star"></i>
+                                <i class="fa fa-star"></i>
+                                <i class="fa fa-star"></i>
+                                <i class="fa fa-star"></i>
+                                <i class="fa fa-star"></i>
+                            </div>
+                        </div><!--/.testimonial-person-->
+                    </div><!--/.testimonial-info-->
+                    <div class="testimonial-comment">
+                        <p>
+                            Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt
+                            mollit anim id est laborum. Sed ut perspiciatis eaque.
+                        </p>
+                    </div><!--/.testimonial-comment-->
+                </div><!--/.testimonial-description-->
+            </div><!--/.single-testimonial-box-->
+            <div class="single-testimonial-box">
+                <div class="testimonial-description">
+                    <div class="testimonial-info">
+                        <div class="testimonial-img">
+                            <imgsrc ="~/images/clients/c1.png" alt="clients">
+                        </div><!--/.testimonial-img-->
+                        <div class="testimonial-person">
+                            <h2>Shohrab Hossain</h2>
+                            <h4>london, UK</h4>
+                            <div class="testimonial-person-star">
+                                <i class="fa fa-star"></i>
+                                <i class="fa fa-star"></i>
+                                <i class="fa fa-star"></i>
+                                <i class="fa fa-star"></i>
+                                <i class="fa fa-star"></i>
+                            </div>
+                        </div><!--/.testimonial-person-->
+                    </div><!--/.testimonial-info-->
+                    <div class="testimonial-comment">
+                        <p>
+                            Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt
+                            mollit anim id est laborum. Sed ut perspiciatis eaque.
+                        </p>
+                    </div><!--/.testimonial-comment-->
+                </div><!--/.testimonial-description-->
+            </div><!--/.single-testimonial-box-->
+            <div class="single-testimonial-box">
+                <div class="testimonial-description">
+                    <div class="testimonial-info">
+                        <div class="testimonial-img">
+                            <img src="~/images/clients/c1.png" alt="clients">
+                        </div><!--/.testimonial-img-->
+                        <div class="testimonial-person">
+                            <h2>Tom Leakar</h2>
+                            <h4>london, UK</h4>
+                            <div class="testimonial-person-star">
+                                <i class="fa fa-star"></i>
+                                <i class="fa fa-star"></i>
+                                <i class="fa fa-star"></i>
+                                <i class="fa fa-star"></i>
+                                <i class="fa fa-star"></i>
+                            </div>
+                        </div><!--/.testimonial-person-->
+                    </div><!--/.testimonial-info-->
+                    <div class="testimonial-comment">
+                        <p>
+                            Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt
+                            mollit anim id est laborum. Sed ut perspiciatis eaque.
+                        </p>
+                    </div><!--/.testimonial-comment-->
+                </div><!--/.testimonial-description-->
             </div>
         </div>
     </div>
 
-</section><!--/.welcome-hero-->
+</section>
+
+
+<!--/.welcome-hero-->
 <!--welcome-hero end -->
 @*<section id="list-topics" class="list-topics">
     <div class="container">
@@ -78,61 +433,3 @@
 </section><!--/.list-topics-->*@
 <!--list-topics end-->
 <!--works start -->
-<section id="works" class="works">
-    <div class="container">
-        <div class="section-header">
-            <h2>Как работи</h2>
-            <p>Научете повече за това какво Ви преоставя БлицКод</p>
-        </div><!--/.section-header-->
-        <div class="works-content">
-            <div class="row">
-                <div class="col-md-4 col-sm-6">
-                    <div class="single-how-works">
-                        <div class="single-how-works-icon">
-                            <i class="student"></i>
-                        </div>
-                        <h2><a href="#">Ученици</a></h2>
-                        <p>
-                            Има достъп до различни учебни материали по учебната програма, различни задачи и
-                            упражнения на съответните уроци
-                        </p>
-                        <button class="welcome-hero-btn how-work-btn" onclick="window.location.href='#'">
-                            Повече
-                        </button>
-                    </div>
-                </div>
-                <div class="col-md-4 col-sm-6">
-                    <div class="single-how-works">
-                        <div class="single-how-works-icon">
-                            <i class="teacher"></i>
-                        </div>
-                        <h2><a href="#">Учители</a></h2>
-                        <p>
-                            Имат възможността да добавят материали към уроците и упражненията, както и да проверяват
-                            предадени задачи на ученици като оставят рецензия
-                        </p>
-                        <button class="welcome-hero-btn how-work-btn" onclick="window.location.href='#'">
-                            Повече
-                        </button>
-                    </div>
-                </div>
-                <div class="col-md-4 col-sm-6">
-                    <div class="single-how-works">
-                        <div class="single-how-works-icon">
-                            <i class="mon"></i>
-                        </div>
-                        <h2><a href="#">МОН</a></h2>
-                        <p>
-                            Администратори на приложението. Спускат новите новини и съобщения. Предоставят главната структура на уроците
-                        </p>
-                        <button class="welcome-hero-btn how-work-btn" onclick="window.location.href='#'">
-                            Повече
-                        </button>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div><!--/.container-->
-
-</section><!--/.works-->
-<!--works end -->

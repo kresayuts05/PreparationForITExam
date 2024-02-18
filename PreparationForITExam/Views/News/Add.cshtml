@@ -1,0 +1,19 @@
+﻿@model NewsFormViewModel
+
+@{
+    ViewBag.Title = "Създай новина";
+}
+
+<link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+<section>
+
+    <h2 class="text-center">@ViewBag.Title</h2>
+    <hr />
+
+    <partial name="_NewsFormPartial" model="@Model" />
+
+</section>
+
+@section Scripts {
+        <partial name="_ValidationScriptsPartial" />
+}

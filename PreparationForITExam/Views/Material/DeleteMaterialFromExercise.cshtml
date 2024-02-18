@@ -1,0 +1,22 @@
+﻿@model MaterialModel
+
+<link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+<section>
+    <h2 style="text-transform:none!important;" class="text-center">Сигурни ли сте, че искате да изтриете вашият качен материал?</h2>
+    <hr />
+
+    <div class="row cont">
+        <div class="col-sm-12 offset-lg-2 col-lg-8 offset-xl-3 col-xl-6">
+            <form method="post" enctype="multipart/form-data">
+
+                <input type="hidden" asp-for="@Model.Id" />
+                <input type="hidden" asp-for="@Model.LessonId" />
+                <div class="mb-3">
+                    <input class="btn h-full-width btn-red-h" type="submit" value="Изтрий">
+                    <a asp-controller="Exercise" asp-action="Index" asp-route-id="@Model.LessonId" class="btn h-full-width">Отмени</a>
+                </div>
+            </form>
+        </div>
+    </div>
+
+</section>

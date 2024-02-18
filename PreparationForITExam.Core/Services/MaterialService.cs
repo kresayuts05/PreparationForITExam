@@ -404,6 +404,7 @@ namespace PreparationForITExam.Core.Services
                     FileFormat = m.FileFormat,
                     UserName = m.User.FirstName + " " + m.User.LastName,
                     UserId = m.UserId,
+                    LessonId = m.LessonId
                 })
                 .ToListAsync();
 
@@ -423,6 +424,7 @@ namespace PreparationForITExam.Core.Services
                     FileFormat = m.FileFormat,
                     UserName = m.User.FirstName + " " + m.User.LastName,
                     UserId = m.UserId,
+                    LessonId = m.ExerciseId
                 })
                 .ToListAsync();
 
