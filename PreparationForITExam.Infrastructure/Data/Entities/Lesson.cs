@@ -44,7 +44,6 @@ namespace PreparationForITExam.Infrastructure.Data.Entities
         public ICollection<LessonMonUser> LessonMonUser { get; set; } = new HashSet<LessonMonUser>();
         public ICollection<Teacher> Teachers { get; set; } = new HashSet<Teacher>();
         public ICollection<LessonMaterial> Materials { get; set; } = new HashSet<LessonMaterial>();
-        public ICollection<LessonComment> LessonComments { get; set; } = new HashSet<LessonComment>();
     }
 }
 

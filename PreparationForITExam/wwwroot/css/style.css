@@ -126,7 +126,7 @@ p {
 
 img {
     border: none;
-    max-width: 100%;
+    width: 100%;
     height: auto;
 }
 
@@ -512,7 +512,7 @@ nav.navbar.bootsnav .navbar-toggle {
     display: flex;
     justify-content: center;
     align-items: center;
-    font-size: 14px;
+    font-size: 17px;
     color: #fff;
     width: 220px;
     height: 70px;
@@ -530,6 +530,7 @@ nav.navbar.bootsnav .navbar-toggle {
     .welcome-hero-btn:hover {
         /*background: #fd4043;*/
         background: #f43032;
+        color:#fff;
     }
 
     .welcome-hero-btn svg {
@@ -870,7 +871,7 @@ nav.navbar.bootsnav .navbar-toggle {
         7. Explore
 --------------------------------------*/
 .explore {
-    padding: 117px 0 95px;
+    padding: 47px 0 95px;
     background: #f8fafb;
 }
 
@@ -893,6 +894,10 @@ nav.navbar.bootsnav .navbar-toggle {
 .single-explore-img {
     position: relative;
     overflow: hidden;
+    height: 21em;
+    display: flex;
+    align-content: center;
+    align-items: center;
 }
 
     .single-explore-img:before {
@@ -963,7 +968,11 @@ nav.navbar.bootsnav .navbar-toggle {
         }
 
 .single-explore-txt {
-    padding: 26px 25px 24px 15px;
+    display: flex;
+    padding: 26px 25px 24px 25px;
+    height: 22em;
+    flex-direction: column;
+    height: 22em;
 }
 
     .single-explore-txt.bg-theme-1 .explore-rating {
@@ -1025,7 +1034,6 @@ nav.navbar.bootsnav .navbar-toggle {
 
 .explore-person {
     padding-bottom: 28px;
-    border-bottom: 1px solid #e1e5eb;
 }
 
 .explore-person-img {
@@ -1039,12 +1047,17 @@ nav.navbar.bootsnav .navbar-toggle {
 }
 
 .explore-open-close-part {
-    margin-top: 20px;
+    position: absolute;
+    width: 80%;
+    border-top: 1px solid #e1e5eb;
+    bottom: 8%;
+    padding-top: 1em;
+    padding-inline: 1.5em;
 }
 
 .close-btn {
-    color: #f63138;
-    text-transform: capitalize;
+    margin-top: auto;
+    font-size: 15px;
 }
 
     .close-btn.open-btn {
@@ -1095,6 +1108,7 @@ nav.navbar.bootsnav .navbar-toggle {
     -ms-transition: .3s;
     -o-transition: .3s;
     transition: .3s;
+    height:23em;
 }
 
     .single-testimonial-box:hover {
@@ -1112,13 +1126,15 @@ nav.navbar.bootsnav .navbar-toggle {
 }
 
 /* testimonial-info */
-.testimonial-info {
+.testimonial-info {    
     display: flex;
     align-items: center;
     text-transform: capitalize;
 }
 
 .testimonial-img {
+    margin-bottom:1.5em;
+    overflow: hidden;
     position: relative;
     top: 11px;
     margin-right: 5px;
@@ -1128,6 +1144,8 @@ nav.navbar.bootsnav .navbar-toggle {
     -ms-transition: .3s;
     -o-transition: .3s;
     transition: .3s;
+    height: 50px;
+    width:50px;
 }
 
 .testimonial-person {

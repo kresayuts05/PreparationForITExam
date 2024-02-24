@@ -18,6 +18,7 @@ namespace PreparationForITExam.Infrastructure.Data.Entities
         {
             this.IsActive = true;
             this.PostedOn = DateTime.Now;
+            this.IsItQuestion = false;
         }
 
         [Key]
@@ -39,10 +40,12 @@ namespace PreparationForITExam.Infrastructure.Data.Entities
 
         public bool IsActive { get; set; }
 
-        public string UsefulUrl { get; set; }
+        public bool IsItQuestion { get; set; }
 
-        [DefaultValue(0)]
-        public int Likes { get; set; }
+        public string? UsefulUrl { get; set; }
+
+        //[DefaultValue(0)]
+        //public int Likes { get; set; }
 
         [ForeignKey(nameof(User))]
         public string UserId { get; set; }
@@ -50,7 +53,7 @@ namespace PreparationForITExam.Infrastructure.Data.Entities
 
         //public List<string> KeyWords { get; set; } = new List<string>();
 
-        public ICollection<PostComment> Comments { get; set; } = new HashSet<PostComment>();
+        public ICollection<Comment> Comments { get; set; } = new HashSet<Comment>();
         public ICollection<Image> Images { get; set; } = new HashSet<Image>();
     }
 }

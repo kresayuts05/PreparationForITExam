@@ -1,0 +1,42 @@
+﻿@model PostFormViewModel
+
+<section>
+    <div class="row cont">
+        <div class="col-sm-12 offset-lg-2 col-lg-8 offset-xl-3 col-xl-6">
+            <form method="post" enctype="multipart/form-data">
+                <input type="hidden" asp-for="@Model.UserId" />
+                <div>
+                    <label for="sampleInput">Заглавие<span class="mandatory">*</span></label>
+                    <input asp-for="Title" class="h-full-width" type="text" placeholder="Това е ново заглавие" required>
+                    <span asp-validation-for="Title" class="text-danger"></span>
+                </div>
+                <div>
+                    <label for="sampleInput">Кратко описание<span class="mandatory">*</span></label>
+                    <input asp-for="ShortDescription" class="h-full-width" type="text" placeholder="Кратко описание" required>
+                    <span asp-validation-for="ShortDescription" class="text-danger"></span>
+                </div>
+                <div>
+                    <label for="sampleInput">Описание<span class="mandatory">*</span></label>
+                    <input asp-for="Description" class="h-full-width" type="text" placeholder="Описание" required>
+                    <span asp-validation-for="Description" class="text-danger"></span>
+                </div>
+                <div>
+                    <label for="sampleInput">Линк<span class="mandatory">*</span></label>
+                    <input asp-for="UsefulUrl" class="h-full-width" type="text" placeholder="https://web.mon.bg/bg/101234" required>
+                    <span asp-validation-for="UsefulUrl" class="text-danger"></span>
+                </div>
+                <div class="mb-3">
+                    <label class="profilePictureLabel">Снимки</label>
+                    <label class="btn h-full-width" for="uploadProfilePicture">Прикачи Профилна Снимка</label>
+                    <input asp-for="Images" id="uploadProfilePicture" class="upload-photo" for="ProfilePictureUrl" accept="image/gif, image/jpeg, image/png">
+                    <span asp-validation-for="Images" class="text-danger"></span>
+                </div>
+                <div class="mb-3">
+                    <input class="btn h-full-width btn-green-h" type="submit" value="Запази">
+                    <a asp-controller="Post" asp-action="Index" class="btn h-full-width">Отмени</a>
+                </div>
+            </form>
+        </div>
+    </div>
+
+</section>

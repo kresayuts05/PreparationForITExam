@@ -26,19 +26,16 @@ namespace PreparationForITExam.Infrastructure.Data
         public DbSet<Image> Images { get; set; }
         public DbSet<Post> Posts { get; set; }
         public DbSet<School> Schools { get; set; }
-        public DbSet<PostComment> PostComments { get; set; }
         public DbSet<Lesson> Lessons { get; set; }
         public DbSet<Exercise> Exercises { get; set; }
         public DbSet<News> News { get; set; }
         public DbSet<Review> Reviews { get; set; }
-        public DbSet<NewsComment> NewsComments { get; set; }
+        public DbSet<Comment> Comments { get; set; }
         public DbSet<RequestLesson> RequestsLessons { get; set; }
         public DbSet<RequestExercise> RequestsExercises { get; set; }
         public DbSet<LessonMaterial> LessonMaterials { get; set; }
         public DbSet<ExerciseMaterial> ExerciseMaterials { get; set; }
         public DbSet<SectionOfCurricular> SectionsOfCurricular { get; set; }
-        public DbSet<LessonComment> LessonQuestions { get; set; }
-        public DbSet<LessonComment> ExerciseQuestions { get; set; }
         public DbSet<LessonMonUser> LessonMonUser { get; set; }
         public DbSet<Message> Messages { get; set; }
 
@@ -78,6 +75,8 @@ namespace PreparationForITExam.Infrastructure.Data
             builder.ApplyConfiguration(new TeacherConfiguration());
             builder.ApplyConfiguration(new StudentConfiguration());
             builder.ApplyConfiguration(new NewsConfiguration());
+            builder.ApplyConfiguration(new PostConfiguration());
+            builder.ApplyConfiguration(new ImageConfiguration());
 
 
             base.OnModelCreating(builder);

@@ -25,6 +25,44 @@
                 <input class="btn btn-success" type="submit" value="Запази" />
                 <a asp-controller="SectionOfCurricular" asp-action="Index" asp-route-id="@Model.SectionOfCurricularId" class="btn btn-danger">Отмени</a>
             </div>
+            <div id="loading" hidden>
+                <img id="loading-image" src="~/loader.gif" alt="Loading..." />
+            </div>
         </form>
     </div>
 </div>
+
+
+<script>
+    $(window).on('load', function () {
+        $("#loading").hide();
+    });
+
+    $("#save").click(function () {
+        $("#loading").show();
+    });
+</script>
+
+<style>
+    #loading {
+        position: fixed;
+        display: block;
+        width: 100%;
+        height: 100%;
+        top: 0;
+        left: 0;
+        text-align: center;
+        opacity: 0.7;
+        background-color: #fff;
+        z-index: 99;
+    }
+
+    #loading-image {
+        position: absolute;
+        width: 300px;
+        z-index: 100;
+        top: 40%;
+        margin: 0;
+        right: 40%;
+    }
+</style>

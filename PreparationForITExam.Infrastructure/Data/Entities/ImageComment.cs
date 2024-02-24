@@ -8,9 +8,9 @@ using System.Threading.Tasks;
 
 namespace PreparationForITExam.Infrastructure.Data.Entities
 {
-    public class Image
+    public class ImageComment
     {
-        public Image()
+        public ImageComment()
         {
             this.IsActive = true;
         }
@@ -24,8 +24,8 @@ namespace PreparationForITExam.Infrastructure.Data.Entities
         [Required]
         public bool IsActive { get; set; }
 
-        [ForeignKey(nameof(Post))]
-        public int PostId { get; set; }
-        public Post Post { get; set; }
+        [ForeignKey(nameof(Comment))]
+        public int CommentId { get; set; }
+        public Comment Comment { get; set; }
     }
 }

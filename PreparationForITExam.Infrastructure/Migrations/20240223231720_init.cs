@@ -237,28 +237,6 @@ namespace PreparationForITExam.Infrastructure.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "NewsComments",
-                columns: table => new
-                {
-                    Id = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    Content = table.Column<string>(type: "nvarchar(400)", maxLength: 400, nullable: false),
-                    PostedOn = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    IsActive = table.Column<bool>(type: "bit", nullable: false),
-                    UserId = table.Column<string>(type: "nvarchar(450)", nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_NewsComments", x => x.Id);
-                    table.ForeignKey(
-                        name: "FK_NewsComments_AspNetUsers_UserId",
-                        column: x => x.UserId,
-                        principalTable: "AspNetUsers",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
-                });
-
-            migrationBuilder.CreateTable(
                 name: "Posts",
                 columns: table => new
                 {
@@ -269,8 +247,8 @@ namespace PreparationForITExam.Infrastructure.Migrations
                     Description = table.Column<string>(type: "nvarchar(3000)", maxLength: 3000, nullable: false),
                     PostedOn = table.Column<DateTime>(type: "datetime2", nullable: false),
                     IsActive = table.Column<bool>(type: "bit", nullable: false),
-                    UsefulUrl = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    Likes = table.Column<int>(type: "int", nullable: false),
+                    IsItQuestion = table.Column<bool>(type: "bit", nullable: false),
+                    UsefulUrl = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     UserId = table.Column<string>(type: "nvarchar(450)", nullable: false)
                 },
                 constraints: table =>
@@ -412,29 +390,36 @@ namespace PreparationForITExam.Infrastructure.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "PostComments",
+                name: "Comments",
                 columns: table => new
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    Content = table.Column<string>(type: "nvarchar(400)", maxLength: 400, nullable: false),
-                    PostedOn = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    Content = table.Column<string>(type: "nvarchar(1000)", maxLength: 1000, nullable: false),
                     IsActive = table.Column<bool>(type: "bit", nullable: false),
                     UserId = table.Column<string>(type: "nvarchar(450)", nullable: false),
-                    PostId = table.Column<int>(type: "int", nullable: true)
+                    PostId = table.Column<int>(type: "int", nullable: false),
+                    CreatedOn = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    PostId1 = table.Column<int>(type: "int", nullable: true)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_PostComments", x => x.Id);
+                    table.PrimaryKey("PK_Comments", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_PostComments_AspNetUsers_UserId",
+                        name: "FK_Comments_AspNetUsers_UserId",
                         column: x => x.UserId,
                         principalTable: "AspNetUsers",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
-                        name: "FK_PostComments_Posts_PostId",
+                        name: "FK_Comments_Posts_PostId",
                         column: x => x.PostId,
+                        principalTable: "Posts",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Restrict);
+                    table.ForeignKey(
+                        name: "FK_Comments_Posts_PostId1",
+                        column: x => x.PostId1,
                         principalTable: "Posts",
                         principalColumn: "Id");
                 });
@@ -475,8 +460,8 @@ namespace PreparationForITExam.Infrastructure.Migrations
                         .Annotation("SqlServer:Identity", "1, 1"),
                     UrlPath = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     IsActive = table.Column<bool>(type: "bit", nullable: false),
-                    NewsId = table.Column<int>(type: "int", nullable: true),
-                    PostId = table.Column<int>(type: "int", nullable: true)
+                    PostId = table.Column<int>(type: "int", nullable: false),
+                    NewsId = table.Column<int>(type: "int", nullable: true)
                 },
                 constraints: table =>
                 {
@@ -490,7 +475,29 @@ namespace PreparationForITExam.Infrastructure.Migrations
                         name: "FK_Images_Posts_PostId",
                         column: x => x.PostId,
                         principalTable: "Posts",
-                        principalColumn: "Id");
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "ImageComment",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    UrlPath = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    IsActive = table.Column<bool>(type: "bit", nullable: false),
+                    CommentId = table.Column<int>(type: "int", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_ImageComment", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_ImageComment_Comments_CommentId",
+                        column: x => x.CommentId,
+                        principalTable: "Comments",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateTable(
@@ -572,43 +579,6 @@ namespace PreparationForITExam.Infrastructure.Migrations
                         name: "FK_Lessons_SectionsOfCurricular_SectionOfCurricularId",
                         column: x => x.SectionOfCurricularId,
                         principalTable: "SectionsOfCurricular",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
-                });
-
-            migrationBuilder.CreateTable(
-                name: "LessonComment",
-                columns: table => new
-                {
-                    Id = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    Title = table.Column<string>(type: "nvarchar(1000)", maxLength: 1000, nullable: false),
-                    Content = table.Column<string>(type: "nvarchar(1000)", maxLength: 1000, nullable: false),
-                    IsActive = table.Column<bool>(type: "bit", nullable: false),
-                    LessonId = table.Column<int>(type: "int", nullable: false),
-                    UserId = table.Column<string>(type: "nvarchar(450)", nullable: false),
-                    Url = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    CreatedOn = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    ExerciseId = table.Column<int>(type: "int", nullable: true)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_LessonComment", x => x.Id);
-                    table.ForeignKey(
-                        name: "FK_LessonComment_AspNetUsers_UserId",
-                        column: x => x.UserId,
-                        principalTable: "AspNetUsers",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
-                    table.ForeignKey(
-                        name: "FK_LessonComment_Exercises_ExerciseId",
-                        column: x => x.ExerciseId,
-                        principalTable: "Exercises",
-                        principalColumn: "Id");
-                    table.ForeignKey(
-                        name: "FK_LessonComment_Lessons_LessonId",
-                        column: x => x.LessonId,
-                        principalTable: "Lessons",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                 });
@@ -766,10 +736,10 @@ namespace PreparationForITExam.Infrastructure.Migrations
                 columns: new[] { "Id", "ConcurrencyStamp", "Name", "NormalizedName" },
                 values: new object[,]
                 {
-                    { "0f761db2-ab55-416c-83b9-70abded3d908", "08257972-4899-4d08-8700-e2fe32d8c942", "Administrator", "ADMINISTRATOR" },
-                    { "71281cf3-9730-4d7e-acbb-213edee8291c", "e04c5cbe-3907-487c-8882-21a5e1eb7f90", "Teacher", "TEACHER" },
-                    { "e66d730b-bcf1-41b5-b7e0-3e66056e61d9", "eab90dfe-d57f-4773-ab2f-f4ccf94df4f8", "Student", "STUDENT" },
-                    { "fe750b82-6fe9-472c-bdc5-61f5433d429e", "19b4adcf-09a8-492a-8fd4-e1fc24857c1b", "MonUser", "MONUSER" }
+                    { "0f761db2-ab55-416c-83b9-70abded3d908", "fc0bc7b9-7c41-4a23-a382-768cd46c61a8", "Administrator", "ADMINISTRATOR" },
+                    { "71281cf3-9730-4d7e-acbb-213edee8291c", "a349948b-618e-483a-8c43-f607a6bc360f", "Teacher", "TEACHER" },
+                    { "e66d730b-bcf1-41b5-b7e0-3e66056e61d9", "d9e3c3a0-6985-4c3a-8359-bc7b538a5c35", "Student", "STUDENT" },
+                    { "fe750b82-6fe9-472c-bdc5-61f5433d429e", "a9c5eb55-6085-4390-804a-1577586767ae", "MonUser", "MONUSER" }
                 });
 
             migrationBuilder.InsertData(
@@ -777,10 +747,10 @@ namespace PreparationForITExam.Infrastructure.Migrations
                 columns: new[] { "Id", "AboutMe", "AccessFailedCount", "City", "ConcurrencyStamp", "ConnectionId", "Email", "EmailConfirmed", "FirstName", "IsActive", "LastName", "LockoutEnabled", "LockoutEnd", "NormalizedEmail", "NormalizedUserName", "PasswordHash", "PhoneNumber", "PhoneNumberConfirmed", "ProfilePictureUrl", "RoleName", "SecurityStamp", "TwoFactorEnabled", "UserName" },
                 values: new object[,]
                 {
-                    { "023bafc9-8b7e-4fbd-bb06-2b178fe8ae8b", "Занимавам се с програмиране от 3 години. Интересувам се от кибер сигурност, а именно и това искам да уча след като завърша.", 0, "Миделбург", "acf6d3f1-169c-4101-9bb4-44d61dbebc3d", null, "student@gmail.com", false, "Никол", true, "Груева", false, null, "STUDENT@GMAIL.COM", "STUDENT@GMAIL.COM", "AQAAAAEAACcQAAAAEFO6yhyXFchvmeNu7/srSbEjSBW4FY0eIhYDqk8hGlefD1Q+1+wqQNidBWJt6D6mxA==", "0886121262", false, "https://res.cloudinary.com/dmv8nabul/image/upload/v1707334404/nikol_prlrcl.jpg", "Student", "f6d3e4a4-480a-4304-aa2e-918b86272648", false, "student@gmail.com" },
-                    { "789061a9-edaa-4a00-9e09-add6a20c8288", "Разработвам това приложение, за да участвам в олимпиада по информационни технологии. Темата си избрах след първата матура по Информатика. Моите учители и приятели, които се явиха на това ДЗИ, имаха проблем с намирането на полезни материали и информация за самата матура. Това приложение се надявам, че би олеснило подготовката, защото хора с еднакви интереси и задачи могат да комуникират и обменят знания. Също така, учители могат да предадат знанията си на ученици, които наистина имат желание да се научат и полагат усилия.", 0, "Казанлък", "6da39123-c6f6-4e45-9724-eba854f4fc0d", null, "admin@gmail.com", false, "Креса", true, "Цветкова", false, null, "ADMIN@GMAIL.COM", "ADMIN@GMAIL.COM", "AQAAAAEAACcQAAAAEMPBEAAnAyV8XvMLGvCLrJYJOmrouYNImHNFzKUxjlxvyNvz2sa6t4QHHR/U9n/7GQ==", "0886121260", false, "https://res.cloudinary.com/dmv8nabul/image/upload/v1707334401/kresa_bkbaoa.jpg", "Administrator", "ac0c4306-cc0e-46ef-a7eb-2b00e1f62de4", false, "admin@gmail.com" },
-                    { "7decfb7d-d2df-40a2-a449-dcec04eb091a", "Работя в МОН от 5 години. Преподавам по Информатика в частна школа. Програмирането е моята страст. Обичам фо повече от приятелката ми.", 0, "Кърджали", "bd7ef9f1-da79-4ee2-a460-4ff6e121d3bf", null, "monuser@gmail.com", false, "Валентин", true, "Терзиев", false, null, "MONUSER@GMAIL.COM", "MONUSER@GMAIL.COM", "AQAAAAEAACcQAAAAEO0OIFpBozaJl5aX8Tfy8L0Cvlv3V0HqlkGf/M3rTl07pt+/WW53a0DXj4+Npx8Wug==", "0886121261", false, "https://res.cloudinary.com/dmv8nabul/image/upload/v1707334408/valentin_u5en92.jpg", "MonUser", "681d9d01-d996-454b-98a2-c4467375f325", false, "monuser@gmail.com" },
-                    { "9c7f55cd-f0ae-405e-b520-6e1ccc448fcc", "Учителка съм от 12 години. Избрах тази професия, защото работата с деца е моята страст. В работата си опитвам да предам знанията си колкото повече мога. Мой интерес е работата с ASP.NET.", 0, "София", "c7581bcd-660e-4097-a622-a732869b5fdb", null, "teacher@gmail.com", false, "Ивета", true, "Найденова", false, null, "TEACHER@GMAIL.COM", "TEACHER@GMAIL.COM", "AQAAAAEAACcQAAAAED66WfB66GHhSkQmqMdX4T0WMeKXFCc7tWgVP78vFxeSTjZR9rTZA3S1SP0GbQgejg==", "0886121262", false, "https://res.cloudinary.com/dmv8nabul/image/upload/v1707334395/iveta_rknyn3.jpg", "Teacher", "3346da89-0c0c-4b72-8986-9584e89ededa", false, "teacher@gmail.com" }
+                    { "023bafc9-8b7e-4fbd-bb06-2b178fe8ae8b", "Занимавам се с програмиране от 3 години. Интересувам се от кибер сигурност, а именно и това искам да уча след като завърша.", 0, "Миделбург", "70c7e193-db16-4148-bd00-3df44179534c", null, "student@gmail.com", false, "Никол", true, "Груева", false, null, "STUDENT@GMAIL.COM", "STUDENT@GMAIL.COM", "AQAAAAEAACcQAAAAEK6D/SWx20mJ4xEfzzlexQx6y5kpZpbKlqqRShWPndx79er0wSDPhQEChqz7Gyitrg==", "0886121262", false, "https://res.cloudinary.com/dmv8nabul/image/upload/v1707334404/nikol_prlrcl.jpg", "Student", "5d5da8f9-61b5-4a01-ad48-bed37c62e00f", false, "student@gmail.com" },
+                    { "789061a9-edaa-4a00-9e09-add6a20c8288", "Разработвам това приложение, за да участвам в олимпиада по информационни технологии. Темата си избрах след първата матура по Информатика. Моите учители и приятели, които се явиха на това ДЗИ, имаха проблем с намирането на полезни материали и информация за самата матура. Това приложение се надявам, че би олеснило подготовката, защото хора с еднакви интереси и задачи могат да комуникират и обменят знания. Също така, учители могат да предадат знанията си на ученици, които наистина имат желание да се научат и полагат усилия.", 0, "Казанлък", "1a0d0fbc-35ce-4eae-af48-1cb12eeb7ff4", null, "admin@gmail.com", false, "Креса", true, "Цветкова", false, null, "ADMIN@GMAIL.COM", "ADMIN@GMAIL.COM", "AQAAAAEAACcQAAAAEDwicZjJTiX+TKMCcByh8aKt03kdgLEC8fODyU8IfTVzNTSQecosi4iWM3vlUJt/Vw==", "0886121260", false, "https://res.cloudinary.com/dmv8nabul/image/upload/v1707334401/kresa_bkbaoa.jpg", "Administrator", "07314d04-9561-4872-98e0-38060fb915e4", false, "admin@gmail.com" },
+                    { "7decfb7d-d2df-40a2-a449-dcec04eb091a", "Работя в МОН от 5 години. Преподавам по Информатика в частна школа. Програмирането е моята страст. Обичам фо повече от приятелката ми.", 0, "Кърджали", "fa93127c-6590-40b8-97a9-4cf98beeb13f", null, "monuser@gmail.com", false, "Валентин", true, "Терзиев", false, null, "MONUSER@GMAIL.COM", "MONUSER@GMAIL.COM", "AQAAAAEAACcQAAAAEHyxsdPACwrwiBhDPOqM23rRxA5rOfgzCQGnjZMjF8p6W1xvG6r4hgPppdc2h497MQ==", "0886121261", false, "https://res.cloudinary.com/dmv8nabul/image/upload/v1707334408/valentin_u5en92.jpg", "MonUser", "0bd50cd8-6d5c-4057-9144-33da373a91f1", false, "monuser@gmail.com" },
+                    { "9c7f55cd-f0ae-405e-b520-6e1ccc448fcc", "Учителка съм от 12 години. Избрах тази професия, защото работата с деца е моята страст. В работата си опитвам да предам знанията си колкото повече мога. Мой интерес е работата с ASP.NET.", 0, "София", "cd10e382-3f64-41e3-9fdd-a91311936c7b", null, "teacher@gmail.com", false, "Ивета", true, "Найденова", false, null, "TEACHER@GMAIL.COM", "TEACHER@GMAIL.COM", "AQAAAAEAACcQAAAAEE1bQ9sSCUUqXDSqSYUkCQhOwWWnk52808MTeZZ51gTB6uIxKJodvpgtPFdmoZ1QsA==", "0886121262", false, "https://res.cloudinary.com/dmv8nabul/image/upload/v1707334395/iveta_rknyn3.jpg", "Teacher", "bacd656d-deb5-4ef7-b632-6e6567d3a532", false, "teacher@gmail.com" }
                 });
 
             migrationBuilder.InsertData(
@@ -1582,6 +1552,31 @@ namespace PreparationForITExam.Infrastructure.Migrations
                 values: new object[] { 1, true, "7decfb7d-d2df-40a2-a449-dcec04eb091a" });
 
             migrationBuilder.InsertData(
+                table: "Posts",
+                columns: new[] { "Id", "Description", "IsActive", "IsItQuestion", "PostedOn", "ShortDescription", "Title", "UsefulUrl", "UserId" },
+                values: new object[,]
+                {
+                    { 2, "Имах затруднения да разбера Git технологията, но с помощта на тази игра бързо осъвършенствах функциите и начина на използване.", true, false, new DateTime(2024, 2, 24, 1, 17, 20, 323, DateTimeKind.Local).AddTicks(6480), "Попаднах на страхотна игра, която ти помага да научиш Git", "Git игра", "https://learngitbranching.js.org/?locale=en_US", "023bafc9-8b7e-4fbd-bb06-2b178fe8ae8b" },
+                    { 3, "Имах затруднения да разбера Git технологията, но с помощта на тази игра бързо осъвършенствах функциите и начина на използване.", true, false, new DateTime(2024, 2, 24, 1, 17, 20, 323, DateTimeKind.Local).AddTicks(6486), "Попаднах на страхотна игра, която ти помага да научиш Git", "Git игра", "https://learngitbranching.js.org/?locale=en_US", "023bafc9-8b7e-4fbd-bb06-2b178fe8ae8b" },
+                    { 4, "Имах затруднения да разбера Git технологията, но с помощта на тази игра бързо осъвършенствах функциите и начина на използване.", true, false, new DateTime(2024, 2, 24, 1, 17, 20, 323, DateTimeKind.Local).AddTicks(6490), "Попаднах на страхотна игра, която ти помага да научиш Git", "Git игра", "https://learngitbranching.js.org/?locale=en_US", "023bafc9-8b7e-4fbd-bb06-2b178fe8ae8b" },
+                    { 5, "Имах затруднения да разбера Git технологията, но с помощта на тази игра бързо осъвършенствах функциите и начина на използване.", true, false, new DateTime(2024, 2, 24, 1, 17, 20, 323, DateTimeKind.Local).AddTicks(6494), "Попаднах на страхотна игра, която ти помага да научиш Git", "Git игра", "https://learngitbranching.js.org/?locale=en_US", "023bafc9-8b7e-4fbd-bb06-2b178fe8ae8b" },
+                    { 6, "Имах затруднения да разбера Git технологията, но с помощта на тази игра бързо осъвършенствах функциите и начина на използване.", true, false, new DateTime(2024, 2, 24, 1, 17, 20, 323, DateTimeKind.Local).AddTicks(6497), "Попаднах на страхотна игра, която ти помага да научиш Git", "Git игра", "https://learngitbranching.js.org/?locale=en_US", "023bafc9-8b7e-4fbd-bb06-2b178fe8ae8b" },
+                    { 7, "Имах затруднения да разбера Git технологията, но с помощта на тази игра бързо осъвършенствах функциите и начина на използване.", true, false, new DateTime(2024, 2, 24, 1, 17, 20, 323, DateTimeKind.Local).AddTicks(6501), "Попаднах на страхотна игра, която ти помага да научиш Git", "Git игра", "https://learngitbranching.js.org/?locale=en_US", "023bafc9-8b7e-4fbd-bb06-2b178fe8ae8b" },
+                    { 8, "Имах затруднения да разбера Git технологията, но с помощта на тази игра бързо осъвършенствах функциите и начина на използване.", true, false, new DateTime(2024, 2, 24, 1, 17, 20, 323, DateTimeKind.Local).AddTicks(6504), "Попаднах на страхотна игра, която ти помага да научиш Git", "Git игра", "https://learngitbranching.js.org/?locale=en_US", "023bafc9-8b7e-4fbd-bb06-2b178fe8ae8b" },
+                    { 9, "Имах затруднения да разбера Git технологията, но с помощта на тази игра бързо осъвършенствах функциите и начина на използване.", true, false, new DateTime(2024, 2, 24, 1, 17, 20, 323, DateTimeKind.Local).AddTicks(6507), "Попаднах на страхотна игра, която ти помага да научиш Git", "Git игра", "https://learngitbranching.js.org/?locale=en_US", "9c7f55cd-f0ae-405e-b520-6e1ccc448fcc" },
+                    { 10, "Имах затруднения да разбера Git технологията, но с помощта на тази игра бързо осъвършенствах функциите и начина на използване.", true, false, new DateTime(2024, 2, 24, 1, 17, 20, 323, DateTimeKind.Local).AddTicks(6511), "Попаднах на страхотна игра, която ти помага да научиш Git", "Git игра", "https://learngitbranching.js.org/?locale=en_US", "023bafc9-8b7e-4fbd-bb06-2b178fe8ae8b" },
+                    { 11, "Имах затруднения да разбера Git технологията, но с помощта на тази игра бързо осъвършенствах функциите и начина на използване.", true, false, new DateTime(2024, 2, 24, 1, 17, 20, 323, DateTimeKind.Local).AddTicks(6515), "Попаднах на страхотна игра, която ти помага да научиш Git", "Git игра", "https://learngitbranching.js.org/?locale=en_US", "023bafc9-8b7e-4fbd-bb06-2b178fe8ae8b" },
+                    { 12, "Имах затруднения да разбера Git технологията, но с помощта на тази игра бързо осъвършенствах функциите и начина на използване.", true, false, new DateTime(2024, 2, 24, 1, 17, 20, 323, DateTimeKind.Local).AddTicks(6518), "Попаднах на страхотна игра, която ти помага да научиш Git", "Git игра", "https://learngitbranching.js.org/?locale=en_US", "9c7f55cd-f0ae-405e-b520-6e1ccc448fcc" },
+                    { 13, "Имах затруднения да разбера Git технологията, но с помощта на тази игра бързо осъвършенствах функциите и начина на използване.", true, false, new DateTime(2024, 2, 24, 1, 17, 20, 323, DateTimeKind.Local).AddTicks(6521), "Попаднах на страхотна игра, която ти помага да научиш Git", "Git игра", "https://learngitbranching.js.org/?locale=en_US", "023bafc9-8b7e-4fbd-bb06-2b178fe8ae8b" },
+                    { 14, "Имах затруднения да разбера Git технологията, но с помощта на тази игра бързо осъвършенствах функциите и начина на използване.", true, false, new DateTime(2024, 2, 24, 1, 17, 20, 323, DateTimeKind.Local).AddTicks(6525), "Попаднах на страхотна игра, която ти помага да научиш Git", "Git игра", "https://learngitbranching.js.org/?locale=en_US", "023bafc9-8b7e-4fbd-bb06-2b178fe8ae8b" },
+                    { 15, "Имах затруднения да разбера Git технологията, но с помощта на тази игра бързо осъвършенствах функциите и начина на използване.", true, false, new DateTime(2024, 2, 24, 1, 17, 20, 323, DateTimeKind.Local).AddTicks(6528), "Попаднах на страхотна игра, която ти помага да научиш Git", "Git игра", "https://learngitbranching.js.org/?locale=en_US", "023bafc9-8b7e-4fbd-bb06-2b178fe8ae8b" },
+                    { 16, "Имах затруднения да разбера Git технологията, но с помощта на тази игра бързо осъвършенствах функциите и начина на използване.", true, false, new DateTime(2024, 2, 24, 1, 17, 20, 323, DateTimeKind.Local).AddTicks(6531), "Попаднах на страхотна игра, която ти помага да научиш Git", "Git игра", "https://learngitbranching.js.org/?locale=en_US", "023bafc9-8b7e-4fbd-bb06-2b178fe8ae8b" },
+                    { 17, "Имах затруднения да разбера Git технологията, но с помощта на тази игра бързо осъвършенствах функциите и начина на използване.", true, false, new DateTime(2024, 2, 24, 1, 17, 20, 323, DateTimeKind.Local).AddTicks(6534), "Попаднах на страхотна игра, която ти помага да научиш Git", "Git игра", "https://learngitbranching.js.org/?locale=en_US", "9c7f55cd-f0ae-405e-b520-6e1ccc448fcc" },
+                    { 18, "Имах затруднения да разбера Git технологията, но с помощта на тази игра бързо осъвършенствах функциите и начина на използване.", true, false, new DateTime(2024, 2, 24, 1, 17, 20, 323, DateTimeKind.Local).AddTicks(6537), "Попаднах на страхотна игра, която ти помага да научиш Git", "Git игра", "https://learngitbranching.js.org/?locale=en_US", "023bafc9-8b7e-4fbd-bb06-2b178fe8ae8b" },
+                    { 19, "Имах затруднения да разбера Git технологията, но с помощта на тази игра бързо осъвършенствах функциите и начина на използване.", true, false, new DateTime(2024, 2, 24, 1, 17, 20, 323, DateTimeKind.Local).AddTicks(6541), "Попаднах на страхотна игра, която ти помага да научиш Git", "Git игра", "https://learngitbranching.js.org/?locale=en_US", "9c7f55cd-f0ae-405e-b520-6e1ccc448fcc" }
+                });
+
+            migrationBuilder.InsertData(
                 table: "SectionsOfCurricular",
                 columns: new[] { "Id", "IsActive", "ModuleOfCurricularId", "Title" },
                 values: new object[,]
@@ -1749,13 +1744,24 @@ namespace PreparationForITExam.Infrastructure.Migrations
                 });
 
             migrationBuilder.InsertData(
+                table: "Images",
+                columns: new[] { "Id", "IsActive", "NewsId", "PostId", "UrlPath" },
+                values: new object[,]
+                {
+                    { 1, true, null, 2, "https://res.cloudinary.com/dmv8nabul/image/upload/v1708546591/Screenshot_2024-02-21_204929_unv2sq.png" },
+                    { 2, true, null, 2, "https://res.cloudinary.com/dmv8nabul/image/upload/v1708546591/Screenshot_2024-02-21_204941_pyjfvc.png" },
+                    { 3, true, null, 2, "https://res.cloudinary.com/dmv8nabul/image/upload/v1708546591/Screenshot_2024-02-21_204834_g8nzay.png" },
+                    { 4, true, null, 2, "https://res.cloudinary.com/dmv8nabul/image/upload/v1708546591/Screenshot_2024-02-21_204920_mpqsif.png" }
+                });
+
+            migrationBuilder.InsertData(
                 table: "News",
                 columns: new[] { "Id", "Description", "IsActive", "MonId", "PostedOn", "SeenByPeople", "Title", "UsefulUrls" },
                 values: new object[,]
                 {
-                    { 1, "Изпитните материали от днешният изпит вече са налични онлайн на сайта на МОН.", true, 1, new DateTime(2024, 2, 18, 22, 45, 36, 671, DateTimeKind.Local).AddTicks(3895), 0, "ДЗИ 23 май 2023г", "https://web.mon.bg/bg/101234" },
-                    { 2, "Изпитните материали от днешният изпит вече са налични онлайн на сайта на МОН.", true, 1, new DateTime(2024, 2, 18, 22, 45, 36, 671, DateTimeKind.Local).AddTicks(3900), 0, "ДЗИ 25 август 2023г", "https://web.mon.bg/bg/101234" },
-                    { 3, "Датите за тазгодишната изпитна кампания са 20 май 2024г.", true, 1, new DateTime(2024, 2, 18, 22, 45, 36, 671, DateTimeKind.Local).AddTicks(3902), 0, "Изпитни дати за 2023/2024 г.", "https://danybon.com/wp-content/uploads/2023/09/zap2050_NVO_01092023.pdf" }
+                    { 1, "Изпитните материали от днешният изпит вече са налични онлайн на сайта на МОН.", true, 1, new DateTime(2024, 2, 24, 1, 17, 20, 323, DateTimeKind.Local).AddTicks(6408), 0, "ДЗИ 23 май 2023г", "https://web.mon.bg/bg/101234" },
+                    { 2, "Изпитните материали от днешният изпит вече са налични онлайн на сайта на МОН.", true, 1, new DateTime(2024, 2, 24, 1, 17, 20, 323, DateTimeKind.Local).AddTicks(6414), 0, "ДЗИ 25 август 2023г", "https://web.mon.bg/bg/101234" },
+                    { 3, "Датите за тазгодишната изпитна кампания са 20 май 2024г.", true, 1, new DateTime(2024, 2, 24, 1, 17, 20, 323, DateTimeKind.Local).AddTicks(6418), 0, "Изпитни дати за 2023/2024 г.", "https://danybon.com/wp-content/uploads/2023/09/zap2050_NVO_01092023.pdf" }
                 });
 
             migrationBuilder.InsertData(
@@ -2062,6 +2068,21 @@ namespace PreparationForITExam.Infrastructure.Migrations
                 filter: "[NormalizedUserName] IS NOT NULL");
 
             migrationBuilder.CreateIndex(
+                name: "IX_Comments_PostId",
+                table: "Comments",
+                column: "PostId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Comments_PostId1",
+                table: "Comments",
+                column: "PostId1");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Comments_UserId",
+                table: "Comments",
+                column: "UserId");
+
+            migrationBuilder.CreateIndex(
                 name: "IX_ExerciseMaterials_ExerciseId",
                 table: "ExerciseMaterials",
                 column: "ExerciseId");
@@ -2087,6 +2108,11 @@ namespace PreparationForITExam.Infrastructure.Migrations
                 column: "StudentsId");
 
             migrationBuilder.CreateIndex(
+                name: "IX_ImageComment_CommentId",
+                table: "ImageComment",
+                column: "CommentId");
+
+            migrationBuilder.CreateIndex(
                 name: "IX_Images_NewsId",
                 table: "Images",
                 column: "NewsId");
@@ -2095,21 +2121,6 @@ namespace PreparationForITExam.Infrastructure.Migrations
                 name: "IX_Images_PostId",
                 table: "Images",
                 column: "PostId");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_LessonComment_ExerciseId",
-                table: "LessonComment",
-                column: "ExerciseId");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_LessonComment_LessonId",
-                table: "LessonComment",
-                column: "LessonId");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_LessonComment_UserId",
-                table: "LessonComment",
-                column: "UserId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_LessonMaterials_LessonId",
@@ -2166,21 +2177,6 @@ namespace PreparationForITExam.Infrastructure.Migrations
                 name: "IX_News_MonId",
                 table: "News",
                 column: "MonId");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_NewsComments_UserId",
-                table: "NewsComments",
-                column: "UserId");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_PostComments_PostId",
-                table: "PostComments",
-                column: "PostId");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_PostComments_UserId",
-                table: "PostComments",
-                column: "UserId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Posts_UserId",
@@ -2262,10 +2258,10 @@ namespace PreparationForITExam.Infrastructure.Migrations
                 name: "ExerciseStudent");
 
             migrationBuilder.DropTable(
-                name: "Images");
+                name: "ImageComment");
 
             migrationBuilder.DropTable(
-                name: "LessonComment");
+                name: "Images");
 
             migrationBuilder.DropTable(
                 name: "LessonMaterials");
@@ -2280,12 +2276,6 @@ namespace PreparationForITExam.Infrastructure.Migrations
                 name: "Messages");
 
             migrationBuilder.DropTable(
-                name: "NewsComments");
-
-            migrationBuilder.DropTable(
-                name: "PostComments");
-
-            migrationBuilder.DropTable(
                 name: "Reviews");
 
             migrationBuilder.DropTable(
@@ -2293,6 +2283,9 @@ namespace PreparationForITExam.Infrastructure.Migrations
 
             migrationBuilder.DropTable(
                 name: "Students");
+
+            migrationBuilder.DropTable(
+                name: "Comments");
 
             migrationBuilder.DropTable(
                 name: "News");

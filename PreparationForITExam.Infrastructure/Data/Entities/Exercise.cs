@@ -35,8 +35,6 @@ namespace PreparationForITExam.Infrastructure.Data.Entities
         public int SectionOfCurricularId { get; set; }
         public SectionOfCurricular SectionOfCurricular { get; set; }
 
-        public ICollection<LessonComment> Questions { get; set; } = new HashSet<LessonComment>();
-
         public ICollection<ExerciseMaterial> Materials { get; set; } = new HashSet<ExerciseMaterial>();
 
         public ICollection<Student> Students { get; set; } = new HashSet<Student>();
