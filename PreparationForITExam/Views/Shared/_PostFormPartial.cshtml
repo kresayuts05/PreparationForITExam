@@ -3,8 +3,23 @@
 <section>
     <div class="row cont">
         <div class="col-sm-12 offset-lg-2 col-lg-8 offset-xl-3 col-xl-6">
+            @if (ViewBag.Title == "Създай пост")
+            {
+                <div class="register-heading-container">
+                    <h3 class="h-add-bottom"></h3>
+
+                    <div class="game-developer-slider-container h-add-bottom ">
+                        <label for="sampleInput" class="game-developer-label">Задай въпрос</label>
+                        <label class="switch">
+                            <input type="checkbox" id="questionCheckBox">
+                            <span class="slider"></span>
+                        </label>
+                    </div>
+                </div>
+            }
             <form method="post" enctype="multipart/form-data">
                 <input type="hidden" asp-for="@Model.UserId" />
+
                 <div>
                     <label for="sampleInput">Заглавие<span class="mandatory">*</span></label>
                     <input asp-for="Title" class="h-full-width" type="text" placeholder="Това е ново заглавие" required>
@@ -21,18 +36,27 @@
                     <span asp-validation-for="Description" class="text-danger"></span>
                 </div>
                 <div>
-                    <label for="sampleInput">Линк<span class="mandatory">*</span></label>
-                    <input asp-for="UsefulUrl" class="h-full-width" type="text" placeholder="https://web.mon.bg/bg/101234" required>
+                    <label for="sampleInput">Линк</label>
+                    <input asp-for="UsefulUrl" class="h-full-width" type="text" placeholder="https://web.mon.bg/bg/101234">
                     <span asp-validation-for="UsefulUrl" class="text-danger"></span>
                 </div>
                 <div class="mb-3">
-                    <label class="profilePictureLabel">Снимки</label>
-                    <label class="btn h-full-width" for="uploadProfilePicture">Прикачи Профилна Снимка</label>
-                    <input asp-for="Images" id="uploadProfilePicture" class="upload-photo" for="ProfilePictureUrl" accept="image/gif, image/jpeg, image/png">
-                    <span asp-validation-for="Images" class="text-danger"></span>
-                </div>
-                <div class="mb-3">
-                    <input class="btn h-full-width btn-green-h" type="submit" value="Запази">
+                    @if (ViewBag.Title == "Редактирай пост")
+                    {
+                        <input type="hidden" asp-for="@Model.IsItQuestion" />
+                        <input style="display:block;" id="add" asp-controller="Post" asp-action="Edit" asp-route-id="@Model.Id" class="btn h-full-width btn-green-h" type="submit" value="Запази">
+                    }
+                    else
+                    {
+                        <div class="mb-3">
+                            <label class="profilePictureLabel">Снимки</label>
+                            <label class="btn h-full-width" for="uploadProfilePicture">Прикачи Снимки</label>
+                            <input asp-for="Images" id="uploadProfilePicture" class="upload-photo" for="ProfilePictureUrl" accept="image/gif, image/jpeg, image/png">
+                            <span asp-validation-for="Images" class="text-danger"></span>
+                        </div>
+                        <input style="display:block;" id="add" asp-controller="Post" asp-action="Add" class="btn h-full-width btn-green-h" type="submit" value="Запази">
+                        <input style="display:none;" id="addQuestion" asp-controller="Post" asp-action="AddQuestion" class="btn h-full-width btn-green-h" type="submit" value="Запази">
+                    }
                     <a asp-controller="Post" asp-action="Index" class="btn h-full-width">Отмени</a>
                 </div>
             </form>

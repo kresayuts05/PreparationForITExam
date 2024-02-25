@@ -9,6 +9,7 @@ using PreparationForITExam.Infrastructure.Data;
 using PreparationForITExam.Infrastructure.Data.Entities;
 using System.Security;
 
+//"Data Source=mssql6.asphostbg.net,14330;Initial Catalog=srebchev_preparationforitexam;User ID=srebchev_kresa;Password=Kresa3466@"
 public class Program
 {
     public static void Main(string[] args)

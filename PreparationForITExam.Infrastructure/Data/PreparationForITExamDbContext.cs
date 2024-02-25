@@ -14,10 +14,21 @@ namespace PreparationForITExam.Infrastructure.Data
 {
     public class PreparationForITExamDbContext : IdentityDbContext<User>
     {
+        private bool seedDb;
 
-        public PreparationForITExamDbContext(DbContextOptions<PreparationForITExamDbContext> options)
+        public PreparationForITExamDbContext(DbContextOptions<PreparationForITExamDbContext> options, bool seed = false)
             : base(options)
         {
+            //if (this.Database.IsRelational())
+            //{
+            //    this.Database.Migrate();
+            //}
+            //else
+            //{
+            //    this.Database.EnsureCreated();
+            //}
+
+            //seedDb = seed;
         }
 
         public DbSet<Teacher> Teachers { get; set; }
@@ -61,23 +72,24 @@ namespace PreparationForITExam.Infrastructure.Data
             builder.Entity<LessonMonUser>()
                .HasKey(pk => new { pk.LessonId, pk.MonUserId });
 
-
-            builder.ApplyConfiguration(new RoleConfiguration());
-            builder.ApplyConfiguration(new UserConfiguration());
-            builder.ApplyConfiguration(new MonUserConfiguration());
-            builder.ApplyConfiguration(new ModuleOfCurricularConfiguration());
-            builder.ApplyConfiguration(new SectionOfCurricularConfiguration());
-            builder.ApplyConfiguration(new SchoolConfiguration());
-            builder.ApplyConfiguration(new ExcersiseConfiguration());
-            builder.ApplyConfiguration(new LessonConfiguration());
-            builder.ApplyConfiguration(new LessonMonUserConfiguration());
-            builder.ApplyConfiguration(new UserRoleConifiguration());
-            builder.ApplyConfiguration(new TeacherConfiguration());
-            builder.ApplyConfiguration(new StudentConfiguration());
-            builder.ApplyConfiguration(new NewsConfiguration());
-            builder.ApplyConfiguration(new PostConfiguration());
-            builder.ApplyConfiguration(new ImageConfiguration());
-
+            if (seedDb)
+            {
+                builder.ApplyConfiguration(new RoleConfiguration());
+                builder.ApplyConfiguration(new UserConfiguration());
+                builder.ApplyConfiguration(new MonUserConfiguration());
+                builder.ApplyConfiguration(new ModuleOfCurricularConfiguration());
+                builder.ApplyConfiguration(new SectionOfCurricularConfiguration());
+                builder.ApplyConfiguration(new SchoolConfiguration());
+                builder.ApplyConfiguration(new ExcersiseConfiguration());
+                builder.ApplyConfiguration(new LessonConfiguration());
+                builder.ApplyConfiguration(new LessonMonUserConfiguration());
+                builder.ApplyConfiguration(new UserRoleConifiguration());
+                builder.ApplyConfiguration(new TeacherConfiguration());
+                builder.ApplyConfiguration(new StudentConfiguration());
+                builder.ApplyConfiguration(new NewsConfiguration());
+                builder.ApplyConfiguration(new PostConfiguration());
+                builder.ApplyConfiguration(new ImageConfiguration());
+            }
 
             base.OnModelCreating(builder);
         }

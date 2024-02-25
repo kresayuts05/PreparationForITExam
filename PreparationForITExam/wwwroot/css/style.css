@@ -111,7 +111,7 @@ h5,
 h6 {
     margin: 0;
     color: #343a3f;
-  /*  font-size: 18px;*/
+    /*  font-size: 18px;*/
     font-weight: 500;
     text-transform: capitalize;
 }
@@ -530,7 +530,7 @@ nav.navbar.bootsnav .navbar-toggle {
     .welcome-hero-btn:hover {
         /*background: #fd4043;*/
         background: #f43032;
-        color:#fff;
+        color: #fff;
     }
 
     .welcome-hero-btn svg {
@@ -731,7 +731,7 @@ nav.navbar.bootsnav .navbar-toggle {
         6. Works 
 --------------------------------------*/
 .works {
-    padding: 0 0 90px;
+    padding: 45px 0 45px;
 }
 
 .works-content {
@@ -1058,6 +1058,7 @@ nav.navbar.bootsnav .navbar-toggle {
 .close-btn {
     margin-top: auto;
     font-size: 15px;
+    color:royalblue;
 }
 
     .close-btn.open-btn {
@@ -1091,7 +1092,7 @@ nav.navbar.bootsnav .navbar-toggle {
         8. Reviews
 --------------------------------------*/
 .reviews {
-    padding: 117px 0 75px;
+    padding: 45px 0 75px;
 }
 
 .reviews-content {
@@ -1108,7 +1109,7 @@ nav.navbar.bootsnav .navbar-toggle {
     -ms-transition: .3s;
     -o-transition: .3s;
     transition: .3s;
-    height:23em;
+    height: 23em;
 }
 
     .single-testimonial-box:hover {
@@ -1126,14 +1127,14 @@ nav.navbar.bootsnav .navbar-toggle {
 }
 
 /* testimonial-info */
-.testimonial-info {    
+.testimonial-info {
     display: flex;
     align-items: center;
     text-transform: capitalize;
 }
 
 .testimonial-img {
-    margin-bottom:1.5em;
+    margin-bottom: 1.5em;
     overflow: hidden;
     position: relative;
     top: 11px;
@@ -1145,7 +1146,7 @@ nav.navbar.bootsnav .navbar-toggle {
     -o-transition: .3s;
     transition: .3s;
     height: 50px;
-    width:50px;
+    width: 50px;
 }
 
 .testimonial-person {
@@ -1232,7 +1233,7 @@ nav.navbar.bootsnav .navbar-toggle {
     .statistics:before {
         position: absolute;
         content: '';
-        background: rgba(75, 75, 75, .60);
+        background: #ff545a;
         height: 100%;
         width: 100%;
         top: 0;
@@ -1310,13 +1311,14 @@ nav.navbar.bootsnav .navbar-toggle {
             text-transform: uppercase;
         }
 
-.single-blog-item:hover h2 a{
+.single-blog-item:hover h2 a {
     color: #ff545a;
 }
 
 .single-blog-item:hover h2 {
     color: #337ab7;
 }
+
 .single-blog-item:hover {
     box-shadow: 0 10px 20px rgba(21, 19, 19, .4);
 }

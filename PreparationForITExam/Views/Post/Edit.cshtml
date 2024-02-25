@@ -1,5 +1,19 @@
-﻿@*
-   
-*@
+﻿@model PostFormViewModel
+
 @{
+    ViewBag.Title = "Редактирай пост";
+}
+
+<link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+<section>
+
+    <h2 class="text-center">@ViewBag.Title</h2>
+    <hr />
+
+    <partial name="_PostFormPartial" model="@Model" />
+
+</section>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
 }

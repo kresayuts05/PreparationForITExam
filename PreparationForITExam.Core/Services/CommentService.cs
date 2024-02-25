@@ -7,6 +7,7 @@ using PreparationForITExam.Infrastructure.Data.Entities;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.InteropServices;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -25,10 +26,10 @@ namespace PreparationForITExam.Core.Services
             imageService = _imageService;
         }
 
-        public async Task<int> CommentCount(int podtId)
+        public async Task<int> CommentCount(int postId)
         {
             var list = await repo.AllReadonly<Comment>()
-                .Where(c => c.IsActive == true)
+                .Where(c => c.IsActive == true && c.PostId == postId)
                 .Select(c => c.Id)
                 .ToListAsync();
 
@@ -52,6 +53,14 @@ namespace PreparationForITExam.Core.Services
                 comment.Images = await imageService.UploadImagesComment(model.Images, "comments", comment.Id);
                 await repo.SaveChangesAsync();
             }
+        }
+
+        public async Task Delete(int id)
+        {
+            var comment = await repo.GetByIdAsync<Comment>(id);
+
+            comment.IsActive = false;
+            await repo.SaveChangesAsync();
         }
 
         public async Task<List<CommentViewModel>> GetPostComments(int postId, int page)
@@ -79,6 +88,13 @@ namespace PreparationForITExam.Core.Services
             }
 
             return model;
+        }
+
+        public async Task<int> GetPostIdByCommentId(int id)
+        {
+            var comment = await repo.GetByIdAsync<Comment>(id);
+
+            return comment.PostId;
         }
     }
 }

@@ -30,6 +30,29 @@ namespace PreparationForITExam.Controllers
             return View(model);
         }
 
+        [HttpGet]
+        public async Task<IActionResult> GetOnlyPosts(int id)
+        {
+            var model = await postService.GetOnlyPosts(id);
+            var count = await postService.GetOnlyPostsCount();
+
+            TempData["pages"] = count % 9 == 0 ? count / 9 : (count / 9) + 1; ;
+            TempData["curr"] = id == 0 ? 1 : id;
+
+            return View("Index", model);
+        }
+
+        [HttpGet]
+        public async Task<IActionResult> GetOnlyQuestions(int id)
+        {
+            var model = await postService.GetOnlyQuestions(id);
+            var count = await postService.GetOnlyQuestionsCount();
+
+            TempData["pages"] = count % 9 == 0 ? count / 9 : (count / 9) + 1; ;
+            TempData["curr"] = id == 0 ? 1 : id;
+
+            return View("Index", model);
+        }
 
         [HttpGet]
         public IActionResult Add()
@@ -50,13 +73,46 @@ namespace PreparationForITExam.Controllers
                 return View(model);
             }
 
-            await postService.Create(model);
+            await postService.Create(model, false);
 
             return RedirectToAction("Index", "Post");
         }
 
         [HttpGet]
-        //[HttpGet("{id}/{currpage}")]
+        public async Task<IActionResult> Edit(int id)
+        {
+            var model = await postService.GetPostInfo(id);
+
+            return View(model);
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> Edit(PostFormViewModel model)
+        {
+            if (!ModelState.IsValid)
+            {
+                return View(model);
+            }
+
+            await postService.Edit(model);
+
+            return RedirectToAction("Index", "Post");
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> AddQuestion(PostFormViewModel model)
+        {
+            if (!ModelState.IsValid)
+            {
+                return View(model);
+            }
+
+            await postService.Create(model, true);
+
+            return RedirectToAction("Index", "Post");
+        }
+
+        [HttpGet]
         public async Task<IActionResult> Details(int id, string? currpage)
         {
             int p = 1;

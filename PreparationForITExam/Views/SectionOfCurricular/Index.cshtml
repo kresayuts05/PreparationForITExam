@@ -8,6 +8,10 @@
         <h3>@Model.Module</h3>
         <p> @Model.Title</p>
     </div>
+    <div style="display: inline-flex; max-width: 100%; width: 100%; padding-top: 3.5em;">
+        <h4 style="margin-left: 23%;"><b>Уроци</b></h4>
+        <h4 style="margin-left: 47%;"><b>Упражнения</b></h4>
+    </div>
     <div style="display: inline-flex; max-width: 100%; width: 100%;">
 
         <div style="margin: 3em 2em 5em 5em; width: 50%;">
@@ -38,8 +42,8 @@
             </ol>
         </div>
         <div style="margin: 3em 2em 5em 5em; width: 50%;">
-            <ol class="gradient-list">
 
+            <ol class="gradient-list">
                 @foreach (var exercise in Model.Exercises)
                 {
                     <li>

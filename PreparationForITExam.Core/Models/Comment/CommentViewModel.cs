@@ -32,5 +32,7 @@ namespace PreparationForITExam.Core.Models.Comment
         public string CreatedOn { get; set; }
 
         public int Likes { get; set; }
+
+        public int PostId { get; set; }
     }
 }

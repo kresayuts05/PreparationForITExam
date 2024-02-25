@@ -2767,7 +2767,7 @@ input[type="password"]:focus,
 textarea:focus,
 select:focus {
     color: white;
-    /*        background-color: var(--color-gray-16);*/
+    background-color: var(--color-gray-16);
     border: 1px solid var(--color-gray-16);
 }
 
@@ -2837,7 +2837,7 @@ textarea:-webkit-autofill:hover textarea:-webkit-autofill:focus,
 select:-webkit-autofill,
 select:-webkit-autofill:hover,
 select:-webkit-autofill:focus {
-    -webkit-text-fill-color: var(--color-1);
+    -webkit-text-fill-color: white;
     -webkit-transition: background-color 5000s ease-in-out 0s;
     transition: background-color 5000s ease-in-out 0s;
 }

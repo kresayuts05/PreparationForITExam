@@ -16,6 +16,7 @@ namespace PreparationForITExam.Core.Contracts
         Task ConvertWordDocumentToPdf(IFormFile file, string userId, int lessonId, bool IsForExercise);
         Task ConvertWordDocumentsToPdf(List<IFormFile> file, string userId, int lessonId, bool IsForExercise);
         Task ZipUpload(byte[] file, string userId, int lessonId, bool IsForExercise);
+        Task ZipUpload(byte[] file, string userId, int lessonId, bool IsForExercise, bool IsStudentMaterial);
         Task<string> GetPresentationUrlByLessonId(int lessonId);
         Task<string> GetDocumentUrlByExerciseId(int exerciseId);
         Task<List<MaterialModel>> GetAllMaterialsForLessonById(int lessonId);

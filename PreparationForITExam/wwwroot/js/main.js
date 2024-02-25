@@ -394,6 +394,20 @@
 
     };
 
+    const questionCheckBoxClick = function () {
+        $('#questionCheckBox').on('click', function () {
+            if (document.getElementById('questionCheckBox').checked) {
+                document.getElementById('add').style.display = "none";
+                document.getElementById('addQuestion').style.display = "block";
+            }
+            else {
+
+                document.getElementById('add').style.display = "block";
+                document.getElementById('addQuestion').style.display = "none";
+            }
+        });
+    };
+
 
     /* Initialize
      * ------------------------------------------------------ */
@@ -408,9 +422,10 @@
         ssBricksAnimate();
         ssSlickSlider();
         ssSmoothScroll();
-     /*   ssAjaxChimp();*/
+        /*   ssAjaxChimp();*/
         ssBackToTop();
         gameDeveloperCheckBoxClick();
+        questionCheckBoxClick();
     })();
 
 })(jQuery);

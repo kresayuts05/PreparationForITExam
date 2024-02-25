@@ -12,5 +12,7 @@ namespace PreparationForITExam.Core.Contracts
         Task Create(CommentFormViewModel model);
         Task<List<CommentViewModel>> GetPostComments(int postId, int page);
         Task<int> CommentCount(int podtId);
+        Task<int> GetPostIdByCommentId(int id);
+        Task Delete(int id);
     }
 }

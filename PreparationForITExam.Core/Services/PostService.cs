@@ -20,14 +20,14 @@ namespace PreparationForITExam.Core.Services
         private readonly IImageService imageService;
         private readonly ICommentService commentService;
 
-        public PostService(IRepository _repo, IImageService _imageService,ICommentService _commentService)
+        public PostService(IRepository _repo, IImageService _imageService, ICommentService _commentService)
         {
             repo = _repo;
             imageService = _imageService;
             commentService = _commentService;
         }
 
-        public async Task Create(PostFormViewModel model)
+        public async Task Create(PostFormViewModel model, bool isItQuestion)
         {
             Post post = new Post
             {
@@ -35,7 +35,8 @@ namespace PreparationForITExam.Core.Services
                 Description = model.Description,
                 ShortDescription = model.ShortDescription,
                 UsefulUrl = model.UsefulUrl,
-                UserId = model.UserId
+                UserId = model.UserId,
+                IsItQuestion = isItQuestion
             };
 
             await repo.AddAsync(post);
@@ -71,8 +72,70 @@ namespace PreparationForITExam.Core.Services
                      UserProfilePicture = p.User.ProfilePictureUrl,
                      UsefulUrl = p.UsefulUrl,
                      PostedOn = p.PostedOn.ToString("yyyy-M-d"),
-                     CommentsCount = p.Comments.Where(c=> c.IsActive).ToList().Count
-                  
+
+                 })
+                 .ToListAsync();
+
+            for (int i = 0; i < model.Count; i++)
+            {
+                model[i].Images = await imageService.GetPostImages(model[i].Id);
+                model[i].CommentsCount = await commentService.CommentCount(model[i].Id);
+            }
+
+            return model;
+        }
+
+        public async Task<List<PostViewModel>> GetOnlyPosts(int page)
+        {
+            var model = await repo.AllReadonly<Post>()
+                 .Where(p => p.IsActive && p.IsItQuestion == false)
+                 .OrderByDescending(p => p.Id)
+                 .Skip(9 * ((int)(page == 0 ? 1 : page) - 1))
+                 .Take(9)
+                 .Select(p => new PostViewModel
+                 {
+                     Id = p.Id,
+                     Title = p.Title,
+                     Description = p.Description,
+                     ShortDescription = p.ShortDescription,
+                     UserId = p.UserId,
+                     UserName = p.User.FirstName + " " + p.User.LastName,
+                     UserProfilePicture = p.User.ProfilePictureUrl,
+                     UsefulUrl = p.UsefulUrl,
+                     PostedOn = p.PostedOn.ToString("yyyy-M-d"),
+                     CommentsCount = p.Comments.Where(c => c.IsActive).ToList().Count
+
+                 })
+                 .ToListAsync();
+
+            for (int i = 0; i < model.Count; i++)
+            {
+                model[i].Images = await imageService.GetPostImages(model[i].Id);
+            }
+
+            return model;
+        }
+
+        public async Task<List<PostViewModel>> GetOnlyQuestions(int page)
+        {
+            var model = await repo.AllReadonly<Post>()
+                 .Where(p => p.IsActive && p.IsItQuestion == true)
+                 .OrderByDescending(p => p.Id)
+                 .Skip(9 * ((int)(page == 0 ? 1 : page) - 1))
+                 .Take(9)
+                 .Select(p => new PostViewModel
+                 {
+                     Id = p.Id,
+                     Title = p.Title,
+                     Description = p.Description,
+                     ShortDescription = p.ShortDescription,
+                     UserId = p.UserId,
+                     UserName = p.User.FirstName + " " + p.User.LastName,
+                     UserProfilePicture = p.User.ProfilePictureUrl,
+                     UsefulUrl = p.UsefulUrl,
+                     PostedOn = p.PostedOn.ToString("yyyy-M-d"),
+                     CommentsCount = p.Comments.Where(c => c.IsActive).ToList().Count
+
                  })
                  .ToListAsync();
 
@@ -93,6 +156,24 @@ namespace PreparationForITExam.Core.Services
             return posts.Count;
         }
 
+        public async Task<int> GetOnlyPostsCount()
+        {
+            var posts = await repo.AllReadonly<Post>()
+                .Where(p => p.IsActive && p.IsItQuestion == false)
+                .ToListAsync();
+
+            return posts.Count;
+        }
+
+        public async Task<int> GetOnlyQuestionsCount()
+        {
+            var posts = await repo.AllReadonly<Post>()
+                .Where(p => p.IsActive && p.IsItQuestion == true)
+                .ToListAsync();
+
+            return posts.Count;
+        }
+
         public async Task<PostViewModel> GetPostDetails(int id, int page)
         {
             var model = await repo.AllReadonly<Post>()
@@ -107,6 +188,7 @@ namespace PreparationForITExam.Core.Services
                      UserName = p.User.FirstName + " " + p.User.LastName,
                      UserProfilePicture = p.User.ProfilePictureUrl,
                      UsefulUrl = p.UsefulUrl,
+                     UserRole = p.User.RoleName,
                      PostedOn = p.PostedOn.ToString("yyyy-M-d"),
                  })
                  .FirstOrDefaultAsync();
@@ -115,6 +197,42 @@ namespace PreparationForITExam.Core.Services
             model.Comments = await commentService.GetPostComments(id, page);
 
             return model;
+        }
+
+        public async Task<PostFormViewModel> GetPostInfo(int id)
+        {
+            var model = await repo.AllReadonly<Post>()
+                 .Where(p => p.IsActive && p.Id == id)
+                 .Select(p => new PostFormViewModel
+                 {
+                     Id = p.Id,
+                     Title = p.Title,
+                     Description = p.Description,
+                     ShortDescription = p.ShortDescription,
+                     UserId = p.UserId,
+                     UsefulUrl = p.UsefulUrl,
+                     IsItQuestion = p.IsItQuestion
+                 })
+                 .FirstOrDefaultAsync();
+
+            //model.Images = await imageService.GetPostImages(id);
+
+            return model;
+        }
+
+        public async Task Edit(PostFormViewModel model)
+        {
+            var post = await repo.GetByIdAsync<Post>(model.Id);
+
+            post.Title = model.Title;
+            post.Description = model.Description;
+            post.ShortDescription = model.ShortDescription;
+            post.UsefulUrl = model.UsefulUrl;
+            post.UserId = model.UserId;
+            post.IsItQuestion = model.IsItQuestion;
+
+            await repo.SaveChangesAsync();
+
         }
     }
 }

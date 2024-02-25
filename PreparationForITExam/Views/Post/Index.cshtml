@@ -16,20 +16,24 @@
             </p>
             <br>
             <div class="btn-group" role="group">
-                <a class="btn welcome-hero-btn" asp-controller="Account" asp-action="Register">
+                <a class="btn welcome-hero-btn" asp-controller="Post" asp-action="Index">
                     Всички
                 </a>
-                <a style="background:#3D445F!important" class="btn welcome-hero-btn" asp-controller="Account" asp-action="Register">
+                <a style="background:#3D445F!important" class="btn welcome-hero-btn" asp-controller="Post" asp-action="GetOnlyPosts">
                     Постове
                 </a>
-                <a style="background:#5e4581!important" class="btn welcome-hero-btn" asp-controller="Account" asp-action="Register">
+                <a style="background:#5e4581!important" class="btn welcome-hero-btn" asp-controller="Post" asp-action="GetOnlyQuestions">
                     Въпроси
                 </a>
-                <a style="background:#000!important" class="btn welcome-hero-btn" asp-controller="Post" asp-action="Add">
-                    Създай
-                </a>
+                @if (this.User.Identity.IsAuthenticated)
+                {
+                    <a style="background:#000!important" class="btn welcome-hero-btn" asp-controller="Post" asp-action="Add">
+                        Създай
+                    </a>
+                }
             </div>
         </div><!--/.section-header-->
+
         <div class="explore-content">
             <div class="row">
                 @foreach (var post in Model)
@@ -55,7 +59,7 @@
                                 <p class="explore-rating-price">
                                     <a href="#"> @post.PostedOn</a>
                                     <span class="explore-price-box">
-                                        <span class="explore-price">@(post.Comments != null ? post.Comments.Count : 0) comments</span>
+                                        <span class="explore-price">@post.CommentsCount comments</span>
                                     </span>
                                     <a asp-controller="Profile" asp-action="Index" asp-route-id="@post.UserId">@post.UserName</a>
                                 </p>
@@ -75,20 +79,33 @@
                                         </div>
                                     </div>
                                 </div>
-                                <div class="explore-open-close-part">
-                                    <div class="row">
-                                        <div class="col-sm-5">
-                                            <a class="close-btn open-btn" asp-controller="Post" asp-action="Details" asp-route-id="@post.Id">Виж повече</a>
-                                        </div>
-                                        <div class="col-sm-7">
+                                @if (this.User.Identity.IsAuthenticated)
+                                {
+                                    <div class="explore-open-close-part">
+                                        <div class="row">
+                                            <div class="col-sm-5">
+                                                <a class="close-btn open-btn" asp-controller="Post" asp-action="Details" asp-route-id="@post.Id">Виж повече</a>
+                                            </div>
+                                            <div class="col-sm-7">
 
-                                            <div class="explore-map-icon">
-                                                <a href="#"><i data-feather="upload"></i></a>
-                                                <a href="#"><i data-feather="heart"></i></a>
+                                                <div class="explore-map-icon">
+                                                    @if (post.UsefulUrl != null)
+                                                    {
+                                                        
+                                                        @if (this.User.Id() == post.UserId)
+                                                        {
+                                                            <a class="close-btn" asp-controller="Post" asp-action="Edit" asp-route-id="@post.Id">Редактирай</a>
+                                                        }
+                                                        else
+                                                        {
+                                                            <a href="@post.UsefulUrl">линк</a>
+                                                        }
+                                                    }
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
-                                </div>
+                                }
                             </div>
                         </div>
                     </div>
@@ -116,6 +133,8 @@
                 }
             </ul>
         </nav>
-    </div><!--/.container-->
+    </div>
+
+    <!--/.container-->
 
 </section>

@@ -36,6 +36,8 @@ namespace PreparationForITExam.Core.Models.Post
 
         public string UserName { get; set; }
 
+        public string UserRole { get; set; }
+
         public string UserProfilePicture { get; set; }
 
         public int CommentsCount { get; set; }

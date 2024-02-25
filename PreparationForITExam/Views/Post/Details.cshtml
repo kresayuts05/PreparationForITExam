@@ -23,12 +23,16 @@
             <!-- Wrapper for slides -->
             <div class="carousel-inner" style="height: 36em; margin-left:10%; margin-right:10%; width:80%; border-radius:10px;">
                 <div class="item active">
+                    <a href="@Model.Images[0]">
                     <img src="@Model.Images[0]" style="border-radius: 10px;" />
+                    </a>
                 </div>
                 @foreach (var item in Model.Images.Skip(1).ToList())
                 {
                     <div class="item">
+                        <a href="@item">
                         <img src="@item" alt="Los Angeles" style="border-radius: 10px;">
+                        </a>
                     </div>
                 }
 
@@ -48,97 +52,135 @@
         </div>
     }
     <br>
-    <br>
-    <div>
-        <div class="container" style="padding-left:0 !important; padding-right: 0!important;">
-            <p class="question-title">Коментари</p>
-            <div class="col-md-12 bootstrap snippets" style="padding: 0!important;">
-                <div class="panel">
-                    <form method="post" enctype="multipart/form-data" asp-controller="Comment" asp-action="Create">
-                        <div class="panel-body">
-                            <input type="hidden" asp-for="@Model.Id" />
-                            <textarea asp-for="CommentModel.Content" class="form-control" rows="2" placeholder="Сподели своето мнение или възникнал въпрос"></textarea>
-                            <div class="mar-top clearfix">
-                                <button style="margin-top:0.7em;" class="btn btn-sm btn-primary pull-right" type="submit"><i class="fa fa-pencil fa-fw"></i> Сподели</button>
-                                <a class="btn btn-trans btn-icon fa fa-camera add-tooltip" href="#"></a>
-                                <input style="opacity:0;" class="btn btn-trans btn-icon fa fa-camera add-tooltip" asp-for="CommentModel.Images" for="ProfilePictureUrl" multiple accept="image/gif, image/jpeg, image/png">
+    <div class="container" style="padding-left:0 !important; padding-right: 0!important;">
+        <div class="panel">
+            <div class="panel-body">
+                <div class="media-block">
+                    <div class="col-sm-2">
+                        <a asp-controller="Profile" asp-action="Index" asp-route-id="@Model.UserId">
+                            <div class="testimonial-img" style="width:70px!important; height:70px!important;">
+                                <img src="@Model.UserProfilePicture" alt="explore person">
                             </div>
-                        </div>
-                    </form>
-                </div>
-                <div class="panel">
-                    <div class="panel-body">
-                        @if (Model.Comments.Count == 0)
-                        {
-                            <p>Няма коментари</p>
-                        }
-                        else
-                        {
-                            @foreach (var comment in Model.Comments)
-                            {
-                                <!-- Newsfeed Content -->
-                                <!--===================================================-->
-                                <div class="media-block">
-                                    <a class="media-left" href="#"><img class="img-circle img-sm" alt="Profile Picture" src="@comment.ProfilePicture"></a>
-                                    <div class="media-body">
-                                        <div class="mar-btm">
-                                            <p href="#" class="btn-link text-semibold media-heading box-inline">@comment.UserName</p>
-                                            <p class="text-muted text-sm"><i class="fa fa-mobile fa-lg"></i>@comment.UserRole</p>
-                                            <p class="text-muted text-sm"><i class="fa fa-mobile fa-lg"></i>@comment.CreatedOn</p>
-                                        </div>
-                                        <p>@comment.Content</p>
-                                        @if (comment.Images.Count > 0)
-                                        {
-                                            foreach (var img in comment.Images)
-                                            {
-                                                <img class="img-responsive thumbnail" src="@img" alt="Image">
-                                            }
-                                        }
-                                        <div class="pad-ver">
-                                            <span class="tag tag-sm"><i class="fa fa-heart text-danger"></i> @comment.Likes</span>
-                                            <div class="btn-group">
-                                                <a class="btn btn-sm btn-default btn-hover-success" href="#"><i class="fa fa-thumbs-up"></i></a>
-                                                <a class="btn btn-sm btn-default btn-hover-danger" href="#"><i class="fa fa-thumbs-down"></i></a>
-                                            </div>
-                                            <a id=(@comment.Id.ToString()+"btn") class="btn btn-sm btn-default btn-hover-primary" href="#">Comment</a>
-                                            <div id=(@comment.Id.ToString()+"div") style="display:none;" class="panel-body">
-                                                <textarea class="form-control" rows="2" placeholder="Сподели своето мнение или възникнал въпрос"></textarea>
-                                                <div class="mar-top clearfix">
-                                                    <button class="btn btn-sm btn-primary pull-right" type="submit"><i class="fa fa-pencil fa-fw"></i> Сподели</button>
-                                                    <a class="btn btn-trans btn-icon fa fa-camera add-tooltip" href="#"></a>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <hr>
+                        </a>
+                    </div>
+                    <div class="col-sm-10" style="margin-left:-5em;">
+                        <p class="explore-rating-price">
+                            <a href="#"> @Model.PostedOn</a>
+                            <span class="explore-price-box">
+                                <span class="explore-price">@Model.UserRole</span>
+                            </span>
+                            <a asp-controller="Profile" asp-action="Index" asp-route-id="@Model.UserId">@Model.UserName</a>
+                            <br>
+                        <p style="text-transform:uppercase;"><b>@Model.Title</b></p>
 
+                        </p>
+                    </div>
 
-                                    </div>
-                                </div>
-                            }
-                            <nav style="display: ruby-text;">
-                                <ul class="pagination pagination-lg">
-                                    @for (int i = 1; i <= (int)TempData["commentsPages"]; i++)
-                                    {
-                                        if ($"{i}" == TempData["currCommentPage"].ToString())
-                                        {
-                                            <li class="page-item disabled">
-                                                <a class="page-link" href="#" tabindex="-1">@i</a>
-                                            </li>
-                                        }
-                                        else
-                                        {
-                                            <li class="page-item">
-                                                <a class="page-link" asp-controller="Post" asp-action="Details" asp-route-id="@Model.Id" asp-route-currpage="@i">@i</a>
-                                            </li>
-                                        }
-                                    }
-                                </ul>
-                            </nav>
-                        }
+                    <div class="media-body" style="display:block!important;">
+                        <p style="margin-left: 9.5em;">@Model.ShortDescription</p>
+                        <p style="margin-left: 9.5em;">@Model.Description</p>
+                        <br>
                     </div>
                 </div>
             </div>
+            <br>
+            <br>
         </div>
+    </div>
+    <div class="container" style="padding-left:0 !important; padding-right: 0!important;">
+        <p class="question-title">Коментари</p>
+        <div class="col-md-12 bootstrap snippets" style="padding: 0!important;">
+            <div class="panel">
+                <form method="post" enctype="multipart/form-data" asp-controller="Comment" asp-action="Create">
+                    <div class="panel-body">
+                        <input type="hidden" asp-for="@Model.Id" />
+                        <textarea asp-for="CommentModel.Content" class="form-control" rows="2" placeholder="Сподели своето мнение или възникнал въпрос"></textarea>
+                        <div class="mar-top clearfix">
+                            <button style="margin-top:0.7em;" class="btn btn-sm btn-primary pull-right" type="submit"><i class="fa fa-pencil fa-fw"></i> Сподели</button>
+                            <label class="btn btn-trans btn-icon fa fa-camera add-tooltip" for="uploadCommentPicture"></label>
+                            <input asp-for="CommentModel.Images" id="uploadCommentPicture" style="opacity:0; z-index=-1;position:absolute;" for="ProfilePictureUrl" multiple accept="image/gif, image/jpeg, image/png">
+                        </div>
+                    </div>
+                </form>
+            </div>
+
+            <div class="panel">
+                @if (Model.Comments.Count == 0)
+                {
+                    <p style="margin-left: 1em;">Няма коментари</p>
+                }
+                else
+                {
+                    @foreach (var comment in Model.Comments)
+                    {
+                        <div class="panel-body">
+                            <!-- Newsfeed Content -->
+                            <!--===================================================-->
+                            <div class="media-block">
+                                <div class="col-sm-2">
+                                    <a asp-controller="Profile" asp-action="Index" asp-route-id="@comment.UserId">
+                                        <div class="testimonial-img" style="width:70px!important; height:70px!important;">
+                                            <img src="@comment.ProfilePicture" alt="explore person">
+                                        </div>
+                                    </a>
+                                </div>
+                                <div class="col-sm-10" style="margin-left:-5em;">
+                                    <p class="explore-rating-price">
+                                        <a href="#"> @comment.CreatedOn</a>
+                                        <span class="explore-price-box">
+                                            <span class="explore-price">@comment.UserRole</span>
+                                        </span>
+                                        <a asp-controller="Profile" asp-action="Index" asp-route-id="@comment.UserId">@comment.UserName</a>
+                                    </p>
+                                </div>
+
+                                <div class="media-body" style="display:block!important;">
+                                    <p style="margin-left: 9.5em; width: 66em;">@comment.Content</p>
+                                    <br>
+                                    @if (comment.Images.Count > 0)
+                                    {
+                                        foreach (var img in comment.Images)
+                                        {
+                                            <a href="@img">
+                                                <img style="width:auto; max-height:43em;" class="img-responsive thumbnail" src="@img" alt="Image">
+                                            </a>
+                                        }
+                                    }
+                                    <div class="pad-ver">
+                                        @if (this.User.Id() == comment.UserId)
+                                        {
+                                            <a style="margin-left: 11em;" class="btn btn-sm btn-danger" asp-controller="Comment" asp-action="Delete" asp-route-id="@comment.Id">Изтрий</a>
+                                        }
+
+                                    </div>
+                                    <hr>
+                                </div>
+                            </div>
+                        </div>
+                    }
+                    <nav style="display: ruby-text;">
+                        <ul class="pagination pagination-lg">
+                            @for (int i = 1; i <= (int)TempData["commentsPages"]; i++)
+                            {
+                                if ($"{i}" == TempData["currCommentPage"].ToString())
+                                {
+                                    <li class="page-item disabled">
+                                        <a class="page-link" href="#" tabindex="-1">@i</a>
+                                    </li>
+                                }
+                                else
+                                {
+                                    <li class="page-item">
+                                        <a class="page-link" asp-controller="Post" asp-action="Details" asp-route-id="@Model.Id" asp-route-currpage="@i">@i</a>
+                                    </li>
+                                }
+                            }
+                        </ul>
+                    </nav>
+                }
+            </div>
+        </div>
+    </div>
     </div>
 </section>
 
@@ -149,41 +191,3 @@
 </style>
 
 
-
-
-@*
-<div>
-    <h2>Carousel Example</h2>
-
-    <div style="display: flex; align-items: center; flex-direction: column;">
-        <h5 class="s-content__title s-content__title--post">Explore more games</h5>
-
-        <div class="s-content__media">
-            <div class="brick entry featured-grid animate-this">
-                <div class="entry__content">
-                    <div class="featured-post-slider ">
-                        @for (int i = 0; i < Model.Images.Count; i++)
-                        {
-                            <div class="featured-post-slide ">
-                                <div class="f-slide">
-                                        <div class="f-slide__background" style="background-image:url('@Model.Images[i]'); "></div>
-                                </div>
-                            </div>
-                        }
-                    </div>
-
-                    <div class="featured-post-nav">
-                        <button class="featured-post-nav__prev">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path d="M12.707 17.293L8.414 13H18v-2H8.414l4.293-4.293-1.414-1.414L4.586 12l6.707 6.707z"></path></svg>
-                        </button>
-                        <button class="featured-post-nav__next">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path d="M11.293 17.293l1.414 1.414L19.414 12l-6.707-6.707-1.414 1.414L15.586 11H6v2h9.586z"></path></svg>
-                        </button>
-                    </div>
-
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
-*@

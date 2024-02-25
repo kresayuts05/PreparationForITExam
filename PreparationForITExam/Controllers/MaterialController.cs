@@ -167,8 +167,48 @@ namespace PreparationForITExam.Controllers
             RouteValueDictionary RouteInfo = new RouteValueDictionary();
             RouteInfo.Add("id", model.LessonId);
 
-            return RedirectToAction("Index", "Lesson", RouteInfo);
+            return RedirectToAction("Index", "Exercise", RouteInfo);
         }
+
+        [HttpGet]
+        public async Task<IActionResult> AddMaterialForExerciseByStudent(int id)
+        {
+            var sectionId = await lessonService.GetSectionCurricularIdByLessonId(id);
+
+            var model = new MaterialFormViewModel
+            {
+                LessonId = id,
+                SectionOfCurricularId = sectionId
+            };
+
+            return View(model);
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> AddMaterialForExerciseByStudent(MaterialFormViewModel model)
+        {
+            var userId = this.User.Id();
+
+            byte[] fileBytes = null;
+
+            if (model.FileInfo.Length > 0)
+            {
+                using (var ms = new MemoryStream())
+                {
+                    model.FileInfo.CopyTo(ms);
+                    fileBytes = ms.ToArray();
+                    // act on the Base64 data
+                }
+            }
+
+            await materialService.ZipUpload(fileBytes, userId, model.LessonId, true, true);
+
+            RouteValueDictionary RouteInfo = new RouteValueDictionary();
+            RouteInfo.Add("id", model.LessonId);
+
+            return RedirectToAction("Index", "Exercise", RouteInfo);
+        }
+
 
         [HttpGet]
         public async Task<IActionResult> DeleteMaterialFromLesson(int id)
@@ -208,7 +248,6 @@ namespace PreparationForITExam.Controllers
 
             return View(model);
         }
-
 
         [HttpPost]
         public async Task<IActionResult> DeleteMaterialFromExercise(MaterialModel model)

@@ -9,9 +9,15 @@ namespace PreparationForITExam.Core.Contracts
 {
     public interface IPostService
     {
-        Task Create(PostFormViewModel model);
+        Task Create(PostFormViewModel model, bool isItQuestion);
         Task<List<PostViewModel>> GetAllPosts(int page);
-        Task<int> GetPostCount();
+        Task<List<PostViewModel>> GetOnlyPosts(int page);
+        Task<List<PostViewModel>> GetOnlyQuestions(int page);
         Task<PostViewModel> GetPostDetails(int id, int page);
+        Task<PostFormViewModel> GetPostInfo(int id);
+        Task<int> GetPostCount();
+        Task<int> GetOnlyPostsCount();
+        Task<int> GetOnlyQuestionsCount();
+        public Task Edit(PostFormViewModel model);
     }
 }
