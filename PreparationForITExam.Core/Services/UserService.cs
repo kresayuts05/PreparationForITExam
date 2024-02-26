@@ -36,8 +36,10 @@ namespace PreparationForITExam.Core.Services
                 Email = user.Email,
                 Phone = user.PhoneNumber,
                 AboutMe = user.AboutMe,
-                RoleName = user.RoleName
-            };
+                RoleName = user.RoleName,
+                City = user.City
+                //put school
+            };            
 
             return model;
         }

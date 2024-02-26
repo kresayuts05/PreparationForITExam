@@ -1,0 +1,71 @@
+﻿@model AnswerFormViewModel
+
+@{
+    ViewBag.Title = "Помогни на ученик. Провери му задачите";
+}
+
+<link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+<section>
+
+    <h2 class="text-center">@ViewBag.Title</h2>
+    <hr />
+    <div class="row cont">
+        <div class="col-sm-12 offset-lg-2 col-lg-8 offset-xl-3 col-xl-6">
+            <form method="post" enctype="multipart/form-data">
+
+                <input type="hidden" asp-for="@Model.ExerciseMaterialId" />
+                <input type="hidden" asp-for="@Model.ExerciseId" />
+                <input type="hidden" asp-for="@Model.UserId" />
+
+                <div class="mb-3">
+                    <label class="profilePictureLabel">Компресирана папка със задачи<span class="mandatory">*</span></label>
+                    <label class="btn h-full-width" for="uploadPresentation">Прекачи Компресирана папка</label>
+                    <input asp-for="FileInfo" id="uploadPresentation" class="upload-photo" for="FileInfo" multiple accept=".zip, .rar, .7z">
+                    <span asp-validation-for="FileInfo" class="text-danger"></span>
+                </div>
+
+                <div class="mb-3">
+                    <input id="save" class="btn btn-success" type="submit" value="Запази" />
+                    <a asp-controller="Lesson" asp-action="Index" asp-route-id="@Model.ExerciseId" class="btn btn-danger">Отмени</a>
+                </div>
+                <div id="loading" hidden>
+                    <img id="loading-image" src="~/loader.gif" alt="Loading..." />
+                </div>
+            </form>
+        </div>
+    </div>
+</section>
+
+<script>
+    $(window).on('load', function () {
+        $("#loading").hide();
+    });
+
+    $("#save").click(function () {
+        $("#loading").show();
+    });
+</script>
+
+<style>
+    #loading {
+        position: fixed;
+        display: block;
+        width: 100%;
+        height: 100%;
+        top: 0;
+        left: 0;
+        text-align: center;
+        opacity: 0.7;
+        background-color: #fff;
+        z-index: 99;
+    }
+
+    #loading-image {
+        position: absolute;
+        width: 300px;
+        z-index: 100;
+        top: 40%;
+        margin: 0;
+        right: 40%;
+    }
+</style>

@@ -1,7 +1,9 @@
-﻿@model ProfileViewModel
+﻿@using PreparationForITExam.Core.Constants;
+@model ProfileViewModel
 
 
 <section id="content" class="container">
+    <br>
     <!-- Begin .page-heading -->
     <div class="page-heading">
         <div class="media clearfix">
@@ -9,7 +11,7 @@
                 <a>
                     <img class="media-object mw150 prf-picture" src="@Model.ProfilePicture">
                 </a>
-                
+
             </div>
             <br>
             <div class="media-body va-m">
@@ -32,21 +34,21 @@
                 </div>
                 <div class="panel-body pn">
                     <table class="table mbn tc-icon-1 tc-med-2 tc-bold-last">
-                       @* <thead>
-                            <tr class="hidden">
-                                <th class="mw30">#</th>
-                                <th>First Name</th>
-                                <th>Revenue</th>
-                            </tr>
+                        @* <thead>
+                        <tr class="hidden">
+                        <th class="mw30">#</th>
+                        <th>First Name</th>
+                        <th>Revenue</th>
+                        </tr>
                         </thead>*@
                         <tbody>
-                             <tr>
+                            <tr>
                                 <td>
                                     <span class="fa fa-desktop text-warning"></span>
                                 </td>
                                 <td>Материали</td>
                                 <td>
-                                   @Model.Materials
+                                    @Model.Materials
                                 </td>
                             </tr>
                             <tr>
@@ -64,7 +66,7 @@
                                 </td>
                                 <td>Въпроси</td>
                                 <td>
-                                   @Model.Questions
+                                    @Model.Questions
                                 </td>
                             </tr>
                             <tr>
@@ -80,7 +82,7 @@
                     </table>
                 </div>
             </div>
-           
+
             <div class="panel">
                 <div class="panel-heading">
                     <span class="panel-icon">
@@ -92,13 +94,21 @@
 
                     <h4>Обща информация</h4>
 
-                  @*  <h4>Facebook Internship</h4>*@
                     <p class="text-muted">
                         @Model.AboutMe
                     </p>
-
                     <hr class="short br-lighter">
-@*
+                    @*<h4>Училище</h4>
+                    <p class="text-muted">
+                    @Model.School
+                    </p>
+                    <hr class="short br-lighter">*@
+                    <h4>Град</h4>
+                    <p class="text-muted">
+                        @Model.City
+                    </p>
+                    <hr class="short br-lighter">
+                    @*
                     Добави запис*@
                 </div>
             </div>
@@ -108,26 +118,137 @@
             <div class="tab-block">
                 <ul class="nav nav-tabs">
                     <li class="active">
-                        <a href="#tab1" data-toggle="tab">Постове</a>
+                        <a id="posts" data-toggle="tab">Постове</a>
                     </li>
                     <li>
-                        <a href="#tab1" data-toggle="tab">Въпроси</a>
+                        <a id="questions" data-toggle="tab">Въпроси</a>
                     </li>
-                    <li>
-                        <a href="#tab1" data-toggle="tab">Всички Задачи</a>
-                    </li>
-                    <li>
-                        <a href="#tab1" data-toggle="tab">Проверени Задачи</a>
-                    </li>
+                    @if (User.IsInRole(RoleConstants.Teacher) || User.IsInRole(RoleConstants.Student))
+                    {
+                        if (User.IsInRole(RoleConstants.Teacher))
+                        {
+                            <li>
+                                <a id="materials" data-toggle="tab">Всички Материали</a>
+                            </li>
+                        }
+                        else
+                        {
+                            <li>
+                                <a id="tasks" data-toggle="tab">Всички Задачи</a>
+                            </li>
+                        }
+
+                        <li>
+                            <a id="returnedMaterials" data-toggle="tab">Проверени Задачи</a>
+                        </li>
+                    }
+
                 </ul>
-                <div class="tab-content p30" style="height: 730px;">
-                   
+                <div id="postsDiv" class="tab-content p30" style="height: 730px; display:block;">
+                    @if (Model.PostsUrls.Count == 0)
+                    {
+                        <p>Нямате постове</p>
+                    }
+                    else
+                    {
+                        @foreach (var item in Model.PostsUrls)
+                        {
+                            <div style="overflow:auto;">
+                                <a style="float: left;" class="curricular-element" asp-controller="Post" asp-action="Details" asp-route-id="@item.Id">@item.Title</a>
+                                <div style="float: right;">
+                                    <a asp-controller="Post" asp-area="" asp-action="Edit" asp-route-id="@item.Id" class="btn btn-info">Промени</a>
+                                    <a asp-controller="Post" asp-area="" asp-action="Delete" asp-route-id="@item.Id" class="btn btn-danger">Изтрий</a>
+
+                                </div>
+                            </div>
+                            <hr class=" br-lighter">
+                        }
+                    }
+
+                </div>
+                <div id="questionsDiv" class="tab-content p30" style="height: 730px; display:none;">
+                    @if (Model.QuestionsUrls.Count == 0)
+                    {
+                        <p>Нямате зададени въпроси</p>
+                    }
+                    else
+                    {
+                        @foreach (var item in Model.QuestionsUrls)
+                        {
+                            <div style="overflow:auto;">
+                                <a style="float: left;" class="curricular-element" asp-controller="Post" asp-action="Details" asp-route-id="@item.Id">@item.Title</a>
+                                <div style="float: right;">
+                                    <a asp-controller="Post" asp-area="" asp-action="Edit" asp-route-id="@item.Id" class="btn btn-info">Промени</a>
+                                    <a asp-controller="Post" asp-area="" asp-action="Delete" asp-route-id="@item.Id" class="btn btn-danger">Изтрий</a>
+
+                                </div>
+                            </div>
+                            <hr class=" br-lighter">
+                        }
+                    }
+
+                </div>
+                <div id="materialsDiv" class="tab-content p30" style="height: 730px; display:none;">
+                    @if (Model.MaterialsInLessons.Count == 0 && Model.MaterialsInExercise.Count == 0)
+                    {
+                        <p>Нямате постове</p>
+                    }
+                    else
+                    {
+                        @foreach (var item in Model.MaterialsInLessons)
+                        {
+                            <div style="overflow:auto;">
+                                <a style="float: left;" class="curricular-element" asp-controller="Lesson" asp-action="Index" asp-route-id="@item.Id">@item.Name</a>
+                                <div style="float: right;">
+                                    <a asp-controller="Material" asp-area="" asp-action="DeleteMaterialFromLesson" asp-route-id="@item.Id" class="btn btn-danger">Изтрий</a>
+                                </div>
+                            </div>
+                            <hr class=" br-lighter">
+                        }
+                        @foreach (var item in Model.MaterialsInExercise)
+                        {
+                            <div style="overflow:auto;">
+                                <a style="float: left;" class="curricular-element" asp-controller="Exercise" asp-action="Index" asp-route-id="@item.LessonId">@item.Name</a>
+                                <div style="float: right;">
+                                    <a asp-controller="Material" asp-area="" asp-action="DeleteMaterialFromExercise" asp-route-id="@item.Id" class="btn btn-danger">Изтрий</a>
+                                </div>
+                            </div>
+                            <hr class=" br-lighter">
+                        }
+                    }
+
+                </div>
+                <div id="answersDiv" class="tab-content p30" style="height: 730px; display:none;">
+                    @if (Model.Answers.Count == 0)
+                    {
+                        <p>Нямате задачи</p>
+                    }
+                    else
+                    {
+                        @foreach (var item in Model.Answers)
+                        {
+                            <div style="overflow:auto;">
+                                <a style="float: left;" class="curricular-element" asp-controller="Exercise" asp-action="Index" asp-route-id="@item.ExerciseId">@item.Name</a>
+                                <div style="float: right;">
+                                    @if (User.IsInRole(RoleConstants.Teacher))
+                                    {
+                                        <a asp-controller="Answer" asp-area="" asp-action="Delete" asp-route-id="@item.Id" class="btn btn-danger">Изтрий</a>
+                                    }
+                                    else
+                                    {
+                                        <a  href="@item.UrlPath" download class="btn btn-info">Изтегли</a>
+                                    }
+                                </div>
+                            </div>
+                            <hr class=" br-lighter">
+                        }
+                    }
+
                 </div>
             </div>
         </div>
     </div>
 </section>
-
 
 
 
@@ -275,7 +396,7 @@
                     </table>
                 </div>
             </div>
-           
+
             <div class="panel">
                 <div class="panel-heading">
                     <span class="panel-icon">

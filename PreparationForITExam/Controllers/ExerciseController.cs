@@ -19,9 +19,18 @@ namespace PreparationForITExam.Controllers
         [AllowAnonymous]
         public async Task<IActionResult> Index(int id)
         {
-            var model = await exerciseService.GetExerciseById(id);
+            try
+            {
+                var model = await exerciseService.GetExerciseById(id);
 
-            return View(model);
+                return View(model);
+            }
+            catch (Exception ex)
+            {
+                TempData["message"] = "Все още няма такова упражнение. Съжаляваме за неудобството!";
+
+                return RedirectToAction("Index", "Curricular");
+            }
         }
     }
 }

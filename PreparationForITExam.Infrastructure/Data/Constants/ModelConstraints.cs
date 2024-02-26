@@ -39,9 +39,6 @@ namespace PreparationForITExam.Infrastructure.Data.Constants
 
             public const int UniversityMaxLength = 60;
             public const int UniversityMinLength = 1;
-
-            public const int AboutMeMaxLength = 700;
-            public const int AboutMeMinLength = 10;
         }
 
         public static class StudentConstraints

@@ -108,6 +108,14 @@
 
     <div class="main">
         <main role="main" class="pb-3">
+            @if (TempData["message"] != null)
+            {
+                <div class="alert alert-danger alert-dismissible fade show" style="opacity:100%;">
+                    @TempData["message"]
+                    <input type="button" class="btn" data-bs-dismiss="alert" style="margin-left: 2em; " value="Затвори" />
+
+                </div>
+            }
             @RenderBody()
         </main>
     </div>

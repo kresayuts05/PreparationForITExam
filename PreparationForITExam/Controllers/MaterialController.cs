@@ -91,7 +91,6 @@ namespace PreparationForITExam.Controllers
             return RedirectToAction("Index", "Exercise", RouteInfo);
         }
 
-
         [HttpGet]
         public async Task<IActionResult> AddMaterialToLessonByTeacher(int id)
         {
@@ -252,7 +251,7 @@ namespace PreparationForITExam.Controllers
         [HttpPost]
         public async Task<IActionResult> DeleteMaterialFromExercise(MaterialModel model)
         {
-            await materialService.DeleteMaterial(model.Id, false);
+            await materialService.DeleteMaterial(model.Id, true);
 
             RouteValueDictionary RouteInfo = new RouteValueDictionary();
             RouteInfo.Add("id", model.LessonId);

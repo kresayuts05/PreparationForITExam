@@ -78,10 +78,10 @@ namespace PreparationForITExam.Core.Services
                     FileFormat = m.FileFormat,
                     UserName = m.User.FirstName + " " + m.User.LastName,
                     UserId = m.UserId,
-                    ExerciseMaterialId = m.ExerciseMaterialId
+                    ExerciseMaterialId = m.ExerciseMaterialId,
+                    ExerciseId = m.ExerciseMaterial.ExerciseId
                 })
                 .ToListAsync();
-
             return model;
         }
 
@@ -98,11 +98,13 @@ namespace PreparationForITExam.Core.Services
                     FileFormat = m.FileFormat,
                     UserName = m.User.FirstName + " " + m.User.LastName,
                     UserId = m.UserId,
-                    ExerciseMaterialId = m.ExerciseMaterialId
+                    ExerciseMaterialId = m.ExerciseMaterialId,
+                    ExerciseId = m.ExerciseMaterial.ExerciseId
                 })
                 .ToListAsync();
 
             return model;
         }
+
     }
 }

@@ -1,5 +1,6 @@
 ﻿using CloudinaryDotNet.Actions;
 using Microsoft.AspNetCore.Mvc;
+using PreparationForITExam.Core.Constants;
 using PreparationForITExam.Core.Contracts;
 using PreparationForITExam.Core.Services;
 using PreparationForITExam.Extensions;
@@ -35,8 +36,22 @@ namespace PreparationForITExam.Controllers
             var model = await userService.GetUserInfo(userId);
 
             model.MaterialsInExercise = await materialService.GetAllMaterialsForExerciseByUserId(userId);
-            model.MaterialsInExercise = await materialService.GetAllMaterialsForLessonByUserId(userId);
-            model.Answers = await answerService.GetAnswersByUserId(userId);
+            model.MaterialsInLessons = await materialService.GetAllMaterialsForLessonByUserId(userId);
+            if (User.IsInRole(RoleConstants.Teacher))
+            {
+                model.Answers = await answerService.GetAnswersByUserId(userId);
+
+            }
+            else
+            {
+                model.Answers = new List<Core.Models.Answer.AnswerModel>();
+                foreach (var item in model.MaterialsInExercise)
+                {
+                    var info = await answerService.GetAnswersByMaterialId(item.Id);
+                    model.Answers.AddRange(info);
+
+                }
+            }
             model.PostsUrls = await postService.GetAllPostsUrlsByUserId(userId);
             model.QuestionsUrls = await postService.GetAllQuestionsUrlsByUserId(userId);
 

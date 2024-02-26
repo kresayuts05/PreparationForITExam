@@ -408,6 +408,53 @@
         });
     };
 
+    const questionsClicked = function () {
+        $('#questions').on('click', function () {
+            document.getElementById('postsDiv').style.display = "none";
+            document.getElementById('questionsDiv').style.display = "block";
+            document.getElementById('materialsDiv').style.display = "none";
+            document.getElementById('answersDiv').style.display = "none";
+        });
+    };
+
+    const postsClicked = function () {
+        $('#posts').on('click', function () {
+            document.getElementById('postsDiv').style.display = "block";
+            document.getElementById('questionsDiv').style.display = "none";
+            document.getElementById('materialsDiv').style.display = "none";
+            document.getElementById('answersDiv').style.display = "none";
+        });
+    };
+
+    const materialsClicked = function () {
+        $('#materials').on('click', function () {
+            document.getElementById('postsDiv').style.display = "none";
+            document.getElementById('questionsDiv').style.display = "none";
+            document.getElementById('materialsDiv').style.display = "block";
+            document.getElementById('answersDiv').style.display = "none";
+        });
+    };
+
+
+    const answersClicked = function () {
+        $('#returnedMaterials').on('click', function () {
+            document.getElementById('postsDiv').style.display = "none";
+            document.getElementById('questionsDiv').style.display = "none";
+            document.getElementById('materialsDiv').style.display = "none";
+            document.getElementById('answersDiv').style.display = "block";
+        });
+    };
+
+
+    const tasksClicked = function () {
+        $('#tasks').on('click', function () {
+            document.getElementById('postsDiv').style.display = "none";
+            document.getElementById('questionsDiv').style.display = "none";
+            document.getElementById('materialsDiv').style.display = "block";
+            document.getElementById('answersDiv').style.display = "none";
+        });
+    };
+
 
     /* Initialize
      * ------------------------------------------------------ */
@@ -422,6 +469,11 @@
         ssBricksAnimate();
         ssSlickSlider();
         ssSmoothScroll();
+        postsClicked();
+        materialsClicked();
+        answersClicked();
+        tasksClicked();
+        questionsClicked();
         /*   ssAjaxChimp();*/
         ssBackToTop();
         gameDeveloperCheckBoxClick();

@@ -23,5 +23,6 @@ namespace PreparationForITExam.Core.Models.Answer
         public bool IsActive { get; set; }
 
         public int ExerciseMaterialId { get; set; }
+        public int ExerciseId { get; set; }
     }
 }

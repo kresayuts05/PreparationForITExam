@@ -26,13 +26,12 @@ namespace PreparationForITExam.Controllers
         public async Task<IActionResult> Index(int id)
         {
             SectionLessonViewModel model = new SectionLessonViewModel();
-
-            model.Lessons = await lessonService.AllLessonsBySectionOfCurricularId(id);
-            model.Exercises = await exerciseService.GetAllExercisesBySectionOfCurricularId(id);
-            var list= await sectionOfCurricularService.GetTitleAndModuleOfSectionOfCurricularById(id);
-            model.Title = list[0];
-            model.Module = list[1];
-            model.Id= id;
+                model.Lessons = await lessonService.AllLessonsBySectionOfCurricularId(id);
+                model.Exercises = await exerciseService.GetAllExercisesBySectionOfCurricularId(id);
+                var list = await sectionOfCurricularService.GetTitleAndModuleOfSectionOfCurricularById(id);
+                model.Title = list[0];
+                model.Module = list[1];
+                model.Id = id;
 
             return View(model);
         }

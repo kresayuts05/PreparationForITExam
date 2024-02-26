@@ -20,6 +20,8 @@ namespace PreparationForITExam.Core.Models.Profile
         public string Phone { get; set; }
         public string AboutMe { get; set; }
         public string RoleName { get; set; }
+        public string City { get; set; }
+       // public string  School { get; set; }
 
 
         public int Materials { get; set; }

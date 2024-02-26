@@ -87,6 +87,7 @@ namespace PreparationForITExam.Controllers
                 UserName = model.Email,
                 PhoneNumber = model.PhoneNumber,
                 City = model.City,
+                AboutMe = model.AboutMe,
                 RoleName = "Student"
             };
 
@@ -155,12 +156,13 @@ namespace PreparationForITExam.Controllers
                 UserName = model.Email,
                 PhoneNumber = model.PhoneNumber,
                 City = model.City,
+                AboutMe= model.AboutMe,
                 RoleName = "Teacher"
             };
 
             var result = await userManager.CreateAsync(user, model.Password);
 
-            //await userManager.AddToRoleAsync(user, "Teacher");//need to be approved by admin
+            await userManager.AddToRoleAsync(user, "Teacher");//need to be approved by admin
             await teacherService.Create(user.Id, model, schoolId);
 
             if (model.ProfilePicture != null)

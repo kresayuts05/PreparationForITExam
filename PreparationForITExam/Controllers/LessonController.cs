@@ -20,14 +20,23 @@ namespace PreparationForITExam.Controllers
         [AllowAnonymous]
         public async Task<IActionResult> Index(int id)
         {
-            var model = await lessonService.GetLessonById(id);
-
-            if (User.Identity.IsAuthenticated)
+            try
             {
-                ViewBag.CurrUserName = await userService.UserNameById(this.User.Id());
+                var model = await lessonService.GetLessonById(id);
+
+                if (User.Identity.IsAuthenticated)
+                {
+                    ViewBag.CurrUserName = await userService.UserNameById(this.User.Id());
+                }
+
+                return View(model);
+            }
+            catch (Exception ex)
+            {
+                TempData["message"] = "Все още няма такъв урок. Съжаляваме за неудобството!";
+                return RedirectToAction("Index", "Curricular");
             }
 
-            return View(model);
         }
     }
 }

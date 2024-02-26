@@ -35,7 +35,6 @@
 
   <ItemGroup>
     <Folder Include="Areas\Admin\Models\" />
-    <Folder Include="Views\Answer\" />
     <Folder Include="wwwroot\presentation\" />
   </ItemGroup>
 

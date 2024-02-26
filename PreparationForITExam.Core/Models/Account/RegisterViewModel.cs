@@ -38,10 +38,14 @@ namespace PreparationForITExam.Core.Models.Account
         public string PhoneNumber { get; set; } = null!;
 
         [StringLength(CityMaxLength, MinimumLength = CityMinLength)]
-        public string? City { get; set; }
+        public string City { get; set; }
+
+        [StringLength(AboutMeMaxLength, MinimumLength = AboutMeMinLength)]
+        public string? AboutMe { get; set; }
+
 
         [StringLength(NameMaxLength, MinimumLength = NameMinLength)]
-        public string? SchoolName { get; set; }
+        public string SchoolName { get; set; }
 
 
         [Range(ExperienceMinValue, ExperienceMaxValue)]
