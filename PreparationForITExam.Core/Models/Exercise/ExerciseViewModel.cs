@@ -24,6 +24,8 @@ namespace PreparationForITExam.Core.Models.Exercise
 
         public List<MaterialModel> Materials { get; set; }
 
+        public List<MaterialModel> StudentMaterials { get; set; }
+
         public List<LessonCommentViewModel> Questions { get; set; }
     }
 }

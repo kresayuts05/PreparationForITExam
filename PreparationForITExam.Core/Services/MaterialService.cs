@@ -18,13 +18,16 @@ namespace PreparationForITExam.Core.Services
     {
         private readonly IRepository repo;
         private readonly Cloudinary cloudinary;
+        private readonly IAnswerService answerService;
 
         public MaterialService(
             IRepository _repo,
-            Cloudinary _cloudinary)
+            Cloudinary _cloudinary,
+            IAnswerService _answerService)
         {
             cloudinary = _cloudinary;
             repo = _repo;
+            answerService = _answerService;
         }
 
         public async Task ConvertPresentationToPdf(IFormFile file, string userId, int lessonId)
@@ -178,6 +181,62 @@ namespace PreparationForITExam.Core.Services
                         FileFormat = ".zip",
                         ExerciseId = lessonId,
                         UserId = userId
+                    };
+
+                    await repo.AddAsync<ExerciseMaterial>(material);
+                }
+
+                await repo.SaveChangesAsync();
+            }
+        }
+        public async Task ZipUpload(byte[] file, string userId, int lessonId, bool IsForExercise, bool isStudentMaterial)
+        {
+            string lessonTitle = await repo.AllReadonly<Lesson>()
+                .Where(l => l.Id == lessonId)
+                .Where(l => l.IsActive == true)
+                .Select(l => l.Title)
+                .FirstOrDefaultAsync();
+
+            using (Stream input = new MemoryStream(file))
+            {
+                var uploadParams = new ImageUploadParams()
+                {
+                    File = new FileDescription("raw", input),
+                    Folder = "zips",
+                };
+
+                var result = await this.cloudinary.UploadAsync("raw", null, new FileDescription($"{lessonTitle}.zip", input));
+
+                if (result.Error != null)
+                {
+                    throw new InvalidOperationException(result.Error.Message);
+                }
+
+                var url = result.Url.ToString().Replace("http", "https");
+
+
+                if (IsForExercise == false)
+                {
+                    var material = new LessonMaterial
+                    {
+                        Name = $"{userId} zip",
+                        UrlPath = url,
+                        FileFormat = ".zip",
+                        LessonId = lessonId,
+                        UserId = userId
+                    };
+                    await repo.AddAsync<LessonMaterial>(material);
+                }
+                else
+                {
+                    var material = new ExerciseMaterial
+                    {
+                        Name = $"{userId} zip",
+                        UrlPath = url,
+                        FileFormat = ".zip",
+                        ExerciseId = lessonId,
+                        UserId = userId,
+                        IsStudentMaterial= isStudentMaterial
                     };
 
                     await repo.AddAsync<ExerciseMaterial>(material);
@@ -394,7 +453,7 @@ namespace PreparationForITExam.Core.Services
         {
             var materials = await repo.AllReadonly<LessonMaterial>()
                 .Where(m => m.LessonId == lessonId)
-                .Where(m => m.IsActive == true)
+                .Where(m => m.IsActive == true )
                 .Where(m => m.Name.Contains("presentation") == false)
                 .Select(m => new MaterialModel
                 {
@@ -414,7 +473,27 @@ namespace PreparationForITExam.Core.Services
         {
             var materials = await repo.AllReadonly<ExerciseMaterial>()
                 .Where(m => m.ExerciseId == exerciseId)
-                .Where(m => m.IsActive == true)
+                .Where(m => m.IsActive == true && m.IsStudentMaterial==false)
+                .Where(m => m.Name.Contains("docx") == false)
+                .Select(m => new MaterialModel
+                {
+                    Id = m.Id,
+                    Name = m.Name,
+                    UrlPath = m.UrlPath,
+                    FileFormat = m.FileFormat,
+                    UserName = m.User.FirstName + " " + m.User.LastName,
+                    UserId = m.UserId,
+                    LessonId = m.ExerciseId
+                })
+                .ToListAsync();
+
+            return materials;
+        }
+        public async Task<List<MaterialModel>> GetAllMaterialsForExerciseByIdByStudent(int exerciseId)
+        {
+            var materials = await repo.AllReadonly<ExerciseMaterial>()
+                .Where(m => m.ExerciseId == exerciseId)
+                .Where(m => m.IsActive == true && m.IsStudentMaterial == true)
                 .Where(m => m.Name.Contains("docx") == false)
                 .Select(m => new MaterialModel
                 {
@@ -446,6 +525,69 @@ namespace PreparationForITExam.Core.Services
             await repo.SaveChangesAsync();
         }
         
+        public async Task<List<MaterialModel>> GetAllMaterialsOfStudentByUserId(string id)
+        {
+            var materials = await repo.AllReadonly<ExerciseMaterial>()
+              .Where(m => m.UserId == id)
+              .Where(m => m.IsActive == true && m.IsStudentMaterial == true)
+              .Select(m => new MaterialModel
+              {
+                  Id = m.Id,
+                  Name = m.Name,
+                  UrlPath = m.UrlPath,
+                  FileFormat = m.FileFormat,
+                  UserName = m.User.FirstName + " " + m.User.LastName,
+                  UserId = m.UserId,
+                  LessonId = m.ExerciseId
+              })
+              .ToListAsync();
 
+            foreach (var m in materials)
+            {
+                m.Answers = await answerService.GetAnswersByMaterialId(m.Id);
+            }
+
+            return materials;
+        }
+
+        public async Task<List<MaterialModel>> GetAllMaterialsForExerciseByUserId(string userId)
+        {
+            var materials = await repo.AllReadonly<ExerciseMaterial>()
+                 .Where(m => m.UserId == userId)
+                 .Where(m => m.IsActive == true)
+                 .Select(m => new MaterialModel
+                 {
+                     Id = m.Id,
+                     Name = m.Name,
+                     UrlPath = m.UrlPath,
+                     FileFormat = m.FileFormat,
+                     UserName = m.User.FirstName + " " + m.User.LastName,
+                     UserId = m.UserId,
+                     LessonId = m.ExerciseId
+                 })
+                 .ToListAsync();
+
+            return materials;
+        }
+
+        public async Task<List<MaterialModel>> GetAllMaterialsForLessonByUserId(string userId)
+        {
+            var materials = await repo.AllReadonly<LessonMaterial>()
+                 .Where(m => m.UserId == userId)
+                 .Where(m => m.IsActive == true)
+                 .Select(m => new MaterialModel
+                 {
+                     Id = m.Id,
+                     Name = m.Name,
+                     UrlPath = m.UrlPath,
+                     FileFormat = m.FileFormat,
+                     UserName = m.User.FirstName + " " + m.User.LastName,
+                     UserId = m.UserId,
+                     LessonId = m.LessonId
+                 })
+                 .ToListAsync();
+
+            return materials;
+        }
     }
 }

@@ -1,14 +1,12 @@
-﻿using PreparationForITExam.Core.Models.Answer;
-using System;
+﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace PreparationForITExam.Core.Models.Material
+namespace PreparationForITExam.Core.Models.Answer
 {
-    public class MaterialModel
+    public class AnswerModel
     {
         public int Id { get; set; }
 
@@ -24,10 +22,6 @@ namespace PreparationForITExam.Core.Models.Material
 
         public bool IsActive { get; set; }
 
-        public int LessonId { get; set; }
-
-        public bool IsItStudentMaterial { get; set; }
-
-        public List<AnswerModel> Answers { get; set; }
+        public int ExerciseMaterialId { get; set; }
     }
 }

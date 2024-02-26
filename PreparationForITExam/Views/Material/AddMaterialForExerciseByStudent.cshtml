@@ -1,0 +1,19 @@
+﻿@model MaterialFormViewModel
+
+@{
+    ViewBag.Title = "Качи своите задачи в компресирана папка";
+}
+
+<link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+<section>
+
+    <h2 class="text-center">@ViewBag.Title</h2>
+    <hr />
+
+    <partial name="_MaterialFormForZipPartial" model="@Model" />
+
+</section>
+
+@section Scripts {
+        <partial name="_ValidationScriptsPartial" />
+}

@@ -234,5 +234,34 @@ namespace PreparationForITExam.Core.Services
             await repo.SaveChangesAsync();
 
         }
+
+        public async Task<List<PostModel>> GetAllPostsUrlsByUserId(string userId)
+        {
+            var model = await repo.AllReadonly<Post>()
+                .Where(p => p.UserId == userId)
+                .Where(p => p.IsActive == true && p.IsItQuestion == false)
+                .Select(p => new PostModel
+                {
+                    Id = p.Id,
+                    Title = p.Title,
+                })
+                .ToListAsync();
+
+            return model;
+        }
+        public async Task<List<PostModel>> GetAllQuestionsUrlsByUserId(string userId)
+        {
+            var model = await repo.AllReadonly<Post>()
+                .Where(p => p.UserId == userId)
+                .Where(p => p.IsActive == true && p.IsItQuestion == true)
+                .Select(p => new PostModel
+                {
+                    Id = p.Id,
+                    Title = p.Title,
+                })
+                .ToListAsync();
+
+            return model;
+        }
     }
 }

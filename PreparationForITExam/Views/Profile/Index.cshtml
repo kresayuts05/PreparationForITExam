@@ -1,6 +1,156 @@
 ﻿@model ProfileViewModel
 
 
+<section id="content" class="container">
+    <!-- Begin .page-heading -->
+    <div class="page-heading">
+        <div class="media clearfix">
+            <div class=" pr30">
+                <a>
+                    <img class="media-object mw150 prf-picture" src="@Model.ProfilePicture">
+                </a>
+                
+            </div>
+            <br>
+            <div class="media-body va-m">
+                <h2 class="media-heading">
+                    @Model.Name
+                    <small> - @Model.RoleName</small>
+                </h2>
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-4">
+            <div class="panel">
+                <div class="panel-heading">
+                    <span class="panel-icon">
+                        <i class="fa fa-star"></i>
+                    </span>
+                    <span class="panel-title"> Активност</span>
+                </div>
+                <div class="panel-body pn">
+                    <table class="table mbn tc-icon-1 tc-med-2 tc-bold-last">
+                       @* <thead>
+                            <tr class="hidden">
+                                <th class="mw30">#</th>
+                                <th>First Name</th>
+                                <th>Revenue</th>
+                            </tr>
+                        </thead>*@
+                        <tbody>
+                             <tr>
+                                <td>
+                                    <span class="fa fa-desktop text-warning"></span>
+                                </td>
+                                <td>Материали</td>
+                                <td>
+                                   @Model.Materials
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <span class="fa fa-desktop text-warning"></span>
+                                </td>
+                                <td>Постове</td>
+                                <td>
+                                    @Model.Posts
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <span class="fa fa-microphone text-primary"></span>
+                                </td>
+                                <td>Въпроси</td>
+                                <td>
+                                   @Model.Questions
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <span class="fa fa-newspaper-o text-info"></span>
+                                </td>
+                                <td>Коментари</td>
+                                <td>
+                                    @Model.Comments
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+           
+            <div class="panel">
+                <div class="panel-heading">
+                    <span class="panel-icon">
+                        <i class="fa fa-pencil"></i>
+                    </span>
+                    <span class="panel-title">За мен</span>
+                </div>
+                <div class="panel-body pb5">
+
+                    <h4>Обща информация</h4>
+
+                  @*  <h4>Facebook Internship</h4>*@
+                    <p class="text-muted">
+                        @Model.AboutMe
+                    </p>
+
+                    <hr class="short br-lighter">
+@*
+                    Добави запис*@
+                </div>
+            </div>
+        </div>
+        <div class="col-md-8">
+
+            <div class="tab-block">
+                <ul class="nav nav-tabs">
+                    <li class="active">
+                        <a href="#tab1" data-toggle="tab">Постове</a>
+                    </li>
+                    <li>
+                        <a href="#tab1" data-toggle="tab">Въпроси</a>
+                    </li>
+                    <li>
+                        <a href="#tab1" data-toggle="tab">Всички Задачи</a>
+                    </li>
+                    <li>
+                        <a href="#tab1" data-toggle="tab">Проверени Задачи</a>
+                    </li>
+                </ul>
+                <div class="tab-content p30" style="height: 730px;">
+                   
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+@*
+                                        @model ProfileViewModel
+
+
 <link rel="stylesheet" href="~/css/profile.css">
 <section id="content" class="container">
     <!-- Begin .page-heading -->
@@ -17,7 +167,7 @@
                     <small> - Profile</small>
                 </h2>
                 <p class="lead">Lorem ipsum dolor sit amet ctetur adicing elit, sed do eiusmod tempor incididunt</p>
-                <div class="media-links">
+               @* <div class="media-links">
                     <ul class="list-inline list-unstyled">
                         <li>
                             <a href="#" title="facebook link">
@@ -275,4 +425,10 @@
             </div>
         </div>
     </div>
-</section>
+</section>*@
+
+@section Styles{
+    <link rel="stylesheet" href="~/css/profile.css">
+
+
+}

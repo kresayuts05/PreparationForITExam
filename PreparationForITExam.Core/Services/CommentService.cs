@@ -36,6 +36,17 @@ namespace PreparationForITExam.Core.Services
             return list.Count;
         }
 
+        public async Task<int> CommentCountByUserId(string userId)
+        {
+           var count = await repo.AllReadonly<Comment>()
+                .Where(c => c.UserId == userId)
+                .Where(c => c.IsActive == true)
+                .Select(c=>c.Id)
+                .ToListAsync();
+
+            return count.Count;
+        }
+
         public async Task Create(CommentFormViewModel model)
         {
             Comment comment = new Comment()

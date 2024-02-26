@@ -21,11 +21,6 @@ namespace PreparationForITExam.Controllers
         {
             var model = await exerciseService.GetExerciseById(id);
 
-            if (User.Identity.IsAuthenticated)
-            {
-                ViewBag.CurrUserName = await userService.UserNameById(this.User.Id());
-            }
-
             return View(model);
         }
     }

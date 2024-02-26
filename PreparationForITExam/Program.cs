@@ -42,15 +42,15 @@ public class Program
 
         builder.Services.ConfigureApplicationCookie(options =>
         {
-            options.LoginPath = "/User/Login";
-            options.LogoutPath = "/User/Logout";
+            options.LoginPath = "/Account/Login";
+            options.LogoutPath = "/Account/Logout";
         });
 
         builder.Services.AddApplicationServices();
         ConfigureCloudaryService(builder.Services, builder.Configuration);
 
         builder.Services.AddResponseCaching();
-        builder.Services.AddSignalR();
+        //builder.Services.AddSignalR();
 
         Syncfusion.Licensing.SyncfusionLicenseProvider.RegisterLicense(syncfusionKey);
 
@@ -73,7 +73,7 @@ public class Program
         app.UseStaticFiles();
 
         app.UseRouting();
-        
+
         app.UseAuthentication();
         app.UseAuthorization();
 
@@ -92,7 +92,7 @@ public class Program
 
             //endpoints.MapHub<ChatHub>("/Chat/Index");
         });
-        app.MapRazorPages();        
+        app.UseResponseCaching();
         app.Run();
     }
 

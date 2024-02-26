@@ -6,21 +6,12 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-using static PreparationForITExam.Infrastructure.Data.Constants.ModelConstraints.MaterialConstraints;
-
 namespace PreparationForITExam.Infrastructure.Data.Entities
 {
-    public class ExerciseMaterial
+    public class Answer
     {
-        public ExerciseMaterial()
-        {
-            this.IsActive = true;
-        }
-
-        [Key]
         public int Id { get; set; }
 
-        [MaxLength(NameMaxLength)]
         public string? Name { get; set; }
 
         [Required]
@@ -38,11 +29,9 @@ namespace PreparationForITExam.Infrastructure.Data.Entities
         public string UserId { get; set; }
         public User User { get; set; }
 
-        [ForeignKey(nameof(Exercise))]
-        public int ExerciseId { get; set; }
+        [ForeignKey(nameof(ExerciseMaterial))]
+        public int ExerciseMaterialId { get; set; }
 
-        public Exercise Exercise { get; set; }
-
-        public ICollection<Answer> Answers { get; set; } = new HashSet<Answer>();
+        public ExerciseMaterial ExerciseMaterial { get; set; }
     }
 }

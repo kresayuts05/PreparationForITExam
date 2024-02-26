@@ -504,6 +504,7 @@ namespace PreparationForITExam.Infrastructure.Migrations
                     UrlPath = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     FileFormat = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     IsActive = table.Column<bool>(type: "bit", nullable: false),
+                    IsStudentMaterial = table.Column<bool>(type: "bit", nullable: false),
                     UserId = table.Column<string>(type: "nvarchar(450)", nullable: false),
                     ExerciseId = table.Column<int>(type: "int", nullable: false)
                 },
@@ -521,7 +522,7 @@ namespace PreparationForITExam.Infrastructure.Migrations
                         column: x => x.ExerciseId,
                         principalTable: "Exercises",
                         principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
+                        onDelete: ReferentialAction.Restrict);
                 });
 
             migrationBuilder.CreateTable(
@@ -575,6 +576,37 @@ namespace PreparationForITExam.Infrastructure.Migrations
                         principalTable: "SectionsOfCurricular",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Answers",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    Name = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    UrlPath = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    FileFormat = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    IsActive = table.Column<bool>(type: "bit", nullable: false),
+                    IsStudentMaterial = table.Column<bool>(type: "bit", nullable: false),
+                    UserId = table.Column<string>(type: "nvarchar(450)", nullable: false),
+                    ExerciseMaterialId = table.Column<int>(type: "int", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Answers", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_Answers_AspNetUsers_UserId",
+                        column: x => x.UserId,
+                        principalTable: "AspNetUsers",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_Answers_ExerciseMaterials_ExerciseMaterialId",
+                        column: x => x.ExerciseMaterialId,
+                        principalTable: "ExerciseMaterials",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Restrict);
                 });
 
             migrationBuilder.CreateTable(
@@ -730,10 +762,10 @@ namespace PreparationForITExam.Infrastructure.Migrations
                 columns: new[] { "Id", "ConcurrencyStamp", "Name", "NormalizedName" },
                 values: new object[,]
                 {
-                    { "0f761db2-ab55-416c-83b9-70abded3d908", "c5abf478-bfa8-49de-9e5f-609e565ccaac", "Administrator", "ADMINISTRATOR" },
-                    { "71281cf3-9730-4d7e-acbb-213edee8291c", "8ea97dc8-1332-4fe0-ba50-310b33e5530b", "Teacher", "TEACHER" },
-                    { "e66d730b-bcf1-41b5-b7e0-3e66056e61d9", "443128e8-e6ce-44e6-b9e5-91f6d2b57db8", "Student", "STUDENT" },
-                    { "fe750b82-6fe9-472c-bdc5-61f5433d429e", "f7cd575b-4124-407f-88f2-8a20ab3d6d5e", "MonUser", "MONUSER" }
+                    { "0f761db2-ab55-416c-83b9-70abded3d908", "7cdad413-e3d0-47fd-abbb-3c36c2e60552", "Administrator", "ADMINISTRATOR" },
+                    { "71281cf3-9730-4d7e-acbb-213edee8291c", "dca24438-ea26-4708-862a-6b83f816c494", "Teacher", "TEACHER" },
+                    { "e66d730b-bcf1-41b5-b7e0-3e66056e61d9", "6e972977-3ded-46f8-9163-d55cf686190f", "Student", "STUDENT" },
+                    { "fe750b82-6fe9-472c-bdc5-61f5433d429e", "4e84fa3c-b828-49c1-b269-56fe96644298", "MonUser", "MONUSER" }
                 });
 
             migrationBuilder.InsertData(
@@ -741,10 +773,10 @@ namespace PreparationForITExam.Infrastructure.Migrations
                 columns: new[] { "Id", "AboutMe", "AccessFailedCount", "City", "ConcurrencyStamp", "ConnectionId", "Email", "EmailConfirmed", "FirstName", "IsActive", "LastName", "LockoutEnabled", "LockoutEnd", "NormalizedEmail", "NormalizedUserName", "PasswordHash", "PhoneNumber", "PhoneNumberConfirmed", "ProfilePictureUrl", "RoleName", "SecurityStamp", "TwoFactorEnabled", "UserName" },
                 values: new object[,]
                 {
-                    { "023bafc9-8b7e-4fbd-bb06-2b178fe8ae8b", "Занимавам се с програмиране от 3 години. Интересувам се от кибер сигурност, а именно и това искам да уча след като завърша.", 0, "Миделбург", "1144b2b0-a4fd-4c74-a2e8-da155def3edf", null, "student@gmail.com", false, "Никол", true, "Груева", false, null, "STUDENT@GMAIL.COM", "STUDENT@GMAIL.COM", "AQAAAAEAACcQAAAAEIqMPQWVOP07xiA9Z54sqKmejIIHThufFJpMDHj0DX+lMQiuh3KTZDFNylaImEGBag==", "0886121262", false, "https://res.cloudinary.com/dmv8nabul/image/upload/v1707334404/nikol_prlrcl.jpg", "Student", "612a1b0b-da2f-4afd-9033-e1fa38963690", false, "student@gmail.com" },
-                    { "789061a9-edaa-4a00-9e09-add6a20c8288", "Разработвам това приложение, за да участвам в олимпиада по информационни технологии. Темата си избрах след първата матура по Информатика. Моите учители и приятели, които се явиха на това ДЗИ, имаха проблем с намирането на полезни материали и информация за самата матура. Това приложение се надявам, че би олеснило подготовката, защото хора с еднакви интереси и задачи могат да комуникират и обменят знания. Също така, учители могат да предадат знанията си на ученици, които наистина имат желание да се научат и полагат усилия.", 0, "Казанлък", "62cfea05-fefb-401b-9cbb-7b45d75329f1", null, "admin@gmail.com", false, "Креса", true, "Цветкова", false, null, "ADMIN@GMAIL.COM", "ADMIN@GMAIL.COM", "AQAAAAEAACcQAAAAEP2hsIi9G+Sr64Du6FEHZWvDiZOXmWBjH8a/p0aAiuD58+1JuBkQR8/+y+wWxn+iWA==", "0886121260", false, "https://res.cloudinary.com/dmv8nabul/image/upload/v1707334401/kresa_bkbaoa.jpg", "Administrator", "eec06e57-4af1-4659-a74e-f52ce6fe1ecb", false, "admin@gmail.com" },
-                    { "7decfb7d-d2df-40a2-a449-dcec04eb091a", "Работя в МОН от 5 години. Преподавам по Информатика в частна школа. Програмирането е моята страст. Обичам фо повече от приятелката ми.", 0, "Кърджали", "1e42cde3-385f-44ee-a345-8408cd6ec311", null, "monuser@gmail.com", false, "Валентин", true, "Терзиев", false, null, "MONUSER@GMAIL.COM", "MONUSER@GMAIL.COM", "AQAAAAEAACcQAAAAEA8Zl3ohCDGR417ICwNlY7W33VpGfF78DxOWyWgxtsHOhG5vrPFaTbMTPZRYHRO5Yw==", "0886121261", false, "https://res.cloudinary.com/dmv8nabul/image/upload/v1707334408/valentin_u5en92.jpg", "MonUser", "72b69b34-b16a-4184-bf03-cb619b70e9be", false, "monuser@gmail.com" },
-                    { "9c7f55cd-f0ae-405e-b520-6e1ccc448fcc", "Учителка съм от 12 години. Избрах тази професия, защото работата с деца е моята страст. В работата си опитвам да предам знанията си колкото повече мога. Мой интерес е работата с ASP.NET.", 0, "София", "593eaf19-7ab3-4f9e-a84c-aed24357887b", null, "teacher@gmail.com", false, "Ивета", true, "Найденова", false, null, "TEACHER@GMAIL.COM", "TEACHER@GMAIL.COM", "AQAAAAEAACcQAAAAEBNT7dERjqFIYdGi4iwvi20k4Kp4sQ5z06ZF86z+CGSIG9nO4BWU0dMvhGLBcpJPiw==", "0886121262", false, "https://res.cloudinary.com/dmv8nabul/image/upload/v1707334395/iveta_rknyn3.jpg", "Teacher", "a2174a6e-91da-4d73-b83a-9cee4a26861d", false, "teacher@gmail.com" }
+                    { "023bafc9-8b7e-4fbd-bb06-2b178fe8ae8b", "Занимавам се с програмиране от 3 години. Интересувам се от кибер сигурност, а именно и това искам да уча след като завърша.", 0, "Миделбург", "2411c8ae-c311-4f72-a9b6-64e8e0d6adc7", null, "student@gmail.com", false, "Никол", true, "Груева", false, null, "STUDENT@GMAIL.COM", "STUDENT@GMAIL.COM", "AQAAAAEAACcQAAAAEMW0QcbeVS+ZECK6f9C4byw9oM1Hqhk1/B9sKVpBnk3ajImG1cMI2dvIlv2VlKIl/g==", "0886121262", false, "https://res.cloudinary.com/dmv8nabul/image/upload/v1707334404/nikol_prlrcl.jpg", "Student", "fe402235-851a-48c8-ae1f-2c904fbe323b", false, "student@gmail.com" },
+                    { "789061a9-edaa-4a00-9e09-add6a20c8288", "Разработвам това приложение, за да участвам в олимпиада по информационни технологии. Темата си избрах след първата матура по Информатика. Моите учители и приятели, които се явиха на това ДЗИ, имаха проблем с намирането на полезни материали и информация за самата матура. Това приложение се надявам, че би олеснило подготовката, защото хора с еднакви интереси и задачи могат да комуникират и обменят знания. Също така, учители могат да предадат знанията си на ученици, които наистина имат желание да се научат и полагат усилия.", 0, "Казанлък", "357434fe-e6e0-4235-b384-a093c03bf853", null, "admin@gmail.com", false, "Креса", true, "Цветкова", false, null, "ADMIN@GMAIL.COM", "ADMIN@GMAIL.COM", "AQAAAAEAACcQAAAAEGNzMkJXTDeb+Cnc6MDBqNmyLU/o7g2EFx8a5NSCYYkF1KgHODIbGn4Z2uWO3K3pZA==", "0886121260", false, "https://res.cloudinary.com/dmv8nabul/image/upload/v1707334401/kresa_bkbaoa.jpg", "Administrator", "f9274997-8de7-42d4-b029-b5969651685d", false, "admin@gmail.com" },
+                    { "7decfb7d-d2df-40a2-a449-dcec04eb091a", "Работя в МОН от 5 години. Преподавам по Информатика в частна школа. Програмирането е моята страст. Обичам фо повече от приятелката ми.", 0, "Кърджали", "cd52e2bd-ee9d-4a7b-be04-bf297c1d6181", null, "monuser@gmail.com", false, "Валентин", true, "Терзиев", false, null, "MONUSER@GMAIL.COM", "MONUSER@GMAIL.COM", "AQAAAAEAACcQAAAAEP8IpJeI/H+6j3sz4iDkUkO9O1igmHTx1IBGvqxD3vC0t8tdORqHa6JdEKZBt9JyOQ==", "0886121261", false, "https://res.cloudinary.com/dmv8nabul/image/upload/v1707334408/valentin_u5en92.jpg", "MonUser", "8e0aab12-ab7e-43d1-9c24-007237cd9499", false, "monuser@gmail.com" },
+                    { "9c7f55cd-f0ae-405e-b520-6e1ccc448fcc", "Учителка съм от 12 години. Избрах тази професия, защото работата с деца е моята страст. В работата си опитвам да предам знанията си колкото повече мога. Мой интерес е работата с ASP.NET.", 0, "София", "b6917bbc-ffdf-40e5-9ec4-b2944c1b3160", null, "teacher@gmail.com", false, "Ивета", true, "Найденова", false, null, "TEACHER@GMAIL.COM", "TEACHER@GMAIL.COM", "AQAAAAEAACcQAAAAEHdX9WBN5OBl0jeD3qgtn320JhToQYTn2H3pM6vhLMP7OCxkzo1RrmrKwDDXbkJFNA==", "0886121262", false, "https://res.cloudinary.com/dmv8nabul/image/upload/v1707334395/iveta_rknyn3.jpg", "Teacher", "b9a997dc-111d-4c21-b4e0-5fa7bcc12590", false, "teacher@gmail.com" }
                 });
 
             migrationBuilder.InsertData(
@@ -1550,24 +1582,24 @@ namespace PreparationForITExam.Infrastructure.Migrations
                 columns: new[] { "Id", "Description", "IsActive", "IsItQuestion", "PostedOn", "ShortDescription", "Title", "UsefulUrl", "UserId" },
                 values: new object[,]
                 {
-                    { 2, "Имах затруднения да разбера Git технологията, но с помощта на тази игра бързо осъвършенствах функциите и начина на използване.", true, false, new DateTime(2024, 2, 25, 14, 10, 9, 691, DateTimeKind.Local).AddTicks(6716), "Попаднах на страхотна игра, която ти помага да научиш Git", "Git игра", "https://learngitbranching.js.org/?locale=en_US", "023bafc9-8b7e-4fbd-bb06-2b178fe8ae8b" },
-                    { 3, "Имах затруднения да разбера Git технологията, но с помощта на тази игра бързо осъвършенствах функциите и начина на използване.", true, false, new DateTime(2024, 2, 25, 14, 10, 9, 691, DateTimeKind.Local).AddTicks(6720), "Попаднах на страхотна игра, която ти помага да научиш Git", "Git игра", "https://learngitbranching.js.org/?locale=en_US", "023bafc9-8b7e-4fbd-bb06-2b178fe8ae8b" },
-                    { 4, "Имах затруднения да разбера Git технологията, но с помощта на тази игра бързо осъвършенствах функциите и начина на използване.", true, false, new DateTime(2024, 2, 25, 14, 10, 9, 691, DateTimeKind.Local).AddTicks(6723), "Попаднах на страхотна игра, която ти помага да научиш Git", "Git игра", "https://learngitbranching.js.org/?locale=en_US", "023bafc9-8b7e-4fbd-bb06-2b178fe8ae8b" },
-                    { 5, "Имах затруднения да разбера Git технологията, но с помощта на тази игра бързо осъвършенствах функциите и начина на използване.", true, false, new DateTime(2024, 2, 25, 14, 10, 9, 691, DateTimeKind.Local).AddTicks(6725), "Попаднах на страхотна игра, която ти помага да научиш Git", "Git игра", "https://learngitbranching.js.org/?locale=en_US", "023bafc9-8b7e-4fbd-bb06-2b178fe8ae8b" },
-                    { 6, "Имах затруднения да разбера Git технологията, но с помощта на тази игра бързо осъвършенствах функциите и начина на използване.", true, false, new DateTime(2024, 2, 25, 14, 10, 9, 691, DateTimeKind.Local).AddTicks(6728), "Попаднах на страхотна игра, която ти помага да научиш Git", "Git игра", "https://learngitbranching.js.org/?locale=en_US", "023bafc9-8b7e-4fbd-bb06-2b178fe8ae8b" },
-                    { 7, "Имах затруднения да разбера Git технологията, но с помощта на тази игра бързо осъвършенствах функциите и начина на използване.", true, false, new DateTime(2024, 2, 25, 14, 10, 9, 691, DateTimeKind.Local).AddTicks(6731), "Попаднах на страхотна игра, която ти помага да научиш Git", "Git игра", "https://learngitbranching.js.org/?locale=en_US", "023bafc9-8b7e-4fbd-bb06-2b178fe8ae8b" },
-                    { 8, "Имах затруднения да разбера Git технологията, но с помощта на тази игра бързо осъвършенствах функциите и начина на използване.", true, false, new DateTime(2024, 2, 25, 14, 10, 9, 691, DateTimeKind.Local).AddTicks(6734), "Попаднах на страхотна игра, която ти помага да научиш Git", "Git игра", "https://learngitbranching.js.org/?locale=en_US", "023bafc9-8b7e-4fbd-bb06-2b178fe8ae8b" },
-                    { 9, "Имах затруднения да разбера Git технологията, но с помощта на тази игра бързо осъвършенствах функциите и начина на използване.", true, false, new DateTime(2024, 2, 25, 14, 10, 9, 691, DateTimeKind.Local).AddTicks(6736), "Попаднах на страхотна игра, която ти помага да научиш Git", "Git игра", "https://learngitbranching.js.org/?locale=en_US", "9c7f55cd-f0ae-405e-b520-6e1ccc448fcc" },
-                    { 10, "Имах затруднения да разбера Git технологията, но с помощта на тази игра бързо осъвършенствах функциите и начина на използване.", true, false, new DateTime(2024, 2, 25, 14, 10, 9, 691, DateTimeKind.Local).AddTicks(6739), "Попаднах на страхотна игра, която ти помага да научиш Git", "Git игра", "https://learngitbranching.js.org/?locale=en_US", "023bafc9-8b7e-4fbd-bb06-2b178fe8ae8b" },
-                    { 11, "Имах затруднения да разбера Git технологията, но с помощта на тази игра бързо осъвършенствах функциите и начина на използване.", true, false, new DateTime(2024, 2, 25, 14, 10, 9, 691, DateTimeKind.Local).AddTicks(6742), "Попаднах на страхотна игра, която ти помага да научиш Git", "Git игра", "https://learngitbranching.js.org/?locale=en_US", "023bafc9-8b7e-4fbd-bb06-2b178fe8ae8b" },
-                    { 12, "Имах затруднения да разбера Git технологията, но с помощта на тази игра бързо осъвършенствах функциите и начина на използване.", true, false, new DateTime(2024, 2, 25, 14, 10, 9, 691, DateTimeKind.Local).AddTicks(6745), "Попаднах на страхотна игра, която ти помага да научиш Git", "Git игра", "https://learngitbranching.js.org/?locale=en_US", "9c7f55cd-f0ae-405e-b520-6e1ccc448fcc" },
-                    { 13, "Имах затруднения да разбера Git технологията, но с помощта на тази игра бързо осъвършенствах функциите и начина на използване.", true, false, new DateTime(2024, 2, 25, 14, 10, 9, 691, DateTimeKind.Local).AddTicks(6747), "Попаднах на страхотна игра, която ти помага да научиш Git", "Git игра", "https://learngitbranching.js.org/?locale=en_US", "023bafc9-8b7e-4fbd-bb06-2b178fe8ae8b" },
-                    { 14, "Имах затруднения да разбера Git технологията, но с помощта на тази игра бързо осъвършенствах функциите и начина на използване.", true, false, new DateTime(2024, 2, 25, 14, 10, 9, 691, DateTimeKind.Local).AddTicks(6750), "Попаднах на страхотна игра, която ти помага да научиш Git", "Git игра", "https://learngitbranching.js.org/?locale=en_US", "023bafc9-8b7e-4fbd-bb06-2b178fe8ae8b" },
-                    { 15, "Имах затруднения да разбера Git технологията, но с помощта на тази игра бързо осъвършенствах функциите и начина на използване.", true, false, new DateTime(2024, 2, 25, 14, 10, 9, 691, DateTimeKind.Local).AddTicks(6752), "Попаднах на страхотна игра, която ти помага да научиш Git", "Git игра", "https://learngitbranching.js.org/?locale=en_US", "023bafc9-8b7e-4fbd-bb06-2b178fe8ae8b" },
-                    { 16, "Имах затруднения да разбера Git технологията, но с помощта на тази игра бързо осъвършенствах функциите и начина на използване.", true, false, new DateTime(2024, 2, 25, 14, 10, 9, 691, DateTimeKind.Local).AddTicks(6754), "Попаднах на страхотна игра, която ти помага да научиш Git", "Git игра", "https://learngitbranching.js.org/?locale=en_US", "023bafc9-8b7e-4fbd-bb06-2b178fe8ae8b" },
-                    { 17, "Имах затруднения да разбера Git технологията, но с помощта на тази игра бързо осъвършенствах функциите и начина на използване.", true, false, new DateTime(2024, 2, 25, 14, 10, 9, 691, DateTimeKind.Local).AddTicks(6757), "Попаднах на страхотна игра, която ти помага да научиш Git", "Git игра", "https://learngitbranching.js.org/?locale=en_US", "9c7f55cd-f0ae-405e-b520-6e1ccc448fcc" },
-                    { 18, "Имах затруднения да разбера Git технологията, но с помощта на тази игра бързо осъвършенствах функциите и начина на използване.", true, false, new DateTime(2024, 2, 25, 14, 10, 9, 691, DateTimeKind.Local).AddTicks(6759), "Попаднах на страхотна игра, която ти помага да научиш Git", "Git игра", "https://learngitbranching.js.org/?locale=en_US", "023bafc9-8b7e-4fbd-bb06-2b178fe8ae8b" },
-                    { 19, "Имах затруднения да разбера Git технологията, но с помощта на тази игра бързо осъвършенствах функциите и начина на използване.", true, false, new DateTime(2024, 2, 25, 14, 10, 9, 691, DateTimeKind.Local).AddTicks(6762), "Попаднах на страхотна игра, която ти помага да научиш Git", "Git игра", "https://learngitbranching.js.org/?locale=en_US", "9c7f55cd-f0ae-405e-b520-6e1ccc448fcc" }
+                    { 2, "Имах затруднения да разбера Git технологията, но с помощта на тази игра бързо осъвършенствах функциите и начина на използване.", true, false, new DateTime(2024, 2, 26, 9, 40, 39, 71, DateTimeKind.Local).AddTicks(9750), "Попаднах на страхотна игра, която ти помага да научиш Git", "Git игра", "https://learngitbranching.js.org/?locale=en_US", "023bafc9-8b7e-4fbd-bb06-2b178fe8ae8b" },
+                    { 3, "Имах затруднения да разбера Git технологията, но с помощта на тази игра бързо осъвършенствах функциите и начина на използване.", true, false, new DateTime(2024, 2, 26, 9, 40, 39, 71, DateTimeKind.Local).AddTicks(9756), "Попаднах на страхотна игра, която ти помага да научиш Git", "Git игра", "https://learngitbranching.js.org/?locale=en_US", "023bafc9-8b7e-4fbd-bb06-2b178fe8ae8b" },
+                    { 4, "Имах затруднения да разбера Git технологията, но с помощта на тази игра бързо осъвършенствах функциите и начина на използване.", true, false, new DateTime(2024, 2, 26, 9, 40, 39, 71, DateTimeKind.Local).AddTicks(9760), "Попаднах на страхотна игра, която ти помага да научиш Git", "Git игра", "https://learngitbranching.js.org/?locale=en_US", "023bafc9-8b7e-4fbd-bb06-2b178fe8ae8b" },
+                    { 5, "Имах затруднения да разбера Git технологията, но с помощта на тази игра бързо осъвършенствах функциите и начина на използване.", true, false, new DateTime(2024, 2, 26, 9, 40, 39, 71, DateTimeKind.Local).AddTicks(9764), "Попаднах на страхотна игра, която ти помага да научиш Git", "Git игра", "https://learngitbranching.js.org/?locale=en_US", "023bafc9-8b7e-4fbd-bb06-2b178fe8ae8b" },
+                    { 6, "Имах затруднения да разбера Git технологията, но с помощта на тази игра бързо осъвършенствах функциите и начина на използване.", true, false, new DateTime(2024, 2, 26, 9, 40, 39, 71, DateTimeKind.Local).AddTicks(9768), "Попаднах на страхотна игра, която ти помага да научиш Git", "Git игра", "https://learngitbranching.js.org/?locale=en_US", "023bafc9-8b7e-4fbd-bb06-2b178fe8ae8b" },
+                    { 7, "Имах затруднения да разбера Git технологията, но с помощта на тази игра бързо осъвършенствах функциите и начина на използване.", true, false, new DateTime(2024, 2, 26, 9, 40, 39, 71, DateTimeKind.Local).AddTicks(9775), "Попаднах на страхотна игра, която ти помага да научиш Git", "Git игра", "https://learngitbranching.js.org/?locale=en_US", "023bafc9-8b7e-4fbd-bb06-2b178fe8ae8b" },
+                    { 8, "Имах затруднения да разбера Git технологията, но с помощта на тази игра бързо осъвършенствах функциите и начина на използване.", true, false, new DateTime(2024, 2, 26, 9, 40, 39, 71, DateTimeKind.Local).AddTicks(9778), "Попаднах на страхотна игра, която ти помага да научиш Git", "Git игра", "https://learngitbranching.js.org/?locale=en_US", "023bafc9-8b7e-4fbd-bb06-2b178fe8ae8b" },
+                    { 9, "Имах затруднения да разбера Git технологията, но с помощта на тази игра бързо осъвършенствах функциите и начина на използване.", true, false, new DateTime(2024, 2, 26, 9, 40, 39, 71, DateTimeKind.Local).AddTicks(9783), "Попаднах на страхотна игра, която ти помага да научиш Git", "Git игра", "https://learngitbranching.js.org/?locale=en_US", "9c7f55cd-f0ae-405e-b520-6e1ccc448fcc" },
+                    { 10, "Имах затруднения да разбера Git технологията, но с помощта на тази игра бързо осъвършенствах функциите и начина на използване.", true, false, new DateTime(2024, 2, 26, 9, 40, 39, 71, DateTimeKind.Local).AddTicks(9787), "Попаднах на страхотна игра, която ти помага да научиш Git", "Git игра", "https://learngitbranching.js.org/?locale=en_US", "023bafc9-8b7e-4fbd-bb06-2b178fe8ae8b" },
+                    { 11, "Имах затруднения да разбера Git технологията, но с помощта на тази игра бързо осъвършенствах функциите и начина на използване.", true, false, new DateTime(2024, 2, 26, 9, 40, 39, 71, DateTimeKind.Local).AddTicks(9791), "Попаднах на страхотна игра, която ти помага да научиш Git", "Git игра", "https://learngitbranching.js.org/?locale=en_US", "023bafc9-8b7e-4fbd-bb06-2b178fe8ae8b" },
+                    { 12, "Имах затруднения да разбера Git технологията, но с помощта на тази игра бързо осъвършенствах функциите и начина на използване.", true, false, new DateTime(2024, 2, 26, 9, 40, 39, 71, DateTimeKind.Local).AddTicks(9795), "Попаднах на страхотна игра, която ти помага да научиш Git", "Git игра", "https://learngitbranching.js.org/?locale=en_US", "9c7f55cd-f0ae-405e-b520-6e1ccc448fcc" },
+                    { 13, "Имах затруднения да разбера Git технологията, но с помощта на тази игра бързо осъвършенствах функциите и начина на използване.", true, false, new DateTime(2024, 2, 26, 9, 40, 39, 71, DateTimeKind.Local).AddTicks(9799), "Попаднах на страхотна игра, която ти помага да научиш Git", "Git игра", "https://learngitbranching.js.org/?locale=en_US", "023bafc9-8b7e-4fbd-bb06-2b178fe8ae8b" },
+                    { 14, "Имах затруднения да разбера Git технологията, но с помощта на тази игра бързо осъвършенствах функциите и начина на използване.", true, false, new DateTime(2024, 2, 26, 9, 40, 39, 71, DateTimeKind.Local).AddTicks(9803), "Попаднах на страхотна игра, която ти помага да научиш Git", "Git игра", "https://learngitbranching.js.org/?locale=en_US", "023bafc9-8b7e-4fbd-bb06-2b178fe8ae8b" },
+                    { 15, "Имах затруднения да разбера Git технологията, но с помощта на тази игра бързо осъвършенствах функциите и начина на използване.", true, false, new DateTime(2024, 2, 26, 9, 40, 39, 71, DateTimeKind.Local).AddTicks(9807), "Попаднах на страхотна игра, която ти помага да научиш Git", "Git игра", "https://learngitbranching.js.org/?locale=en_US", "023bafc9-8b7e-4fbd-bb06-2b178fe8ae8b" },
+                    { 16, "Имах затруднения да разбера Git технологията, но с помощта на тази игра бързо осъвършенствах функциите и начина на използване.", true, false, new DateTime(2024, 2, 26, 9, 40, 39, 71, DateTimeKind.Local).AddTicks(9810), "Попаднах на страхотна игра, която ти помага да научиш Git", "Git игра", "https://learngitbranching.js.org/?locale=en_US", "023bafc9-8b7e-4fbd-bb06-2b178fe8ae8b" },
+                    { 17, "Имах затруднения да разбера Git технологията, но с помощта на тази игра бързо осъвършенствах функциите и начина на използване.", true, false, new DateTime(2024, 2, 26, 9, 40, 39, 71, DateTimeKind.Local).AddTicks(9814), "Попаднах на страхотна игра, която ти помага да научиш Git", "Git игра", "https://learngitbranching.js.org/?locale=en_US", "9c7f55cd-f0ae-405e-b520-6e1ccc448fcc" },
+                    { 18, "Имах затруднения да разбера Git технологията, но с помощта на тази игра бързо осъвършенствах функциите и начина на използване.", true, false, new DateTime(2024, 2, 26, 9, 40, 39, 71, DateTimeKind.Local).AddTicks(9818), "Попаднах на страхотна игра, която ти помага да научиш Git", "Git игра", "https://learngitbranching.js.org/?locale=en_US", "023bafc9-8b7e-4fbd-bb06-2b178fe8ae8b" },
+                    { 19, "Имах затруднения да разбера Git технологията, но с помощта на тази игра бързо осъвършенствах функциите и начина на използване.", true, false, new DateTime(2024, 2, 26, 9, 40, 39, 71, DateTimeKind.Local).AddTicks(9823), "Попаднах на страхотна игра, която ти помага да научиш Git", "Git игра", "https://learngitbranching.js.org/?locale=en_US", "9c7f55cd-f0ae-405e-b520-6e1ccc448fcc" }
                 });
 
             migrationBuilder.InsertData(
@@ -1753,9 +1785,9 @@ namespace PreparationForITExam.Infrastructure.Migrations
                 columns: new[] { "Id", "Description", "IsActive", "MonId", "PostedOn", "SeenByPeople", "Title", "UsefulUrls" },
                 values: new object[,]
                 {
-                    { 1, "Изпитните материали от днешният изпит вече са налични онлайн на сайта на МОН.", true, 1, new DateTime(2024, 2, 25, 14, 10, 9, 691, DateTimeKind.Local).AddTicks(6632), 0, "ДЗИ 23 май 2023г", "https://web.mon.bg/bg/101234" },
-                    { 2, "Изпитните материали от днешният изпит вече са налични онлайн на сайта на МОН.", true, 1, new DateTime(2024, 2, 25, 14, 10, 9, 691, DateTimeKind.Local).AddTicks(6637), 0, "ДЗИ 25 август 2023г", "https://web.mon.bg/bg/101234" },
-                    { 3, "Датите за тазгодишната изпитна кампания са 20 май 2024г.", true, 1, new DateTime(2024, 2, 25, 14, 10, 9, 691, DateTimeKind.Local).AddTicks(6665), 0, "Изпитни дати за 2023/2024 г.", "https://danybon.com/wp-content/uploads/2023/09/zap2050_NVO_01092023.pdf" }
+                    { 1, "Изпитните материали от днешният изпит вече са налични онлайн на сайта на МОН.", true, 1, new DateTime(2024, 2, 26, 9, 40, 39, 71, DateTimeKind.Local).AddTicks(9650), 0, "ДЗИ 23 май 2023г", "https://web.mon.bg/bg/101234" },
+                    { 2, "Изпитните материали от днешният изпит вече са налични онлайн на сайта на МОН.", true, 1, new DateTime(2024, 2, 26, 9, 40, 39, 71, DateTimeKind.Local).AddTicks(9660), 0, "ДЗИ 25 август 2023г", "https://web.mon.bg/bg/101234" },
+                    { 3, "Датите за тазгодишната изпитна кампания са 20 май 2024г.", true, 1, new DateTime(2024, 2, 26, 9, 40, 39, 71, DateTimeKind.Local).AddTicks(9664), 0, "Изпитни дати за 2023/2024 г.", "https://danybon.com/wp-content/uploads/2023/09/zap2050_NVO_01092023.pdf" }
                 });
 
             migrationBuilder.InsertData(
@@ -2023,6 +2055,16 @@ namespace PreparationForITExam.Infrastructure.Migrations
                 });
 
             migrationBuilder.CreateIndex(
+                name: "IX_Answers_ExerciseMaterialId",
+                table: "Answers",
+                column: "ExerciseMaterialId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Answers_UserId",
+                table: "Answers",
+                column: "UserId");
+
+            migrationBuilder.CreateIndex(
                 name: "IX_AspNetRoleClaims_RoleId",
                 table: "AspNetRoleClaims",
                 column: "RoleId");
@@ -2226,6 +2268,9 @@ namespace PreparationForITExam.Infrastructure.Migrations
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropTable(
+                name: "Answers");
+
+            migrationBuilder.DropTable(
                 name: "AspNetRoleClaims");
 
             migrationBuilder.DropTable(
@@ -2239,9 +2284,6 @@ namespace PreparationForITExam.Infrastructure.Migrations
 
             migrationBuilder.DropTable(
                 name: "AspNetUserTokens");
-
-            migrationBuilder.DropTable(
-                name: "ExerciseMaterials");
 
             migrationBuilder.DropTable(
                 name: "ExerciseStudent");
@@ -2266,6 +2308,9 @@ namespace PreparationForITExam.Infrastructure.Migrations
 
             migrationBuilder.DropTable(
                 name: "Reviews");
+
+            migrationBuilder.DropTable(
+                name: "ExerciseMaterials");
 
             migrationBuilder.DropTable(
                 name: "AspNetRoles");

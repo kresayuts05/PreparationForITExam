@@ -24,6 +24,7 @@ namespace Microsoft.Extensions.DependencyInjection
             services.AddScoped<IReviewService, ReviewService>();
             services.AddScoped<IPostService, PostService>();
             services.AddScoped<ICommentService, CommentService>();
+            services.AddScoped<IAnswerService, AnswerService>();
 
 
             services.AddScoped<IChatService, ChatService>();

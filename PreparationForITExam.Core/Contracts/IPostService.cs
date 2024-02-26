@@ -18,6 +18,9 @@ namespace PreparationForITExam.Core.Contracts
         Task<int> GetPostCount();
         Task<int> GetOnlyPostsCount();
         Task<int> GetOnlyQuestionsCount();
-        public Task Edit(PostFormViewModel model);
+        Task Edit(PostFormViewModel model);
+
+        Task<List<PostModel>> GetAllPostsUrlsByUserId(string userId);
+        Task<List<PostModel>> GetAllQuestionsUrlsByUserId(string userId);
     }
 }

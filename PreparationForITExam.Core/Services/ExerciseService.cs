@@ -57,6 +57,7 @@ namespace PreparationForITExam.Core.Services
 
             exercise.DocumentURL = await materialService.GetDocumentUrlByExerciseId(id);
             exercise.Materials = await materialService.GetAllMaterialsForExerciseById(id);
+            exercise.StudentMaterials = await materialService.GetAllMaterialsForExerciseByIdByStudent(id);
 
             return exercise;
         }

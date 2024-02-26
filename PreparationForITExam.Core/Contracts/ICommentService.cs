@@ -14,5 +14,6 @@ namespace PreparationForITExam.Core.Contracts
         Task<int> CommentCount(int podtId);
         Task<int> GetPostIdByCommentId(int id);
         Task Delete(int id);
+        Task<int> CommentCountByUserId(string userId);
     }
 }

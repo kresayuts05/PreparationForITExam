@@ -19,16 +19,6 @@ namespace PreparationForITExam.Infrastructure.Data
         public PreparationForITExamDbContext(DbContextOptions<PreparationForITExamDbContext> options, bool seed = false)
             : base(options)
         {
-            //if (this.Database.IsRelational())
-            //{
-            //    this.Database.Migrate();
-            //}
-            //else
-            //{
-            //    this.Database.EnsureCreated();
-            //}
-
-            //seedDb = seed;
         }
 
         public DbSet<Teacher> Teachers { get; set; }
@@ -49,6 +39,7 @@ namespace PreparationForITExam.Infrastructure.Data
         public DbSet<SectionOfCurricular> SectionsOfCurricular { get; set; }
         public DbSet<LessonMonUser> LessonMonUser { get; set; }
         public DbSet<Message> Messages { get; set; }
+        public DbSet<Answer> Answers { get; set; }
 
 
         protected override void OnModelCreating(ModelBuilder builder)
@@ -72,8 +63,6 @@ namespace PreparationForITExam.Infrastructure.Data
             builder.Entity<LessonMonUser>()
                .HasKey(pk => new { pk.LessonId, pk.MonUserId });
 
-            if (seedDb)
-            {
                 builder.ApplyConfiguration(new RoleConfiguration());
                 builder.ApplyConfiguration(new UserConfiguration());
                 builder.ApplyConfiguration(new MonUserConfiguration());
@@ -89,7 +78,7 @@ namespace PreparationForITExam.Infrastructure.Data
                 builder.ApplyConfiguration(new NewsConfiguration());
                 builder.ApplyConfiguration(new PostConfiguration());
                 builder.ApplyConfiguration(new ImageConfiguration());
-            }
+            
 
             base.OnModelCreating(builder);
         }

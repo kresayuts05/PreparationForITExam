@@ -1,4 +1,6 @@
-﻿using System;
+﻿using Microsoft.SharePoint.Portal.WebControls;
+using PreparationForITExam.Core.Models.Profile;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -11,5 +13,7 @@ namespace PreparationForITExam.Core.Contracts
         Task<bool> UserByEmailExists(string email);
 
         Task<string> UserNameById(string id);
+
+        Task<ProfileViewModel> GetUserInfo(string id);
     }
 }

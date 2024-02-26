@@ -1,4 +1,5 @@
-﻿@model MaterialModel
+﻿@using PreparationForITExam.Core.Constants;
+@model MaterialModel
 
 <link rel="stylesheet" href="~/css/material.css">
 
@@ -11,6 +12,10 @@
     </a>
     @if (Model.UserId != this.User.Id())
     {
+        @if (User.IsInRole(RoleConstants.Teacher))
+        {
+
+        }
         <div class="icons-m">
             <a class="btn-m" href="@Model.UrlPath" download>
                 <svg y="0" xmlns="http://www.w3.org/2000/svg" x="0" width="100" viewBox="0 0 100 100" preserveAspectRatio="xMidYMid meet" height="100" class="svg-icon-m">
@@ -18,6 +23,7 @@
                     </path>
                 </svg>
             </a>
+            <a asp-controller="Material" asp-area="" asp-action="SentMaterialToStudent" asp-route-id="@Model.Id" class="btn-m" style="color:rgb(38, 59, 126);"><b>Отговори</b></a>
         </div>
     }
     else

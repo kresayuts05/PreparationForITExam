@@ -1,4 +1,6 @@
-﻿using PreparationForITExam.Core.Models.Material;
+﻿using PreparationForITExam.Core.Models.Answer;
+using PreparationForITExam.Core.Models.Material;
+using PreparationForITExam.Core.Models.Post;
 using PreparationForITExam.Core.Models.Question;
 using System;
 using System.Collections.Generic;
@@ -12,9 +14,13 @@ namespace PreparationForITExam.Core.Models.Profile
     {
         public string Id { get; set; }
 
+        public string ProfilePicture { get; set; }
         public string Name { get; set; }
-
+        public string Email { get; set; }
+        public string Phone { get; set; }
+        public string AboutMe { get; set; }
         public string RoleName { get; set; }
+
 
         public int Materials { get; set; }
 
@@ -22,14 +28,15 @@ namespace PreparationForITExam.Core.Models.Profile
 
         public int Questions { get; set; }
 
-        public int Answers { get; set; }
-
-        public string AboutMe { get; set; }
+        public int Comments { get; set; }
 
         public List<MaterialModel> MaterialsInLessons { get; set; }
 
-        public Dictionary<int, string> PostsUrls { get; set; }
+        public List<MaterialModel> MaterialsInExercise { get; set; }
+        public List<AnswerModel> Answers { get; set; }
 
-        public List<LessonCommentModel> AskedQuestions { get; set; }
+        // id title
+        public List<PostModel> PostsUrls { get; set; }
+        public List<PostModel> QuestionsUrls { get; set; }
     }
 }
