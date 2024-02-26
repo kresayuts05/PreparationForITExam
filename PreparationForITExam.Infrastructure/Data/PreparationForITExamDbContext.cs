@@ -16,9 +16,19 @@ namespace PreparationForITExam.Infrastructure.Data
     {
         private bool seedDb;
 
-        public PreparationForITExamDbContext(DbContextOptions<PreparationForITExamDbContext> options, bool seed = false)
+        public PreparationForITExamDbContext(DbContextOptions<PreparationForITExamDbContext> options, bool seed = true)
             : base(options)
         {
+            if (this.Database.IsRelational())
+            {
+                this.Database.Migrate();
+            }
+            else
+            {
+                this.Database.EnsureCreated();
+            }
+
+            seedDb = seed;
         }
 
         public DbSet<Teacher> Teachers { get; set; }
@@ -63,6 +73,9 @@ namespace PreparationForITExam.Infrastructure.Data
             builder.Entity<LessonMonUser>()
                .HasKey(pk => new { pk.LessonId, pk.MonUserId });
 
+
+            if (seedDb)
+            {
                 builder.ApplyConfiguration(new RoleConfiguration());
                 builder.ApplyConfiguration(new UserConfiguration());
                 builder.ApplyConfiguration(new MonUserConfiguration());
@@ -78,8 +91,8 @@ namespace PreparationForITExam.Infrastructure.Data
                 builder.ApplyConfiguration(new NewsConfiguration());
                 builder.ApplyConfiguration(new PostConfiguration());
                 builder.ApplyConfiguration(new ImageConfiguration());
+            }
             
-
             base.OnModelCreating(builder);
         }
 
