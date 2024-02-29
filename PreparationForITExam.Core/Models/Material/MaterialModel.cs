@@ -26,6 +26,7 @@ namespace PreparationForITExam.Core.Models.Material
 
         public int LessonId { get; set; }
 
+        public bool IsExercise { get; set; }
         public bool IsItStudentMaterial { get; set; }
 
         public List<AnswerModel> Answers { get; set; }

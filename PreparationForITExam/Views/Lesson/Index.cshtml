@@ -10,23 +10,31 @@
             <p>@Model.Module - @Model.SectionOfCurricular</p>
         </div>
 
-        <iframe src="@Model.PresentationUrl" class="frame" frameborder="0"></iframe>
-
-       @if (this.User.IsInRole(RoleConstants.Teacher))
+        @if (Model.Content != null)
         {
             <div class="material-add">
-                <p  class="left-btn">Сподели своите материали</p>
+                <p class="left-btn">@Model.Content</p>
+            </div>
+        }
+
+
+        <iframe src="@Model.PresentationUrl" class="frame" frameborder="0"></iframe>
+
+        @if (this.User.IsInRole(RoleConstants.Teacher))
+        {
+            <div class="material-add">
+                <p class="left-btn">Сподели своите материали</p>
                 <a asp-controller="Material" asp-area="" asp-action="AddMaterialToLessonByTeacher" asp-route-id="@Model.Id" class="btn btn-success right-btn">Добави</a>
             </div>
         }
         else
         {
-             <div class="material-add">
+            <div class="material-add">
                 <p class="left-btn">Споделени материали от учители</p>
             </div>
         }
 
-        <div>
+        <div style="display: flex;">
             @foreach (var material in Model.Materials)
             {
                 <partial name="_MaterialPartial" model="@material" />

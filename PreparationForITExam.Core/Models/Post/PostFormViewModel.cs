@@ -33,8 +33,8 @@ namespace PreparationForITExam.Core.Models.Post
 
         public string UserId { get; set; }
 
-        public List<IFormFile> Images { get; set; } = new List<IFormFile>();
+        public List<IFormFile>? Images { get; set; } 
 
         public bool IsItQuestion { get; set; }
     }
-}
+}   

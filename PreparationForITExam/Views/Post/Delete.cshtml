@@ -1,9 +1,8 @@
-﻿@model MaterialModel
-
+﻿@model PostViewModel
 
 <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
 <section>
-    <h2 style="text-transform:none!important;" class="text-center">Сигурни ли сте, че искате да изтриете вашият качен материал?</h2>
+    <h2 style="text-transform:none!important;" class="text-center">Сигурни ли сте, че искате да изтриете вашият пост?</h2>
     <hr />
 
     <div class="row cont">
@@ -11,10 +10,9 @@
             <form method="post" enctype="multipart/form-data">
 
                 <input type="hidden" asp-for="@Model.Id" />
-                <input type="hidden" asp-for="@Model.LessonId" />
                 <div class="mb-3">
                     <input class="btn h-full-width btn-red-h" type="submit" value="Изтрий">
-                    <a asp-controller="Lesson" asp-action="Index" asp-route-id="@Model.LessonId" class="btn h-full-width">Отмени</a>
+                    <a asp-controller="Post" asp-action="Details" asp-route-id="@Model.Id" class="btn h-full-width">Отмени</a>
                 </div>
             </form>
         </div>

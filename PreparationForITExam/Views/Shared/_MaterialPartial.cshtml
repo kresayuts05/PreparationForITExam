@@ -4,7 +4,7 @@
 <link rel="stylesheet" href="~/css/material.css">
 
 <div class="card-m">
-    <a>
+    <a asp-controller="Profile" asp-area="" asp-action="Index" asp-route-id="@Model.UserId">
         <div class="text-m">
             <span>@Model.UserName</span>
             <p class="subtitle-m">@Model.Name</p>
@@ -21,13 +21,21 @@
             </a>
             @if (User.IsInRole(RoleConstants.Teacher))
             {
-                <a asp-controller="Answer"  asp-action="SentMaterialToStudent" asp-route-id="@Model.Id" class="btn-m" style="color:rgb(38, 59, 126);"><b>Отговори</b></a>
+                <a asp-controller="Answer" asp-action="SentMaterialToStudent" asp-route-id="@Model.Id" class="btn-m" style="color:rgb(38, 59, 126);"><b>Отговори</b></a>
             }
         </div>
     }
     else
     {
-        <a asp-controller="Material" asp-area="" asp-action="DeleteMaterialFromLesson" asp-route-id="@Model.Id" class="btn-m-r">Изтрий</a>
+        if (Model.IsExercise)
+        {
+
+            <a asp-controller="Material" asp-area="" asp-action="DeleteMaterialFromExercise" asp-route-id="@Model.Id" class="btn-m-r">Изтрий</a>
+        }
+        else
+        {
+            <a asp-controller="Material" asp-area="" asp-action="DeleteMaterialFromLesson" asp-route-id="@Model.Id" class="btn-m-r">Изтрий</a>
+        }
     }
 
 </div>

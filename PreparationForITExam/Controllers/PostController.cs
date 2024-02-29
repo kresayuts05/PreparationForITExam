@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using PreparationForITExam.Core.Contracts;
+using PreparationForITExam.Core.Models.Comment;
 using PreparationForITExam.Core.Models.Post;
 using PreparationForITExam.Core.Services;
 using PreparationForITExam.Extensions;
@@ -30,7 +31,7 @@ namespace PreparationForITExam.Controllers
             return View(model);
         }
 
-        [HttpGet]
+        [HttpGet] 
         public async Task<IActionResult> GetOnlyPosts(int id)
         {
             var model = await postService.GetOnlyPosts(id);
@@ -120,6 +121,7 @@ namespace PreparationForITExam.Controllers
             {
                 p = int.Parse(currpage);
             }
+
             var model = await postService.GetPostDetails(id, p);
             var count = await commentService.CommentCount(id);
 
@@ -127,6 +129,25 @@ namespace PreparationForITExam.Controllers
             TempData["currCommentPage"] = p == 0 ? 1 : p;
 
             return View(model);
+        }
+
+        [HttpGet]
+        public IActionResult Delete(int id)
+        {
+            var model = new PostViewModel
+            {
+                Id = id,
+            };
+
+            return View(model);
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> Delete(PostViewModel model)
+        {
+            await postService.Delete(model.Id);
+
+            return RedirectToAction("Index", "Post");
         }
     }
 }

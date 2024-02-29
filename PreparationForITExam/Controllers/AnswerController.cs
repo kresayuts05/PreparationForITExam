@@ -66,5 +66,28 @@ namespace PreparationForITExam.Controllers
 
             return RedirectToAction("Index", "Exercise", RouteInfo);
         }
+
+
+        [HttpGet]
+        public async Task<IActionResult> Delete(int id)
+        {
+
+            var model = new AnswerModel
+            {
+                Id = id,
+                UserId = User.Id()
+            };
+
+            return View(model);
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> DeleteMaterialFromExercise(MaterialModel model)
+        {
+            await answerService.Delete(model.Id);
+
+            return RedirectToAction("Index", "Profile", User.Id());
+        }
+
     }
 }

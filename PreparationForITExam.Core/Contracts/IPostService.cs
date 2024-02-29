@@ -19,7 +19,7 @@ namespace PreparationForITExam.Core.Contracts
         Task<int> GetOnlyPostsCount();
         Task<int> GetOnlyQuestionsCount();
         Task Edit(PostFormViewModel model);
-
+        Task Delete(int id);
         Task<List<PostModel>> GetAllPostsUrlsByUserId(string userId);
         Task<List<PostModel>> GetAllQuestionsUrlsByUserId(string userId);
     }

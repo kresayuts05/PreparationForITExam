@@ -13,5 +13,6 @@ namespace PreparationForITExam.Core.Contracts
         Task ZipUpload(byte[] file, string userId, int materialId);
         Task<List<AnswerModel>> GetAnswersByMaterialId(int materialId);
         Task<List<AnswerModel>> GetAnswersByUserId(string userId);
+        Task Delete(int id);
      }
 }

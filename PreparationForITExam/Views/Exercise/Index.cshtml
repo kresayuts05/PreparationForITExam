@@ -2,6 +2,14 @@
 @using PreparationForITExam.Core.Constants;
 
 
+@{
+    foreach (var m in Model.Materials)
+    {
+        m.IsExercise = true;
+    }
+}
+
+
 <section>
     <div class="container" style="padding-left:0 !important; padding-right: 0!important;">
         <div class="curricular-head" style="max-height: 150px !important;">
@@ -9,7 +17,14 @@
             <p>@Model.Module - @Model.SectionOfCurricular</p>
         </div>
 
-        <iframe src="https://res.cloudinary.com/dmv8nabul/image/upload/v1707918991/hne8piumt8q4nywerklq.pdf" class="frame" frameborder="0"></iframe>
+        @if (Model.Content != null)
+        {
+            <div class="material-add">
+                <p class="left-btn">@Model.Content</p>
+            </div>
+        }
+
+        <iframe src="@Model.DocumentURL" class="frame" frameborder="0"></iframe>
 
         @if (this.User.IsInRole(RoleConstants.Teacher))
         {
@@ -31,7 +46,7 @@
             <p class="left-btn">Споделени материали от учители</p>
         </div>
 
-        <div>
+        <div style="display: flex;">
             @foreach (var material in Model.Materials)
             {
                 <partial name="_MaterialPartial" model="@material" />
@@ -44,10 +59,13 @@
             <div class="material-add">
                 <p class="left-btn">Споделени задачи на ученици</p>
             </div>
-            @foreach (var material in Model.StudentMaterials)
-            {
-                <partial name="_MaterialPartial" model="@material" />
-            }
+
+            <div style="display: flex;">
+                @foreach (var material in Model.StudentMaterials)
+                {
+                    <partial name="_MaterialPartial" model="@material" />
+                }
+            </div>
         }
 
 

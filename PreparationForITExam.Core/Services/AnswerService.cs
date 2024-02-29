@@ -106,5 +106,12 @@ namespace PreparationForITExam.Core.Services
             return model;
         }
 
+        public async Task Delete(int id)
+        {
+            var answer = await repo.GetByIdAsync<Answer>(id);
+
+            answer.IsActive = false;
+            await repo.SaveChangesAsync();
+        }
     }
 }

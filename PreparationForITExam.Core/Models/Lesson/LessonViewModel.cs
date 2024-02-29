@@ -18,6 +18,8 @@ namespace PreparationForITExam.Core.Models.Lesson
 
         public string SectionOfCurricular { get; set; }
 
+        public string? Content { get; set; }
+
         public string PresentationUrl { get; set; }
 
         public List<MaterialModel> Materials { get; set; }

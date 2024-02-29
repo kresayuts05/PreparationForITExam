@@ -34,13 +34,6 @@
                 </div>
                 <div class="panel-body pn">
                     <table class="table mbn tc-icon-1 tc-med-2 tc-bold-last">
-                        @* <thead>
-                        <tr class="hidden">
-                        <th class="mw30">#</th>
-                        <th>First Name</th>
-                        <th>Revenue</th>
-                        </tr>
-                        </thead>*@
                         <tbody>
                             <tr>
                                 <td>
@@ -123,25 +116,25 @@
                     <li>
                         <a id="questions" data-toggle="tab">Въпроси</a>
                     </li>
-                    @if (User.IsInRole(RoleConstants.Teacher) || User.IsInRole(RoleConstants.Student))
-                    {
-                        if (User.IsInRole(RoleConstants.Teacher))
-                        {
-                            <li>
-                                <a id="materials" data-toggle="tab">Всички Материали</a>
-                            </li>
-                        }
-                        else
-                        {
-                            <li>
-                                <a id="tasks" data-toggle="tab">Всички Задачи</a>
-                            </li>
-                        }
 
+                    @if (Model.RoleName == RoleConstants.Teacher || Model.RoleName == RoleConstants.MonUser)
+                    {
+                        <li>
+                            <a id="materials" data-toggle="tab">Всички Материали</a>
+                        </li>
+                        
+                    }
+                    else
+                    {
+                        <li>
+                            <a id="tasks" data-toggle="tab">Всички Задачи</a>
+                        </li>
                         <li>
                             <a id="returnedMaterials" data-toggle="tab">Проверени Задачи</a>
                         </li>
                     }
+
+
 
                 </ul>
                 <div id="postsDiv" class="tab-content p30" style="height: 730px; display:block;">
@@ -236,7 +229,7 @@
                                     }
                                     else
                                     {
-                                        <a  href="@item.UrlPath" download class="btn btn-info">Изтегли</a>
+                                        <a href="@item.UrlPath" download class="btn btn-info">Изтегли</a>
                                     }
                                 </div>
                             </div>

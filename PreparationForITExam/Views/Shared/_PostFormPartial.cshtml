@@ -37,7 +37,7 @@
                 </div>
                 <div>
                     <label for="sampleInput">Линк</label>
-                    <input asp-for="UsefulUrl" class="h-full-width" type="text" placeholder="https://web.mon.bg/bg/101234">
+                    <input asp-for="UsefulUrl" class="h-full-width" type="text" placeholder="@Model.UsefulUrl">
                     <span asp-validation-for="UsefulUrl" class="text-danger"></span>
                 </div>
                 <div class="mb-3">
@@ -45,22 +45,70 @@
                     {
                         <input type="hidden" asp-for="@Model.IsItQuestion" />
                         <input style="display:block;" id="add" asp-controller="Post" asp-action="Edit" asp-route-id="@Model.Id" class="btn h-full-width btn-green-h" type="submit" value="Запази">
+                        <input style="display:block;" id="add" asp-controller="Post" asp-action="Delete" asp-route-id="@Model.Id" class="btn h-full-width btn-red-h" value="Изтрий">
                     }
                     else
                     {
                         <div class="mb-3">
                             <label class="profilePictureLabel">Снимки</label>
                             <label class="btn h-full-width" for="uploadProfilePicture">Прикачи Снимки</label>
-                            <input asp-for="Images" id="uploadProfilePicture" class="upload-photo" for="ProfilePictureUrl" accept="image/gif, image/jpeg, image/png">
+                            <input asp-for="Images" id="uploadProfilePicture" class="upload-photo" accept="image/gif, image/jpeg, image/png">
                             <span asp-validation-for="Images" class="text-danger"></span>
                         </div>
                         <input style="display:block;" id="add" asp-controller="Post" asp-action="Add" class="btn h-full-width btn-green-h" type="submit" value="Запази">
                         <input style="display:none;" id="addQuestion" asp-controller="Post" asp-action="AddQuestion" class="btn h-full-width btn-green-h" type="submit" value="Запази">
                     }
                     <a asp-controller="Post" asp-action="Index" class="btn h-full-width">Отмени</a>
+
+                    <div id="loading" hidden>
+                        <img id="loading-image" src="~/loader.gif" alt="Loading..." />
+                    </div>
                 </div>
             </form>
         </div>
     </div>
 
 </section>
+ 
+
+<script>
+    $(window).on('load', function () {
+        $("#loading").hide();
+    });
+
+    $("#add").click(function () {
+        $("#loading").show();
+    });
+
+    $(window).on('load', function () {
+        $("#loading").hide();
+    });
+
+    $("#addQuestion").click(function () {
+        $("#loading").show();
+    });
+</script>
+
+<style>
+    #loading {
+        position: fixed;
+        display: block;
+        width: 100%;
+        height: 100%;
+        top: 0;
+        left: 0;
+        text-align: center;
+        opacity: 0.7;
+        background-color: #fff;
+        z-index: 99;
+    }
+
+    #loading-image {
+        position: absolute;
+        width: 300px;
+        z-index: 100;
+        top: 40%;
+        margin: 0;
+        right: 40%;
+    }
+</style>

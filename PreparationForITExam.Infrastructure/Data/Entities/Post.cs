@@ -18,7 +18,6 @@ namespace PreparationForITExam.Infrastructure.Data.Entities
         {
             this.IsActive = true;
             this.PostedOn = DateTime.Now;
-            this.IsItQuestion = false;
         }
 
         [Key]

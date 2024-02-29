@@ -49,7 +49,9 @@ namespace PreparationForITExam.Core.Services
                     Id = l.Id,
                     Title = l.Title,
                     Module = l.SectionOfCurricular.ModuleOfCurricular.Title,
-                    SectionOfCurricular = l.SectionOfCurricular.Title                    
+                    SectionOfCurricular = l.SectionOfCurricular.Title,
+                    Content = l.Content
+                    
                 })
                 .FirstOrDefaultAsync();
 

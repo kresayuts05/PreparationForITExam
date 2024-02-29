@@ -42,16 +42,16 @@ namespace PreparationForITExam.Core.Services
             await repo.AddAsync(post);
             await repo.SaveChangesAsync();
 
-            if (model.Images.Any())
+            if (model.Images != null)
             {
                 foreach (var imageInfo in model.Images)
                 {
                     var image = await this.imageService.UploadImage(imageInfo, "images", post.Id);
                     post.Images.Add(image);
                 }
+                await repo.SaveChangesAsync();
             }
 
-            await repo.SaveChangesAsync();
         }
 
         public async Task<List<PostViewModel>> GetAllPosts(int page)
@@ -262,6 +262,14 @@ namespace PreparationForITExam.Core.Services
                 .ToListAsync();
 
             return model;
+        }
+
+        public async Task Delete(int id)
+        {
+            var post = await repo.GetByIdAsync<Post>(id);
+
+            post.IsActive = false;
+            await repo.SaveChangesAsync();
         }
     }
 }

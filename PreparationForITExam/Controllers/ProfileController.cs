@@ -30,16 +30,15 @@ namespace PreparationForITExam.Controllers
         }
 
         [HttpGet]
-        public async Task<IActionResult> Index()
+        public async Task<IActionResult> Index(string id)//make it work
         {
-            string userId = this.User.Id();
-            var model = await userService.GetUserInfo(userId);
+            var model = await userService.GetUserInfo(id);
 
-            model.MaterialsInExercise = await materialService.GetAllMaterialsForExerciseByUserId(userId);
-            model.MaterialsInLessons = await materialService.GetAllMaterialsForLessonByUserId(userId);
+            model.MaterialsInExercise = await materialService.GetAllMaterialsForExerciseByUserId(id);
+            model.MaterialsInLessons = await materialService.GetAllMaterialsForLessonByUserId(id);
             if (User.IsInRole(RoleConstants.Teacher))
             {
-                model.Answers = await answerService.GetAnswersByUserId(userId);
+                model.Answers = await answerService.GetAnswersByUserId(id);
 
             }
             else
@@ -52,10 +51,10 @@ namespace PreparationForITExam.Controllers
 
                 }
             }
-            model.PostsUrls = await postService.GetAllPostsUrlsByUserId(userId);
-            model.QuestionsUrls = await postService.GetAllQuestionsUrlsByUserId(userId);
+            model.PostsUrls = await postService.GetAllPostsUrlsByUserId(id);
+            model.QuestionsUrls = await postService.GetAllQuestionsUrlsByUserId(id);
 
-            model.Comments = await commentService.CommentCountByUserId(userId);
+            model.Comments = await commentService.CommentCountByUserId(id);
 
             model.Materials = (model.MaterialsInLessons == null ? 0 : model.MaterialsInLessons.Count) + (model.MaterialsInExercise == null ? 0 : model.MaterialsInExercise.Count);
             model.Questions = model.QuestionsUrls == null ? 0 : model.QuestionsUrls.Count;

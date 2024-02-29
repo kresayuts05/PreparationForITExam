@@ -75,8 +75,8 @@
                             <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar-menu">
                                 <i class="fa fa-bars"></i>
                             </button>
-                            <a href="#" class="pull-left logo"><img class="logo" src="/logo/half-logo.png"></a>
-                            <a class="navbar-brand nav-logo" href="index.html">Блиц<span>Код</span>-ДЗИ</a>
+                            <a href="/Home/Index" class="pull-left logo"><img class="logo" src="/logo/half-logo.png"></a>
+                            <a class="navbar-brand nav-logo" href="/Home/Index">Блиц<span>Код</span>-ДЗИ</a>
                         </div>
                     </div><!--/.navbar-header-->
                     <!-- End Header Navigation -->
@@ -90,7 +90,7 @@
                             <li><a asp-controller="Home" asp-area="" asp-action="Contacts"><b>контакти</b></a></li>
                             @if (this.User?.Identity != null && this.User.Identity.IsAuthenticated)
                             {
-                                <li><a asp-controller="Profile" asp-area="" asp-action="Index"><b>профил</b></a></li>
+                                <li><a asp-controller="Profile" asp-area="" asp-action="Index" asp-route-id="@User.Id()"><b>профил</b></a></li>
                             }
 
                         </ul><!--/.nav -->
@@ -127,7 +127,7 @@
                 <div class="row">
                     <div class="col-sm-3">
                         <div class="navbar-header">
-                            <a class="navbar-brand" href="index.html">Блиц<span>Код</span>-ДЗИ</a>
+                            <a class="navbar-brand" href="/Home/Index">Блиц<span>Код</span>-ДЗИ</a>
                         </div><!--/.navbar-header-->
                     </div>
                     <div class="col-sm-9">
@@ -138,7 +138,7 @@
                             <li><a asp-controller="Home" asp-area="" asp-action="Contacts"><b>контакти</b></a></li>
                             @if (this.User?.Identity != null && this.User.Identity.IsAuthenticated)
                             {
-                                <li><a asp-controller="Profile" asp-area="" asp-action="Index"><b>профил</b></a></li>
+                                <li><a asp-controller="Profile" asp-area="" asp-action="Index" asp-route-id="@User.Id()"><b>профил</b></a></li>
                             }
                         </ul><!--/.nav -->
                     </div>
@@ -148,12 +148,12 @@
                 <div class="row">
                     <div class="col-sm-5">
                         <p>
-                            &copy;copyright. designed and developed by Kresa Tsvetkova
+                            &copy;copyright. проектирано и създадено от Креса Цветкова
                         </p><!--/p-->
                     </div>
                     <div class="col-sm-7">
                         <div class="footer-social">
-                            <span><i class="fa fa-phone"> +1 (222) 777 8888</i></span>
+                            <span><i class="fa fa-phone"> +359 886 12 1260 </i></span>
                             @if (!SignInManager.IsSignedIn(User))
                             {
                                 <a class="welcome-hero-btn" asp-controller="Account" asp-action="Register">

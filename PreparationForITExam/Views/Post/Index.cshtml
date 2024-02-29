@@ -89,17 +89,18 @@
                                             <div class="col-sm-7">
 
                                                 <div class="explore-map-icon">
-                                                    @if (post.UsefulUrl != null)
+
+                                                    @if (this.User.Id() == post.UserId && post.UsefulUrl != null)
                                                     {
-                                                        
-                                                        @if (this.User.Id() == post.UserId)
-                                                        {
-                                                            <a class="close-btn" asp-controller="Post" asp-action="Edit" asp-route-id="@post.Id">Редактирай</a>
-                                                        }
-                                                        else
-                                                        {
-                                                            <a href="@post.UsefulUrl">линк</a>
-                                                        }
+                                                        <a class="close-btn" asp-controller="Post" asp-action="Edit" asp-route-id="@post.Id">Редактирай</a>
+                                                    }
+                                                    else if (this.User.Id() != post.UserId && post.UsefulUrl != null)
+                                                    {
+                                                        <a href="@post.UsefulUrl">линк</a>
+                                                    }
+                                                    else if (this.User.Id() == post.UserId && post.UsefulUrl == null)
+                                                    {
+                                                        <a class="close-btn" asp-controller="Post" asp-action="Edit" asp-route-id="@post.Id">Редактирай</a>
                                                     }
                                                 </div>
                                             </div>

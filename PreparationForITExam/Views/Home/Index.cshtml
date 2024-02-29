@@ -132,7 +132,7 @@ else
         </div>
 
     </section>
-   
+
     <section id="works" class="works">
         <div class="container">
             <div class="section-header">
@@ -196,10 +196,14 @@ else
                     <div class="testimonial-description">
                         <div class="testimonial-info">
                             <div class="testimonial-img">
-                                <img src="@review.UserProfileUrl" alt="clients">
+                                <a asp-controller="Profile" asp-area="" asp-action="Index" asp-route-id="@review.UserId">
+                                    <img src="@review.UserProfileUrl" alt="clients">
+                                </a>
                             </div>
                             <div class="testimonial-person">
-                                <h2>@review.UserName</h2>
+                                <a asp-controller="Profile" asp-area="" asp-action="Index" asp-route-id="@review.UserId">
+                                    <h2>@review.UserName</h2>
+                                </a>
                                 <h4>@review.RoleName</h4>
                                 <div class="testimonial-person-star">
                                     @for (int i = 0; i < review.Stars; i++)
