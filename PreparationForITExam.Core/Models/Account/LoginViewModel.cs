@@ -1,4 +1,5 @@
-﻿using System;
+﻿using PreparationForITExam.Core.Exception;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
@@ -9,11 +10,11 @@ namespace PreparationForITExam.Core.Models.Account
 {
     public class LoginViewModel
     {
-        [Required]
-        [EmailAddress]
+        [Required(ErrorMessage = GlobalExceptions.RequiredInput)]
+        [EmailAddress(ErrorMessage = GlobalExceptions.InvalidEmail)]
         public string Email { get; set; }
 
-        [Required]
+        [Required(ErrorMessage = GlobalExceptions.RequiredInput)]
         [DataType(DataType.Password)]
         public string Password { get; set; }
     }

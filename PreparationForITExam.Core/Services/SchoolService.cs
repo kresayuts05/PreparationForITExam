@@ -67,5 +67,28 @@ namespace PreparationForITExam.Core.Services
 
             return dic;
         }
+
+        public async Task<string> GetSchoolNameByUserId(string id)
+        {
+            //var user = await repo.GetByIdAsync<User>(id);
+            //string roleName = user.RoleName;
+
+            //string school = string.Empty;
+
+            //if (roleName == "Teacher")
+            //{
+                
+            //}
+            //else if(roleName == "Student")
+            //{
+                
+            //}
+            //else
+            //{
+
+            //}
+            throw new NotImplementedException();
+        }
+
     }
 }

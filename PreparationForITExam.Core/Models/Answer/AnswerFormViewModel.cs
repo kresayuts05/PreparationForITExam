@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Http;
+using PreparationForITExam.Core.Exception;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
@@ -18,7 +19,8 @@ namespace PreparationForITExam.Core.Models.Answer
 
         public string UserId { get; set; }
 
-        [StringLength(ContentMaxLength, MinimumLength = ContentMinLength)]
+        [Required(ErrorMessage = GlobalExceptions.RequiredInput)]
+        [StringLength(ContentMaxLength, MinimumLength = ContentMinLength, ErrorMessage = "Информацията трябва да е от {2} до {1} знака")]
         public string? Content { get; set; }
 
         public IFormFile FileInfo { get; set; }

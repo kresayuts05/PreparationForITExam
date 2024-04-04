@@ -13,9 +13,10 @@ namespace PreparationForITExam.Core.Models.Material
     public class MaterialFormViewModel
     {
         public int LessonId { get; set; }
+
         public int SectionOfCurricularId { get; set; }
 
-        [StringLength(ContentMaxLength, MinimumLength = ContentMinLength)]
+        [StringLength(ContentMaxLength, MinimumLength = ContentMinLength, ErrorMessage = "Информацията трябва да е от {2} до {1} знака")]
         public string? Content { get; set; }
 
         public IFormFile FileInfo { get; set; }

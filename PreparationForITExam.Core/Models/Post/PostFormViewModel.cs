@@ -10,6 +10,7 @@ using System.Threading.Tasks;
 
 using static PreparationForITExam.Infrastructure.Data.Constants.ModelConstraints.PostConstraints;
 using Microsoft.AspNetCore.Http;
+using PreparationForITExam.Core.Exception;
 
 namespace PreparationForITExam.Core.Models.Post
 {
@@ -17,16 +18,16 @@ namespace PreparationForITExam.Core.Models.Post
     {
         public int Id { get; set; }
 
-        [Required]
-        [StringLength(TitleMaxLength, MinimumLength = TitleMinLength)]
+        [Required(ErrorMessage = GlobalExceptions.RequiredInput)]
+        [StringLength(TitleMaxLength, MinimumLength = TitleMinLength, ErrorMessage = "Заглавието трябва да е от {2} до {1} знака")]
         public string Title { get; set; } = null!;
 
-        [Required]
-        [StringLength(ShortDescriptionMaxLength, MinimumLength = ShortDescriptionMinLength)]
+        [Required(ErrorMessage = GlobalExceptions.RequiredInput)]
+        [StringLength(ShortDescriptionMaxLength, MinimumLength = ShortDescriptionMinLength, ErrorMessage = "Краткото описание трябва да е от {2} до {1} знака")]
         public string ShortDescription { get; set; } = null!;
 
-        [Required]
-        [StringLength(DescriptionMaxLength, MinimumLength = DescriptionMinLength)]
+        [Required(ErrorMessage = GlobalExceptions.RequiredInput)]
+        [StringLength(DescriptionMaxLength, MinimumLength = DescriptionMinLength, ErrorMessage = "Описанието трябва да е от {2} до {1} знака")]
         public string Description { get; set; } = null!;
 
         public string? UsefulUrl { get; set; }

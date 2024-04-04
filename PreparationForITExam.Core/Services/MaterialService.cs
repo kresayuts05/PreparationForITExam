@@ -271,7 +271,7 @@ namespace PreparationForITExam.Core.Services
                     FileFormat = ".zip",
                     ExerciseMaterialId = exerciseMaterialId,
                     UserId = userId,
-                    IsActive= true,
+                    IsActive = true,
                 };
 
                 await repo.AddAsync<Answer>(material);
@@ -583,7 +583,6 @@ namespace PreparationForITExam.Core.Services
 
             return materials;
         }
-
         public async Task<List<MaterialModel>> GetAllMaterialsForExerciseByUserId(string userId)
         {
             var materials = await repo.AllReadonly<ExerciseMaterial>()
@@ -603,7 +602,6 @@ namespace PreparationForITExam.Core.Services
 
             return materials;
         }
-
         public async Task<List<MaterialModel>> GetAllMaterialsForLessonByUserId(string userId)
         {
             var materials = await repo.AllReadonly<LessonMaterial>()
@@ -623,7 +621,6 @@ namespace PreparationForITExam.Core.Services
 
             return materials;
         }
-
         public async Task<string> GetUserIdByMaterialId(int id, bool isForExercise)
         {
             if (isForExercise)
@@ -639,7 +636,6 @@ namespace PreparationForITExam.Core.Services
                 return model.UserId;
             }
         }
-
         public async Task<int> GetExerciseIdByMaterialId(int id)
         {
             var model = await repo.GetByIdAsync<ExerciseMaterial>(id);

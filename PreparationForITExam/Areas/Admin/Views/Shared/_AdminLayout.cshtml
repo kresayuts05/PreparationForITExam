@@ -47,6 +47,9 @@
     <!--responsive.css-->
     <link rel="stylesheet" href="~/css/responsive.css">
 
+    <link rel="stylesheet" href="~/css/admin.min.css">
+    <link rel="stylesheet" href="~/css/admin.scss">
+
     @await RenderSectionAsync("Styles", required: false)
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
    
@@ -142,7 +145,7 @@
                     </div>
                     <div class="col-sm-7">
                         <div class="footer-social">
-                            <span><i class="fa fa-phone"> +1 (222) 777 8888</i></span>
+                            <span><i class="fa fa-phone"> +359 886 12 1260</i></span>
                             @if (!SignInManager.IsSignedIn(User))
                             {
                                 <a class="welcome-hero-btn" asp-controller="Account" asp-action="Register">

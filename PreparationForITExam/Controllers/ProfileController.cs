@@ -39,7 +39,6 @@ namespace PreparationForITExam.Controllers
             if (User.IsInRole(RoleConstants.Teacher))
             {
                 model.Answers = await answerService.GetAnswersByUserId(id);
-
             }
             else
             {

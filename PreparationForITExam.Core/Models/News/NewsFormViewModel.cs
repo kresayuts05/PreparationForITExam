@@ -9,6 +9,7 @@ using System.Text;
 using System.Threading.Tasks;
 
 using static PreparationForITExam.Infrastructure.Data.Constants.ModelConstraints.NewsConstraints;
+using PreparationForITExam.Core.Exception;
 
 namespace PreparationForITExam.Core.Models.News
 {
@@ -16,12 +17,12 @@ namespace PreparationForITExam.Core.Models.News
     {
         public int Id { get; set; }
 
-        [Required]
-        [MaxLength(TitleMaxLength)]
+        [Required(ErrorMessage = GlobalExceptions.RequiredInput)]
+        [StringLength(TitleMaxLength, MinimumLength = TitleMinLength, ErrorMessage = "Заглавието трябва да е от {2} до {1} знака")]
         public string Title { get; set; } = null!;
 
-        [Required]
-        [MaxLength(DescriptionMaxLength)]
+        [Required(ErrorMessage = GlobalExceptions.RequiredInput)]
+        [StringLength(DescriptionMaxLength, MinimumLength = DescriptionMinLength, ErrorMessage = "Описанието трябва да е от {2} до {1} знака")]
         public string Description { get; set; } = null!;
 
         public string UsefulUrls { get; set; }

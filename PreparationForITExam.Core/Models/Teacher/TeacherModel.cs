@@ -1,14 +1,17 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace PreparationForITExam.Core.Models.User
+namespace PreparationForITExam.Core.Models.Teacher
 {
-    public class UserModel
+    public class TeacherModel
     {
-        public string Id { get; set; }
+        public string UserId { get; set; }
+
+        public int TeacherId { get; set; }
 
         public string Name { get; set; }
 
@@ -20,7 +23,8 @@ namespace PreparationForITExam.Core.Models.User
 
         public string SchoolName { get; set; }
 
-        public int UserInRoleId { get; set; }
-
+        public int Experience { get; set; }
+        
+        public string? Subject { get; set; }
     }
 }

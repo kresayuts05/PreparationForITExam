@@ -162,7 +162,7 @@ namespace PreparationForITExam.Controllers
 
             var result = await userManager.CreateAsync(user, model.Password);
 
-            await userManager.AddToRoleAsync(user, "Teacher");//need to be approved by admin
+            //await userManager.AddToRoleAsync(user, "Teacher");//need to be approved by admin
             await teacherService.Create(user.Id, model, schoolId);
 
             if (model.ProfilePicture != null)

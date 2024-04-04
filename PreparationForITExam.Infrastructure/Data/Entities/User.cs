@@ -16,6 +16,7 @@ namespace PreparationForITExam.Infrastructure.Data.Entities
         public User()
         {
             this.IsActive = true;
+            CreatedOn = DateTime.UtcNow;
         }
 
         [Required]
@@ -31,6 +32,8 @@ namespace PreparationForITExam.Infrastructure.Data.Entities
 
         [MaxLength(AboutMeMaxLength)]
         public string? AboutMe { get; set; }
+
+        public DateTime CreatedOn { get; set; }
 
         public string RoleName { get; set; }
 

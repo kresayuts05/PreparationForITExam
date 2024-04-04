@@ -10,6 +10,12 @@ namespace PreparationForITExam.Infrastructure.Data.Entities
 {
     public class Answer
     {
+        public Answer()
+        {
+            IsActive= true;
+        }
+
+        [Key]
         public int Id { get; set; }
 
         public string? Name { get; set; }
