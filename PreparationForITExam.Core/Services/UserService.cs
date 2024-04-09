@@ -37,7 +37,7 @@ namespace PreparationForITExam.Core.Services
 
         public async Task DeleteUser(string id)
         {
-            var user = await repo.AllReadonly<User>()
+            var user = await repo.All<User>()
                 .Where(u => u.Id == id)
                 .FirstOrDefaultAsync();
 
@@ -105,6 +105,16 @@ namespace PreparationForITExam.Core.Services
             };
 
             return model;
+        }
+
+        public async Task GiveRoleToTeacher(string id)
+        {
+            var user = await repo.All<User>()
+                .Where(t => t.Id == id)
+                .FirstOrDefaultAsync();
+
+            await userManager.AddToRoleAsync(user, "Teacher");
+            await repo.SaveChangesAsync();
         }
 
         public async Task<bool> UserByEmailExists(string email)

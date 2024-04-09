@@ -19,6 +19,6 @@ namespace PreparationForITExam.Core.Models.Admin
 
         public List<UserModel> Users{ get; set; }
 
-        public List<TeacherModel> Teachers { get; set; }
+        public List<TeacherModel> Teachers { get; set; } = new List<TeacherModel>();
     }
 }

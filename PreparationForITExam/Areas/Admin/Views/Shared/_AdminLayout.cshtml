@@ -47,9 +47,6 @@
     <!--responsive.css-->
     <link rel="stylesheet" href="~/css/responsive.css">
 
-    <link rel="stylesheet" href="~/css/admin.min.css">
-    <link rel="stylesheet" href="~/css/admin.scss">
-
     @await RenderSectionAsync("Styles", required: false)
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
    
@@ -111,6 +108,14 @@
 
     <div class="main">
         <main role="main" class="pb-3">
+            @if (TempData["message"] != null)
+            {
+                <div class="alert alert-danger alert-dismissible fade show" style="opacity:100%;">
+                    @TempData["message"]
+                    <input type="button" class="btn" data-bs-dismiss="alert" style="margin-left: 2em; " value="Затвори" />
+
+                </div>
+            }
             @RenderBody()
         </main>
     </div>
@@ -129,9 +134,8 @@
                         <ul class="footer-menu-item">
                             <li><a asp-controller="Home" asp-area="" asp-action="Index"><b>начало</b></a></li>
                             <li><a asp-controller="Curricular" asp-area="" asp-action="Index"><b>обучение</b></a></li>
-                            <li><a asp-controller="Curricular" asp-area="" asp-action="Index"><b>форум</b></a></li>
-                            <li><a><b>чатове</b></a></li>
-                            <li><a><b>профил</b></a></li>
+                            <li><a asp-controller="Post" asp-area="" asp-action="Index"><b>форум</b></a></li>
+                            <li><a asp-controller="Profile" asp-area="" asp-action="Index"><b>профил</b></a></li>
                         </ul><!--/.nav -->
                     </div>
                 </div>

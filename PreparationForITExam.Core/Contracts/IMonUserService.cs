@@ -11,8 +11,10 @@ namespace PreparationForITExam.Core.Contracts
     {
         Task<int> GetMonUserIdByUserId(string userId);
 
-        Task<List<UserModel>> GetAllMonUsers(int page);
+        Task<List<UserModel>> GetAllMonUsers();
 
         Task DeleteMonUser(string userId);
+
+        Task Create(string userId);
     }
 }

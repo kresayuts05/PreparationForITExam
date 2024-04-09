@@ -43,13 +43,11 @@ namespace PreparationForITExam.Core.Services
             await repo.SaveChangesAsync();
         }
 
-        public async Task<List<UserModel>> GetAllStudents(int page)
+        public async Task<List<UserModel>> GetAllStudents()
         {
             var model = await repo.AllReadonly<Student>()
                  .Where(t => t.IsActive == true)
                  .OrderByDescending(p => p.Id)
-                 .Skip(9 * ((int)(page == 0 ? 1 : page) - 1))
-                 .Take(9)
                  .Select(t => new UserModel
                  {
                      UserInRoleId = t.Id,

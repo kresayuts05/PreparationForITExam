@@ -1,0 +1,83 @@
+﻿@model MonUserViewModel
+
+@{
+    ViewData["Data"] = Json.Serialize(Model.SchoolsCities).ToString();
+
+
+}
+<link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+
+<section>
+
+    <div class="row flex-align-center">
+
+        <div class="column large-6 tab-12">
+
+            <div class="register-heading-container" style="display:block!important;">
+                <h3 class="h-add-bottom">Регистрация</h3>
+
+                <form method="post" enctype="multipart/form-data">
+                    <div>
+                        <label for="sampleInput">Вашият имейл<span class="mandatory">*</span></label>
+                        <input asp-for="Email" class="h-full-width" type="email" placeholder="ivandimitrov@gmail.com" required>
+                        <span asp-validation-for="Email" class="text-danger"></span>
+                    </div>
+                    <div>
+                        <label for="sampleInput">Име<span class="mandatory">*</span></label>
+                        <input asp-for="FirstName" class="h-full-width" type="text" placeholder="Иван" required>
+                        <span asp-validation-for="FirstName" class="text-danger"></span>
+                    </div>
+                    <div>
+                        <label for="sampleInput">Фамилия<span class="mandatory">*</span></label>
+                        <input asp-for="LastName" class="h-full-width" type="text" placeholder="Димитров" required>
+                        <span asp-validation-for="LastName" class="text-danger"></span>
+                    </div>
+                    <div>
+                        <label for="sampleInput">Парола<span class="mandatory">*</span></label>
+                        <input asp-for="Password" class="h-full-width" type="password" placeholder="123asd123" required>
+                        <span asp-validation-for="Password" class="text-danger"></span>
+                    </div>
+                    <div>
+                        <label for="sampleInput">Повтори парола<span class="mandatory">*</span></label>
+                        <input asp-for="PasswordRepeat" class="h-full-width" type="password" placeholder="123asd123" required>
+                        <span asp-validation-for="PasswordRepeat" class="text-danger"></span>
+                    </div>
+                    <div>
+                        <label for="sampleInput">Телефонен номер<span class="mandatory">*</span></label>
+                        <input asp-for="PhoneNumber" class="h-full-width" type="text" placeholder="0823747232" required>
+                        <span asp-validation-for="PhoneNumber" class="text-danger"></span>
+                    </div>
+                    <div>
+                        <label for="sampleInput">Град:<span class="mandatory">*</span></label>
+                        <select asp-for="City" name="city" id="city">
+                            @foreach (var city in Model.SchoolsCities.Keys)
+                            {
+                                <option value="@city">@city</option>
+                            }
+                        </select>
+                        <input type="hidden" id="citiesData" value="@ViewData["Data"]" />
+                    </div>
+                    <div>
+                        <label for="sampleInput">За мен</label>
+                        <input asp-for="AboutMe" class="h-full-width" type="text" placeholder="0823747232" required>
+                        <span asp-validation-for="PhoneNumber" class="text-danger"></span>
+                    </div>
+
+                    <div class="mb-3">
+                        <label class="profilePictureLabel">Профилна снимка</label>
+                        <label class="btn h-full-width" for="uploadProfilePicture">Прикачи Профилна Снимка</label>
+                        <input asp-for="ProfilePicture" id="uploadProfilePicture" class="upload-photo" for="ProfilePictureUrl" accept="image/gif, image/jpeg, image/png">
+                        <span asp-validation-for="ProfilePicture" class="text-danger"></span>
+                    </div>
+
+                    <div class="mb-3">
+                        <img alt="Upload an image" accept="image/gif, image/jpeg, image/png" style="display:none;">
+                    </div>
+
+                    <input style="display:block;" asp-controller="Admin" asp-area="Admin" asp-action="CreateMonUser" class="btn--primary h-full-width" type="submit" value="Регистрирай потребител">
+                </form>
+
+            </div>
+
+        </div>
+</section>

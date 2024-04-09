@@ -22,6 +22,16 @@ namespace PreparationForITExam.Core.Services
             repo = _repo;
         }
 
+        public async Task ApproveTeacher(string id)
+        {
+            var teacher = await repo.All<Teacher>()
+                .Where(t => t.UserId == id)
+                .FirstOrDefaultAsync();
+
+            teacher.Status = "Approved";
+            await repo.SaveChangesAsync();
+        }
+
         public async Task Create(string userId, RegisterViewModel model, int schoolId)
         {
             var teacher = new Teacher()
@@ -36,6 +46,16 @@ namespace PreparationForITExam.Core.Services
             await repo.SaveChangesAsync();
         }
 
+        public async Task DeclineTeacherRole(int id)
+        {
+            var teacher = await repo.All<Teacher>()
+                .Where(t => t.Id == id)
+                .FirstOrDefaultAsync();
+
+            teacher.Status = "Disapproved";
+            await repo.SaveChangesAsync();
+        }
+
         public async Task DeleteTeacher(string userId)
         {
             var teacher = await repo.All<Teacher>()
@@ -47,13 +67,11 @@ namespace PreparationForITExam.Core.Services
             await repo.SaveChangesAsync();
         }
 
-        public async Task<List<UserModel>> GetAllTeachers(int page)
+        public async Task<List<UserModel>> GetAllTeachers()
         {
             var model = await repo.AllReadonly<Teacher>()
                 .Where(t => t.IsActive == true)
                 .OrderByDescending(p => p.Id)
-                .Skip(9 * ((int)(page == 0 ? 1 : page) - 1))
-                .Take(9)
                 .Select(t => new UserModel
                 {
                     UserInRoleId = t.Id,
@@ -62,7 +80,7 @@ namespace PreparationForITExam.Core.Services
                     Role = "Teacher",
                     City = t.User.City,
                     SchoolName = t.School.Name,
-                    ProfilePictureUrl = t.User.ProfilePictureUrl
+                    ProfilePictureUrl = t.User.ProfilePictureUrl,                    
                 })
                 .ToListAsync();
 
@@ -72,7 +90,7 @@ namespace PreparationForITExam.Core.Services
         public async Task<List<TeacherModel>> GetAllTeachersWithStatusWaiting()
         {
             var model = await repo.AllReadonly<Teacher>()
-                 .Where(t => t.Status == "Waiting")
+                 .Where(t => t.Status == "Waiting" && t.User.IsActive)
                  .Select(t => new TeacherModel
                  {
                      UserId = t.User.Id,
@@ -83,7 +101,9 @@ namespace PreparationForITExam.Core.Services
                      City = t.User.City,
                      SchoolName = t.School.Name,
                      Experience = t.Experience,
-                     Subject = t.Subject
+                     Subject = t.Subject,
+                     AboutMe = t.User.AboutMe,
+                     CreatedOn = t.User.CreatedOn.ToString("yyyy-M-d")
                  })
                  .ToListAsync();
 

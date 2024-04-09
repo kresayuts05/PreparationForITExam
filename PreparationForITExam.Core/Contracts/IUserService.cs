@@ -22,5 +22,7 @@ namespace PreparationForITExam.Core.Contracts
         Task DeleteUser(string id);
 
         Task<int> GetAllUsersCount();
+
+        Task GiveRoleToTeacher(string id);       
      }
 }

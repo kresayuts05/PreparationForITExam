@@ -15,10 +15,14 @@ namespace PreparationForITExam.Core.Contracts
 
         Task<int> GetTeacherIdByUserId(string id);
 
-        Task<List<UserModel>> GetAllTeachers(int page);
+        Task<List<UserModel>> GetAllTeachers();
 
         Task DeleteTeacher(string userId);
 
         Task<List<TeacherModel>> GetAllTeachersWithStatusWaiting();
+
+        Task DeclineTeacherRole(int id);
+
+        Task ApproveTeacher(string id);
     }
 }

@@ -24,7 +24,9 @@ namespace PreparationForITExam.Core.Models.Teacher
         public string SchoolName { get; set; }
 
         public int Experience { get; set; }
+        public string CreatedOn { get; set; }
         
         public string? Subject { get; set; }
+        public string? AboutMe { get; set; }
     }
 }
