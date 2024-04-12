@@ -14,7 +14,5 @@ namespace PreparationForITExam.Core.Contracts
         Task<List<SchoolModel>> AllSchools();
 
         Task<Dictionary<string, List<SchoolModel>>> AllSchoolsWithCitiesAsDitionary();
-
-        Task<string> GetSchoolNameByUserId(string id);
     }
 }

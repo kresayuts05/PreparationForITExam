@@ -1,6 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.Office.Server.Search.Extended.Administration.Common;
 using PreparationForITExam.Core.Contracts;
+using PreparationForITExam.Core.Exception;
 using PreparationForITExam.Core.Models.Comment;
 using PreparationForITExam.Core.Models.Post;
 using PreparationForITExam.Infrastructure.Data.Common;
@@ -13,6 +14,7 @@ using System.Threading.Tasks;
 
 namespace PreparationForITExam.Core.Services
 {
+    //This class contains all buisness logic connected with posts and questions. 
     public class PostService : IPostService
     {
 
@@ -27,6 +29,7 @@ namespace PreparationForITExam.Core.Services
             commentService = _commentService;
         }
 
+        //This method creates posts and questions. Its parameter isItQuestion determines the type:post or question
         public async Task Create(PostFormViewModel model, bool isItQuestion)
         {
             Post post = new Post
@@ -54,6 +57,7 @@ namespace PreparationForITExam.Core.Services
 
         }
 
+        //This method returns collection of PostViewModel. It is used for displaying all posts and questions in the forum
         public async Task<List<PostViewModel>> GetAllPosts(int page)
         {
             var model = await repo.AllReadonly<Post>()
@@ -78,13 +82,17 @@ namespace PreparationForITExam.Core.Services
 
             for (int i = 0; i < model.Count; i++)
             {
-                model[i].Images = await imageService.GetPostImages(model[i].Id);
-                model[i].CommentsCount = await commentService.CommentCount(model[i].Id);
+                if (model[i].Images != null)
+                {
+                    model[i].Images = await imageService.GetPostImages(model[i].Id);
+                    model[i].CommentsCount = await commentService.CommentCount(model[i].Id);
+                }
             }
 
             return model;
         }
 
+        //This method returns only posts. It is filtration
         public async Task<List<PostViewModel>> GetOnlyPosts(int page)
         {
             var model = await repo.AllReadonly<Post>()
@@ -110,12 +118,16 @@ namespace PreparationForITExam.Core.Services
 
             for (int i = 0; i < model.Count; i++)
             {
-                model[i].Images = await imageService.GetPostImages(model[i].Id);
+                if (model[i].Images != null)
+                {
+                    model[i].Images = await imageService.GetPostImages(model[i].Id);
+                }
             }
 
             return model;
         }
 
+        //This method returns only questions. It is filtration
         public async Task<List<PostViewModel>> GetOnlyQuestions(int page)
         {
             var model = await repo.AllReadonly<Post>()
@@ -147,6 +159,7 @@ namespace PreparationForITExam.Core.Services
             return model;
         }
 
+        //This method returns posts count. It is used for pagination
         public async Task<int> GetPostCount()
         {
             var posts = await repo.AllReadonly<Post>()
@@ -156,6 +169,7 @@ namespace PreparationForITExam.Core.Services
             return posts.Count;
         }
 
+        //This method returns only posts count. It is used for pagination
         public async Task<int> GetOnlyPostsCount()
         {
             var posts = await repo.AllReadonly<Post>()
@@ -165,6 +179,7 @@ namespace PreparationForITExam.Core.Services
             return posts.Count;
         }
 
+        //This method returns only question count. It is used for pagination
         public async Task<int> GetOnlyQuestionsCount()
         {
             var posts = await repo.AllReadonly<Post>()
@@ -174,6 +189,7 @@ namespace PreparationForITExam.Core.Services
             return posts.Count;
         }
 
+        //This method returns the details of certain post.
         public async Task<PostViewModel> GetPostDetails(int id, int page)
         {
             var model = await repo.AllReadonly<Post>()
@@ -199,6 +215,7 @@ namespace PreparationForITExam.Core.Services
             return model;
         }
 
+        //This method returns the details of certain post.
         public async Task<PostFormViewModel> GetPostInfo(int id)
         {
             var model = await repo.AllReadonly<Post>()
@@ -220,6 +237,7 @@ namespace PreparationForITExam.Core.Services
             return model;
         }
 
+        //This method edits the information in a post or question
         public async Task Edit(PostFormViewModel model)
         {
             var post = await repo.GetByIdAsync<Post>(model.Id);
@@ -235,6 +253,8 @@ namespace PreparationForITExam.Core.Services
 
         }
 
+        //This method returns a collection of PostModel. It is used in the profile page to be accessible
+        //to is creator and other users
         public async Task<List<PostModel>> GetAllPostsUrlsByUserId(string userId)
         {
             var model = await repo.AllReadonly<Post>()
@@ -249,6 +269,9 @@ namespace PreparationForITExam.Core.Services
 
             return model;
         }
+
+        //This method returns a collection of PostModel. It is used in the profile page to be accessible
+        //to is creator and other users
         public async Task<List<PostModel>> GetAllQuestionsUrlsByUserId(string userId)
         {
             var model = await repo.AllReadonly<Post>()
@@ -264,9 +287,15 @@ namespace PreparationForITExam.Core.Services
             return model;
         }
 
+        //This method "deletes" post. It changes Is Active to false and it is no longer accessible
         public async Task Delete(int id)
         {
             var post = await repo.GetByIdAsync<Post>(id);
+
+            if (post == null)
+            {
+                throw new NullReferenceException(GlobalExceptions.PostDoesNotExistExceptionMessage);
+            }
 
             post.IsActive = false;
             await repo.SaveChangesAsync();

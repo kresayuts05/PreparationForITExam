@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using PreparationForITExam.Core.Contracts;
+using PreparationForITExam.Core.Exception;
 using PreparationForITExam.Core.Models.Profile;
 using PreparationForITExam.Core.Models.User;
 using PreparationForITExam.Infrastructure.Data.Common;
@@ -14,6 +15,7 @@ using System.Threading.Tasks;
 
 namespace PreparationForITExam.Core.Services
 {
+    //UserService contains buisness logic about all functionality with users entity therefore all registered users. 
     public class UserService : IUserService
     {
         private readonly IRepository repo;
@@ -35,11 +37,17 @@ namespace PreparationForITExam.Core.Services
             monUserService = _monUserService;
         }
 
+        //This method "delete" certain user. It actually deactivate it by setting property's value IsActive = false
         public async Task DeleteUser(string id)
         {
             var user = await repo.All<User>()
                 .Where(u => u.Id == id)
                 .FirstOrDefaultAsync();
+
+            if (user == null || user.IsActive == false)
+            {
+                throw new NullReferenceException(GlobalExceptions.UserDoesNotExistExceptionMessage);
+            }
 
             if (user.RoleName == "Student")
             {
@@ -59,6 +67,8 @@ namespace PreparationForITExam.Core.Services
             await repo.SaveChangesAsync();
         }
 
+        //This method returns a collection of UserModel. It is used for displaying users in the admin panel.
+        //It has parameter page which is used for pagination
         public Task<List<UserModel>> GetAllUsers(int page)
         {
             var model = repo.AllReadonly<User>()
@@ -79,6 +89,8 @@ namespace PreparationForITExam.Core.Services
             return model;
         }
 
+        //This method returns the count of all active users
+        //It is used for pagination
         public async Task<int> GetAllUsersCount()
         {
             var list = await repo.AllReadonly<User>()
@@ -88,6 +100,8 @@ namespace PreparationForITExam.Core.Services
             return list.Count;
         }
 
+        //This method returns ProvileViewModel in which is contained all information about the wanted user. 
+        //It is used when displaying information in profile page
         public async Task<ProfileViewModel> GetUserInfo(string id)
         {
             var user = await repo.GetByIdAsync<User>(id);
@@ -107,6 +121,8 @@ namespace PreparationForITExam.Core.Services
             return model;
         }
 
+        //This method assigns teacher role to certain user
+        //It is used by the administrator
         public async Task GiveRoleToTeacher(string id)
         {
             var user = await repo.All<User>()
@@ -117,6 +133,7 @@ namespace PreparationForITExam.Core.Services
             await repo.SaveChangesAsync();
         }
 
+        //This method checks if there is a user with certain email
         public async Task<bool> UserByEmailExists(string email)
         {
             var user = await repo.All<User>()
@@ -125,6 +142,7 @@ namespace PreparationForITExam.Core.Services
             return user != null;
         }
 
+        //This method returns the full name of user by the id
         public async Task<string> UserNameById(string id)
         {
             var user = await repo.GetByIdAsync<User>(id);

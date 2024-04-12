@@ -1,5 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using PreparationForITExam.Core.Contracts;
+using PreparationForITExam.Core.Exception;
 using PreparationForITExam.Core.Models.User;
 using PreparationForITExam.Infrastructure.Data.Common;
 using PreparationForITExam.Infrastructure.Data.Entities;
@@ -38,6 +39,11 @@ namespace PreparationForITExam.Core.Services
                 .Where(t => t.UserId == userId)
                 .FirstOrDefaultAsync();
 
+            if (student == null)
+            {
+                throw new NullReferenceException(GlobalExceptions.StudentDoesNotExistExceptionMessage);
+            }
+
             student.IsActive = false;
 
             await repo.SaveChangesAsync();
@@ -68,6 +74,11 @@ namespace PreparationForITExam.Core.Services
             var student = await repo.AllReadonly<Student>()
                  .Where(s => s.UserId == userId)
                  .FirstOrDefaultAsync();
+
+            if (student == null)
+            {
+                throw new NullReferenceException(GlobalExceptions.StudentDoesNotExistExceptionMessage);
+            }
 
             return student.Id;
         }

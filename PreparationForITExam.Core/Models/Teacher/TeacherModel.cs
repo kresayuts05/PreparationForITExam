@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 
 namespace PreparationForITExam.Core.Models.Teacher
 {
+    //This model is used for displaying teacher information in the admin area. 
     public class TeacherModel
     {
         public string UserId { get; set; }
@@ -27,6 +28,7 @@ namespace PreparationForITExam.Core.Models.Teacher
         public string CreatedOn { get; set; }
         
         public string? Subject { get; set; }
+
         public string? AboutMe { get; set; }
     }
 }

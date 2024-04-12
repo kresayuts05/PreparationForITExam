@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Newtonsoft.Json.Serialization;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
@@ -23,36 +24,45 @@ namespace PreparationForITExam.Infrastructure.Data.Entities
         [Key]
         public int Id { get; set; }
 
+        //Property for the title
         [Required]
         [MaxLength(TitleMaxLength)]
         public string Title { get; set; } = null!;
 
+        //Property for the schortDescription. It is displayed in the forum before seeing the full information about the post
         [Required]
         [MaxLength(ShortDescriptionMaxLength)]
         public string ShortDescription { get; set; } = null!;
 
+        //Property for long description. It is displayed when seeing the full info
         [Required]
         [MaxLength(DescriptionMaxLength)]
         public string Description { get; set; } = null!;
 
+        //Property for date od creation
         public DateTime PostedOn { get; set; }
 
+        //Property for status
         public bool IsActive { get; set; }
 
+        //Property for indication and filtration. True if it is a question and false if it is a post
         public bool IsItQuestion { get; set; }
 
+        //Property for userful links for documentation, files, anouther aplication and other
         public string? UsefulUrl { get; set; }
 
-        //[DefaultValue(0)]
-        //public int Likes { get; set; }
-
+        //Property for the creator. 
+        //One to many connection
         [ForeignKey(nameof(User))]
         public string UserId { get; set; }
         public User User { get; set; }
 
-        //public List<string> KeyWords { get; set; } = new List<string>();
-
+        //Property that is collection of all the comments bellow the post.
+        // Many to one connection
         public ICollection<Comment> Comments { get; set; } = new HashSet<Comment>();
+
+        //Property that is collection of all the images int the post.
+        // Many to one connection
         public ICollection<Image> Images { get; set; } = new HashSet<Image>();
     }
 }

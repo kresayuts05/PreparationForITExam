@@ -1,5 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using Microsoft.Win32.SafeHandles;
 using PreparationForITExam.Core.Contracts;
+using PreparationForITExam.Core.Exception;
 using PreparationForITExam.Core.Models.School;
 using PreparationForITExam.Infrastructure.Data.Common;
 using PreparationForITExam.Infrastructure.Data.Entities;
@@ -67,28 +69,5 @@ namespace PreparationForITExam.Core.Services
 
             return dic;
         }
-
-        public async Task<string> GetSchoolNameByUserId(string id)
-        {
-            //var user = await repo.GetByIdAsync<User>(id);
-            //string roleName = user.RoleName;
-
-            //string school = string.Empty;
-
-            //if (roleName == "Teacher")
-            //{
-                
-            //}
-            //else if(roleName == "Student")
-            //{
-                
-            //}
-            //else
-            //{
-
-            //}
-            throw new NotImplementedException();
-        }
-
     }
 }

@@ -15,17 +15,10 @@ namespace PreparationForITExam.Infrastructure.Data.Entities
         public Student()
         {
             this.IsActive = true;
-            this.Grade = 0;
         }
 
         [Key]
         public int Id { get; set; }
-
-        [MaxLength(SpecialtyMaxLength)]
-        public string? Speciality { get; set; } = null!;
-
-        [Range(GradeMinValue, GradeMaxValue)]
-        public int Grade { get; set; }
 
         public bool IsActive { get; set; }
 

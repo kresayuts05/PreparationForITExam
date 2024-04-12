@@ -9,6 +9,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PreparationForITExam.Core",
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PreparationForITExam.Infrastructure", "PreparationForITExam.Infrastructure\PreparationForITExam.Infrastructure.csproj", "{ADEA0556-94EF-4582-8880-21BB07A4564F}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PreparationForITExam.Tests", "PreparationForITExam.Tests\PreparationForITExam.Tests.csproj", "{DB2AB934-1332-4724-97F4-9C61F2517BE7}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -27,6 +29,10 @@ Global
 		{ADEA0556-94EF-4582-8880-21BB07A4564F}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{ADEA0556-94EF-4582-8880-21BB07A4564F}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{ADEA0556-94EF-4582-8880-21BB07A4564F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{DB2AB934-1332-4724-97F4-9C61F2517BE7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DB2AB934-1332-4724-97F4-9C61F2517BE7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DB2AB934-1332-4724-97F4-9C61F2517BE7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DB2AB934-1332-4724-97F4-9C61F2517BE7}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

@@ -15,5 +15,12 @@ namespace PreparationForITExam.Core.Exception
         public const string RequestDoesNotExistExceptionMessage = "Такова запитване не съществува!";
 
         public const string ConstructorDoesNotExistExceptionMessage = "Такъв строител не съществува!";
+
+        public const string UserDoesNotExistExceptionMessage = "Не съществува такъв потребител!";
+
+        public const string TeacherDoesNotExistExceptionMessage = "Не съществува такъв учител!";
+        public const string StudentDoesNotExistExceptionMessage = "Не съществува такъв ученик!";
+        public const string SchoolDoesNotExistExceptionMessage = "Не съществува такова училище!";
+        public const string PostDoesNotExistExceptionMessage = "Не съществува такъв пост!";
     }
 }

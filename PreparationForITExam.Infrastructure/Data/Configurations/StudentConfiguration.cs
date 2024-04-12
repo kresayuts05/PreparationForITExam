@@ -24,8 +24,6 @@ namespace PreparationForITExam.Infrastructure.Data.Configurations
             var student = new Student
             {
                 Id= 1,
-                Speciality = "Приложен програмист",
-                Grade = 12,
                 SchoolId = 152,
                 UserId = "023bafc9-8b7e-4fbd-bb06-2b178fe8ae8b"
             };

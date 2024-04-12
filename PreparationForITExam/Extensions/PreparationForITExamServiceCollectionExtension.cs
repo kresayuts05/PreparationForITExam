@@ -26,10 +26,6 @@ namespace Microsoft.Extensions.DependencyInjection
             services.AddScoped<ICommentService, CommentService>();
             services.AddScoped<IAnswerService, AnswerService>();
 
-
-            services.AddScoped<IChatService, ChatService>();
-            services.AddScoped<IMessageService, MessageService>();
-
             return services;
         }
     }

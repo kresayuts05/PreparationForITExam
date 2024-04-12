@@ -11,8 +11,12 @@ using static PreparationForITExam.Infrastructure.Data.Constants.ModelConstraints
 
 namespace PreparationForITExam.Infrastructure.Data.Entities
 {
+    //Entity that represents all teachers. It is created for users with role teacher. It contains additional information 
+    //specific for teachers
     public class Teacher
     {
+        //When instanced every teacher is with status waiting. It can be changed by the administrator.
+        //Property is active is set to true
         public Teacher()
         {
             this.IsActive = true;

@@ -12,6 +12,7 @@ using System.Threading.Tasks;
 
 namespace PreparationForITExam.Core.Services
 {
+    //This class contains all business logic for reviews.
     public class ReviewService: IReviewService
     {
         private readonly IRepository repo;
@@ -21,6 +22,7 @@ namespace PreparationForITExam.Core.Services
             repo = _repo;
         }
 
+        //This method created review. 
         public async Task AddReview(ReviewViewModel model)
         {
             var review = new Review()
@@ -34,6 +36,7 @@ namespace PreparationForITExam.Core.Services
             await repo.SaveChangesAsync();
         }
 
+        //This method returns list of review view model. It is used to display all reviews in the home page
         public async Task<List<ReviewViewModel>> GetAllReviews()
         {
             var model = await repo.AllReadonly<Review>()
