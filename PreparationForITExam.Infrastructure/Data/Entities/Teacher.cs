@@ -16,7 +16,7 @@ namespace PreparationForITExam.Infrastructure.Data.Entities
     public class Teacher
     {
         //When instanced every teacher is with status waiting. It can be changed by the administrator.
-        //Property is active is set to true
+        //Property is active is set to true 
         public Teacher()
         {
             this.IsActive = true;

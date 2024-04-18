@@ -74,8 +74,8 @@ namespace PreparationForITExam.Infrastructure.Data
                .HasKey(pk => new { pk.LessonId, pk.MonUserId });
 
 
-            if (seedDb)
-            {
+            //if (seedDb)
+            //{
                 builder.ApplyConfiguration(new RoleConfiguration());
                 builder.ApplyConfiguration(new UserConfiguration());
                 builder.ApplyConfiguration(new MonUserConfiguration());
@@ -91,7 +91,7 @@ namespace PreparationForITExam.Infrastructure.Data
                 builder.ApplyConfiguration(new NewsConfiguration());
                 builder.ApplyConfiguration(new PostConfiguration());
                 builder.ApplyConfiguration(new ImageConfiguration());
-            }
+            //}
 
             base.OnModelCreating(builder);
         }

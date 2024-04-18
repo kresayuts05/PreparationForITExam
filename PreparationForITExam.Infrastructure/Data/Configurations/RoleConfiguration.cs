@@ -34,7 +34,7 @@ namespace PreparationForITExam.Infrastructure.Data.Configurations
                 Id = "fe750b82-6fe9-472c-bdc5-61f5433d429e",
                 Name = "MonUser",
                 NormalizedName = "MONUSER"
-              },
+              },        
             });
         }
     }

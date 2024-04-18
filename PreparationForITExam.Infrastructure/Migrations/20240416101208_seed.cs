@@ -5,778 +5,30 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace PreparationForITExam.Infrastructure.Migrations
 {
-    public partial class init : Migration
+    public partial class seed : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
-            migrationBuilder.CreateTable(
-                name: "AspNetRoles",
-                columns: table => new
-                {
-                    Id = table.Column<string>(type: "nvarchar(450)", nullable: false),
-                    Name = table.Column<string>(type: "nvarchar(256)", maxLength: 256, nullable: true),
-                    NormalizedName = table.Column<string>(type: "nvarchar(256)", maxLength: 256, nullable: true),
-                    ConcurrencyStamp = table.Column<string>(type: "nvarchar(max)", nullable: true)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_AspNetRoles", x => x.Id);
-                });
-
-            migrationBuilder.CreateTable(
-                name: "AspNetUsers",
-                columns: table => new
-                {
-                    Id = table.Column<string>(type: "nvarchar(450)", nullable: false),
-                    FirstName = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: false),
-                    LastName = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: false),
-                    City = table.Column<string>(type: "nvarchar(169)", maxLength: 169, nullable: true),
-                    AboutMe = table.Column<string>(type: "nvarchar(700)", maxLength: 700, nullable: true),
-                    RoleName = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    ConnectionId = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    ProfilePictureUrl = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    IsActive = table.Column<bool>(type: "bit", nullable: false),
-                    UserName = table.Column<string>(type: "nvarchar(256)", maxLength: 256, nullable: false),
-                    NormalizedUserName = table.Column<string>(type: "nvarchar(256)", maxLength: 256, nullable: true),
-                    Email = table.Column<string>(type: "nvarchar(256)", maxLength: 256, nullable: false),
-                    NormalizedEmail = table.Column<string>(type: "nvarchar(256)", maxLength: 256, nullable: true),
-                    EmailConfirmed = table.Column<bool>(type: "bit", nullable: false),
-                    PasswordHash = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    SecurityStamp = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    ConcurrencyStamp = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    PhoneNumber = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    PhoneNumberConfirmed = table.Column<bool>(type: "bit", nullable: false),
-                    TwoFactorEnabled = table.Column<bool>(type: "bit", nullable: false),
-                    LockoutEnd = table.Column<DateTimeOffset>(type: "datetimeoffset", nullable: true),
-                    LockoutEnabled = table.Column<bool>(type: "bit", nullable: false),
-                    AccessFailedCount = table.Column<int>(type: "int", nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_AspNetUsers", x => x.Id);
-                });
-
-            migrationBuilder.CreateTable(
-                name: "ModuleOfCurricular",
-                columns: table => new
-                {
-                    Id = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    Title = table.Column<string>(type: "nvarchar(100)", maxLength: 100, nullable: false),
-                    IsActive = table.Column<bool>(type: "bit", nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_ModuleOfCurricular", x => x.Id);
-                });
-
-            migrationBuilder.CreateTable(
-                name: "Schools",
-                columns: table => new
-                {
-                    Id = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    Name = table.Column<string>(type: "nvarchar(250)", maxLength: 250, nullable: false),
-                    NormalizedName = table.Column<string>(type: "nvarchar(250)", maxLength: 250, nullable: false),
-                    City = table.Column<string>(type: "nvarchar(169)", maxLength: 169, nullable: false),
-                    IsActive = table.Column<bool>(type: "bit", nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_Schools", x => x.Id);
-                });
-
-            migrationBuilder.CreateTable(
-                name: "AspNetRoleClaims",
-                columns: table => new
-                {
-                    Id = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    RoleId = table.Column<string>(type: "nvarchar(450)", nullable: false),
-                    ClaimType = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    ClaimValue = table.Column<string>(type: "nvarchar(max)", nullable: true)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_AspNetRoleClaims", x => x.Id);
-                    table.ForeignKey(
-                        name: "FK_AspNetRoleClaims_AspNetRoles_RoleId",
-                        column: x => x.RoleId,
-                        principalTable: "AspNetRoles",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
-                });
-
-            migrationBuilder.CreateTable(
-                name: "AspNetUserClaims",
-                columns: table => new
-                {
-                    Id = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    UserId = table.Column<string>(type: "nvarchar(450)", nullable: false),
-                    ClaimType = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    ClaimValue = table.Column<string>(type: "nvarchar(max)", nullable: true)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_AspNetUserClaims", x => x.Id);
-                    table.ForeignKey(
-                        name: "FK_AspNetUserClaims_AspNetUsers_UserId",
-                        column: x => x.UserId,
-                        principalTable: "AspNetUsers",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
-                });
-
-            migrationBuilder.CreateTable(
-                name: "AspNetUserLogins",
-                columns: table => new
-                {
-                    LoginProvider = table.Column<string>(type: "nvarchar(128)", maxLength: 128, nullable: false),
-                    ProviderKey = table.Column<string>(type: "nvarchar(128)", maxLength: 128, nullable: false),
-                    ProviderDisplayName = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    UserId = table.Column<string>(type: "nvarchar(450)", nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_AspNetUserLogins", x => new { x.LoginProvider, x.ProviderKey });
-                    table.ForeignKey(
-                        name: "FK_AspNetUserLogins_AspNetUsers_UserId",
-                        column: x => x.UserId,
-                        principalTable: "AspNetUsers",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
-                });
-
-            migrationBuilder.CreateTable(
-                name: "AspNetUserRoles",
-                columns: table => new
-                {
-                    UserId = table.Column<string>(type: "nvarchar(450)", nullable: false),
-                    RoleId = table.Column<string>(type: "nvarchar(450)", nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_AspNetUserRoles", x => new { x.UserId, x.RoleId });
-                    table.ForeignKey(
-                        name: "FK_AspNetUserRoles_AspNetRoles_RoleId",
-                        column: x => x.RoleId,
-                        principalTable: "AspNetRoles",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
-                    table.ForeignKey(
-                        name: "FK_AspNetUserRoles_AspNetUsers_UserId",
-                        column: x => x.UserId,
-                        principalTable: "AspNetUsers",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
-                });
-
-            migrationBuilder.CreateTable(
-                name: "AspNetUserTokens",
-                columns: table => new
-                {
-                    UserId = table.Column<string>(type: "nvarchar(450)", nullable: false),
-                    LoginProvider = table.Column<string>(type: "nvarchar(128)", maxLength: 128, nullable: false),
-                    Name = table.Column<string>(type: "nvarchar(128)", maxLength: 128, nullable: false),
-                    Value = table.Column<string>(type: "nvarchar(max)", nullable: true)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_AspNetUserTokens", x => new { x.UserId, x.LoginProvider, x.Name });
-                    table.ForeignKey(
-                        name: "FK_AspNetUserTokens_AspNetUsers_UserId",
-                        column: x => x.UserId,
-                        principalTable: "AspNetUsers",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
-                });
-
-            migrationBuilder.CreateTable(
-                name: "Messages",
-                columns: table => new
-                {
-                    Id = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    SenderId = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    SenderName = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    ReceiverId = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    ReceiverName = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    MessageText = table.Column<string>(type: "nvarchar(300)", maxLength: 300, nullable: false),
-                    CreatedOn = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    UserId = table.Column<string>(type: "nvarchar(450)", nullable: true)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_Messages", x => x.Id);
-                    table.ForeignKey(
-                        name: "FK_Messages_AspNetUsers_UserId",
-                        column: x => x.UserId,
-                        principalTable: "AspNetUsers",
-                        principalColumn: "Id");
-                });
-
-            migrationBuilder.CreateTable(
-                name: "MonUsers",
-                columns: table => new
-                {
-                    Id = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    UserId = table.Column<string>(type: "nvarchar(450)", nullable: false),
-                    IsActive = table.Column<bool>(type: "bit", nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_MonUsers", x => x.Id);
-                    table.ForeignKey(
-                        name: "FK_MonUsers_AspNetUsers_UserId",
-                        column: x => x.UserId,
-                        principalTable: "AspNetUsers",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
-                });
-
-            migrationBuilder.CreateTable(
-                name: "Posts",
-                columns: table => new
-                {
-                    Id = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    Title = table.Column<string>(type: "nvarchar(60)", maxLength: 60, nullable: false),
-                    ShortDescription = table.Column<string>(type: "nvarchar(100)", maxLength: 100, nullable: false),
-                    Description = table.Column<string>(type: "nvarchar(3000)", maxLength: 3000, nullable: false),
-                    PostedOn = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    IsActive = table.Column<bool>(type: "bit", nullable: false),
-                    IsItQuestion = table.Column<bool>(type: "bit", nullable: false),
-                    UsefulUrl = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    UserId = table.Column<string>(type: "nvarchar(450)", nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_Posts", x => x.Id);
-                    table.ForeignKey(
-                        name: "FK_Posts_AspNetUsers_UserId",
-                        column: x => x.UserId,
-                        principalTable: "AspNetUsers",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
-                });
-
-            migrationBuilder.CreateTable(
-                name: "Reviews",
-                columns: table => new
-                {
-                    Id = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    Stars = table.Column<int>(type: "int", nullable: false),
-                    Description = table.Column<string>(type: "nvarchar(250)", maxLength: 250, nullable: false),
-                    IsActive = table.Column<bool>(type: "bit", nullable: false),
-                    UserId = table.Column<string>(type: "nvarchar(450)", nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_Reviews", x => x.Id);
-                    table.ForeignKey(
-                        name: "FK_Reviews_AspNetUsers_UserId",
-                        column: x => x.UserId,
-                        principalTable: "AspNetUsers",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
-                });
-
-            migrationBuilder.CreateTable(
-                name: "SectionsOfCurricular",
-                columns: table => new
-                {
-                    Id = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    Title = table.Column<string>(type: "nvarchar(100)", maxLength: 100, nullable: false),
-                    IsActive = table.Column<bool>(type: "bit", nullable: false),
-                    ModuleOfCurricularId = table.Column<int>(type: "int", nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_SectionsOfCurricular", x => x.Id);
-                    table.ForeignKey(
-                        name: "FK_SectionsOfCurricular_ModuleOfCurricular_ModuleOfCurricularId",
-                        column: x => x.ModuleOfCurricularId,
-                        principalTable: "ModuleOfCurricular",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
-                });
-
-            migrationBuilder.CreateTable(
-                name: "Students",
-                columns: table => new
-                {
-                    Id = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    Speciality = table.Column<string>(type: "nvarchar(40)", maxLength: 40, nullable: true),
-                    Grade = table.Column<int>(type: "int", nullable: false),
-                    IsActive = table.Column<bool>(type: "bit", nullable: false),
-                    UserId = table.Column<string>(type: "nvarchar(450)", nullable: false),
-                    SchoolId = table.Column<int>(type: "int", nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_Students", x => x.Id);
-                    table.ForeignKey(
-                        name: "FK_Students_AspNetUsers_UserId",
-                        column: x => x.UserId,
-                        principalTable: "AspNetUsers",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
-                    table.ForeignKey(
-                        name: "FK_Students_Schools_SchoolId",
-                        column: x => x.SchoolId,
-                        principalTable: "Schools",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
-                });
-
-            migrationBuilder.CreateTable(
-                name: "Teachers",
-                columns: table => new
-                {
-                    Id = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    Experience = table.Column<int>(type: "int", nullable: false),
-                    Subject = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: true),
-                    Status = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    IsActive = table.Column<bool>(type: "bit", nullable: false),
-                    UserId = table.Column<string>(type: "nvarchar(450)", nullable: false),
-                    SchoolId = table.Column<int>(type: "int", nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_Teachers", x => x.Id);
-                    table.ForeignKey(
-                        name: "FK_Teachers_AspNetUsers_UserId",
-                        column: x => x.UserId,
-                        principalTable: "AspNetUsers",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
-                    table.ForeignKey(
-                        name: "FK_Teachers_Schools_SchoolId",
-                        column: x => x.SchoolId,
-                        principalTable: "Schools",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
-                });
-
-            migrationBuilder.CreateTable(
-                name: "News",
-                columns: table => new
-                {
-                    Id = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    Title = table.Column<string>(type: "nvarchar(60)", maxLength: 60, nullable: false),
-                    Description = table.Column<string>(type: "nvarchar(3000)", maxLength: 3000, nullable: false),
-                    SeenByPeople = table.Column<int>(type: "int", nullable: false),
-                    PostedOn = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    IsActive = table.Column<bool>(type: "bit", nullable: false),
-                    MonId = table.Column<int>(type: "int", nullable: false),
-                    UsefulUrls = table.Column<string>(type: "nvarchar(max)", nullable: true)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_News", x => x.Id);
-                    table.ForeignKey(
-                        name: "FK_News_MonUsers_MonId",
-                        column: x => x.MonId,
-                        principalTable: "MonUsers",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
-                });
-
-            migrationBuilder.CreateTable(
-                name: "Comments",
-                columns: table => new
-                {
-                    Id = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    Content = table.Column<string>(type: "nvarchar(1000)", maxLength: 1000, nullable: false),
-                    IsActive = table.Column<bool>(type: "bit", nullable: false),
-                    UserId = table.Column<string>(type: "nvarchar(450)", nullable: false),
-                    PostId = table.Column<int>(type: "int", nullable: false),
-                    CreatedOn = table.Column<DateTime>(type: "datetime2", nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_Comments", x => x.Id);
-                    table.ForeignKey(
-                        name: "FK_Comments_AspNetUsers_UserId",
-                        column: x => x.UserId,
-                        principalTable: "AspNetUsers",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
-                    table.ForeignKey(
-                        name: "FK_Comments_Posts_PostId",
-                        column: x => x.PostId,
-                        principalTable: "Posts",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Restrict);
-                });
-
-            migrationBuilder.CreateTable(
-                name: "Exercises",
-                columns: table => new
-                {
-                    Id = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    Title = table.Column<string>(type: "nvarchar(60)", maxLength: 60, nullable: false),
-                    Content = table.Column<string>(type: "nvarchar(4000)", maxLength: 4000, nullable: false),
-                    IsActive = table.Column<bool>(type: "bit", nullable: false),
-                    SectionOfCurricularId = table.Column<int>(type: "int", nullable: false),
-                    TeacherId = table.Column<int>(type: "int", nullable: true)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_Exercises", x => x.Id);
-                    table.ForeignKey(
-                        name: "FK_Exercises_SectionsOfCurricular_SectionOfCurricularId",
-                        column: x => x.SectionOfCurricularId,
-                        principalTable: "SectionsOfCurricular",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
-                    table.ForeignKey(
-                        name: "FK_Exercises_Teachers_TeacherId",
-                        column: x => x.TeacherId,
-                        principalTable: "Teachers",
-                        principalColumn: "Id");
-                });
-
-            migrationBuilder.CreateTable(
-                name: "Images",
-                columns: table => new
-                {
-                    Id = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    UrlPath = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    IsActive = table.Column<bool>(type: "bit", nullable: false),
-                    PostId = table.Column<int>(type: "int", nullable: false),
-                    NewsId = table.Column<int>(type: "int", nullable: true)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_Images", x => x.Id);
-                    table.ForeignKey(
-                        name: "FK_Images_News_NewsId",
-                        column: x => x.NewsId,
-                        principalTable: "News",
-                        principalColumn: "Id");
-                    table.ForeignKey(
-                        name: "FK_Images_Posts_PostId",
-                        column: x => x.PostId,
-                        principalTable: "Posts",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
-                });
-
-            migrationBuilder.CreateTable(
-                name: "ImageComment",
-                columns: table => new
-                {
-                    Id = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    UrlPath = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    IsActive = table.Column<bool>(type: "bit", nullable: false),
-                    CommentId = table.Column<int>(type: "int", nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_ImageComment", x => x.Id);
-                    table.ForeignKey(
-                        name: "FK_ImageComment_Comments_CommentId",
-                        column: x => x.CommentId,
-                        principalTable: "Comments",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
-                });
-
-            migrationBuilder.CreateTable(
-                name: "ExerciseMaterials",
-                columns: table => new
-                {
-                    Id = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    Name = table.Column<string>(type: "nvarchar(300)", maxLength: 300, nullable: true),
-                    UrlPath = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    FileFormat = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    IsActive = table.Column<bool>(type: "bit", nullable: false),
-                    IsStudentMaterial = table.Column<bool>(type: "bit", nullable: false),
-                    UserId = table.Column<string>(type: "nvarchar(450)", nullable: false),
-                    ExerciseId = table.Column<int>(type: "int", nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_ExerciseMaterials", x => x.Id);
-                    table.ForeignKey(
-                        name: "FK_ExerciseMaterials_AspNetUsers_UserId",
-                        column: x => x.UserId,
-                        principalTable: "AspNetUsers",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
-                    table.ForeignKey(
-                        name: "FK_ExerciseMaterials_Exercises_ExerciseId",
-                        column: x => x.ExerciseId,
-                        principalTable: "Exercises",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Restrict);
-                });
-
-            migrationBuilder.CreateTable(
-                name: "ExerciseStudent",
-                columns: table => new
-                {
-                    FinishedExercisesId = table.Column<int>(type: "int", nullable: false),
-                    StudentsId = table.Column<int>(type: "int", nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_ExerciseStudent", x => new { x.FinishedExercisesId, x.StudentsId });
-                    table.ForeignKey(
-                        name: "FK_ExerciseStudent_Exercises_FinishedExercisesId",
-                        column: x => x.FinishedExercisesId,
-                        principalTable: "Exercises",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
-                    table.ForeignKey(
-                        name: "FK_ExerciseStudent_Students_StudentsId",
-                        column: x => x.StudentsId,
-                        principalTable: "Students",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
-                });
-
-            migrationBuilder.CreateTable(
-                name: "Lessons",
-                columns: table => new
-                {
-                    Id = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    Title = table.Column<string>(type: "nvarchar(60)", maxLength: 60, nullable: false),
-                    SectionOfCurricularId = table.Column<int>(type: "int", nullable: false),
-                    Content = table.Column<string>(type: "nvarchar(4000)", maxLength: 4000, nullable: false),
-                    IsActive = table.Column<bool>(type: "bit", nullable: false),
-                    ExerciseId = table.Column<int>(type: "int", nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_Lessons", x => x.Id);
-                    table.ForeignKey(
-                        name: "FK_Lessons_Exercises_ExerciseId",
-                        column: x => x.ExerciseId,
-                        principalTable: "Exercises",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Restrict);
-                    table.ForeignKey(
-                        name: "FK_Lessons_SectionsOfCurricular_SectionOfCurricularId",
-                        column: x => x.SectionOfCurricularId,
-                        principalTable: "SectionsOfCurricular",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
-                });
-
-            migrationBuilder.CreateTable(
-                name: "Answers",
-                columns: table => new
-                {
-                    Id = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    Name = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    UrlPath = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    FileFormat = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    IsActive = table.Column<bool>(type: "bit", nullable: false),
-                    IsStudentMaterial = table.Column<bool>(type: "bit", nullable: false),
-                    UserId = table.Column<string>(type: "nvarchar(450)", nullable: false),
-                    ExerciseMaterialId = table.Column<int>(type: "int", nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_Answers", x => x.Id);
-                    table.ForeignKey(
-                        name: "FK_Answers_AspNetUsers_UserId",
-                        column: x => x.UserId,
-                        principalTable: "AspNetUsers",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
-                    table.ForeignKey(
-                        name: "FK_Answers_ExerciseMaterials_ExerciseMaterialId",
-                        column: x => x.ExerciseMaterialId,
-                        principalTable: "ExerciseMaterials",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Restrict);
-                });
-
-            migrationBuilder.CreateTable(
-                name: "LessonMonUser",
-                columns: table => new
-                {
-                    LessonId = table.Column<int>(type: "int", nullable: false),
-                    MonUserId = table.Column<int>(type: "int", nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_LessonMonUser", x => new { x.LessonId, x.MonUserId });
-                    table.ForeignKey(
-                        name: "FK_LessonMonUser_Lessons_LessonId",
-                        column: x => x.LessonId,
-                        principalTable: "Lessons",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
-                    table.ForeignKey(
-                        name: "FK_LessonMonUser_MonUsers_MonUserId",
-                        column: x => x.MonUserId,
-                        principalTable: "MonUsers",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
-                });
-
-            migrationBuilder.CreateTable(
-                name: "LessonTeacher",
-                columns: table => new
-                {
-                    LessonsId = table.Column<int>(type: "int", nullable: false),
-                    TeachersId = table.Column<int>(type: "int", nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_LessonTeacher", x => new { x.LessonsId, x.TeachersId });
-                    table.ForeignKey(
-                        name: "FK_LessonTeacher_Lessons_LessonsId",
-                        column: x => x.LessonsId,
-                        principalTable: "Lessons",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
-                    table.ForeignKey(
-                        name: "FK_LessonTeacher_Teachers_TeachersId",
-                        column: x => x.TeachersId,
-                        principalTable: "Teachers",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
-                });
-
-            migrationBuilder.CreateTable(
-                name: "RequestsExercises",
-                columns: table => new
-                {
-                    Id = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    TeacherId = table.Column<int>(type: "int", nullable: false),
-                    ExerciseId = table.Column<int>(type: "int", nullable: false),
-                    ChangedContent = table.Column<string>(type: "nvarchar(4000)", maxLength: 4000, nullable: false),
-                    Suggestion = table.Column<string>(type: "nvarchar(4000)", maxLength: 4000, nullable: false),
-                    IsActive = table.Column<bool>(type: "bit", nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_RequestsExercises", x => x.Id);
-                    table.ForeignKey(
-                        name: "FK_RequestsExercises_Lessons_ExerciseId",
-                        column: x => x.ExerciseId,
-                        principalTable: "Lessons",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
-                    table.ForeignKey(
-                        name: "FK_RequestsExercises_Teachers_TeacherId",
-                        column: x => x.TeacherId,
-                        principalTable: "Teachers",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
-                });
-
-            migrationBuilder.CreateTable(
-                name: "RequestsLessons",
-                columns: table => new
-                {
-                    Id = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    TeacherId = table.Column<int>(type: "int", nullable: false),
-                    LessonId = table.Column<int>(type: "int", nullable: false),
-                    ChangedContent = table.Column<string>(type: "nvarchar(4000)", maxLength: 4000, nullable: false),
-                    Suggestion = table.Column<string>(type: "nvarchar(4000)", maxLength: 4000, nullable: false),
-                    IsActive = table.Column<bool>(type: "bit", nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_RequestsLessons", x => x.Id);
-                    table.ForeignKey(
-                        name: "FK_RequestsLessons_Lessons_LessonId",
-                        column: x => x.LessonId,
-                        principalTable: "Lessons",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
-                    table.ForeignKey(
-                        name: "FK_RequestsLessons_Teachers_TeacherId",
-                        column: x => x.TeacherId,
-                        principalTable: "Teachers",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
-                });
-
-            migrationBuilder.CreateTable(
-                name: "LessonMaterials",
-                columns: table => new
-                {
-                    Id = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    Name = table.Column<string>(type: "nvarchar(300)", maxLength: 300, nullable: true),
-                    UrlPath = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    FileFormat = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    IsActive = table.Column<bool>(type: "bit", nullable: false),
-                    UserId = table.Column<string>(type: "nvarchar(450)", nullable: false),
-                    LessonId = table.Column<int>(type: "int", nullable: false),
-                    RequestExerciseId = table.Column<int>(type: "int", nullable: true),
-                    RequestLessonId = table.Column<int>(type: "int", nullable: true)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_LessonMaterials", x => x.Id);
-                    table.ForeignKey(
-                        name: "FK_LessonMaterials_AspNetUsers_UserId",
-                        column: x => x.UserId,
-                        principalTable: "AspNetUsers",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
-                    table.ForeignKey(
-                        name: "FK_LessonMaterials_Lessons_LessonId",
-                        column: x => x.LessonId,
-                        principalTable: "Lessons",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
-                    table.ForeignKey(
-                        name: "FK_LessonMaterials_RequestsExercises_RequestExerciseId",
-                        column: x => x.RequestExerciseId,
-                        principalTable: "RequestsExercises",
-                        principalColumn: "Id");
-                    table.ForeignKey(
-                        name: "FK_LessonMaterials_RequestsLessons_RequestLessonId",
-                        column: x => x.RequestLessonId,
-                        principalTable: "RequestsLessons",
-                        principalColumn: "Id");
-                });
-
             migrationBuilder.InsertData(
                 table: "AspNetRoles",
                 columns: new[] { "Id", "ConcurrencyStamp", "Name", "NormalizedName" },
                 values: new object[,]
                 {
-                    { "0f761db2-ab55-416c-83b9-70abded3d908", "7cdad413-e3d0-47fd-abbb-3c36c2e60552", "Administrator", "ADMINISTRATOR" },
-                    { "71281cf3-9730-4d7e-acbb-213edee8291c", "dca24438-ea26-4708-862a-6b83f816c494", "Teacher", "TEACHER" },
-                    { "e66d730b-bcf1-41b5-b7e0-3e66056e61d9", "6e972977-3ded-46f8-9163-d55cf686190f", "Student", "STUDENT" },
-                    { "fe750b82-6fe9-472c-bdc5-61f5433d429e", "4e84fa3c-b828-49c1-b269-56fe96644298", "MonUser", "MONUSER" }
+                    { "0f761db2-ab55-416c-83b9-70abded3d908", "466c5f3a-1a01-43ee-ab74-9565c1c02170", "Administrator", "ADMINISTRATOR" },
+                    { "71281cf3-9730-4d7e-acbb-213edee8291c", "4a89723a-cf6b-4180-a7e1-d541d88969d3", "Teacher", "TEACHER" },
+                    { "e66d730b-bcf1-41b5-b7e0-3e66056e61d9", "a3fda70d-8084-429b-9795-615a83186a80", "Student", "STUDENT" },
+                    { "fe750b82-6fe9-472c-bdc5-61f5433d429e", "22b337a1-1fac-4eda-a232-545c4c36f830", "MonUser", "MONUSER" }
                 });
 
             migrationBuilder.InsertData(
                 table: "AspNetUsers",
-                columns: new[] { "Id", "AboutMe", "AccessFailedCount", "City", "ConcurrencyStamp", "ConnectionId", "Email", "EmailConfirmed", "FirstName", "IsActive", "LastName", "LockoutEnabled", "LockoutEnd", "NormalizedEmail", "NormalizedUserName", "PasswordHash", "PhoneNumber", "PhoneNumberConfirmed", "ProfilePictureUrl", "RoleName", "SecurityStamp", "TwoFactorEnabled", "UserName" },
+                columns: new[] { "Id", "AboutMe", "AccessFailedCount", "City", "ConcurrencyStamp", "CreatedOn", "Email", "EmailConfirmed", "FirstName", "IsActive", "LastName", "LockoutEnabled", "LockoutEnd", "NormalizedEmail", "NormalizedUserName", "PasswordHash", "PhoneNumber", "PhoneNumberConfirmed", "ProfilePictureUrl", "RoleName", "SecurityStamp", "TwoFactorEnabled", "UserName" },
                 values: new object[,]
                 {
-                    { "023bafc9-8b7e-4fbd-bb06-2b178fe8ae8b", "Занимавам се с програмиране от 3 години. Интересувам се от кибер сигурност, а именно и това искам да уча след като завърша.", 0, "Миделбург", "2411c8ae-c311-4f72-a9b6-64e8e0d6adc7", null, "student@gmail.com", false, "Никол", true, "Груева", false, null, "STUDENT@GMAIL.COM", "STUDENT@GMAIL.COM", "AQAAAAEAACcQAAAAEMW0QcbeVS+ZECK6f9C4byw9oM1Hqhk1/B9sKVpBnk3ajImG1cMI2dvIlv2VlKIl/g==", "0886121262", false, "https://res.cloudinary.com/dmv8nabul/image/upload/v1707334404/nikol_prlrcl.jpg", "Student", "fe402235-851a-48c8-ae1f-2c904fbe323b", false, "student@gmail.com" },
-                    { "789061a9-edaa-4a00-9e09-add6a20c8288", "Разработвам това приложение, за да участвам в олимпиада по информационни технологии. Темата си избрах след първата матура по Информатика. Моите учители и приятели, които се явиха на това ДЗИ, имаха проблем с намирането на полезни материали и информация за самата матура. Това приложение се надявам, че би олеснило подготовката, защото хора с еднакви интереси и задачи могат да комуникират и обменят знания. Също така, учители могат да предадат знанията си на ученици, които наистина имат желание да се научат и полагат усилия.", 0, "Казанлък", "357434fe-e6e0-4235-b384-a093c03bf853", null, "admin@gmail.com", false, "Креса", true, "Цветкова", false, null, "ADMIN@GMAIL.COM", "ADMIN@GMAIL.COM", "AQAAAAEAACcQAAAAEGNzMkJXTDeb+Cnc6MDBqNmyLU/o7g2EFx8a5NSCYYkF1KgHODIbGn4Z2uWO3K3pZA==", "0886121260", false, "https://res.cloudinary.com/dmv8nabul/image/upload/v1707334401/kresa_bkbaoa.jpg", "Administrator", "f9274997-8de7-42d4-b029-b5969651685d", false, "admin@gmail.com" },
-                    { "7decfb7d-d2df-40a2-a449-dcec04eb091a", "Работя в МОН от 5 години. Преподавам по Информатика в частна школа. Програмирането е моята страст. Обичам фо повече от приятелката ми.", 0, "Кърджали", "cd52e2bd-ee9d-4a7b-be04-bf297c1d6181", null, "monuser@gmail.com", false, "Валентин", true, "Терзиев", false, null, "MONUSER@GMAIL.COM", "MONUSER@GMAIL.COM", "AQAAAAEAACcQAAAAEP8IpJeI/H+6j3sz4iDkUkO9O1igmHTx1IBGvqxD3vC0t8tdORqHa6JdEKZBt9JyOQ==", "0886121261", false, "https://res.cloudinary.com/dmv8nabul/image/upload/v1707334408/valentin_u5en92.jpg", "MonUser", "8e0aab12-ab7e-43d1-9c24-007237cd9499", false, "monuser@gmail.com" },
-                    { "9c7f55cd-f0ae-405e-b520-6e1ccc448fcc", "Учителка съм от 12 години. Избрах тази професия, защото работата с деца е моята страст. В работата си опитвам да предам знанията си колкото повече мога. Мой интерес е работата с ASP.NET.", 0, "София", "b6917bbc-ffdf-40e5-9ec4-b2944c1b3160", null, "teacher@gmail.com", false, "Ивета", true, "Найденова", false, null, "TEACHER@GMAIL.COM", "TEACHER@GMAIL.COM", "AQAAAAEAACcQAAAAEHdX9WBN5OBl0jeD3qgtn320JhToQYTn2H3pM6vhLMP7OCxkzo1RrmrKwDDXbkJFNA==", "0886121262", false, "https://res.cloudinary.com/dmv8nabul/image/upload/v1707334395/iveta_rknyn3.jpg", "Teacher", "b9a997dc-111d-4c21-b4e0-5fa7bcc12590", false, "teacher@gmail.com" }
+                    { "023bafc9-8b7e-4fbd-bb06-2b178fe8ae8b", "Занимавам се с програмиране от 3 години. Интересувам се от кибер сигурност, а именно и това искам да уча след като завърша.", 0, "Миделбург", "f800b3c8-e250-45f1-9b34-3b72b4e50c9a", new DateTime(2024, 4, 16, 10, 12, 7, 617, DateTimeKind.Utc).AddTicks(4209), "student@gmail.com", false, "Никол", true, "Груева", false, null, "STUDENT@GMAIL.COM", "STUDENT@GMAIL.COM", "AQAAAAEAACcQAAAAEKpDqhE9Cq9hP+bobHP2vwU8RmXglRKMMwcgnHaxm02dD3bPJDRoujDeXTSrwHAHnA==", "0886121262", false, "https://res.cloudinary.com/dmv8nabul/image/upload/v1707334404/nikol_prlrcl.jpg", "Student", "f57396dd-d904-46cf-a8f8-ef552ff638c7", false, "student@gmail.com" },
+                    { "789061a9-edaa-4a00-9e09-add6a20c8288", "Разработвам това приложение, за да участвам в олимпиада по информационни технологии. Темата си избрах след първата матура по Информатика. Моите учители и приятели, които се явиха на това ДЗИ, имаха проблем с намирането на полезни материали и информация за самата матура. Това приложение се надявам, че би олеснило подготовката, защото хора с еднакви интереси и задачи могат да комуникират и обменят знания. Също така, учители могат да предадат знанията си на ученици, които наистина имат желание да се научат и полагат усилия.", 0, "Казанлък", "0c7ddd6c-3f17-435b-a5fb-7773903c9dc2", new DateTime(2024, 4, 16, 10, 12, 7, 615, DateTimeKind.Utc).AddTicks(196), "admin@gmail.com", false, "Креса", true, "Цветкова", false, null, "ADMIN@GMAIL.COM", "ADMIN@GMAIL.COM", "AQAAAAEAACcQAAAAEOZCddvZmfTQkHrc0AXJz4IuTzFv+5ZSMyhjFG7uYR+9qAeHZQuVGLLGiOFNA/68CA==", "0886121260", false, "https://res.cloudinary.com/dmv8nabul/image/upload/v1707334401/kresa_bkbaoa.jpg", "Administrator", "a937e8c0-30cf-4af8-8f4f-421883d93a79", false, "admin@gmail.com" },
+                    { "7decfb7d-d2df-40a2-a449-dcec04eb091a", "Работя в МОН от 5 години. Преподавам по Информатика в частна школа. Програмирането е моята страст. Обичам фо повече от приятелката ми.", 0, "Кърджали", "c71dc72a-5112-4fb7-b00c-d807dbfdd32a", new DateTime(2024, 4, 16, 10, 12, 7, 616, DateTimeKind.Utc).AddTicks(1826), "monuser@gmail.com", false, "Валентин", true, "Терзиев", false, null, "MONUSER@GMAIL.COM", "MONUSER@GMAIL.COM", "AQAAAAEAACcQAAAAEHpymRgZnkRFn36J+putBBP/Z0AmDU9Cyqf9DnqKkJz5zw/FfwBWgh85wDq0A3v/pw==", "0886121261", false, "https://res.cloudinary.com/dmv8nabul/image/upload/v1707334408/valentin_u5en92.jpg", "MonUser", "0c9efb68-360a-44f3-8d23-8963df6fad86", false, "monuser@gmail.com" },
+                    { "9c7f55cd-f0ae-405e-b520-6e1ccc448fcc", "Учителка съм от 12 години. Избрах тази професия, защото работата с деца е моята страст. В работата си опитвам да предам знанията си колкото повече мога. Мой интерес е работата с ASP.NET.", 0, "София", "ced65bdf-0629-4c82-b4ae-22dc4f0d07e2", new DateTime(2024, 4, 16, 10, 12, 7, 619, DateTimeKind.Utc).AddTicks(4816), "teacher@gmail.com", false, "Ивета", true, "Найденова", false, null, "TEACHER@GMAIL.COM", "TEACHER@GMAIL.COM", "AQAAAAEAACcQAAAAEGHuGkjQQ558GryMQ87OwpXKv23xKGPTkejFcrTGHQIx8GAWZpLiki6lWevzpBDveg==", "0886121262", false, "https://res.cloudinary.com/dmv8nabul/image/upload/v1707334395/iveta_rknyn3.jpg", "Teacher", "0506c6bc-ded2-4c02-b3a1-1001a9a53026", false, "teacher@gmail.com" }
                 });
 
             migrationBuilder.InsertData(
@@ -1582,24 +834,24 @@ namespace PreparationForITExam.Infrastructure.Migrations
                 columns: new[] { "Id", "Description", "IsActive", "IsItQuestion", "PostedOn", "ShortDescription", "Title", "UsefulUrl", "UserId" },
                 values: new object[,]
                 {
-                    { 2, "Имах затруднения да разбера Git технологията, но с помощта на тази игра бързо осъвършенствах функциите и начина на използване.", true, false, new DateTime(2024, 2, 26, 9, 40, 39, 71, DateTimeKind.Local).AddTicks(9750), "Попаднах на страхотна игра, която ти помага да научиш Git", "Git игра", "https://learngitbranching.js.org/?locale=en_US", "023bafc9-8b7e-4fbd-bb06-2b178fe8ae8b" },
-                    { 3, "Имах затруднения да разбера Git технологията, но с помощта на тази игра бързо осъвършенствах функциите и начина на използване.", true, false, new DateTime(2024, 2, 26, 9, 40, 39, 71, DateTimeKind.Local).AddTicks(9756), "Попаднах на страхотна игра, която ти помага да научиш Git", "Git игра", "https://learngitbranching.js.org/?locale=en_US", "023bafc9-8b7e-4fbd-bb06-2b178fe8ae8b" },
-                    { 4, "Имах затруднения да разбера Git технологията, но с помощта на тази игра бързо осъвършенствах функциите и начина на използване.", true, false, new DateTime(2024, 2, 26, 9, 40, 39, 71, DateTimeKind.Local).AddTicks(9760), "Попаднах на страхотна игра, която ти помага да научиш Git", "Git игра", "https://learngitbranching.js.org/?locale=en_US", "023bafc9-8b7e-4fbd-bb06-2b178fe8ae8b" },
-                    { 5, "Имах затруднения да разбера Git технологията, но с помощта на тази игра бързо осъвършенствах функциите и начина на използване.", true, false, new DateTime(2024, 2, 26, 9, 40, 39, 71, DateTimeKind.Local).AddTicks(9764), "Попаднах на страхотна игра, която ти помага да научиш Git", "Git игра", "https://learngitbranching.js.org/?locale=en_US", "023bafc9-8b7e-4fbd-bb06-2b178fe8ae8b" },
-                    { 6, "Имах затруднения да разбера Git технологията, но с помощта на тази игра бързо осъвършенствах функциите и начина на използване.", true, false, new DateTime(2024, 2, 26, 9, 40, 39, 71, DateTimeKind.Local).AddTicks(9768), "Попаднах на страхотна игра, която ти помага да научиш Git", "Git игра", "https://learngitbranching.js.org/?locale=en_US", "023bafc9-8b7e-4fbd-bb06-2b178fe8ae8b" },
-                    { 7, "Имах затруднения да разбера Git технологията, но с помощта на тази игра бързо осъвършенствах функциите и начина на използване.", true, false, new DateTime(2024, 2, 26, 9, 40, 39, 71, DateTimeKind.Local).AddTicks(9775), "Попаднах на страхотна игра, която ти помага да научиш Git", "Git игра", "https://learngitbranching.js.org/?locale=en_US", "023bafc9-8b7e-4fbd-bb06-2b178fe8ae8b" },
-                    { 8, "Имах затруднения да разбера Git технологията, но с помощта на тази игра бързо осъвършенствах функциите и начина на използване.", true, false, new DateTime(2024, 2, 26, 9, 40, 39, 71, DateTimeKind.Local).AddTicks(9778), "Попаднах на страхотна игра, която ти помага да научиш Git", "Git игра", "https://learngitbranching.js.org/?locale=en_US", "023bafc9-8b7e-4fbd-bb06-2b178fe8ae8b" },
-                    { 9, "Имах затруднения да разбера Git технологията, но с помощта на тази игра бързо осъвършенствах функциите и начина на използване.", true, false, new DateTime(2024, 2, 26, 9, 40, 39, 71, DateTimeKind.Local).AddTicks(9783), "Попаднах на страхотна игра, която ти помага да научиш Git", "Git игра", "https://learngitbranching.js.org/?locale=en_US", "9c7f55cd-f0ae-405e-b520-6e1ccc448fcc" },
-                    { 10, "Имах затруднения да разбера Git технологията, но с помощта на тази игра бързо осъвършенствах функциите и начина на използване.", true, false, new DateTime(2024, 2, 26, 9, 40, 39, 71, DateTimeKind.Local).AddTicks(9787), "Попаднах на страхотна игра, която ти помага да научиш Git", "Git игра", "https://learngitbranching.js.org/?locale=en_US", "023bafc9-8b7e-4fbd-bb06-2b178fe8ae8b" },
-                    { 11, "Имах затруднения да разбера Git технологията, но с помощта на тази игра бързо осъвършенствах функциите и начина на използване.", true, false, new DateTime(2024, 2, 26, 9, 40, 39, 71, DateTimeKind.Local).AddTicks(9791), "Попаднах на страхотна игра, която ти помага да научиш Git", "Git игра", "https://learngitbranching.js.org/?locale=en_US", "023bafc9-8b7e-4fbd-bb06-2b178fe8ae8b" },
-                    { 12, "Имах затруднения да разбера Git технологията, но с помощта на тази игра бързо осъвършенствах функциите и начина на използване.", true, false, new DateTime(2024, 2, 26, 9, 40, 39, 71, DateTimeKind.Local).AddTicks(9795), "Попаднах на страхотна игра, която ти помага да научиш Git", "Git игра", "https://learngitbranching.js.org/?locale=en_US", "9c7f55cd-f0ae-405e-b520-6e1ccc448fcc" },
-                    { 13, "Имах затруднения да разбера Git технологията, но с помощта на тази игра бързо осъвършенствах функциите и начина на използване.", true, false, new DateTime(2024, 2, 26, 9, 40, 39, 71, DateTimeKind.Local).AddTicks(9799), "Попаднах на страхотна игра, която ти помага да научиш Git", "Git игра", "https://learngitbranching.js.org/?locale=en_US", "023bafc9-8b7e-4fbd-bb06-2b178fe8ae8b" },
-                    { 14, "Имах затруднения да разбера Git технологията, но с помощта на тази игра бързо осъвършенствах функциите и начина на използване.", true, false, new DateTime(2024, 2, 26, 9, 40, 39, 71, DateTimeKind.Local).AddTicks(9803), "Попаднах на страхотна игра, която ти помага да научиш Git", "Git игра", "https://learngitbranching.js.org/?locale=en_US", "023bafc9-8b7e-4fbd-bb06-2b178fe8ae8b" },
-                    { 15, "Имах затруднения да разбера Git технологията, но с помощта на тази игра бързо осъвършенствах функциите и начина на използване.", true, false, new DateTime(2024, 2, 26, 9, 40, 39, 71, DateTimeKind.Local).AddTicks(9807), "Попаднах на страхотна игра, която ти помага да научиш Git", "Git игра", "https://learngitbranching.js.org/?locale=en_US", "023bafc9-8b7e-4fbd-bb06-2b178fe8ae8b" },
-                    { 16, "Имах затруднения да разбера Git технологията, но с помощта на тази игра бързо осъвършенствах функциите и начина на използване.", true, false, new DateTime(2024, 2, 26, 9, 40, 39, 71, DateTimeKind.Local).AddTicks(9810), "Попаднах на страхотна игра, която ти помага да научиш Git", "Git игра", "https://learngitbranching.js.org/?locale=en_US", "023bafc9-8b7e-4fbd-bb06-2b178fe8ae8b" },
-                    { 17, "Имах затруднения да разбера Git технологията, но с помощта на тази игра бързо осъвършенствах функциите и начина на използване.", true, false, new DateTime(2024, 2, 26, 9, 40, 39, 71, DateTimeKind.Local).AddTicks(9814), "Попаднах на страхотна игра, която ти помага да научиш Git", "Git игра", "https://learngitbranching.js.org/?locale=en_US", "9c7f55cd-f0ae-405e-b520-6e1ccc448fcc" },
-                    { 18, "Имах затруднения да разбера Git технологията, но с помощта на тази игра бързо осъвършенствах функциите и начина на използване.", true, false, new DateTime(2024, 2, 26, 9, 40, 39, 71, DateTimeKind.Local).AddTicks(9818), "Попаднах на страхотна игра, която ти помага да научиш Git", "Git игра", "https://learngitbranching.js.org/?locale=en_US", "023bafc9-8b7e-4fbd-bb06-2b178fe8ae8b" },
-                    { 19, "Имах затруднения да разбера Git технологията, но с помощта на тази игра бързо осъвършенствах функциите и начина на използване.", true, false, new DateTime(2024, 2, 26, 9, 40, 39, 71, DateTimeKind.Local).AddTicks(9823), "Попаднах на страхотна игра, която ти помага да научиш Git", "Git игра", "https://learngitbranching.js.org/?locale=en_US", "9c7f55cd-f0ae-405e-b520-6e1ccc448fcc" }
+                    { 2, "Имах затруднения да разбера Git технологията, но с помощта на тази игра бързо осъвършенствах функциите и начина на използване.", true, false, new DateTime(2024, 4, 16, 13, 12, 7, 621, DateTimeKind.Local).AddTicks(6149), "Попаднах на страхотна игра, която ти помага да научиш Git", "Git игра", "https://learngitbranching.js.org/?locale=en_US", "023bafc9-8b7e-4fbd-bb06-2b178fe8ae8b" },
+                    { 3, "Имах затруднения да разбера Git технологията, но с помощта на тази игра бързо осъвършенствах функциите и начина на използване.", true, false, new DateTime(2024, 4, 16, 13, 12, 7, 621, DateTimeKind.Local).AddTicks(6155), "Попаднах на страхотна игра, която ти помага да научиш Git", "Git игра", "https://learngitbranching.js.org/?locale=en_US", "023bafc9-8b7e-4fbd-bb06-2b178fe8ae8b" },
+                    { 4, "Имах затруднения да разбера Git технологията, но с помощта на тази игра бързо осъвършенствах функциите и начина на използване.", true, false, new DateTime(2024, 4, 16, 13, 12, 7, 621, DateTimeKind.Local).AddTicks(6159), "Попаднах на страхотна игра, която ти помага да научиш Git", "Git игра", "https://learngitbranching.js.org/?locale=en_US", "023bafc9-8b7e-4fbd-bb06-2b178fe8ae8b" },
+                    { 5, "Имах затруднения да разбера Git технологията, но с помощта на тази игра бързо осъвършенствах функциите и начина на използване.", true, false, new DateTime(2024, 4, 16, 13, 12, 7, 621, DateTimeKind.Local).AddTicks(6163), "Попаднах на страхотна игра, която ти помага да научиш Git", "Git игра", "https://learngitbranching.js.org/?locale=en_US", "023bafc9-8b7e-4fbd-bb06-2b178fe8ae8b" },
+                    { 6, "Имах затруднения да разбера Git технологията, но с помощта на тази игра бързо осъвършенствах функциите и начина на използване.", true, false, new DateTime(2024, 4, 16, 13, 12, 7, 621, DateTimeKind.Local).AddTicks(6166), "Попаднах на страхотна игра, която ти помага да научиш Git", "Git игра", "https://learngitbranching.js.org/?locale=en_US", "023bafc9-8b7e-4fbd-bb06-2b178fe8ae8b" },
+                    { 7, "Имах затруднения да разбера Git технологията, но с помощта на тази игра бързо осъвършенствах функциите и начина на използване.", true, false, new DateTime(2024, 4, 16, 13, 12, 7, 621, DateTimeKind.Local).AddTicks(6170), "Попаднах на страхотна игра, която ти помага да научиш Git", "Git игра", "https://learngitbranching.js.org/?locale=en_US", "023bafc9-8b7e-4fbd-bb06-2b178fe8ae8b" },
+                    { 8, "Имах затруднения да разбера Git технологията, но с помощта на тази игра бързо осъвършенствах функциите и начина на използване.", true, false, new DateTime(2024, 4, 16, 13, 12, 7, 621, DateTimeKind.Local).AddTicks(6173), "Попаднах на страхотна игра, която ти помага да научиш Git", "Git игра", "https://learngitbranching.js.org/?locale=en_US", "023bafc9-8b7e-4fbd-bb06-2b178fe8ae8b" },
+                    { 9, "Имах затруднения да разбера Git технологията, но с помощта на тази игра бързо осъвършенствах функциите и начина на използване.", true, false, new DateTime(2024, 4, 16, 13, 12, 7, 621, DateTimeKind.Local).AddTicks(6176), "Попаднах на страхотна игра, която ти помага да научиш Git", "Git игра", "https://learngitbranching.js.org/?locale=en_US", "9c7f55cd-f0ae-405e-b520-6e1ccc448fcc" },
+                    { 10, "Имах затруднения да разбера Git технологията, но с помощта на тази игра бързо осъвършенствах функциите и начина на използване.", true, false, new DateTime(2024, 4, 16, 13, 12, 7, 621, DateTimeKind.Local).AddTicks(6179), "Попаднах на страхотна игра, която ти помага да научиш Git", "Git игра", "https://learngitbranching.js.org/?locale=en_US", "023bafc9-8b7e-4fbd-bb06-2b178fe8ae8b" },
+                    { 11, "Имах затруднения да разбера Git технологията, но с помощта на тази игра бързо осъвършенствах функциите и начина на използване.", true, false, new DateTime(2024, 4, 16, 13, 12, 7, 621, DateTimeKind.Local).AddTicks(6222), "Попаднах на страхотна игра, която ти помага да научиш Git", "Git игра", "https://learngitbranching.js.org/?locale=en_US", "023bafc9-8b7e-4fbd-bb06-2b178fe8ae8b" },
+                    { 12, "Имах затруднения да разбера Git технологията, но с помощта на тази игра бързо осъвършенствах функциите и начина на използване.", true, false, new DateTime(2024, 4, 16, 13, 12, 7, 621, DateTimeKind.Local).AddTicks(6226), "Попаднах на страхотна игра, която ти помага да научиш Git", "Git игра", "https://learngitbranching.js.org/?locale=en_US", "9c7f55cd-f0ae-405e-b520-6e1ccc448fcc" },
+                    { 13, "Имах затруднения да разбера Git технологията, но с помощта на тази игра бързо осъвършенствах функциите и начина на използване.", true, false, new DateTime(2024, 4, 16, 13, 12, 7, 621, DateTimeKind.Local).AddTicks(6229), "Попаднах на страхотна игра, която ти помага да научиш Git", "Git игра", "https://learngitbranching.js.org/?locale=en_US", "023bafc9-8b7e-4fbd-bb06-2b178fe8ae8b" },
+                    { 14, "Имах затруднения да разбера Git технологията, но с помощта на тази игра бързо осъвършенствах функциите и начина на използване.", true, false, new DateTime(2024, 4, 16, 13, 12, 7, 621, DateTimeKind.Local).AddTicks(6232), "Попаднах на страхотна игра, която ти помага да научиш Git", "Git игра", "https://learngitbranching.js.org/?locale=en_US", "023bafc9-8b7e-4fbd-bb06-2b178fe8ae8b" },
+                    { 15, "Имах затруднения да разбера Git технологията, но с помощта на тази игра бързо осъвършенствах функциите и начина на използване.", true, false, new DateTime(2024, 4, 16, 13, 12, 7, 621, DateTimeKind.Local).AddTicks(6235), "Попаднах на страхотна игра, която ти помага да научиш Git", "Git игра", "https://learngitbranching.js.org/?locale=en_US", "023bafc9-8b7e-4fbd-bb06-2b178fe8ae8b" },
+                    { 16, "Имах затруднения да разбера Git технологията, но с помощта на тази игра бързо осъвършенствах функциите и начина на използване.", true, false, new DateTime(2024, 4, 16, 13, 12, 7, 621, DateTimeKind.Local).AddTicks(6238), "Попаднах на страхотна игра, която ти помага да научиш Git", "Git игра", "https://learngitbranching.js.org/?locale=en_US", "023bafc9-8b7e-4fbd-bb06-2b178fe8ae8b" },
+                    { 17, "Имах затруднения да разбера Git технологията, но с помощта на тази игра бързо осъвършенствах функциите и начина на използване.", true, false, new DateTime(2024, 4, 16, 13, 12, 7, 621, DateTimeKind.Local).AddTicks(6241), "Попаднах на страхотна игра, която ти помага да научиш Git", "Git игра", "https://learngitbranching.js.org/?locale=en_US", "9c7f55cd-f0ae-405e-b520-6e1ccc448fcc" },
+                    { 18, "Имах затруднения да разбера Git технологията, но с помощта на тази игра бързо осъвършенствах функциите и начина на използване.", true, false, new DateTime(2024, 4, 16, 13, 12, 7, 621, DateTimeKind.Local).AddTicks(6244), "Попаднах на страхотна игра, която ти помага да научиш Git", "Git игра", "https://learngitbranching.js.org/?locale=en_US", "023bafc9-8b7e-4fbd-bb06-2b178fe8ae8b" },
+                    { 19, "Имах затруднения да разбера Git технологията, но с помощта на тази игра бързо осъвършенствах функциите и начина на използване.", true, false, new DateTime(2024, 4, 16, 13, 12, 7, 621, DateTimeKind.Local).AddTicks(6249), "Попаднах на страхотна игра, която ти помага да научиш Git", "Git игра", "https://learngitbranching.js.org/?locale=en_US", "9c7f55cd-f0ae-405e-b520-6e1ccc448fcc" }
                 });
 
             migrationBuilder.InsertData(
@@ -1629,8 +881,8 @@ namespace PreparationForITExam.Infrastructure.Migrations
 
             migrationBuilder.InsertData(
                 table: "Students",
-                columns: new[] { "Id", "Grade", "IsActive", "SchoolId", "Speciality", "UserId" },
-                values: new object[] { 1, 12, true, 152, "Приложен програмист", "023bafc9-8b7e-4fbd-bb06-2b178fe8ae8b" });
+                columns: new[] { "Id", "IsActive", "SchoolId", "UserId" },
+                values: new object[] { 1, true, 152, "023bafc9-8b7e-4fbd-bb06-2b178fe8ae8b" });
 
             migrationBuilder.InsertData(
                 table: "Teachers",
@@ -1785,9 +1037,9 @@ namespace PreparationForITExam.Infrastructure.Migrations
                 columns: new[] { "Id", "Description", "IsActive", "MonId", "PostedOn", "SeenByPeople", "Title", "UsefulUrls" },
                 values: new object[,]
                 {
-                    { 1, "Изпитните материали от днешният изпит вече са налични онлайн на сайта на МОН.", true, 1, new DateTime(2024, 2, 26, 9, 40, 39, 71, DateTimeKind.Local).AddTicks(9650), 0, "ДЗИ 23 май 2023г", "https://web.mon.bg/bg/101234" },
-                    { 2, "Изпитните материали от днешният изпит вече са налични онлайн на сайта на МОН.", true, 1, new DateTime(2024, 2, 26, 9, 40, 39, 71, DateTimeKind.Local).AddTicks(9660), 0, "ДЗИ 25 август 2023г", "https://web.mon.bg/bg/101234" },
-                    { 3, "Датите за тазгодишната изпитна кампания са 20 май 2024г.", true, 1, new DateTime(2024, 2, 26, 9, 40, 39, 71, DateTimeKind.Local).AddTicks(9664), 0, "Изпитни дати за 2023/2024 г.", "https://danybon.com/wp-content/uploads/2023/09/zap2050_NVO_01092023.pdf" }
+                    { 1, "Изпитните материали от днешният изпит вече са налични онлайн на сайта на МОН.", true, 1, new DateTime(2024, 4, 16, 13, 12, 7, 621, DateTimeKind.Local).AddTicks(6062), 0, "ДЗИ 23 май 2023г", "https://web.mon.bg/bg/101234" },
+                    { 2, "Изпитните материали от днешният изпит вече са налични онлайн на сайта на МОН.", true, 1, new DateTime(2024, 4, 16, 13, 12, 7, 621, DateTimeKind.Local).AddTicks(6069), 0, "ДЗИ 25 август 2023г", "https://web.mon.bg/bg/101234" },
+                    { 3, "Датите за тазгодишната изпитна кампания са 20 май 2024г.", true, 1, new DateTime(2024, 4, 16, 13, 12, 7, 621, DateTimeKind.Local).AddTicks(6072), 0, "Изпитни дати за 2023/2024 г.", "https://danybon.com/wp-content/uploads/2023/09/zap2050_NVO_01092023.pdf" }
                 });
 
             migrationBuilder.InsertData(
@@ -2053,309 +1305,5279 @@ namespace PreparationForITExam.Infrastructure.Migrations
                     { 110, 1 },
                     { 111, 1 }
                 });
-
-            migrationBuilder.CreateIndex(
-                name: "IX_Answers_ExerciseMaterialId",
-                table: "Answers",
-                column: "ExerciseMaterialId");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_Answers_UserId",
-                table: "Answers",
-                column: "UserId");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_AspNetRoleClaims_RoleId",
-                table: "AspNetRoleClaims",
-                column: "RoleId");
-
-            migrationBuilder.CreateIndex(
-                name: "RoleNameIndex",
-                table: "AspNetRoles",
-                column: "NormalizedName",
-                unique: true,
-                filter: "[NormalizedName] IS NOT NULL");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_AspNetUserClaims_UserId",
-                table: "AspNetUserClaims",
-                column: "UserId");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_AspNetUserLogins_UserId",
-                table: "AspNetUserLogins",
-                column: "UserId");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_AspNetUserRoles_RoleId",
-                table: "AspNetUserRoles",
-                column: "RoleId");
-
-            migrationBuilder.CreateIndex(
-                name: "EmailIndex",
-                table: "AspNetUsers",
-                column: "NormalizedEmail");
-
-            migrationBuilder.CreateIndex(
-                name: "UserNameIndex",
-                table: "AspNetUsers",
-                column: "NormalizedUserName",
-                unique: true,
-                filter: "[NormalizedUserName] IS NOT NULL");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_Comments_PostId",
-                table: "Comments",
-                column: "PostId");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_Comments_UserId",
-                table: "Comments",
-                column: "UserId");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_ExerciseMaterials_ExerciseId",
-                table: "ExerciseMaterials",
-                column: "ExerciseId");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_ExerciseMaterials_UserId",
-                table: "ExerciseMaterials",
-                column: "UserId");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_Exercises_SectionOfCurricularId",
-                table: "Exercises",
-                column: "SectionOfCurricularId");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_Exercises_TeacherId",
-                table: "Exercises",
-                column: "TeacherId");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_ExerciseStudent_StudentsId",
-                table: "ExerciseStudent",
-                column: "StudentsId");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_ImageComment_CommentId",
-                table: "ImageComment",
-                column: "CommentId");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_Images_NewsId",
-                table: "Images",
-                column: "NewsId");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_Images_PostId",
-                table: "Images",
-                column: "PostId");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_LessonMaterials_LessonId",
-                table: "LessonMaterials",
-                column: "LessonId");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_LessonMaterials_RequestExerciseId",
-                table: "LessonMaterials",
-                column: "RequestExerciseId");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_LessonMaterials_RequestLessonId",
-                table: "LessonMaterials",
-                column: "RequestLessonId");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_LessonMaterials_UserId",
-                table: "LessonMaterials",
-                column: "UserId");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_LessonMonUser_MonUserId",
-                table: "LessonMonUser",
-                column: "MonUserId");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_Lessons_ExerciseId",
-                table: "Lessons",
-                column: "ExerciseId",
-                unique: true);
-
-            migrationBuilder.CreateIndex(
-                name: "IX_Lessons_SectionOfCurricularId",
-                table: "Lessons",
-                column: "SectionOfCurricularId");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_LessonTeacher_TeachersId",
-                table: "LessonTeacher",
-                column: "TeachersId");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_Messages_UserId",
-                table: "Messages",
-                column: "UserId");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_MonUsers_UserId",
-                table: "MonUsers",
-                column: "UserId");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_News_MonId",
-                table: "News",
-                column: "MonId");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_Posts_UserId",
-                table: "Posts",
-                column: "UserId");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_RequestsExercises_ExerciseId",
-                table: "RequestsExercises",
-                column: "ExerciseId");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_RequestsExercises_TeacherId",
-                table: "RequestsExercises",
-                column: "TeacherId");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_RequestsLessons_LessonId",
-                table: "RequestsLessons",
-                column: "LessonId");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_RequestsLessons_TeacherId",
-                table: "RequestsLessons",
-                column: "TeacherId");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_Reviews_UserId",
-                table: "Reviews",
-                column: "UserId");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_SectionsOfCurricular_ModuleOfCurricularId",
-                table: "SectionsOfCurricular",
-                column: "ModuleOfCurricularId");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_Students_SchoolId",
-                table: "Students",
-                column: "SchoolId");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_Students_UserId",
-                table: "Students",
-                column: "UserId");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_Teachers_SchoolId",
-                table: "Teachers",
-                column: "SchoolId");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_Teachers_UserId",
-                table: "Teachers",
-                column: "UserId");
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
         {
-            migrationBuilder.DropTable(
-                name: "Answers");
+            migrationBuilder.DeleteData(
+                table: "AspNetUserRoles",
+                keyColumns: new[] { "RoleId", "UserId" },
+                keyValues: new object[] { "e66d730b-bcf1-41b5-b7e0-3e66056e61d9", "023bafc9-8b7e-4fbd-bb06-2b178fe8ae8b" });
 
-            migrationBuilder.DropTable(
-                name: "AspNetRoleClaims");
+            migrationBuilder.DeleteData(
+                table: "AspNetUserRoles",
+                keyColumns: new[] { "RoleId", "UserId" },
+                keyValues: new object[] { "0f761db2-ab55-416c-83b9-70abded3d908", "789061a9-edaa-4a00-9e09-add6a20c8288" });
 
-            migrationBuilder.DropTable(
-                name: "AspNetUserClaims");
+            migrationBuilder.DeleteData(
+                table: "AspNetUserRoles",
+                keyColumns: new[] { "RoleId", "UserId" },
+                keyValues: new object[] { "fe750b82-6fe9-472c-bdc5-61f5433d429e", "7decfb7d-d2df-40a2-a449-dcec04eb091a" });
 
-            migrationBuilder.DropTable(
-                name: "AspNetUserLogins");
+            migrationBuilder.DeleteData(
+                table: "AspNetUserRoles",
+                keyColumns: new[] { "RoleId", "UserId" },
+                keyValues: new object[] { "71281cf3-9730-4d7e-acbb-213edee8291c", "9c7f55cd-f0ae-405e-b520-6e1ccc448fcc" });
 
-            migrationBuilder.DropTable(
-                name: "AspNetUserRoles");
+            migrationBuilder.DeleteData(
+                table: "Images",
+                keyColumn: "Id",
+                keyValue: 1);
 
-            migrationBuilder.DropTable(
-                name: "AspNetUserTokens");
+            migrationBuilder.DeleteData(
+                table: "Images",
+                keyColumn: "Id",
+                keyValue: 2);
 
-            migrationBuilder.DropTable(
-                name: "ExerciseStudent");
+            migrationBuilder.DeleteData(
+                table: "Images",
+                keyColumn: "Id",
+                keyValue: 3);
 
-            migrationBuilder.DropTable(
-                name: "ImageComment");
+            migrationBuilder.DeleteData(
+                table: "Images",
+                keyColumn: "Id",
+                keyValue: 4);
 
-            migrationBuilder.DropTable(
-                name: "Images");
+            migrationBuilder.DeleteData(
+                table: "LessonMonUser",
+                keyColumns: new[] { "LessonId", "MonUserId" },
+                keyValues: new object[] { 1, 1 });
 
-            migrationBuilder.DropTable(
-                name: "LessonMaterials");
+            migrationBuilder.DeleteData(
+                table: "LessonMonUser",
+                keyColumns: new[] { "LessonId", "MonUserId" },
+                keyValues: new object[] { 2, 1 });
 
-            migrationBuilder.DropTable(
-                name: "LessonMonUser");
+            migrationBuilder.DeleteData(
+                table: "LessonMonUser",
+                keyColumns: new[] { "LessonId", "MonUserId" },
+                keyValues: new object[] { 3, 1 });
 
-            migrationBuilder.DropTable(
-                name: "LessonTeacher");
+            migrationBuilder.DeleteData(
+                table: "LessonMonUser",
+                keyColumns: new[] { "LessonId", "MonUserId" },
+                keyValues: new object[] { 4, 1 });
 
-            migrationBuilder.DropTable(
-                name: "Messages");
+            migrationBuilder.DeleteData(
+                table: "LessonMonUser",
+                keyColumns: new[] { "LessonId", "MonUserId" },
+                keyValues: new object[] { 5, 1 });
 
-            migrationBuilder.DropTable(
-                name: "Reviews");
+            migrationBuilder.DeleteData(
+                table: "LessonMonUser",
+                keyColumns: new[] { "LessonId", "MonUserId" },
+                keyValues: new object[] { 6, 1 });
 
-            migrationBuilder.DropTable(
-                name: "ExerciseMaterials");
+            migrationBuilder.DeleteData(
+                table: "LessonMonUser",
+                keyColumns: new[] { "LessonId", "MonUserId" },
+                keyValues: new object[] { 7, 1 });
 
-            migrationBuilder.DropTable(
-                name: "AspNetRoles");
+            migrationBuilder.DeleteData(
+                table: "LessonMonUser",
+                keyColumns: new[] { "LessonId", "MonUserId" },
+                keyValues: new object[] { 8, 1 });
 
-            migrationBuilder.DropTable(
-                name: "Students");
+            migrationBuilder.DeleteData(
+                table: "LessonMonUser",
+                keyColumns: new[] { "LessonId", "MonUserId" },
+                keyValues: new object[] { 9, 1 });
 
-            migrationBuilder.DropTable(
-                name: "Comments");
+            migrationBuilder.DeleteData(
+                table: "LessonMonUser",
+                keyColumns: new[] { "LessonId", "MonUserId" },
+                keyValues: new object[] { 10, 1 });
 
-            migrationBuilder.DropTable(
-                name: "News");
+            migrationBuilder.DeleteData(
+                table: "LessonMonUser",
+                keyColumns: new[] { "LessonId", "MonUserId" },
+                keyValues: new object[] { 11, 1 });
 
-            migrationBuilder.DropTable(
-                name: "RequestsExercises");
+            migrationBuilder.DeleteData(
+                table: "LessonMonUser",
+                keyColumns: new[] { "LessonId", "MonUserId" },
+                keyValues: new object[] { 12, 1 });
 
-            migrationBuilder.DropTable(
-                name: "RequestsLessons");
+            migrationBuilder.DeleteData(
+                table: "LessonMonUser",
+                keyColumns: new[] { "LessonId", "MonUserId" },
+                keyValues: new object[] { 13, 1 });
 
-            migrationBuilder.DropTable(
-                name: "Posts");
+            migrationBuilder.DeleteData(
+                table: "LessonMonUser",
+                keyColumns: new[] { "LessonId", "MonUserId" },
+                keyValues: new object[] { 14, 1 });
 
-            migrationBuilder.DropTable(
-                name: "MonUsers");
+            migrationBuilder.DeleteData(
+                table: "LessonMonUser",
+                keyColumns: new[] { "LessonId", "MonUserId" },
+                keyValues: new object[] { 15, 1 });
 
-            migrationBuilder.DropTable(
-                name: "Lessons");
+            migrationBuilder.DeleteData(
+                table: "LessonMonUser",
+                keyColumns: new[] { "LessonId", "MonUserId" },
+                keyValues: new object[] { 16, 1 });
 
-            migrationBuilder.DropTable(
-                name: "Exercises");
+            migrationBuilder.DeleteData(
+                table: "LessonMonUser",
+                keyColumns: new[] { "LessonId", "MonUserId" },
+                keyValues: new object[] { 17, 1 });
 
-            migrationBuilder.DropTable(
-                name: "SectionsOfCurricular");
+            migrationBuilder.DeleteData(
+                table: "LessonMonUser",
+                keyColumns: new[] { "LessonId", "MonUserId" },
+                keyValues: new object[] { 18, 1 });
 
-            migrationBuilder.DropTable(
-                name: "Teachers");
+            migrationBuilder.DeleteData(
+                table: "LessonMonUser",
+                keyColumns: new[] { "LessonId", "MonUserId" },
+                keyValues: new object[] { 19, 1 });
 
-            migrationBuilder.DropTable(
-                name: "ModuleOfCurricular");
+            migrationBuilder.DeleteData(
+                table: "LessonMonUser",
+                keyColumns: new[] { "LessonId", "MonUserId" },
+                keyValues: new object[] { 20, 1 });
 
-            migrationBuilder.DropTable(
-                name: "AspNetUsers");
+            migrationBuilder.DeleteData(
+                table: "LessonMonUser",
+                keyColumns: new[] { "LessonId", "MonUserId" },
+                keyValues: new object[] { 21, 1 });
 
-            migrationBuilder.DropTable(
-                name: "Schools");
+            migrationBuilder.DeleteData(
+                table: "LessonMonUser",
+                keyColumns: new[] { "LessonId", "MonUserId" },
+                keyValues: new object[] { 22, 1 });
+
+            migrationBuilder.DeleteData(
+                table: "LessonMonUser",
+                keyColumns: new[] { "LessonId", "MonUserId" },
+                keyValues: new object[] { 23, 1 });
+
+            migrationBuilder.DeleteData(
+                table: "LessonMonUser",
+                keyColumns: new[] { "LessonId", "MonUserId" },
+                keyValues: new object[] { 24, 1 });
+
+            migrationBuilder.DeleteData(
+                table: "LessonMonUser",
+                keyColumns: new[] { "LessonId", "MonUserId" },
+                keyValues: new object[] { 25, 1 });
+
+            migrationBuilder.DeleteData(
+                table: "LessonMonUser",
+                keyColumns: new[] { "LessonId", "MonUserId" },
+                keyValues: new object[] { 26, 1 });
+
+            migrationBuilder.DeleteData(
+                table: "LessonMonUser",
+                keyColumns: new[] { "LessonId", "MonUserId" },
+                keyValues: new object[] { 27, 1 });
+
+            migrationBuilder.DeleteData(
+                table: "LessonMonUser",
+                keyColumns: new[] { "LessonId", "MonUserId" },
+                keyValues: new object[] { 28, 1 });
+
+            migrationBuilder.DeleteData(
+                table: "LessonMonUser",
+                keyColumns: new[] { "LessonId", "MonUserId" },
+                keyValues: new object[] { 29, 1 });
+
+            migrationBuilder.DeleteData(
+                table: "LessonMonUser",
+                keyColumns: new[] { "LessonId", "MonUserId" },
+                keyValues: new object[] { 30, 1 });
+
+            migrationBuilder.DeleteData(
+                table: "LessonMonUser",
+                keyColumns: new[] { "LessonId", "MonUserId" },
+                keyValues: new object[] { 31, 1 });
+
+            migrationBuilder.DeleteData(
+                table: "LessonMonUser",
+                keyColumns: new[] { "LessonId", "MonUserId" },
+                keyValues: new object[] { 32, 1 });
+
+            migrationBuilder.DeleteData(
+                table: "LessonMonUser",
+                keyColumns: new[] { "LessonId", "MonUserId" },
+                keyValues: new object[] { 33, 1 });
+
+            migrationBuilder.DeleteData(
+                table: "LessonMonUser",
+                keyColumns: new[] { "LessonId", "MonUserId" },
+                keyValues: new object[] { 34, 1 });
+
+            migrationBuilder.DeleteData(
+                table: "LessonMonUser",
+                keyColumns: new[] { "LessonId", "MonUserId" },
+                keyValues: new object[] { 35, 1 });
+
+            migrationBuilder.DeleteData(
+                table: "LessonMonUser",
+                keyColumns: new[] { "LessonId", "MonUserId" },
+                keyValues: new object[] { 36, 1 });
+
+            migrationBuilder.DeleteData(
+                table: "LessonMonUser",
+                keyColumns: new[] { "LessonId", "MonUserId" },
+                keyValues: new object[] { 37, 1 });
+
+            migrationBuilder.DeleteData(
+                table: "LessonMonUser",
+                keyColumns: new[] { "LessonId", "MonUserId" },
+                keyValues: new object[] { 38, 1 });
+
+            migrationBuilder.DeleteData(
+                table: "LessonMonUser",
+                keyColumns: new[] { "LessonId", "MonUserId" },
+                keyValues: new object[] { 39, 1 });
+
+            migrationBuilder.DeleteData(
+                table: "LessonMonUser",
+                keyColumns: new[] { "LessonId", "MonUserId" },
+                keyValues: new object[] { 40, 1 });
+
+            migrationBuilder.DeleteData(
+                table: "LessonMonUser",
+                keyColumns: new[] { "LessonId", "MonUserId" },
+                keyValues: new object[] { 41, 1 });
+
+            migrationBuilder.DeleteData(
+                table: "LessonMonUser",
+                keyColumns: new[] { "LessonId", "MonUserId" },
+                keyValues: new object[] { 42, 1 });
+
+            migrationBuilder.DeleteData(
+                table: "LessonMonUser",
+                keyColumns: new[] { "LessonId", "MonUserId" },
+                keyValues: new object[] { 43, 1 });
+
+            migrationBuilder.DeleteData(
+                table: "LessonMonUser",
+                keyColumns: new[] { "LessonId", "MonUserId" },
+                keyValues: new object[] { 44, 1 });
+
+            migrationBuilder.DeleteData(
+                table: "LessonMonUser",
+                keyColumns: new[] { "LessonId", "MonUserId" },
+                keyValues: new object[] { 45, 1 });
+
+            migrationBuilder.DeleteData(
+                table: "LessonMonUser",
+                keyColumns: new[] { "LessonId", "MonUserId" },
+                keyValues: new object[] { 46, 1 });
+
+            migrationBuilder.DeleteData(
+                table: "LessonMonUser",
+                keyColumns: new[] { "LessonId", "MonUserId" },
+                keyValues: new object[] { 47, 1 });
+
+            migrationBuilder.DeleteData(
+                table: "LessonMonUser",
+                keyColumns: new[] { "LessonId", "MonUserId" },
+                keyValues: new object[] { 48, 1 });
+
+            migrationBuilder.DeleteData(
+                table: "LessonMonUser",
+                keyColumns: new[] { "LessonId", "MonUserId" },
+                keyValues: new object[] { 49, 1 });
+
+            migrationBuilder.DeleteData(
+                table: "LessonMonUser",
+                keyColumns: new[] { "LessonId", "MonUserId" },
+                keyValues: new object[] { 50, 1 });
+
+            migrationBuilder.DeleteData(
+                table: "LessonMonUser",
+                keyColumns: new[] { "LessonId", "MonUserId" },
+                keyValues: new object[] { 51, 1 });
+
+            migrationBuilder.DeleteData(
+                table: "LessonMonUser",
+                keyColumns: new[] { "LessonId", "MonUserId" },
+                keyValues: new object[] { 52, 1 });
+
+            migrationBuilder.DeleteData(
+                table: "LessonMonUser",
+                keyColumns: new[] { "LessonId", "MonUserId" },
+                keyValues: new object[] { 53, 1 });
+
+            migrationBuilder.DeleteData(
+                table: "LessonMonUser",
+                keyColumns: new[] { "LessonId", "MonUserId" },
+                keyValues: new object[] { 54, 1 });
+
+            migrationBuilder.DeleteData(
+                table: "LessonMonUser",
+                keyColumns: new[] { "LessonId", "MonUserId" },
+                keyValues: new object[] { 55, 1 });
+
+            migrationBuilder.DeleteData(
+                table: "LessonMonUser",
+                keyColumns: new[] { "LessonId", "MonUserId" },
+                keyValues: new object[] { 56, 1 });
+
+            migrationBuilder.DeleteData(
+                table: "LessonMonUser",
+                keyColumns: new[] { "LessonId", "MonUserId" },
+                keyValues: new object[] { 57, 1 });
+
+            migrationBuilder.DeleteData(
+                table: "LessonMonUser",
+                keyColumns: new[] { "LessonId", "MonUserId" },
+                keyValues: new object[] { 58, 1 });
+
+            migrationBuilder.DeleteData(
+                table: "LessonMonUser",
+                keyColumns: new[] { "LessonId", "MonUserId" },
+                keyValues: new object[] { 59, 1 });
+
+            migrationBuilder.DeleteData(
+                table: "LessonMonUser",
+                keyColumns: new[] { "LessonId", "MonUserId" },
+                keyValues: new object[] { 60, 1 });
+
+            migrationBuilder.DeleteData(
+                table: "LessonMonUser",
+                keyColumns: new[] { "LessonId", "MonUserId" },
+                keyValues: new object[] { 61, 1 });
+
+            migrationBuilder.DeleteData(
+                table: "LessonMonUser",
+                keyColumns: new[] { "LessonId", "MonUserId" },
+                keyValues: new object[] { 62, 1 });
+
+            migrationBuilder.DeleteData(
+                table: "LessonMonUser",
+                keyColumns: new[] { "LessonId", "MonUserId" },
+                keyValues: new object[] { 63, 1 });
+
+            migrationBuilder.DeleteData(
+                table: "LessonMonUser",
+                keyColumns: new[] { "LessonId", "MonUserId" },
+                keyValues: new object[] { 64, 1 });
+
+            migrationBuilder.DeleteData(
+                table: "LessonMonUser",
+                keyColumns: new[] { "LessonId", "MonUserId" },
+                keyValues: new object[] { 65, 1 });
+
+            migrationBuilder.DeleteData(
+                table: "LessonMonUser",
+                keyColumns: new[] { "LessonId", "MonUserId" },
+                keyValues: new object[] { 66, 1 });
+
+            migrationBuilder.DeleteData(
+                table: "LessonMonUser",
+                keyColumns: new[] { "LessonId", "MonUserId" },
+                keyValues: new object[] { 67, 1 });
+
+            migrationBuilder.DeleteData(
+                table: "LessonMonUser",
+                keyColumns: new[] { "LessonId", "MonUserId" },
+                keyValues: new object[] { 68, 1 });
+
+            migrationBuilder.DeleteData(
+                table: "LessonMonUser",
+                keyColumns: new[] { "LessonId", "MonUserId" },
+                keyValues: new object[] { 69, 1 });
+
+            migrationBuilder.DeleteData(
+                table: "LessonMonUser",
+                keyColumns: new[] { "LessonId", "MonUserId" },
+                keyValues: new object[] { 70, 1 });
+
+            migrationBuilder.DeleteData(
+                table: "LessonMonUser",
+                keyColumns: new[] { "LessonId", "MonUserId" },
+                keyValues: new object[] { 71, 1 });
+
+            migrationBuilder.DeleteData(
+                table: "LessonMonUser",
+                keyColumns: new[] { "LessonId", "MonUserId" },
+                keyValues: new object[] { 72, 1 });
+
+            migrationBuilder.DeleteData(
+                table: "LessonMonUser",
+                keyColumns: new[] { "LessonId", "MonUserId" },
+                keyValues: new object[] { 73, 1 });
+
+            migrationBuilder.DeleteData(
+                table: "LessonMonUser",
+                keyColumns: new[] { "LessonId", "MonUserId" },
+                keyValues: new object[] { 74, 1 });
+
+            migrationBuilder.DeleteData(
+                table: "LessonMonUser",
+                keyColumns: new[] { "LessonId", "MonUserId" },
+                keyValues: new object[] { 75, 1 });
+
+            migrationBuilder.DeleteData(
+                table: "LessonMonUser",
+                keyColumns: new[] { "LessonId", "MonUserId" },
+                keyValues: new object[] { 76, 1 });
+
+            migrationBuilder.DeleteData(
+                table: "LessonMonUser",
+                keyColumns: new[] { "LessonId", "MonUserId" },
+                keyValues: new object[] { 77, 1 });
+
+            migrationBuilder.DeleteData(
+                table: "LessonMonUser",
+                keyColumns: new[] { "LessonId", "MonUserId" },
+                keyValues: new object[] { 78, 1 });
+
+            migrationBuilder.DeleteData(
+                table: "LessonMonUser",
+                keyColumns: new[] { "LessonId", "MonUserId" },
+                keyValues: new object[] { 79, 1 });
+
+            migrationBuilder.DeleteData(
+                table: "LessonMonUser",
+                keyColumns: new[] { "LessonId", "MonUserId" },
+                keyValues: new object[] { 80, 1 });
+
+            migrationBuilder.DeleteData(
+                table: "LessonMonUser",
+                keyColumns: new[] { "LessonId", "MonUserId" },
+                keyValues: new object[] { 81, 1 });
+
+            migrationBuilder.DeleteData(
+                table: "LessonMonUser",
+                keyColumns: new[] { "LessonId", "MonUserId" },
+                keyValues: new object[] { 82, 1 });
+
+            migrationBuilder.DeleteData(
+                table: "LessonMonUser",
+                keyColumns: new[] { "LessonId", "MonUserId" },
+                keyValues: new object[] { 83, 1 });
+
+            migrationBuilder.DeleteData(
+                table: "LessonMonUser",
+                keyColumns: new[] { "LessonId", "MonUserId" },
+                keyValues: new object[] { 84, 1 });
+
+            migrationBuilder.DeleteData(
+                table: "LessonMonUser",
+                keyColumns: new[] { "LessonId", "MonUserId" },
+                keyValues: new object[] { 85, 1 });
+
+            migrationBuilder.DeleteData(
+                table: "LessonMonUser",
+                keyColumns: new[] { "LessonId", "MonUserId" },
+                keyValues: new object[] { 86, 1 });
+
+            migrationBuilder.DeleteData(
+                table: "LessonMonUser",
+                keyColumns: new[] { "LessonId", "MonUserId" },
+                keyValues: new object[] { 87, 1 });
+
+            migrationBuilder.DeleteData(
+                table: "LessonMonUser",
+                keyColumns: new[] { "LessonId", "MonUserId" },
+                keyValues: new object[] { 88, 1 });
+
+            migrationBuilder.DeleteData(
+                table: "LessonMonUser",
+                keyColumns: new[] { "LessonId", "MonUserId" },
+                keyValues: new object[] { 89, 1 });
+
+            migrationBuilder.DeleteData(
+                table: "LessonMonUser",
+                keyColumns: new[] { "LessonId", "MonUserId" },
+                keyValues: new object[] { 90, 1 });
+
+            migrationBuilder.DeleteData(
+                table: "LessonMonUser",
+                keyColumns: new[] { "LessonId", "MonUserId" },
+                keyValues: new object[] { 91, 1 });
+
+            migrationBuilder.DeleteData(
+                table: "LessonMonUser",
+                keyColumns: new[] { "LessonId", "MonUserId" },
+                keyValues: new object[] { 92, 1 });
+
+            migrationBuilder.DeleteData(
+                table: "LessonMonUser",
+                keyColumns: new[] { "LessonId", "MonUserId" },
+                keyValues: new object[] { 93, 1 });
+
+            migrationBuilder.DeleteData(
+                table: "LessonMonUser",
+                keyColumns: new[] { "LessonId", "MonUserId" },
+                keyValues: new object[] { 94, 1 });
+
+            migrationBuilder.DeleteData(
+                table: "LessonMonUser",
+                keyColumns: new[] { "LessonId", "MonUserId" },
+                keyValues: new object[] { 95, 1 });
+
+            migrationBuilder.DeleteData(
+                table: "LessonMonUser",
+                keyColumns: new[] { "LessonId", "MonUserId" },
+                keyValues: new object[] { 96, 1 });
+
+            migrationBuilder.DeleteData(
+                table: "LessonMonUser",
+                keyColumns: new[] { "LessonId", "MonUserId" },
+                keyValues: new object[] { 97, 1 });
+
+            migrationBuilder.DeleteData(
+                table: "LessonMonUser",
+                keyColumns: new[] { "LessonId", "MonUserId" },
+                keyValues: new object[] { 98, 1 });
+
+            migrationBuilder.DeleteData(
+                table: "LessonMonUser",
+                keyColumns: new[] { "LessonId", "MonUserId" },
+                keyValues: new object[] { 99, 1 });
+
+            migrationBuilder.DeleteData(
+                table: "LessonMonUser",
+                keyColumns: new[] { "LessonId", "MonUserId" },
+                keyValues: new object[] { 100, 1 });
+
+            migrationBuilder.DeleteData(
+                table: "LessonMonUser",
+                keyColumns: new[] { "LessonId", "MonUserId" },
+                keyValues: new object[] { 101, 1 });
+
+            migrationBuilder.DeleteData(
+                table: "LessonMonUser",
+                keyColumns: new[] { "LessonId", "MonUserId" },
+                keyValues: new object[] { 102, 1 });
+
+            migrationBuilder.DeleteData(
+                table: "LessonMonUser",
+                keyColumns: new[] { "LessonId", "MonUserId" },
+                keyValues: new object[] { 103, 1 });
+
+            migrationBuilder.DeleteData(
+                table: "LessonMonUser",
+                keyColumns: new[] { "LessonId", "MonUserId" },
+                keyValues: new object[] { 104, 1 });
+
+            migrationBuilder.DeleteData(
+                table: "LessonMonUser",
+                keyColumns: new[] { "LessonId", "MonUserId" },
+                keyValues: new object[] { 105, 1 });
+
+            migrationBuilder.DeleteData(
+                table: "LessonMonUser",
+                keyColumns: new[] { "LessonId", "MonUserId" },
+                keyValues: new object[] { 106, 1 });
+
+            migrationBuilder.DeleteData(
+                table: "LessonMonUser",
+                keyColumns: new[] { "LessonId", "MonUserId" },
+                keyValues: new object[] { 107, 1 });
+
+            migrationBuilder.DeleteData(
+                table: "LessonMonUser",
+                keyColumns: new[] { "LessonId", "MonUserId" },
+                keyValues: new object[] { 108, 1 });
+
+            migrationBuilder.DeleteData(
+                table: "LessonMonUser",
+                keyColumns: new[] { "LessonId", "MonUserId" },
+                keyValues: new object[] { 109, 1 });
+
+            migrationBuilder.DeleteData(
+                table: "LessonMonUser",
+                keyColumns: new[] { "LessonId", "MonUserId" },
+                keyValues: new object[] { 110, 1 });
+
+            migrationBuilder.DeleteData(
+                table: "LessonMonUser",
+                keyColumns: new[] { "LessonId", "MonUserId" },
+                keyValues: new object[] { 111, 1 });
+
+            migrationBuilder.DeleteData(
+                table: "News",
+                keyColumn: "Id",
+                keyValue: 1);
+
+            migrationBuilder.DeleteData(
+                table: "News",
+                keyColumn: "Id",
+                keyValue: 2);
+
+            migrationBuilder.DeleteData(
+                table: "News",
+                keyColumn: "Id",
+                keyValue: 3);
+
+            migrationBuilder.DeleteData(
+                table: "Posts",
+                keyColumn: "Id",
+                keyValue: 3);
+
+            migrationBuilder.DeleteData(
+                table: "Posts",
+                keyColumn: "Id",
+                keyValue: 4);
+
+            migrationBuilder.DeleteData(
+                table: "Posts",
+                keyColumn: "Id",
+                keyValue: 5);
+
+            migrationBuilder.DeleteData(
+                table: "Posts",
+                keyColumn: "Id",
+                keyValue: 6);
+
+            migrationBuilder.DeleteData(
+                table: "Posts",
+                keyColumn: "Id",
+                keyValue: 7);
+
+            migrationBuilder.DeleteData(
+                table: "Posts",
+                keyColumn: "Id",
+                keyValue: 8);
+
+            migrationBuilder.DeleteData(
+                table: "Posts",
+                keyColumn: "Id",
+                keyValue: 9);
+
+            migrationBuilder.DeleteData(
+                table: "Posts",
+                keyColumn: "Id",
+                keyValue: 10);
+
+            migrationBuilder.DeleteData(
+                table: "Posts",
+                keyColumn: "Id",
+                keyValue: 11);
+
+            migrationBuilder.DeleteData(
+                table: "Posts",
+                keyColumn: "Id",
+                keyValue: 12);
+
+            migrationBuilder.DeleteData(
+                table: "Posts",
+                keyColumn: "Id",
+                keyValue: 13);
+
+            migrationBuilder.DeleteData(
+                table: "Posts",
+                keyColumn: "Id",
+                keyValue: 14);
+
+            migrationBuilder.DeleteData(
+                table: "Posts",
+                keyColumn: "Id",
+                keyValue: 15);
+
+            migrationBuilder.DeleteData(
+                table: "Posts",
+                keyColumn: "Id",
+                keyValue: 16);
+
+            migrationBuilder.DeleteData(
+                table: "Posts",
+                keyColumn: "Id",
+                keyValue: 17);
+
+            migrationBuilder.DeleteData(
+                table: "Posts",
+                keyColumn: "Id",
+                keyValue: 18);
+
+            migrationBuilder.DeleteData(
+                table: "Posts",
+                keyColumn: "Id",
+                keyValue: 19);
+
+            migrationBuilder.DeleteData(
+                table: "Schools",
+                keyColumn: "Id",
+                keyValue: 1);
+
+            migrationBuilder.DeleteData(
+                table: "Schools",
+                keyColumn: "Id",
+                keyValue: 2);
+
+            migrationBuilder.DeleteData(
+                table: "Schools",
+                keyColumn: "Id",
+                keyValue: 3);
+
+            migrationBuilder.DeleteData(
+                table: "Schools",
+                keyColumn: "Id",
+                keyValue: 4);
+
+            migrationBuilder.DeleteData(
+                table: "Schools",
+                keyColumn: "Id",
+                keyValue: 5);
+
+            migrationBuilder.DeleteData(
+                table: "Schools",
+                keyColumn: "Id",
+                keyValue: 6);
+
+            migrationBuilder.DeleteData(
+                table: "Schools",
+                keyColumn: "Id",
+                keyValue: 7);
+
+            migrationBuilder.DeleteData(
+                table: "Schools",
+                keyColumn: "Id",
+                keyValue: 8);
+
+            migrationBuilder.DeleteData(
+                table: "Schools",
+                keyColumn: "Id",
+                keyValue: 9);
+
+            migrationBuilder.DeleteData(
+                table: "Schools",
+                keyColumn: "Id",
+                keyValue: 10);
+
+            migrationBuilder.DeleteData(
+                table: "Schools",
+                keyColumn: "Id",
+                keyValue: 11);
+
+            migrationBuilder.DeleteData(
+                table: "Schools",
+                keyColumn: "Id",
+                keyValue: 12);
+
+            migrationBuilder.DeleteData(
+                table: "Schools",
+                keyColumn: "Id",
+                keyValue: 13);
+
+            migrationBuilder.DeleteData(
+                table: "Schools",
+                keyColumn: "Id",
+                keyValue: 14);
+
+            migrationBuilder.DeleteData(
+                table: "Schools",
+                keyColumn: "Id",
+                keyValue: 15);
+
+            migrationBuilder.DeleteData(
+                table: "Schools",
+                keyColumn: "Id",
+                keyValue: 16);
+
+            migrationBuilder.DeleteData(
+                table: "Schools",
+                keyColumn: "Id",
+                keyValue: 17);
+
+            migrationBuilder.DeleteData(
+                table: "Schools",
+                keyColumn: "Id",
+                keyValue: 18);
+
+            migrationBuilder.DeleteData(
+                table: "Schools",
+                keyColumn: "Id",
+                keyValue: 19);
+
+            migrationBuilder.DeleteData(
+                table: "Schools",
+                keyColumn: "Id",
+                keyValue: 20);
+
+            migrationBuilder.DeleteData(
+                table: "Schools",
+                keyColumn: "Id",
+                keyValue: 21);
+
+            migrationBuilder.DeleteData(
+                table: "Schools",
+                keyColumn: "Id",
+                keyValue: 22);
+
+            migrationBuilder.DeleteData(
+                table: "Schools",
+                keyColumn: "Id",
+                keyValue: 23);
+
+            migrationBuilder.DeleteData(
+                table: "Schools",
+                keyColumn: "Id",
+                keyValue: 24);
+
+            migrationBuilder.DeleteData(
+                table: "Schools",
+                keyColumn: "Id",
+                keyValue: 25);
+
+            migrationBuilder.DeleteData(
+                table: "Schools",
+                keyColumn: "Id",
+                keyValue: 26);
+
+            migrationBuilder.DeleteData(
+                table: "Schools",
+                keyColumn: "Id",
+                keyValue: 27);
+
+            migrationBuilder.DeleteData(
+                table: "Schools",
+                keyColumn: "Id",
+                keyValue: 28);
+
+            migrationBuilder.DeleteData(
+                table: "Schools",
+                keyColumn: "Id",
+                keyValue: 29);
+
+            migrationBuilder.DeleteData(
+                table: "Schools",
+                keyColumn: "Id",
+                keyValue: 30);
+
+            migrationBuilder.DeleteData(
+                table: "Schools",
+                keyColumn: "Id",
+                keyValue: 31);
+
+            migrationBuilder.DeleteData(
+                table: "Schools",
+                keyColumn: "Id",
+                keyValue: 32);
+
+            migrationBuilder.DeleteData(
+                table: "Schools",
+                keyColumn: "Id",
+                keyValue: 33);
+
+            migrationBuilder.DeleteData(
+                table: "Schools",
+                keyColumn: "Id",
+                keyValue: 34);
+
+            migrationBuilder.DeleteData(
+                table: "Schools",
+                keyColumn: "Id",
+                keyValue: 35);
+
+            migrationBuilder.DeleteData(
+                table: "Schools",
+                keyColumn: "Id",
+                keyValue: 36);
+
+            migrationBuilder.DeleteData(
+                table: "Schools",
+                keyColumn: "Id",
+                keyValue: 37);
+
+            migrationBuilder.DeleteData(
+                table: "Schools",
+                keyColumn: "Id",
+                keyValue: 38);
+
+            migrationBuilder.DeleteData(
+                table: "Schools",
+                keyColumn: "Id",
+                keyValue: 39);
+
+            migrationBuilder.DeleteData(
+                table: "Schools",
+                keyColumn: "Id",
+                keyValue: 40);
+
+            migrationBuilder.DeleteData(
+                table: "Schools",
+                keyColumn: "Id",
+                keyValue: 41);
+
+            migrationBuilder.DeleteData(
+                table: "Schools",
+                keyColumn: "Id",
+                keyValue: 42);
+
+            migrationBuilder.DeleteData(
+                table: "Schools",
+                keyColumn: "Id",
+                keyValue: 43);
+
+            migrationBuilder.DeleteData(
+                table: "Schools",
+                keyColumn: "Id",
+                keyValue: 44);
+
+            migrationBuilder.DeleteData(
+                table: "Schools",
+                keyColumn: "Id",
+                keyValue: 45);
+
+            migrationBuilder.DeleteData(
+                table: "Schools",
+                keyColumn: "Id",
+                keyValue: 46);
+
+            migrationBuilder.DeleteData(
+                table: "Schools",
+                keyColumn: "Id",
+                keyValue: 47);
+
+            migrationBuilder.DeleteData(
+                table: "Schools",
+                keyColumn: "Id",
+                keyValue: 48);
+
+            migrationBuilder.DeleteData(
+                table: "Schools",
+                keyColumn: "Id",
+                keyValue: 49);
+
+            migrationBuilder.DeleteData(
+                table: "Schools",
+                keyColumn: "Id",
+                keyValue: 50);
+
+            migrationBuilder.DeleteData(
+                table: "Schools",
+                keyColumn: "Id",
+                keyValue: 51);
+
+            migrationBuilder.DeleteData(
+                table: "Schools",
+                keyColumn: "Id",
+                keyValue: 52);
+
+            migrationBuilder.DeleteData(
+                table: "Schools",
+                keyColumn: "Id",
+                keyValue: 53);
+
+            migrationBuilder.DeleteData(
+                table: "Schools",
+                keyColumn: "Id",
+                keyValue: 54);
+
+            migrationBuilder.DeleteData(
+                table: "Schools",
+                keyColumn: "Id",
+                keyValue: 55);
+
+            migrationBuilder.DeleteData(
+                table: "Schools",
+                keyColumn: "Id",
+                keyValue: 56);
+
+            migrationBuilder.DeleteData(
+                table: "Schools",
+                keyColumn: "Id",
+                keyValue: 57);
+
+            migrationBuilder.DeleteData(
+                table: "Schools",
+                keyColumn: "Id",
+                keyValue: 58);
+
+            migrationBuilder.DeleteData(
+                table: "Schools",
+                keyColumn: "Id",
+                keyValue: 59);
+
+            migrationBuilder.DeleteData(
+                table: "Schools",
+                keyColumn: "Id",
+                keyValue: 60);
+
+            migrationBuilder.DeleteData(
+                table: "Schools",
+                keyColumn: "Id",
+                keyValue: 61);
+
+            migrationBuilder.DeleteData(
+                table: "Schools",
+                keyColumn: "Id",
+                keyValue: 62);
+
+            migrationBuilder.DeleteData(
+                table: "Schools",
+                keyColumn: "Id",
+                keyValue: 63);
+
+            migrationBuilder.DeleteData(
+                table: "Schools",
+                keyColumn: "Id",
+                keyValue: 64);
+
+            migrationBuilder.DeleteData(
+                table: "Schools",
+                keyColumn: "Id",
+                keyValue: 65);
+
+            migrationBuilder.DeleteData(
+                table: "Schools",
+                keyColumn: "Id",
+                keyValue: 66);
+
+            migrationBuilder.DeleteData(
+                table: "Schools",
+                keyColumn: "Id",
+                keyValue: 67);
+
+            migrationBuilder.DeleteData(
+                table: "Schools",
+                keyColumn: "Id",
+                keyValue: 68);
+
+            migrationBuilder.DeleteData(
+                table: "Schools",
+                keyColumn: "Id",
+                keyValue: 69);
+
+            migrationBuilder.DeleteData(
+                table: "Schools",
+                keyColumn: "Id",
+                keyValue: 70);
+
+            migrationBuilder.DeleteData(
+                table: "Schools",
+                keyColumn: "Id",
+                keyValue: 71);
+
+            migrationBuilder.DeleteData(
+                table: "Schools",
+                keyColumn: "Id",
+                keyValue: 72);
+
+            migrationBuilder.DeleteData(
+                table: "Schools",
+                keyColumn: "Id",
+                keyValue: 73);
+
+            migrationBuilder.DeleteData(
+                table: "Schools",
+                keyColumn: "Id",
+                keyValue: 74);
+
+            migrationBuilder.DeleteData(
+                table: "Schools",
+                keyColumn: "Id",
+                keyValue: 75);
+
+            migrationBuilder.DeleteData(
+                table: "Schools",
+                keyColumn: "Id",
+                keyValue: 76);
+
+            migrationBuilder.DeleteData(
+                table: "Schools",
+                keyColumn: "Id",
+                keyValue: 77);
+
+            migrationBuilder.DeleteData(
+                table: "Schools",
+                keyColumn: "Id",
+                keyValue: 78);
+
+            migrationBuilder.DeleteData(
+                table: "Schools",
+                keyColumn: "Id",
+                keyValue: 79);
+
+            migrationBuilder.DeleteData(
+                table: "Schools",
+                keyColumn: "Id",
+                keyValue: 80);
+
+            migrationBuilder.DeleteData(
+                table: "Schools",
+                keyColumn: "Id",
+                keyValue: 81);
+
+            migrationBuilder.DeleteData(
+                table: "Schools",
+                keyColumn: "Id",
+                keyValue: 82);
+
+            migrationBuilder.DeleteData(
+                table: "Schools",
+                keyColumn: "Id",
+                keyValue: 83);
+
+            migrationBuilder.DeleteData(
+                table: "Schools",
+                keyColumn: "Id",
+                keyValue: 84);
+
+            migrationBuilder.DeleteData(
+                table: "Schools",
+                keyColumn: "Id",
+                keyValue: 85);
+
+            migrationBuilder.DeleteData(
+                table: "Schools",
+                keyColumn: "Id",
+                keyValue: 86);
+
+            migrationBuilder.DeleteData(
+                table: "Schools",
+                keyColumn: "Id",
+                keyValue: 87);
+
+            migrationBuilder.DeleteData(
+                table: "Schools",
+                keyColumn: "Id",
+                keyValue: 88);
+
+            migrationBuilder.DeleteData(
+                table: "Schools",
+                keyColumn: "Id",
+                keyValue: 89);
+
+            migrationBuilder.DeleteData(
+                table: "Schools",
+                keyColumn: "Id",
+                keyValue: 90);
+
+            migrationBuilder.DeleteData(
+                table: "Schools",
+                keyColumn: "Id",
+                keyValue: 91);
+
+            migrationBuilder.DeleteData(
+                table: "Schools",
+                keyColumn: "Id",
+                keyValue: 92);
+
+            migrationBuilder.DeleteData(
+                table: "Schools",
+                keyColumn: "Id",
+                keyValue: 93);
+
+            migrationBuilder.DeleteData(
+                table: "Schools",
+                keyColumn: "Id",
+                keyValue: 94);
+
+            migrationBuilder.DeleteData(
+                table: "Schools",
+                keyColumn: "Id",
+                keyValue: 95);
+
+            migrationBuilder.DeleteData(
+                table: "Schools",
+                keyColumn: "Id",
+                keyValue: 96);
+
+            migrationBuilder.DeleteData(
+                table: "Schools",
+                keyColumn: "Id",
+                keyValue: 97);
+
+            migrationBuilder.DeleteData(
+                table: "Schools",
+                keyColumn: "Id",
+                keyValue: 98);
+
+            migrationBuilder.DeleteData(
+                table: "Schools",
+                keyColumn: "Id",
+                keyValue: 99);
+
+            migrationBuilder.DeleteData(
+                table: "Schools",
+                keyColumn: "Id",
+                keyValue: 100);
+
+            migrationBuilder.DeleteData(
+                table: "Schools",
+                keyColumn: "Id",
+                keyValue: 101);
+
+            migrationBuilder.DeleteData(
+                table: "Schools",
+                keyColumn: "Id",
+                keyValue: 102);
+
+            migrationBuilder.DeleteData(
+                table: "Schools",
+                keyColumn: "Id",
+                keyValue: 103);
+
+            migrationBuilder.DeleteData(
+                table: "Schools",
+                keyColumn: "Id",
+                keyValue: 104);
+
+            migrationBuilder.DeleteData(
+                table: "Schools",
+                keyColumn: "Id",
+                keyValue: 105);
+
+            migrationBuilder.DeleteData(
+                table: "Schools",
+                keyColumn: "Id",
+                keyValue: 106);
+
+            migrationBuilder.DeleteData(
+                table: "Schools",
+                keyColumn: "Id",
+                keyValue: 107);
+
+            migrationBuilder.DeleteData(
+                table: "Schools",
+                keyColumn: "Id",
+                keyValue: 108);
+
+            migrationBuilder.DeleteData(
+                table: "Schools",
+                keyColumn: "Id",
+                keyValue: 109);
+
+            migrationBuilder.DeleteData(
+                table: "Schools",
+                keyColumn: "Id",
+                keyValue: 110);
+
+            migrationBuilder.DeleteData(
+                table: "Schools",
+                keyColumn: "Id",
+                keyValue: 111);
+
+            migrationBuilder.DeleteData(
+                table: "Schools",
+                keyColumn: "Id",
+                keyValue: 112);
+
+            migrationBuilder.DeleteData(
+                table: "Schools",
+                keyColumn: "Id",
+                keyValue: 113);
+
+            migrationBuilder.DeleteData(
+                table: "Schools",
+                keyColumn: "Id",
+                keyValue: 114);
+
+            migrationBuilder.DeleteData(
+                table: "Schools",
+                keyColumn: "Id",
+                keyValue: 115);
+
+            migrationBuilder.DeleteData(
+                table: "Schools",
+                keyColumn: "Id",
+                keyValue: 116);
+
+            migrationBuilder.DeleteData(
+                table: "Schools",
+                keyColumn: "Id",
+                keyValue: 117);
+
+            migrationBuilder.DeleteData(
+                table: "Schools",
+                keyColumn: "Id",
+                keyValue: 118);
+
+            migrationBuilder.DeleteData(
+                table: "Schools",
+                keyColumn: "Id",
+                keyValue: 119);
+
+            migrationBuilder.DeleteData(
+                table: "Schools",
+                keyColumn: "Id",
+                keyValue: 120);
+
+            migrationBuilder.DeleteData(
+                table: "Schools",
+                keyColumn: "Id",
+                keyValue: 121);
+
+            migrationBuilder.DeleteData(
+                table: "Schools",
+                keyColumn: "Id",
+                keyValue: 122);
+
+            migrationBuilder.DeleteData(
+                table: "Schools",
+                keyColumn: "Id",
+                keyValue: 123);
+
+            migrationBuilder.DeleteData(
+                table: "Schools",
+                keyColumn: "Id",
+                keyValue: 124);
+
+            migrationBuilder.DeleteData(
+                table: "Schools",
+                keyColumn: "Id",
+                keyValue: 125);
+
+            migrationBuilder.DeleteData(
+                table: "Schools",
+                keyColumn: "Id",
+                keyValue: 126);
+
+            migrationBuilder.DeleteData(
+                table: "Schools",
+                keyColumn: "Id",
+                keyValue: 127);
+
+            migrationBuilder.DeleteData(
+                table: "Schools",
+                keyColumn: "Id",
+                keyValue: 128);
+
+            migrationBuilder.DeleteData(
+                table: "Schools",
+                keyColumn: "Id",
+                keyValue: 129);
+
+            migrationBuilder.DeleteData(
+                table: "Schools",
+                keyColumn: "Id",
+                keyValue: 130);
+
+            migrationBuilder.DeleteData(
+                table: "Schools",
+                keyColumn: "Id",
+                keyValue: 131);
+
+            migrationBuilder.DeleteData(
+                table: "Schools",
+                keyColumn: "Id",
+                keyValue: 132);
+
+            migrationBuilder.DeleteData(
+                table: "Schools",
+                keyColumn: "Id",
+                keyValue: 133);
+
+            migrationBuilder.DeleteData(
+                table: "Schools",
+                keyColumn: "Id",
+                keyValue: 134);
+
+            migrationBuilder.DeleteData(
+                table: "Schools",
+                keyColumn: "Id",
+                keyValue: 135);
+
+            migrationBuilder.DeleteData(
+                table: "Schools",
+                keyColumn: "Id",
+                keyValue: 136);
+
+            migrationBuilder.DeleteData(
+                table: "Schools",
+                keyColumn: "Id",
+                keyValue: 137);
+
+            migrationBuilder.DeleteData(
+                table: "Schools",
+                keyColumn: "Id",
+                keyValue: 138);
+
+            migrationBuilder.DeleteData(
+                table: "Schools",
+                keyColumn: "Id",
+                keyValue: 139);
+
+            migrationBuilder.DeleteData(
+                table: "Schools",
+                keyColumn: "Id",
+                keyValue: 140);
+
+            migrationBuilder.DeleteData(
+                table: "Schools",
+                keyColumn: "Id",
+                keyValue: 141);
+
+            migrationBuilder.DeleteData(
+                table: "Schools",
+                keyColumn: "Id",
+                keyValue: 142);
+
+            migrationBuilder.DeleteData(
+                table: "Schools",
+                keyColumn: "Id",
+                keyValue: 143);
+
+            migrationBuilder.DeleteData(
+                table: "Schools",
+                keyColumn: "Id",
+                keyValue: 144);
+
+            migrationBuilder.DeleteData(
+                table: "Schools",
+                keyColumn: "Id",
+                keyValue: 145);
+
+            migrationBuilder.DeleteData(
+                table: "Schools",
+                keyColumn: "Id",
+                keyValue: 146);
+
+            migrationBuilder.DeleteData(
+                table: "Schools",
+                keyColumn: "Id",
+                keyValue: 147);
+
+            migrationBuilder.DeleteData(
+                table: "Schools",
+                keyColumn: "Id",
+                keyValue: 148);
+
+            migrationBuilder.DeleteData(
+                table: "Schools",
+                keyColumn: "Id",
+                keyValue: 149);
+
+            migrationBuilder.DeleteData(
+                table: "Schools",
+                keyColumn: "Id",
+                keyValue: 150);
+
+            migrationBuilder.DeleteData(
+                table: "Schools",
+                keyColumn: "Id",
+                keyValue: 151);
+
+            migrationBuilder.DeleteData(
+                table: "Schools",
+                keyColumn: "Id",
+                keyValue: 153);
+
+            migrationBuilder.DeleteData(
+                table: "Schools",
+                keyColumn: "Id",
+                keyValue: 154);
+
+            migrationBuilder.DeleteData(
+                table: "Schools",
+                keyColumn: "Id",
+                keyValue: 155);
+
+            migrationBuilder.DeleteData(
+                table: "Schools",
+                keyColumn: "Id",
+                keyValue: 156);
+
+            migrationBuilder.DeleteData(
+                table: "Schools",
+                keyColumn: "Id",
+                keyValue: 157);
+
+            migrationBuilder.DeleteData(
+                table: "Schools",
+                keyColumn: "Id",
+                keyValue: 158);
+
+            migrationBuilder.DeleteData(
+                table: "Schools",
+                keyColumn: "Id",
+                keyValue: 159);
+
+            migrationBuilder.DeleteData(
+                table: "Schools",
+                keyColumn: "Id",
+                keyValue: 160);
+
+            migrationBuilder.DeleteData(
+                table: "Schools",
+                keyColumn: "Id",
+                keyValue: 161);
+
+            migrationBuilder.DeleteData(
+                table: "Schools",
+                keyColumn: "Id",
+                keyValue: 162);
+
+            migrationBuilder.DeleteData(
+                table: "Schools",
+                keyColumn: "Id",
+                keyValue: 163);
+
+            migrationBuilder.DeleteData(
+                table: "Schools",
+                keyColumn: "Id",
+                keyValue: 164);
+
+            migrationBuilder.DeleteData(
+                table: "Schools",
+                keyColumn: "Id",
+                keyValue: 165);
+
+            migrationBuilder.DeleteData(
+                table: "Schools",
+                keyColumn: "Id",
+                keyValue: 166);
+
+            migrationBuilder.DeleteData(
+                table: "Schools",
+                keyColumn: "Id",
+                keyValue: 167);
+
+            migrationBuilder.DeleteData(
+                table: "Schools",
+                keyColumn: "Id",
+                keyValue: 168);
+
+            migrationBuilder.DeleteData(
+                table: "Schools",
+                keyColumn: "Id",
+                keyValue: 169);
+
+            migrationBuilder.DeleteData(
+                table: "Schools",
+                keyColumn: "Id",
+                keyValue: 170);
+
+            migrationBuilder.DeleteData(
+                table: "Schools",
+                keyColumn: "Id",
+                keyValue: 171);
+
+            migrationBuilder.DeleteData(
+                table: "Schools",
+                keyColumn: "Id",
+                keyValue: 172);
+
+            migrationBuilder.DeleteData(
+                table: "Schools",
+                keyColumn: "Id",
+                keyValue: 173);
+
+            migrationBuilder.DeleteData(
+                table: "Schools",
+                keyColumn: "Id",
+                keyValue: 174);
+
+            migrationBuilder.DeleteData(
+                table: "Schools",
+                keyColumn: "Id",
+                keyValue: 175);
+
+            migrationBuilder.DeleteData(
+                table: "Schools",
+                keyColumn: "Id",
+                keyValue: 176);
+
+            migrationBuilder.DeleteData(
+                table: "Schools",
+                keyColumn: "Id",
+                keyValue: 177);
+
+            migrationBuilder.DeleteData(
+                table: "Schools",
+                keyColumn: "Id",
+                keyValue: 178);
+
+            migrationBuilder.DeleteData(
+                table: "Schools",
+                keyColumn: "Id",
+                keyValue: 179);
+
+            migrationBuilder.DeleteData(
+                table: "Schools",
+                keyColumn: "Id",
+                keyValue: 180);
+
+            migrationBuilder.DeleteData(
+                table: "Schools",
+                keyColumn: "Id",
+                keyValue: 181);
+
+            migrationBuilder.DeleteData(
+                table: "Schools",
+                keyColumn: "Id",
+                keyValue: 182);
+
+            migrationBuilder.DeleteData(
+                table: "Schools",
+                keyColumn: "Id",
+                keyValue: 183);
+
+            migrationBuilder.DeleteData(
+                table: "Schools",
+                keyColumn: "Id",
+                keyValue: 184);
+
+            migrationBuilder.DeleteData(
+                table: "Schools",
+                keyColumn: "Id",
+                keyValue: 185);
+
+            migrationBuilder.DeleteData(
+                table: "Schools",
+                keyColumn: "Id",
+                keyValue: 186);
+
+            migrationBuilder.DeleteData(
+                table: "Schools",
+                keyColumn: "Id",
+                keyValue: 187);
+
+            migrationBuilder.DeleteData(
+                table: "Schools",
+                keyColumn: "Id",
+                keyValue: 188);
+
+            migrationBuilder.DeleteData(
+                table: "Schools",
+                keyColumn: "Id",
+                keyValue: 189);
+
+            migrationBuilder.DeleteData(
+                table: "Schools",
+                keyColumn: "Id",
+                keyValue: 190);
+
+            migrationBuilder.DeleteData(
+                table: "Schools",
+                keyColumn: "Id",
+                keyValue: 191);
+
+            migrationBuilder.DeleteData(
+                table: "Schools",
+                keyColumn: "Id",
+                keyValue: 192);
+
+            migrationBuilder.DeleteData(
+                table: "Schools",
+                keyColumn: "Id",
+                keyValue: 193);
+
+            migrationBuilder.DeleteData(
+                table: "Schools",
+                keyColumn: "Id",
+                keyValue: 194);
+
+            migrationBuilder.DeleteData(
+                table: "Schools",
+                keyColumn: "Id",
+                keyValue: 195);
+
+            migrationBuilder.DeleteData(
+                table: "Schools",
+                keyColumn: "Id",
+                keyValue: 196);
+
+            migrationBuilder.DeleteData(
+                table: "Schools",
+                keyColumn: "Id",
+                keyValue: 197);
+
+            migrationBuilder.DeleteData(
+                table: "Schools",
+                keyColumn: "Id",
+                keyValue: 198);
+
+            migrationBuilder.DeleteData(
+                table: "Schools",
+                keyColumn: "Id",
+                keyValue: 199);
+
+            migrationBuilder.DeleteData(
+                table: "Schools",
+                keyColumn: "Id",
+                keyValue: 200);
+
+            migrationBuilder.DeleteData(
+                table: "Schools",
+                keyColumn: "Id",
+                keyValue: 201);
+
+            migrationBuilder.DeleteData(
+                table: "Schools",
+                keyColumn: "Id",
+                keyValue: 202);
+
+            migrationBuilder.DeleteData(
+                table: "Schools",
+                keyColumn: "Id",
+                keyValue: 203);
+
+            migrationBuilder.DeleteData(
+                table: "Schools",
+                keyColumn: "Id",
+                keyValue: 204);
+
+            migrationBuilder.DeleteData(
+                table: "Schools",
+                keyColumn: "Id",
+                keyValue: 205);
+
+            migrationBuilder.DeleteData(
+                table: "Schools",
+                keyColumn: "Id",
+                keyValue: 206);
+
+            migrationBuilder.DeleteData(
+                table: "Schools",
+                keyColumn: "Id",
+                keyValue: 207);
+
+            migrationBuilder.DeleteData(
+                table: "Schools",
+                keyColumn: "Id",
+                keyValue: 208);
+
+            migrationBuilder.DeleteData(
+                table: "Schools",
+                keyColumn: "Id",
+                keyValue: 209);
+
+            migrationBuilder.DeleteData(
+                table: "Schools",
+                keyColumn: "Id",
+                keyValue: 210);
+
+            migrationBuilder.DeleteData(
+                table: "Schools",
+                keyColumn: "Id",
+                keyValue: 211);
+
+            migrationBuilder.DeleteData(
+                table: "Schools",
+                keyColumn: "Id",
+                keyValue: 212);
+
+            migrationBuilder.DeleteData(
+                table: "Schools",
+                keyColumn: "Id",
+                keyValue: 213);
+
+            migrationBuilder.DeleteData(
+                table: "Schools",
+                keyColumn: "Id",
+                keyValue: 214);
+
+            migrationBuilder.DeleteData(
+                table: "Schools",
+                keyColumn: "Id",
+                keyValue: 215);
+
+            migrationBuilder.DeleteData(
+                table: "Schools",
+                keyColumn: "Id",
+                keyValue: 216);
+
+            migrationBuilder.DeleteData(
+                table: "Schools",
+                keyColumn: "Id",
+                keyValue: 217);
+
+            migrationBuilder.DeleteData(
+                table: "Schools",
+                keyColumn: "Id",
+                keyValue: 218);
+
+            migrationBuilder.DeleteData(
+                table: "Schools",
+                keyColumn: "Id",
+                keyValue: 219);
+
+            migrationBuilder.DeleteData(
+                table: "Schools",
+                keyColumn: "Id",
+                keyValue: 220);
+
+            migrationBuilder.DeleteData(
+                table: "Schools",
+                keyColumn: "Id",
+                keyValue: 221);
+
+            migrationBuilder.DeleteData(
+                table: "Schools",
+                keyColumn: "Id",
+                keyValue: 222);
+
+            migrationBuilder.DeleteData(
+                table: "Schools",
+                keyColumn: "Id",
+                keyValue: 223);
+
+            migrationBuilder.DeleteData(
+                table: "Schools",
+                keyColumn: "Id",
+                keyValue: 224);
+
+            migrationBuilder.DeleteData(
+                table: "Schools",
+                keyColumn: "Id",
+                keyValue: 225);
+
+            migrationBuilder.DeleteData(
+                table: "Schools",
+                keyColumn: "Id",
+                keyValue: 226);
+
+            migrationBuilder.DeleteData(
+                table: "Schools",
+                keyColumn: "Id",
+                keyValue: 227);
+
+            migrationBuilder.DeleteData(
+                table: "Schools",
+                keyColumn: "Id",
+                keyValue: 228);
+
+            migrationBuilder.DeleteData(
+                table: "Schools",
+                keyColumn: "Id",
+                keyValue: 229);
+
+            migrationBuilder.DeleteData(
+                table: "Schools",
+                keyColumn: "Id",
+                keyValue: 230);
+
+            migrationBuilder.DeleteData(
+                table: "Schools",
+                keyColumn: "Id",
+                keyValue: 231);
+
+            migrationBuilder.DeleteData(
+                table: "Schools",
+                keyColumn: "Id",
+                keyValue: 232);
+
+            migrationBuilder.DeleteData(
+                table: "Schools",
+                keyColumn: "Id",
+                keyValue: 233);
+
+            migrationBuilder.DeleteData(
+                table: "Schools",
+                keyColumn: "Id",
+                keyValue: 234);
+
+            migrationBuilder.DeleteData(
+                table: "Schools",
+                keyColumn: "Id",
+                keyValue: 235);
+
+            migrationBuilder.DeleteData(
+                table: "Schools",
+                keyColumn: "Id",
+                keyValue: 236);
+
+            migrationBuilder.DeleteData(
+                table: "Schools",
+                keyColumn: "Id",
+                keyValue: 237);
+
+            migrationBuilder.DeleteData(
+                table: "Schools",
+                keyColumn: "Id",
+                keyValue: 238);
+
+            migrationBuilder.DeleteData(
+                table: "Schools",
+                keyColumn: "Id",
+                keyValue: 239);
+
+            migrationBuilder.DeleteData(
+                table: "Schools",
+                keyColumn: "Id",
+                keyValue: 240);
+
+            migrationBuilder.DeleteData(
+                table: "Schools",
+                keyColumn: "Id",
+                keyValue: 241);
+
+            migrationBuilder.DeleteData(
+                table: "Schools",
+                keyColumn: "Id",
+                keyValue: 242);
+
+            migrationBuilder.DeleteData(
+                table: "Schools",
+                keyColumn: "Id",
+                keyValue: 243);
+
+            migrationBuilder.DeleteData(
+                table: "Schools",
+                keyColumn: "Id",
+                keyValue: 244);
+
+            migrationBuilder.DeleteData(
+                table: "Schools",
+                keyColumn: "Id",
+                keyValue: 245);
+
+            migrationBuilder.DeleteData(
+                table: "Schools",
+                keyColumn: "Id",
+                keyValue: 246);
+
+            migrationBuilder.DeleteData(
+                table: "Schools",
+                keyColumn: "Id",
+                keyValue: 247);
+
+            migrationBuilder.DeleteData(
+                table: "Schools",
+                keyColumn: "Id",
+                keyValue: 248);
+
+            migrationBuilder.DeleteData(
+                table: "Schools",
+                keyColumn: "Id",
+                keyValue: 249);
+
+            migrationBuilder.DeleteData(
+                table: "Schools",
+                keyColumn: "Id",
+                keyValue: 250);
+
+            migrationBuilder.DeleteData(
+                table: "Schools",
+                keyColumn: "Id",
+                keyValue: 251);
+
+            migrationBuilder.DeleteData(
+                table: "Schools",
+                keyColumn: "Id",
+                keyValue: 252);
+
+            migrationBuilder.DeleteData(
+                table: "Schools",
+                keyColumn: "Id",
+                keyValue: 253);
+
+            migrationBuilder.DeleteData(
+                table: "Schools",
+                keyColumn: "Id",
+                keyValue: 254);
+
+            migrationBuilder.DeleteData(
+                table: "Schools",
+                keyColumn: "Id",
+                keyValue: 255);
+
+            migrationBuilder.DeleteData(
+                table: "Schools",
+                keyColumn: "Id",
+                keyValue: 256);
+
+            migrationBuilder.DeleteData(
+                table: "Schools",
+                keyColumn: "Id",
+                keyValue: 257);
+
+            migrationBuilder.DeleteData(
+                table: "Schools",
+                keyColumn: "Id",
+                keyValue: 258);
+
+            migrationBuilder.DeleteData(
+                table: "Schools",
+                keyColumn: "Id",
+                keyValue: 259);
+
+            migrationBuilder.DeleteData(
+                table: "Schools",
+                keyColumn: "Id",
+                keyValue: 260);
+
+            migrationBuilder.DeleteData(
+                table: "Schools",
+                keyColumn: "Id",
+                keyValue: 261);
+
+            migrationBuilder.DeleteData(
+                table: "Schools",
+                keyColumn: "Id",
+                keyValue: 262);
+
+            migrationBuilder.DeleteData(
+                table: "Schools",
+                keyColumn: "Id",
+                keyValue: 263);
+
+            migrationBuilder.DeleteData(
+                table: "Schools",
+                keyColumn: "Id",
+                keyValue: 264);
+
+            migrationBuilder.DeleteData(
+                table: "Schools",
+                keyColumn: "Id",
+                keyValue: 265);
+
+            migrationBuilder.DeleteData(
+                table: "Schools",
+                keyColumn: "Id",
+                keyValue: 266);
+
+            migrationBuilder.DeleteData(
+                table: "Schools",
+                keyColumn: "Id",
+                keyValue: 267);
+
+            migrationBuilder.DeleteData(
+                table: "Schools",
+                keyColumn: "Id",
+                keyValue: 268);
+
+            migrationBuilder.DeleteData(
+                table: "Schools",
+                keyColumn: "Id",
+                keyValue: 269);
+
+            migrationBuilder.DeleteData(
+                table: "Schools",
+                keyColumn: "Id",
+                keyValue: 270);
+
+            migrationBuilder.DeleteData(
+                table: "Schools",
+                keyColumn: "Id",
+                keyValue: 271);
+
+            migrationBuilder.DeleteData(
+                table: "Schools",
+                keyColumn: "Id",
+                keyValue: 272);
+
+            migrationBuilder.DeleteData(
+                table: "Schools",
+                keyColumn: "Id",
+                keyValue: 273);
+
+            migrationBuilder.DeleteData(
+                table: "Schools",
+                keyColumn: "Id",
+                keyValue: 274);
+
+            migrationBuilder.DeleteData(
+                table: "Schools",
+                keyColumn: "Id",
+                keyValue: 275);
+
+            migrationBuilder.DeleteData(
+                table: "Schools",
+                keyColumn: "Id",
+                keyValue: 276);
+
+            migrationBuilder.DeleteData(
+                table: "Schools",
+                keyColumn: "Id",
+                keyValue: 277);
+
+            migrationBuilder.DeleteData(
+                table: "Schools",
+                keyColumn: "Id",
+                keyValue: 278);
+
+            migrationBuilder.DeleteData(
+                table: "Schools",
+                keyColumn: "Id",
+                keyValue: 279);
+
+            migrationBuilder.DeleteData(
+                table: "Schools",
+                keyColumn: "Id",
+                keyValue: 280);
+
+            migrationBuilder.DeleteData(
+                table: "Schools",
+                keyColumn: "Id",
+                keyValue: 281);
+
+            migrationBuilder.DeleteData(
+                table: "Schools",
+                keyColumn: "Id",
+                keyValue: 282);
+
+            migrationBuilder.DeleteData(
+                table: "Schools",
+                keyColumn: "Id",
+                keyValue: 283);
+
+            migrationBuilder.DeleteData(
+                table: "Schools",
+                keyColumn: "Id",
+                keyValue: 284);
+
+            migrationBuilder.DeleteData(
+                table: "Schools",
+                keyColumn: "Id",
+                keyValue: 285);
+
+            migrationBuilder.DeleteData(
+                table: "Schools",
+                keyColumn: "Id",
+                keyValue: 286);
+
+            migrationBuilder.DeleteData(
+                table: "Schools",
+                keyColumn: "Id",
+                keyValue: 287);
+
+            migrationBuilder.DeleteData(
+                table: "Schools",
+                keyColumn: "Id",
+                keyValue: 288);
+
+            migrationBuilder.DeleteData(
+                table: "Schools",
+                keyColumn: "Id",
+                keyValue: 290);
+
+            migrationBuilder.DeleteData(
+                table: "Schools",
+                keyColumn: "Id",
+                keyValue: 291);
+
+            migrationBuilder.DeleteData(
+                table: "Schools",
+                keyColumn: "Id",
+                keyValue: 292);
+
+            migrationBuilder.DeleteData(
+                table: "Schools",
+                keyColumn: "Id",
+                keyValue: 293);
+
+            migrationBuilder.DeleteData(
+                table: "Schools",
+                keyColumn: "Id",
+                keyValue: 294);
+
+            migrationBuilder.DeleteData(
+                table: "Schools",
+                keyColumn: "Id",
+                keyValue: 295);
+
+            migrationBuilder.DeleteData(
+                table: "Schools",
+                keyColumn: "Id",
+                keyValue: 296);
+
+            migrationBuilder.DeleteData(
+                table: "Schools",
+                keyColumn: "Id",
+                keyValue: 297);
+
+            migrationBuilder.DeleteData(
+                table: "Schools",
+                keyColumn: "Id",
+                keyValue: 298);
+
+            migrationBuilder.DeleteData(
+                table: "Schools",
+                keyColumn: "Id",
+                keyValue: 299);
+
+            migrationBuilder.DeleteData(
+                table: "Schools",
+                keyColumn: "Id",
+                keyValue: 300);
+
+            migrationBuilder.DeleteData(
+                table: "Schools",
+                keyColumn: "Id",
+                keyValue: 301);
+
+            migrationBuilder.DeleteData(
+                table: "Schools",
+                keyColumn: "Id",
+                keyValue: 302);
+
+            migrationBuilder.DeleteData(
+                table: "Schools",
+                keyColumn: "Id",
+                keyValue: 303);
+
+            migrationBuilder.DeleteData(
+                table: "Schools",
+                keyColumn: "Id",
+                keyValue: 304);
+
+            migrationBuilder.DeleteData(
+                table: "Schools",
+                keyColumn: "Id",
+                keyValue: 305);
+
+            migrationBuilder.DeleteData(
+                table: "Schools",
+                keyColumn: "Id",
+                keyValue: 306);
+
+            migrationBuilder.DeleteData(
+                table: "Schools",
+                keyColumn: "Id",
+                keyValue: 307);
+
+            migrationBuilder.DeleteData(
+                table: "Schools",
+                keyColumn: "Id",
+                keyValue: 308);
+
+            migrationBuilder.DeleteData(
+                table: "Schools",
+                keyColumn: "Id",
+                keyValue: 309);
+
+            migrationBuilder.DeleteData(
+                table: "Schools",
+                keyColumn: "Id",
+                keyValue: 310);
+
+            migrationBuilder.DeleteData(
+                table: "Schools",
+                keyColumn: "Id",
+                keyValue: 311);
+
+            migrationBuilder.DeleteData(
+                table: "Schools",
+                keyColumn: "Id",
+                keyValue: 312);
+
+            migrationBuilder.DeleteData(
+                table: "Schools",
+                keyColumn: "Id",
+                keyValue: 313);
+
+            migrationBuilder.DeleteData(
+                table: "Schools",
+                keyColumn: "Id",
+                keyValue: 314);
+
+            migrationBuilder.DeleteData(
+                table: "Schools",
+                keyColumn: "Id",
+                keyValue: 315);
+
+            migrationBuilder.DeleteData(
+                table: "Schools",
+                keyColumn: "Id",
+                keyValue: 316);
+
+            migrationBuilder.DeleteData(
+                table: "Schools",
+                keyColumn: "Id",
+                keyValue: 317);
+
+            migrationBuilder.DeleteData(
+                table: "Schools",
+                keyColumn: "Id",
+                keyValue: 318);
+
+            migrationBuilder.DeleteData(
+                table: "Schools",
+                keyColumn: "Id",
+                keyValue: 319);
+
+            migrationBuilder.DeleteData(
+                table: "Schools",
+                keyColumn: "Id",
+                keyValue: 320);
+
+            migrationBuilder.DeleteData(
+                table: "Schools",
+                keyColumn: "Id",
+                keyValue: 321);
+
+            migrationBuilder.DeleteData(
+                table: "Schools",
+                keyColumn: "Id",
+                keyValue: 322);
+
+            migrationBuilder.DeleteData(
+                table: "Schools",
+                keyColumn: "Id",
+                keyValue: 323);
+
+            migrationBuilder.DeleteData(
+                table: "Schools",
+                keyColumn: "Id",
+                keyValue: 324);
+
+            migrationBuilder.DeleteData(
+                table: "Schools",
+                keyColumn: "Id",
+                keyValue: 325);
+
+            migrationBuilder.DeleteData(
+                table: "Schools",
+                keyColumn: "Id",
+                keyValue: 326);
+
+            migrationBuilder.DeleteData(
+                table: "Schools",
+                keyColumn: "Id",
+                keyValue: 327);
+
+            migrationBuilder.DeleteData(
+                table: "Schools",
+                keyColumn: "Id",
+                keyValue: 328);
+
+            migrationBuilder.DeleteData(
+                table: "Schools",
+                keyColumn: "Id",
+                keyValue: 329);
+
+            migrationBuilder.DeleteData(
+                table: "Schools",
+                keyColumn: "Id",
+                keyValue: 330);
+
+            migrationBuilder.DeleteData(
+                table: "Schools",
+                keyColumn: "Id",
+                keyValue: 331);
+
+            migrationBuilder.DeleteData(
+                table: "Schools",
+                keyColumn: "Id",
+                keyValue: 332);
+
+            migrationBuilder.DeleteData(
+                table: "Schools",
+                keyColumn: "Id",
+                keyValue: 333);
+
+            migrationBuilder.DeleteData(
+                table: "Schools",
+                keyColumn: "Id",
+                keyValue: 334);
+
+            migrationBuilder.DeleteData(
+                table: "Schools",
+                keyColumn: "Id",
+                keyValue: 335);
+
+            migrationBuilder.DeleteData(
+                table: "Schools",
+                keyColumn: "Id",
+                keyValue: 336);
+
+            migrationBuilder.DeleteData(
+                table: "Schools",
+                keyColumn: "Id",
+                keyValue: 337);
+
+            migrationBuilder.DeleteData(
+                table: "Schools",
+                keyColumn: "Id",
+                keyValue: 338);
+
+            migrationBuilder.DeleteData(
+                table: "Schools",
+                keyColumn: "Id",
+                keyValue: 339);
+
+            migrationBuilder.DeleteData(
+                table: "Schools",
+                keyColumn: "Id",
+                keyValue: 340);
+
+            migrationBuilder.DeleteData(
+                table: "Schools",
+                keyColumn: "Id",
+                keyValue: 341);
+
+            migrationBuilder.DeleteData(
+                table: "Schools",
+                keyColumn: "Id",
+                keyValue: 342);
+
+            migrationBuilder.DeleteData(
+                table: "Schools",
+                keyColumn: "Id",
+                keyValue: 343);
+
+            migrationBuilder.DeleteData(
+                table: "Schools",
+                keyColumn: "Id",
+                keyValue: 344);
+
+            migrationBuilder.DeleteData(
+                table: "Schools",
+                keyColumn: "Id",
+                keyValue: 345);
+
+            migrationBuilder.DeleteData(
+                table: "Schools",
+                keyColumn: "Id",
+                keyValue: 346);
+
+            migrationBuilder.DeleteData(
+                table: "Schools",
+                keyColumn: "Id",
+                keyValue: 347);
+
+            migrationBuilder.DeleteData(
+                table: "Schools",
+                keyColumn: "Id",
+                keyValue: 348);
+
+            migrationBuilder.DeleteData(
+                table: "Schools",
+                keyColumn: "Id",
+                keyValue: 349);
+
+            migrationBuilder.DeleteData(
+                table: "Schools",
+                keyColumn: "Id",
+                keyValue: 350);
+
+            migrationBuilder.DeleteData(
+                table: "Schools",
+                keyColumn: "Id",
+                keyValue: 351);
+
+            migrationBuilder.DeleteData(
+                table: "Schools",
+                keyColumn: "Id",
+                keyValue: 352);
+
+            migrationBuilder.DeleteData(
+                table: "Schools",
+                keyColumn: "Id",
+                keyValue: 353);
+
+            migrationBuilder.DeleteData(
+                table: "Schools",
+                keyColumn: "Id",
+                keyValue: 354);
+
+            migrationBuilder.DeleteData(
+                table: "Schools",
+                keyColumn: "Id",
+                keyValue: 355);
+
+            migrationBuilder.DeleteData(
+                table: "Schools",
+                keyColumn: "Id",
+                keyValue: 356);
+
+            migrationBuilder.DeleteData(
+                table: "Schools",
+                keyColumn: "Id",
+                keyValue: 357);
+
+            migrationBuilder.DeleteData(
+                table: "Schools",
+                keyColumn: "Id",
+                keyValue: 358);
+
+            migrationBuilder.DeleteData(
+                table: "Schools",
+                keyColumn: "Id",
+                keyValue: 359);
+
+            migrationBuilder.DeleteData(
+                table: "Schools",
+                keyColumn: "Id",
+                keyValue: 360);
+
+            migrationBuilder.DeleteData(
+                table: "Schools",
+                keyColumn: "Id",
+                keyValue: 361);
+
+            migrationBuilder.DeleteData(
+                table: "Schools",
+                keyColumn: "Id",
+                keyValue: 362);
+
+            migrationBuilder.DeleteData(
+                table: "Schools",
+                keyColumn: "Id",
+                keyValue: 363);
+
+            migrationBuilder.DeleteData(
+                table: "Schools",
+                keyColumn: "Id",
+                keyValue: 364);
+
+            migrationBuilder.DeleteData(
+                table: "Schools",
+                keyColumn: "Id",
+                keyValue: 365);
+
+            migrationBuilder.DeleteData(
+                table: "Schools",
+                keyColumn: "Id",
+                keyValue: 366);
+
+            migrationBuilder.DeleteData(
+                table: "Schools",
+                keyColumn: "Id",
+                keyValue: 367);
+
+            migrationBuilder.DeleteData(
+                table: "Schools",
+                keyColumn: "Id",
+                keyValue: 368);
+
+            migrationBuilder.DeleteData(
+                table: "Schools",
+                keyColumn: "Id",
+                keyValue: 369);
+
+            migrationBuilder.DeleteData(
+                table: "Schools",
+                keyColumn: "Id",
+                keyValue: 370);
+
+            migrationBuilder.DeleteData(
+                table: "Schools",
+                keyColumn: "Id",
+                keyValue: 371);
+
+            migrationBuilder.DeleteData(
+                table: "Schools",
+                keyColumn: "Id",
+                keyValue: 372);
+
+            migrationBuilder.DeleteData(
+                table: "Schools",
+                keyColumn: "Id",
+                keyValue: 373);
+
+            migrationBuilder.DeleteData(
+                table: "Schools",
+                keyColumn: "Id",
+                keyValue: 374);
+
+            migrationBuilder.DeleteData(
+                table: "Schools",
+                keyColumn: "Id",
+                keyValue: 375);
+
+            migrationBuilder.DeleteData(
+                table: "Schools",
+                keyColumn: "Id",
+                keyValue: 376);
+
+            migrationBuilder.DeleteData(
+                table: "Schools",
+                keyColumn: "Id",
+                keyValue: 377);
+
+            migrationBuilder.DeleteData(
+                table: "Schools",
+                keyColumn: "Id",
+                keyValue: 378);
+
+            migrationBuilder.DeleteData(
+                table: "Schools",
+                keyColumn: "Id",
+                keyValue: 379);
+
+            migrationBuilder.DeleteData(
+                table: "Schools",
+                keyColumn: "Id",
+                keyValue: 380);
+
+            migrationBuilder.DeleteData(
+                table: "Schools",
+                keyColumn: "Id",
+                keyValue: 381);
+
+            migrationBuilder.DeleteData(
+                table: "Schools",
+                keyColumn: "Id",
+                keyValue: 382);
+
+            migrationBuilder.DeleteData(
+                table: "Schools",
+                keyColumn: "Id",
+                keyValue: 383);
+
+            migrationBuilder.DeleteData(
+                table: "Schools",
+                keyColumn: "Id",
+                keyValue: 384);
+
+            migrationBuilder.DeleteData(
+                table: "Schools",
+                keyColumn: "Id",
+                keyValue: 385);
+
+            migrationBuilder.DeleteData(
+                table: "Schools",
+                keyColumn: "Id",
+                keyValue: 386);
+
+            migrationBuilder.DeleteData(
+                table: "Schools",
+                keyColumn: "Id",
+                keyValue: 387);
+
+            migrationBuilder.DeleteData(
+                table: "Schools",
+                keyColumn: "Id",
+                keyValue: 388);
+
+            migrationBuilder.DeleteData(
+                table: "Schools",
+                keyColumn: "Id",
+                keyValue: 389);
+
+            migrationBuilder.DeleteData(
+                table: "Schools",
+                keyColumn: "Id",
+                keyValue: 390);
+
+            migrationBuilder.DeleteData(
+                table: "Schools",
+                keyColumn: "Id",
+                keyValue: 391);
+
+            migrationBuilder.DeleteData(
+                table: "Schools",
+                keyColumn: "Id",
+                keyValue: 392);
+
+            migrationBuilder.DeleteData(
+                table: "Schools",
+                keyColumn: "Id",
+                keyValue: 393);
+
+            migrationBuilder.DeleteData(
+                table: "Schools",
+                keyColumn: "Id",
+                keyValue: 395);
+
+            migrationBuilder.DeleteData(
+                table: "Schools",
+                keyColumn: "Id",
+                keyValue: 396);
+
+            migrationBuilder.DeleteData(
+                table: "Schools",
+                keyColumn: "Id",
+                keyValue: 397);
+
+            migrationBuilder.DeleteData(
+                table: "Schools",
+                keyColumn: "Id",
+                keyValue: 398);
+
+            migrationBuilder.DeleteData(
+                table: "Schools",
+                keyColumn: "Id",
+                keyValue: 399);
+
+            migrationBuilder.DeleteData(
+                table: "Schools",
+                keyColumn: "Id",
+                keyValue: 400);
+
+            migrationBuilder.DeleteData(
+                table: "Schools",
+                keyColumn: "Id",
+                keyValue: 401);
+
+            migrationBuilder.DeleteData(
+                table: "Schools",
+                keyColumn: "Id",
+                keyValue: 402);
+
+            migrationBuilder.DeleteData(
+                table: "Schools",
+                keyColumn: "Id",
+                keyValue: 403);
+
+            migrationBuilder.DeleteData(
+                table: "Schools",
+                keyColumn: "Id",
+                keyValue: 404);
+
+            migrationBuilder.DeleteData(
+                table: "Schools",
+                keyColumn: "Id",
+                keyValue: 405);
+
+            migrationBuilder.DeleteData(
+                table: "Schools",
+                keyColumn: "Id",
+                keyValue: 406);
+
+            migrationBuilder.DeleteData(
+                table: "Schools",
+                keyColumn: "Id",
+                keyValue: 407);
+
+            migrationBuilder.DeleteData(
+                table: "Schools",
+                keyColumn: "Id",
+                keyValue: 408);
+
+            migrationBuilder.DeleteData(
+                table: "Schools",
+                keyColumn: "Id",
+                keyValue: 409);
+
+            migrationBuilder.DeleteData(
+                table: "Schools",
+                keyColumn: "Id",
+                keyValue: 410);
+
+            migrationBuilder.DeleteData(
+                table: "Schools",
+                keyColumn: "Id",
+                keyValue: 411);
+
+            migrationBuilder.DeleteData(
+                table: "Schools",
+                keyColumn: "Id",
+                keyValue: 412);
+
+            migrationBuilder.DeleteData(
+                table: "Schools",
+                keyColumn: "Id",
+                keyValue: 413);
+
+            migrationBuilder.DeleteData(
+                table: "Schools",
+                keyColumn: "Id",
+                keyValue: 414);
+
+            migrationBuilder.DeleteData(
+                table: "Schools",
+                keyColumn: "Id",
+                keyValue: 415);
+
+            migrationBuilder.DeleteData(
+                table: "Schools",
+                keyColumn: "Id",
+                keyValue: 416);
+
+            migrationBuilder.DeleteData(
+                table: "Schools",
+                keyColumn: "Id",
+                keyValue: 417);
+
+            migrationBuilder.DeleteData(
+                table: "Schools",
+                keyColumn: "Id",
+                keyValue: 418);
+
+            migrationBuilder.DeleteData(
+                table: "Schools",
+                keyColumn: "Id",
+                keyValue: 419);
+
+            migrationBuilder.DeleteData(
+                table: "Schools",
+                keyColumn: "Id",
+                keyValue: 420);
+
+            migrationBuilder.DeleteData(
+                table: "Schools",
+                keyColumn: "Id",
+                keyValue: 421);
+
+            migrationBuilder.DeleteData(
+                table: "Schools",
+                keyColumn: "Id",
+                keyValue: 422);
+
+            migrationBuilder.DeleteData(
+                table: "Schools",
+                keyColumn: "Id",
+                keyValue: 423);
+
+            migrationBuilder.DeleteData(
+                table: "Schools",
+                keyColumn: "Id",
+                keyValue: 424);
+
+            migrationBuilder.DeleteData(
+                table: "Schools",
+                keyColumn: "Id",
+                keyValue: 425);
+
+            migrationBuilder.DeleteData(
+                table: "Schools",
+                keyColumn: "Id",
+                keyValue: 426);
+
+            migrationBuilder.DeleteData(
+                table: "Schools",
+                keyColumn: "Id",
+                keyValue: 427);
+
+            migrationBuilder.DeleteData(
+                table: "Schools",
+                keyColumn: "Id",
+                keyValue: 428);
+
+            migrationBuilder.DeleteData(
+                table: "Schools",
+                keyColumn: "Id",
+                keyValue: 429);
+
+            migrationBuilder.DeleteData(
+                table: "Schools",
+                keyColumn: "Id",
+                keyValue: 430);
+
+            migrationBuilder.DeleteData(
+                table: "Schools",
+                keyColumn: "Id",
+                keyValue: 431);
+
+            migrationBuilder.DeleteData(
+                table: "Schools",
+                keyColumn: "Id",
+                keyValue: 432);
+
+            migrationBuilder.DeleteData(
+                table: "Schools",
+                keyColumn: "Id",
+                keyValue: 433);
+
+            migrationBuilder.DeleteData(
+                table: "Schools",
+                keyColumn: "Id",
+                keyValue: 434);
+
+            migrationBuilder.DeleteData(
+                table: "Schools",
+                keyColumn: "Id",
+                keyValue: 435);
+
+            migrationBuilder.DeleteData(
+                table: "Schools",
+                keyColumn: "Id",
+                keyValue: 436);
+
+            migrationBuilder.DeleteData(
+                table: "Schools",
+                keyColumn: "Id",
+                keyValue: 437);
+
+            migrationBuilder.DeleteData(
+                table: "Schools",
+                keyColumn: "Id",
+                keyValue: 438);
+
+            migrationBuilder.DeleteData(
+                table: "Schools",
+                keyColumn: "Id",
+                keyValue: 439);
+
+            migrationBuilder.DeleteData(
+                table: "Schools",
+                keyColumn: "Id",
+                keyValue: 440);
+
+            migrationBuilder.DeleteData(
+                table: "Schools",
+                keyColumn: "Id",
+                keyValue: 441);
+
+            migrationBuilder.DeleteData(
+                table: "Schools",
+                keyColumn: "Id",
+                keyValue: 442);
+
+            migrationBuilder.DeleteData(
+                table: "Schools",
+                keyColumn: "Id",
+                keyValue: 443);
+
+            migrationBuilder.DeleteData(
+                table: "Schools",
+                keyColumn: "Id",
+                keyValue: 444);
+
+            migrationBuilder.DeleteData(
+                table: "Schools",
+                keyColumn: "Id",
+                keyValue: 445);
+
+            migrationBuilder.DeleteData(
+                table: "Schools",
+                keyColumn: "Id",
+                keyValue: 446);
+
+            migrationBuilder.DeleteData(
+                table: "Schools",
+                keyColumn: "Id",
+                keyValue: 447);
+
+            migrationBuilder.DeleteData(
+                table: "Schools",
+                keyColumn: "Id",
+                keyValue: 448);
+
+            migrationBuilder.DeleteData(
+                table: "Schools",
+                keyColumn: "Id",
+                keyValue: 449);
+
+            migrationBuilder.DeleteData(
+                table: "Schools",
+                keyColumn: "Id",
+                keyValue: 450);
+
+            migrationBuilder.DeleteData(
+                table: "Schools",
+                keyColumn: "Id",
+                keyValue: 451);
+
+            migrationBuilder.DeleteData(
+                table: "Schools",
+                keyColumn: "Id",
+                keyValue: 452);
+
+            migrationBuilder.DeleteData(
+                table: "Schools",
+                keyColumn: "Id",
+                keyValue: 453);
+
+            migrationBuilder.DeleteData(
+                table: "Schools",
+                keyColumn: "Id",
+                keyValue: 454);
+
+            migrationBuilder.DeleteData(
+                table: "Schools",
+                keyColumn: "Id",
+                keyValue: 455);
+
+            migrationBuilder.DeleteData(
+                table: "Schools",
+                keyColumn: "Id",
+                keyValue: 456);
+
+            migrationBuilder.DeleteData(
+                table: "Schools",
+                keyColumn: "Id",
+                keyValue: 457);
+
+            migrationBuilder.DeleteData(
+                table: "Schools",
+                keyColumn: "Id",
+                keyValue: 458);
+
+            migrationBuilder.DeleteData(
+                table: "Schools",
+                keyColumn: "Id",
+                keyValue: 459);
+
+            migrationBuilder.DeleteData(
+                table: "Schools",
+                keyColumn: "Id",
+                keyValue: 460);
+
+            migrationBuilder.DeleteData(
+                table: "Schools",
+                keyColumn: "Id",
+                keyValue: 461);
+
+            migrationBuilder.DeleteData(
+                table: "Schools",
+                keyColumn: "Id",
+                keyValue: 462);
+
+            migrationBuilder.DeleteData(
+                table: "Schools",
+                keyColumn: "Id",
+                keyValue: 463);
+
+            migrationBuilder.DeleteData(
+                table: "Schools",
+                keyColumn: "Id",
+                keyValue: 464);
+
+            migrationBuilder.DeleteData(
+                table: "Schools",
+                keyColumn: "Id",
+                keyValue: 465);
+
+            migrationBuilder.DeleteData(
+                table: "Schools",
+                keyColumn: "Id",
+                keyValue: 466);
+
+            migrationBuilder.DeleteData(
+                table: "Schools",
+                keyColumn: "Id",
+                keyValue: 467);
+
+            migrationBuilder.DeleteData(
+                table: "Schools",
+                keyColumn: "Id",
+                keyValue: 468);
+
+            migrationBuilder.DeleteData(
+                table: "Schools",
+                keyColumn: "Id",
+                keyValue: 469);
+
+            migrationBuilder.DeleteData(
+                table: "Schools",
+                keyColumn: "Id",
+                keyValue: 470);
+
+            migrationBuilder.DeleteData(
+                table: "Schools",
+                keyColumn: "Id",
+                keyValue: 471);
+
+            migrationBuilder.DeleteData(
+                table: "Schools",
+                keyColumn: "Id",
+                keyValue: 472);
+
+            migrationBuilder.DeleteData(
+                table: "Schools",
+                keyColumn: "Id",
+                keyValue: 473);
+
+            migrationBuilder.DeleteData(
+                table: "Schools",
+                keyColumn: "Id",
+                keyValue: 474);
+
+            migrationBuilder.DeleteData(
+                table: "Schools",
+                keyColumn: "Id",
+                keyValue: 475);
+
+            migrationBuilder.DeleteData(
+                table: "Schools",
+                keyColumn: "Id",
+                keyValue: 476);
+
+            migrationBuilder.DeleteData(
+                table: "Schools",
+                keyColumn: "Id",
+                keyValue: 477);
+
+            migrationBuilder.DeleteData(
+                table: "Schools",
+                keyColumn: "Id",
+                keyValue: 478);
+
+            migrationBuilder.DeleteData(
+                table: "Schools",
+                keyColumn: "Id",
+                keyValue: 479);
+
+            migrationBuilder.DeleteData(
+                table: "Schools",
+                keyColumn: "Id",
+                keyValue: 480);
+
+            migrationBuilder.DeleteData(
+                table: "Schools",
+                keyColumn: "Id",
+                keyValue: 481);
+
+            migrationBuilder.DeleteData(
+                table: "Schools",
+                keyColumn: "Id",
+                keyValue: 482);
+
+            migrationBuilder.DeleteData(
+                table: "Schools",
+                keyColumn: "Id",
+                keyValue: 483);
+
+            migrationBuilder.DeleteData(
+                table: "Schools",
+                keyColumn: "Id",
+                keyValue: 484);
+
+            migrationBuilder.DeleteData(
+                table: "Schools",
+                keyColumn: "Id",
+                keyValue: 485);
+
+            migrationBuilder.DeleteData(
+                table: "Schools",
+                keyColumn: "Id",
+                keyValue: 486);
+
+            migrationBuilder.DeleteData(
+                table: "Schools",
+                keyColumn: "Id",
+                keyValue: 487);
+
+            migrationBuilder.DeleteData(
+                table: "Schools",
+                keyColumn: "Id",
+                keyValue: 488);
+
+            migrationBuilder.DeleteData(
+                table: "Schools",
+                keyColumn: "Id",
+                keyValue: 489);
+
+            migrationBuilder.DeleteData(
+                table: "Schools",
+                keyColumn: "Id",
+                keyValue: 490);
+
+            migrationBuilder.DeleteData(
+                table: "Schools",
+                keyColumn: "Id",
+                keyValue: 491);
+
+            migrationBuilder.DeleteData(
+                table: "Schools",
+                keyColumn: "Id",
+                keyValue: 492);
+
+            migrationBuilder.DeleteData(
+                table: "Schools",
+                keyColumn: "Id",
+                keyValue: 493);
+
+            migrationBuilder.DeleteData(
+                table: "Schools",
+                keyColumn: "Id",
+                keyValue: 494);
+
+            migrationBuilder.DeleteData(
+                table: "Schools",
+                keyColumn: "Id",
+                keyValue: 495);
+
+            migrationBuilder.DeleteData(
+                table: "Schools",
+                keyColumn: "Id",
+                keyValue: 496);
+
+            migrationBuilder.DeleteData(
+                table: "Schools",
+                keyColumn: "Id",
+                keyValue: 497);
+
+            migrationBuilder.DeleteData(
+                table: "Schools",
+                keyColumn: "Id",
+                keyValue: 498);
+
+            migrationBuilder.DeleteData(
+                table: "Schools",
+                keyColumn: "Id",
+                keyValue: 499);
+
+            migrationBuilder.DeleteData(
+                table: "Schools",
+                keyColumn: "Id",
+                keyValue: 500);
+
+            migrationBuilder.DeleteData(
+                table: "Schools",
+                keyColumn: "Id",
+                keyValue: 501);
+
+            migrationBuilder.DeleteData(
+                table: "Schools",
+                keyColumn: "Id",
+                keyValue: 502);
+
+            migrationBuilder.DeleteData(
+                table: "Schools",
+                keyColumn: "Id",
+                keyValue: 503);
+
+            migrationBuilder.DeleteData(
+                table: "Schools",
+                keyColumn: "Id",
+                keyValue: 504);
+
+            migrationBuilder.DeleteData(
+                table: "Schools",
+                keyColumn: "Id",
+                keyValue: 505);
+
+            migrationBuilder.DeleteData(
+                table: "Schools",
+                keyColumn: "Id",
+                keyValue: 506);
+
+            migrationBuilder.DeleteData(
+                table: "Schools",
+                keyColumn: "Id",
+                keyValue: 507);
+
+            migrationBuilder.DeleteData(
+                table: "Schools",
+                keyColumn: "Id",
+                keyValue: 508);
+
+            migrationBuilder.DeleteData(
+                table: "Schools",
+                keyColumn: "Id",
+                keyValue: 509);
+
+            migrationBuilder.DeleteData(
+                table: "Schools",
+                keyColumn: "Id",
+                keyValue: 510);
+
+            migrationBuilder.DeleteData(
+                table: "Schools",
+                keyColumn: "Id",
+                keyValue: 511);
+
+            migrationBuilder.DeleteData(
+                table: "Schools",
+                keyColumn: "Id",
+                keyValue: 512);
+
+            migrationBuilder.DeleteData(
+                table: "Schools",
+                keyColumn: "Id",
+                keyValue: 513);
+
+            migrationBuilder.DeleteData(
+                table: "Schools",
+                keyColumn: "Id",
+                keyValue: 514);
+
+            migrationBuilder.DeleteData(
+                table: "Schools",
+                keyColumn: "Id",
+                keyValue: 515);
+
+            migrationBuilder.DeleteData(
+                table: "Schools",
+                keyColumn: "Id",
+                keyValue: 516);
+
+            migrationBuilder.DeleteData(
+                table: "Schools",
+                keyColumn: "Id",
+                keyValue: 517);
+
+            migrationBuilder.DeleteData(
+                table: "Schools",
+                keyColumn: "Id",
+                keyValue: 518);
+
+            migrationBuilder.DeleteData(
+                table: "Schools",
+                keyColumn: "Id",
+                keyValue: 519);
+
+            migrationBuilder.DeleteData(
+                table: "Schools",
+                keyColumn: "Id",
+                keyValue: 520);
+
+            migrationBuilder.DeleteData(
+                table: "Schools",
+                keyColumn: "Id",
+                keyValue: 521);
+
+            migrationBuilder.DeleteData(
+                table: "Schools",
+                keyColumn: "Id",
+                keyValue: 522);
+
+            migrationBuilder.DeleteData(
+                table: "Schools",
+                keyColumn: "Id",
+                keyValue: 523);
+
+            migrationBuilder.DeleteData(
+                table: "Schools",
+                keyColumn: "Id",
+                keyValue: 524);
+
+            migrationBuilder.DeleteData(
+                table: "Schools",
+                keyColumn: "Id",
+                keyValue: 525);
+
+            migrationBuilder.DeleteData(
+                table: "Schools",
+                keyColumn: "Id",
+                keyValue: 526);
+
+            migrationBuilder.DeleteData(
+                table: "Schools",
+                keyColumn: "Id",
+                keyValue: 527);
+
+            migrationBuilder.DeleteData(
+                table: "Schools",
+                keyColumn: "Id",
+                keyValue: 528);
+
+            migrationBuilder.DeleteData(
+                table: "Schools",
+                keyColumn: "Id",
+                keyValue: 529);
+
+            migrationBuilder.DeleteData(
+                table: "Schools",
+                keyColumn: "Id",
+                keyValue: 530);
+
+            migrationBuilder.DeleteData(
+                table: "Schools",
+                keyColumn: "Id",
+                keyValue: 531);
+
+            migrationBuilder.DeleteData(
+                table: "Schools",
+                keyColumn: "Id",
+                keyValue: 532);
+
+            migrationBuilder.DeleteData(
+                table: "Schools",
+                keyColumn: "Id",
+                keyValue: 533);
+
+            migrationBuilder.DeleteData(
+                table: "Schools",
+                keyColumn: "Id",
+                keyValue: 534);
+
+            migrationBuilder.DeleteData(
+                table: "Schools",
+                keyColumn: "Id",
+                keyValue: 535);
+
+            migrationBuilder.DeleteData(
+                table: "Schools",
+                keyColumn: "Id",
+                keyValue: 536);
+
+            migrationBuilder.DeleteData(
+                table: "Schools",
+                keyColumn: "Id",
+                keyValue: 537);
+
+            migrationBuilder.DeleteData(
+                table: "Schools",
+                keyColumn: "Id",
+                keyValue: 538);
+
+            migrationBuilder.DeleteData(
+                table: "Schools",
+                keyColumn: "Id",
+                keyValue: 539);
+
+            migrationBuilder.DeleteData(
+                table: "Schools",
+                keyColumn: "Id",
+                keyValue: 540);
+
+            migrationBuilder.DeleteData(
+                table: "Schools",
+                keyColumn: "Id",
+                keyValue: 541);
+
+            migrationBuilder.DeleteData(
+                table: "Schools",
+                keyColumn: "Id",
+                keyValue: 542);
+
+            migrationBuilder.DeleteData(
+                table: "Schools",
+                keyColumn: "Id",
+                keyValue: 543);
+
+            migrationBuilder.DeleteData(
+                table: "Schools",
+                keyColumn: "Id",
+                keyValue: 544);
+
+            migrationBuilder.DeleteData(
+                table: "Schools",
+                keyColumn: "Id",
+                keyValue: 545);
+
+            migrationBuilder.DeleteData(
+                table: "Schools",
+                keyColumn: "Id",
+                keyValue: 546);
+
+            migrationBuilder.DeleteData(
+                table: "Schools",
+                keyColumn: "Id",
+                keyValue: 547);
+
+            migrationBuilder.DeleteData(
+                table: "Schools",
+                keyColumn: "Id",
+                keyValue: 548);
+
+            migrationBuilder.DeleteData(
+                table: "Schools",
+                keyColumn: "Id",
+                keyValue: 549);
+
+            migrationBuilder.DeleteData(
+                table: "Schools",
+                keyColumn: "Id",
+                keyValue: 550);
+
+            migrationBuilder.DeleteData(
+                table: "Schools",
+                keyColumn: "Id",
+                keyValue: 551);
+
+            migrationBuilder.DeleteData(
+                table: "Schools",
+                keyColumn: "Id",
+                keyValue: 552);
+
+            migrationBuilder.DeleteData(
+                table: "Schools",
+                keyColumn: "Id",
+                keyValue: 553);
+
+            migrationBuilder.DeleteData(
+                table: "Schools",
+                keyColumn: "Id",
+                keyValue: 554);
+
+            migrationBuilder.DeleteData(
+                table: "Schools",
+                keyColumn: "Id",
+                keyValue: 555);
+
+            migrationBuilder.DeleteData(
+                table: "Schools",
+                keyColumn: "Id",
+                keyValue: 556);
+
+            migrationBuilder.DeleteData(
+                table: "Schools",
+                keyColumn: "Id",
+                keyValue: 557);
+
+            migrationBuilder.DeleteData(
+                table: "Schools",
+                keyColumn: "Id",
+                keyValue: 558);
+
+            migrationBuilder.DeleteData(
+                table: "Schools",
+                keyColumn: "Id",
+                keyValue: 559);
+
+            migrationBuilder.DeleteData(
+                table: "Schools",
+                keyColumn: "Id",
+                keyValue: 560);
+
+            migrationBuilder.DeleteData(
+                table: "Schools",
+                keyColumn: "Id",
+                keyValue: 561);
+
+            migrationBuilder.DeleteData(
+                table: "Schools",
+                keyColumn: "Id",
+                keyValue: 562);
+
+            migrationBuilder.DeleteData(
+                table: "Schools",
+                keyColumn: "Id",
+                keyValue: 563);
+
+            migrationBuilder.DeleteData(
+                table: "Schools",
+                keyColumn: "Id",
+                keyValue: 564);
+
+            migrationBuilder.DeleteData(
+                table: "Schools",
+                keyColumn: "Id",
+                keyValue: 565);
+
+            migrationBuilder.DeleteData(
+                table: "Schools",
+                keyColumn: "Id",
+                keyValue: 566);
+
+            migrationBuilder.DeleteData(
+                table: "Schools",
+                keyColumn: "Id",
+                keyValue: 567);
+
+            migrationBuilder.DeleteData(
+                table: "Schools",
+                keyColumn: "Id",
+                keyValue: 568);
+
+            migrationBuilder.DeleteData(
+                table: "Schools",
+                keyColumn: "Id",
+                keyValue: 569);
+
+            migrationBuilder.DeleteData(
+                table: "Schools",
+                keyColumn: "Id",
+                keyValue: 570);
+
+            migrationBuilder.DeleteData(
+                table: "Schools",
+                keyColumn: "Id",
+                keyValue: 571);
+
+            migrationBuilder.DeleteData(
+                table: "Schools",
+                keyColumn: "Id",
+                keyValue: 572);
+
+            migrationBuilder.DeleteData(
+                table: "Schools",
+                keyColumn: "Id",
+                keyValue: 573);
+
+            migrationBuilder.DeleteData(
+                table: "Schools",
+                keyColumn: "Id",
+                keyValue: 574);
+
+            migrationBuilder.DeleteData(
+                table: "Schools",
+                keyColumn: "Id",
+                keyValue: 575);
+
+            migrationBuilder.DeleteData(
+                table: "Schools",
+                keyColumn: "Id",
+                keyValue: 576);
+
+            migrationBuilder.DeleteData(
+                table: "Schools",
+                keyColumn: "Id",
+                keyValue: 577);
+
+            migrationBuilder.DeleteData(
+                table: "Schools",
+                keyColumn: "Id",
+                keyValue: 578);
+
+            migrationBuilder.DeleteData(
+                table: "Schools",
+                keyColumn: "Id",
+                keyValue: 579);
+
+            migrationBuilder.DeleteData(
+                table: "Schools",
+                keyColumn: "Id",
+                keyValue: 580);
+
+            migrationBuilder.DeleteData(
+                table: "Schools",
+                keyColumn: "Id",
+                keyValue: 581);
+
+            migrationBuilder.DeleteData(
+                table: "Schools",
+                keyColumn: "Id",
+                keyValue: 582);
+
+            migrationBuilder.DeleteData(
+                table: "Schools",
+                keyColumn: "Id",
+                keyValue: 583);
+
+            migrationBuilder.DeleteData(
+                table: "Schools",
+                keyColumn: "Id",
+                keyValue: 584);
+
+            migrationBuilder.DeleteData(
+                table: "Schools",
+                keyColumn: "Id",
+                keyValue: 585);
+
+            migrationBuilder.DeleteData(
+                table: "Schools",
+                keyColumn: "Id",
+                keyValue: 586);
+
+            migrationBuilder.DeleteData(
+                table: "Schools",
+                keyColumn: "Id",
+                keyValue: 587);
+
+            migrationBuilder.DeleteData(
+                table: "Schools",
+                keyColumn: "Id",
+                keyValue: 588);
+
+            migrationBuilder.DeleteData(
+                table: "Schools",
+                keyColumn: "Id",
+                keyValue: 589);
+
+            migrationBuilder.DeleteData(
+                table: "Schools",
+                keyColumn: "Id",
+                keyValue: 590);
+
+            migrationBuilder.DeleteData(
+                table: "Schools",
+                keyColumn: "Id",
+                keyValue: 591);
+
+            migrationBuilder.DeleteData(
+                table: "Schools",
+                keyColumn: "Id",
+                keyValue: 592);
+
+            migrationBuilder.DeleteData(
+                table: "Schools",
+                keyColumn: "Id",
+                keyValue: 593);
+
+            migrationBuilder.DeleteData(
+                table: "Schools",
+                keyColumn: "Id",
+                keyValue: 594);
+
+            migrationBuilder.DeleteData(
+                table: "Schools",
+                keyColumn: "Id",
+                keyValue: 595);
+
+            migrationBuilder.DeleteData(
+                table: "Schools",
+                keyColumn: "Id",
+                keyValue: 596);
+
+            migrationBuilder.DeleteData(
+                table: "Schools",
+                keyColumn: "Id",
+                keyValue: 597);
+
+            migrationBuilder.DeleteData(
+                table: "Schools",
+                keyColumn: "Id",
+                keyValue: 598);
+
+            migrationBuilder.DeleteData(
+                table: "Schools",
+                keyColumn: "Id",
+                keyValue: 599);
+
+            migrationBuilder.DeleteData(
+                table: "Schools",
+                keyColumn: "Id",
+                keyValue: 600);
+
+            migrationBuilder.DeleteData(
+                table: "Schools",
+                keyColumn: "Id",
+                keyValue: 601);
+
+            migrationBuilder.DeleteData(
+                table: "Schools",
+                keyColumn: "Id",
+                keyValue: 602);
+
+            migrationBuilder.DeleteData(
+                table: "Schools",
+                keyColumn: "Id",
+                keyValue: 603);
+
+            migrationBuilder.DeleteData(
+                table: "Schools",
+                keyColumn: "Id",
+                keyValue: 604);
+
+            migrationBuilder.DeleteData(
+                table: "Schools",
+                keyColumn: "Id",
+                keyValue: 605);
+
+            migrationBuilder.DeleteData(
+                table: "Schools",
+                keyColumn: "Id",
+                keyValue: 606);
+
+            migrationBuilder.DeleteData(
+                table: "Schools",
+                keyColumn: "Id",
+                keyValue: 607);
+
+            migrationBuilder.DeleteData(
+                table: "Schools",
+                keyColumn: "Id",
+                keyValue: 608);
+
+            migrationBuilder.DeleteData(
+                table: "Schools",
+                keyColumn: "Id",
+                keyValue: 609);
+
+            migrationBuilder.DeleteData(
+                table: "Schools",
+                keyColumn: "Id",
+                keyValue: 611);
+
+            migrationBuilder.DeleteData(
+                table: "Schools",
+                keyColumn: "Id",
+                keyValue: 612);
+
+            migrationBuilder.DeleteData(
+                table: "Schools",
+                keyColumn: "Id",
+                keyValue: 613);
+
+            migrationBuilder.DeleteData(
+                table: "Schools",
+                keyColumn: "Id",
+                keyValue: 614);
+
+            migrationBuilder.DeleteData(
+                table: "Schools",
+                keyColumn: "Id",
+                keyValue: 615);
+
+            migrationBuilder.DeleteData(
+                table: "Schools",
+                keyColumn: "Id",
+                keyValue: 616);
+
+            migrationBuilder.DeleteData(
+                table: "Schools",
+                keyColumn: "Id",
+                keyValue: 617);
+
+            migrationBuilder.DeleteData(
+                table: "Schools",
+                keyColumn: "Id",
+                keyValue: 618);
+
+            migrationBuilder.DeleteData(
+                table: "Schools",
+                keyColumn: "Id",
+                keyValue: 619);
+
+            migrationBuilder.DeleteData(
+                table: "Schools",
+                keyColumn: "Id",
+                keyValue: 620);
+
+            migrationBuilder.DeleteData(
+                table: "Schools",
+                keyColumn: "Id",
+                keyValue: 621);
+
+            migrationBuilder.DeleteData(
+                table: "Schools",
+                keyColumn: "Id",
+                keyValue: 622);
+
+            migrationBuilder.DeleteData(
+                table: "Schools",
+                keyColumn: "Id",
+                keyValue: 623);
+
+            migrationBuilder.DeleteData(
+                table: "Schools",
+                keyColumn: "Id",
+                keyValue: 624);
+
+            migrationBuilder.DeleteData(
+                table: "Schools",
+                keyColumn: "Id",
+                keyValue: 625);
+
+            migrationBuilder.DeleteData(
+                table: "Schools",
+                keyColumn: "Id",
+                keyValue: 626);
+
+            migrationBuilder.DeleteData(
+                table: "Schools",
+                keyColumn: "Id",
+                keyValue: 627);
+
+            migrationBuilder.DeleteData(
+                table: "Schools",
+                keyColumn: "Id",
+                keyValue: 628);
+
+            migrationBuilder.DeleteData(
+                table: "Schools",
+                keyColumn: "Id",
+                keyValue: 629);
+
+            migrationBuilder.DeleteData(
+                table: "Schools",
+                keyColumn: "Id",
+                keyValue: 630);
+
+            migrationBuilder.DeleteData(
+                table: "Schools",
+                keyColumn: "Id",
+                keyValue: 631);
+
+            migrationBuilder.DeleteData(
+                table: "Schools",
+                keyColumn: "Id",
+                keyValue: 632);
+
+            migrationBuilder.DeleteData(
+                table: "Schools",
+                keyColumn: "Id",
+                keyValue: 633);
+
+            migrationBuilder.DeleteData(
+                table: "Schools",
+                keyColumn: "Id",
+                keyValue: 634);
+
+            migrationBuilder.DeleteData(
+                table: "Schools",
+                keyColumn: "Id",
+                keyValue: 635);
+
+            migrationBuilder.DeleteData(
+                table: "Schools",
+                keyColumn: "Id",
+                keyValue: 636);
+
+            migrationBuilder.DeleteData(
+                table: "Schools",
+                keyColumn: "Id",
+                keyValue: 637);
+
+            migrationBuilder.DeleteData(
+                table: "Schools",
+                keyColumn: "Id",
+                keyValue: 638);
+
+            migrationBuilder.DeleteData(
+                table: "Schools",
+                keyColumn: "Id",
+                keyValue: 639);
+
+            migrationBuilder.DeleteData(
+                table: "Schools",
+                keyColumn: "Id",
+                keyValue: 640);
+
+            migrationBuilder.DeleteData(
+                table: "Schools",
+                keyColumn: "Id",
+                keyValue: 641);
+
+            migrationBuilder.DeleteData(
+                table: "Schools",
+                keyColumn: "Id",
+                keyValue: 642);
+
+            migrationBuilder.DeleteData(
+                table: "Schools",
+                keyColumn: "Id",
+                keyValue: 643);
+
+            migrationBuilder.DeleteData(
+                table: "Schools",
+                keyColumn: "Id",
+                keyValue: 644);
+
+            migrationBuilder.DeleteData(
+                table: "Schools",
+                keyColumn: "Id",
+                keyValue: 645);
+
+            migrationBuilder.DeleteData(
+                table: "Schools",
+                keyColumn: "Id",
+                keyValue: 646);
+
+            migrationBuilder.DeleteData(
+                table: "Schools",
+                keyColumn: "Id",
+                keyValue: 647);
+
+            migrationBuilder.DeleteData(
+                table: "Schools",
+                keyColumn: "Id",
+                keyValue: 648);
+
+            migrationBuilder.DeleteData(
+                table: "Schools",
+                keyColumn: "Id",
+                keyValue: 649);
+
+            migrationBuilder.DeleteData(
+                table: "Schools",
+                keyColumn: "Id",
+                keyValue: 650);
+
+            migrationBuilder.DeleteData(
+                table: "Schools",
+                keyColumn: "Id",
+                keyValue: 651);
+
+            migrationBuilder.DeleteData(
+                table: "Schools",
+                keyColumn: "Id",
+                keyValue: 652);
+
+            migrationBuilder.DeleteData(
+                table: "Schools",
+                keyColumn: "Id",
+                keyValue: 653);
+
+            migrationBuilder.DeleteData(
+                table: "Schools",
+                keyColumn: "Id",
+                keyValue: 654);
+
+            migrationBuilder.DeleteData(
+                table: "Schools",
+                keyColumn: "Id",
+                keyValue: 655);
+
+            migrationBuilder.DeleteData(
+                table: "Schools",
+                keyColumn: "Id",
+                keyValue: 656);
+
+            migrationBuilder.DeleteData(
+                table: "Schools",
+                keyColumn: "Id",
+                keyValue: 657);
+
+            migrationBuilder.DeleteData(
+                table: "Schools",
+                keyColumn: "Id",
+                keyValue: 658);
+
+            migrationBuilder.DeleteData(
+                table: "Schools",
+                keyColumn: "Id",
+                keyValue: 659);
+
+            migrationBuilder.DeleteData(
+                table: "Schools",
+                keyColumn: "Id",
+                keyValue: 660);
+
+            migrationBuilder.DeleteData(
+                table: "Schools",
+                keyColumn: "Id",
+                keyValue: 661);
+
+            migrationBuilder.DeleteData(
+                table: "SectionsOfCurricular",
+                keyColumn: "Id",
+                keyValue: 11);
+
+            migrationBuilder.DeleteData(
+                table: "Students",
+                keyColumn: "Id",
+                keyValue: 1);
+
+            migrationBuilder.DeleteData(
+                table: "Teachers",
+                keyColumn: "Id",
+                keyValue: 1);
+
+            migrationBuilder.DeleteData(
+                table: "AspNetRoles",
+                keyColumn: "Id",
+                keyValue: "0f761db2-ab55-416c-83b9-70abded3d908");
+
+            migrationBuilder.DeleteData(
+                table: "AspNetRoles",
+                keyColumn: "Id",
+                keyValue: "71281cf3-9730-4d7e-acbb-213edee8291c");
+
+            migrationBuilder.DeleteData(
+                table: "AspNetRoles",
+                keyColumn: "Id",
+                keyValue: "e66d730b-bcf1-41b5-b7e0-3e66056e61d9");
+
+            migrationBuilder.DeleteData(
+                table: "AspNetRoles",
+                keyColumn: "Id",
+                keyValue: "fe750b82-6fe9-472c-bdc5-61f5433d429e");
+
+            migrationBuilder.DeleteData(
+                table: "AspNetUsers",
+                keyColumn: "Id",
+                keyValue: "789061a9-edaa-4a00-9e09-add6a20c8288");
+
+            migrationBuilder.DeleteData(
+                table: "AspNetUsers",
+                keyColumn: "Id",
+                keyValue: "9c7f55cd-f0ae-405e-b520-6e1ccc448fcc");
+
+            migrationBuilder.DeleteData(
+                table: "Lessons",
+                keyColumn: "Id",
+                keyValue: 1);
+
+            migrationBuilder.DeleteData(
+                table: "Lessons",
+                keyColumn: "Id",
+                keyValue: 2);
+
+            migrationBuilder.DeleteData(
+                table: "Lessons",
+                keyColumn: "Id",
+                keyValue: 3);
+
+            migrationBuilder.DeleteData(
+                table: "Lessons",
+                keyColumn: "Id",
+                keyValue: 4);
+
+            migrationBuilder.DeleteData(
+                table: "Lessons",
+                keyColumn: "Id",
+                keyValue: 5);
+
+            migrationBuilder.DeleteData(
+                table: "Lessons",
+                keyColumn: "Id",
+                keyValue: 6);
+
+            migrationBuilder.DeleteData(
+                table: "Lessons",
+                keyColumn: "Id",
+                keyValue: 7);
+
+            migrationBuilder.DeleteData(
+                table: "Lessons",
+                keyColumn: "Id",
+                keyValue: 8);
+
+            migrationBuilder.DeleteData(
+                table: "Lessons",
+                keyColumn: "Id",
+                keyValue: 9);
+
+            migrationBuilder.DeleteData(
+                table: "Lessons",
+                keyColumn: "Id",
+                keyValue: 10);
+
+            migrationBuilder.DeleteData(
+                table: "Lessons",
+                keyColumn: "Id",
+                keyValue: 11);
+
+            migrationBuilder.DeleteData(
+                table: "Lessons",
+                keyColumn: "Id",
+                keyValue: 12);
+
+            migrationBuilder.DeleteData(
+                table: "Lessons",
+                keyColumn: "Id",
+                keyValue: 13);
+
+            migrationBuilder.DeleteData(
+                table: "Lessons",
+                keyColumn: "Id",
+                keyValue: 14);
+
+            migrationBuilder.DeleteData(
+                table: "Lessons",
+                keyColumn: "Id",
+                keyValue: 15);
+
+            migrationBuilder.DeleteData(
+                table: "Lessons",
+                keyColumn: "Id",
+                keyValue: 16);
+
+            migrationBuilder.DeleteData(
+                table: "Lessons",
+                keyColumn: "Id",
+                keyValue: 17);
+
+            migrationBuilder.DeleteData(
+                table: "Lessons",
+                keyColumn: "Id",
+                keyValue: 18);
+
+            migrationBuilder.DeleteData(
+                table: "Lessons",
+                keyColumn: "Id",
+                keyValue: 19);
+
+            migrationBuilder.DeleteData(
+                table: "Lessons",
+                keyColumn: "Id",
+                keyValue: 20);
+
+            migrationBuilder.DeleteData(
+                table: "Lessons",
+                keyColumn: "Id",
+                keyValue: 21);
+
+            migrationBuilder.DeleteData(
+                table: "Lessons",
+                keyColumn: "Id",
+                keyValue: 22);
+
+            migrationBuilder.DeleteData(
+                table: "Lessons",
+                keyColumn: "Id",
+                keyValue: 23);
+
+            migrationBuilder.DeleteData(
+                table: "Lessons",
+                keyColumn: "Id",
+                keyValue: 24);
+
+            migrationBuilder.DeleteData(
+                table: "Lessons",
+                keyColumn: "Id",
+                keyValue: 25);
+
+            migrationBuilder.DeleteData(
+                table: "Lessons",
+                keyColumn: "Id",
+                keyValue: 26);
+
+            migrationBuilder.DeleteData(
+                table: "Lessons",
+                keyColumn: "Id",
+                keyValue: 27);
+
+            migrationBuilder.DeleteData(
+                table: "Lessons",
+                keyColumn: "Id",
+                keyValue: 28);
+
+            migrationBuilder.DeleteData(
+                table: "Lessons",
+                keyColumn: "Id",
+                keyValue: 29);
+
+            migrationBuilder.DeleteData(
+                table: "Lessons",
+                keyColumn: "Id",
+                keyValue: 30);
+
+            migrationBuilder.DeleteData(
+                table: "Lessons",
+                keyColumn: "Id",
+                keyValue: 31);
+
+            migrationBuilder.DeleteData(
+                table: "Lessons",
+                keyColumn: "Id",
+                keyValue: 32);
+
+            migrationBuilder.DeleteData(
+                table: "Lessons",
+                keyColumn: "Id",
+                keyValue: 33);
+
+            migrationBuilder.DeleteData(
+                table: "Lessons",
+                keyColumn: "Id",
+                keyValue: 34);
+
+            migrationBuilder.DeleteData(
+                table: "Lessons",
+                keyColumn: "Id",
+                keyValue: 35);
+
+            migrationBuilder.DeleteData(
+                table: "Lessons",
+                keyColumn: "Id",
+                keyValue: 36);
+
+            migrationBuilder.DeleteData(
+                table: "Lessons",
+                keyColumn: "Id",
+                keyValue: 37);
+
+            migrationBuilder.DeleteData(
+                table: "Lessons",
+                keyColumn: "Id",
+                keyValue: 38);
+
+            migrationBuilder.DeleteData(
+                table: "Lessons",
+                keyColumn: "Id",
+                keyValue: 39);
+
+            migrationBuilder.DeleteData(
+                table: "Lessons",
+                keyColumn: "Id",
+                keyValue: 40);
+
+            migrationBuilder.DeleteData(
+                table: "Lessons",
+                keyColumn: "Id",
+                keyValue: 41);
+
+            migrationBuilder.DeleteData(
+                table: "Lessons",
+                keyColumn: "Id",
+                keyValue: 42);
+
+            migrationBuilder.DeleteData(
+                table: "Lessons",
+                keyColumn: "Id",
+                keyValue: 43);
+
+            migrationBuilder.DeleteData(
+                table: "Lessons",
+                keyColumn: "Id",
+                keyValue: 44);
+
+            migrationBuilder.DeleteData(
+                table: "Lessons",
+                keyColumn: "Id",
+                keyValue: 45);
+
+            migrationBuilder.DeleteData(
+                table: "Lessons",
+                keyColumn: "Id",
+                keyValue: 46);
+
+            migrationBuilder.DeleteData(
+                table: "Lessons",
+                keyColumn: "Id",
+                keyValue: 47);
+
+            migrationBuilder.DeleteData(
+                table: "Lessons",
+                keyColumn: "Id",
+                keyValue: 48);
+
+            migrationBuilder.DeleteData(
+                table: "Lessons",
+                keyColumn: "Id",
+                keyValue: 49);
+
+            migrationBuilder.DeleteData(
+                table: "Lessons",
+                keyColumn: "Id",
+                keyValue: 50);
+
+            migrationBuilder.DeleteData(
+                table: "Lessons",
+                keyColumn: "Id",
+                keyValue: 51);
+
+            migrationBuilder.DeleteData(
+                table: "Lessons",
+                keyColumn: "Id",
+                keyValue: 52);
+
+            migrationBuilder.DeleteData(
+                table: "Lessons",
+                keyColumn: "Id",
+                keyValue: 53);
+
+            migrationBuilder.DeleteData(
+                table: "Lessons",
+                keyColumn: "Id",
+                keyValue: 54);
+
+            migrationBuilder.DeleteData(
+                table: "Lessons",
+                keyColumn: "Id",
+                keyValue: 55);
+
+            migrationBuilder.DeleteData(
+                table: "Lessons",
+                keyColumn: "Id",
+                keyValue: 56);
+
+            migrationBuilder.DeleteData(
+                table: "Lessons",
+                keyColumn: "Id",
+                keyValue: 57);
+
+            migrationBuilder.DeleteData(
+                table: "Lessons",
+                keyColumn: "Id",
+                keyValue: 58);
+
+            migrationBuilder.DeleteData(
+                table: "Lessons",
+                keyColumn: "Id",
+                keyValue: 59);
+
+            migrationBuilder.DeleteData(
+                table: "Lessons",
+                keyColumn: "Id",
+                keyValue: 60);
+
+            migrationBuilder.DeleteData(
+                table: "Lessons",
+                keyColumn: "Id",
+                keyValue: 61);
+
+            migrationBuilder.DeleteData(
+                table: "Lessons",
+                keyColumn: "Id",
+                keyValue: 62);
+
+            migrationBuilder.DeleteData(
+                table: "Lessons",
+                keyColumn: "Id",
+                keyValue: 63);
+
+            migrationBuilder.DeleteData(
+                table: "Lessons",
+                keyColumn: "Id",
+                keyValue: 64);
+
+            migrationBuilder.DeleteData(
+                table: "Lessons",
+                keyColumn: "Id",
+                keyValue: 65);
+
+            migrationBuilder.DeleteData(
+                table: "Lessons",
+                keyColumn: "Id",
+                keyValue: 66);
+
+            migrationBuilder.DeleteData(
+                table: "Lessons",
+                keyColumn: "Id",
+                keyValue: 67);
+
+            migrationBuilder.DeleteData(
+                table: "Lessons",
+                keyColumn: "Id",
+                keyValue: 68);
+
+            migrationBuilder.DeleteData(
+                table: "Lessons",
+                keyColumn: "Id",
+                keyValue: 69);
+
+            migrationBuilder.DeleteData(
+                table: "Lessons",
+                keyColumn: "Id",
+                keyValue: 70);
+
+            migrationBuilder.DeleteData(
+                table: "Lessons",
+                keyColumn: "Id",
+                keyValue: 71);
+
+            migrationBuilder.DeleteData(
+                table: "Lessons",
+                keyColumn: "Id",
+                keyValue: 72);
+
+            migrationBuilder.DeleteData(
+                table: "Lessons",
+                keyColumn: "Id",
+                keyValue: 73);
+
+            migrationBuilder.DeleteData(
+                table: "Lessons",
+                keyColumn: "Id",
+                keyValue: 74);
+
+            migrationBuilder.DeleteData(
+                table: "Lessons",
+                keyColumn: "Id",
+                keyValue: 75);
+
+            migrationBuilder.DeleteData(
+                table: "Lessons",
+                keyColumn: "Id",
+                keyValue: 76);
+
+            migrationBuilder.DeleteData(
+                table: "Lessons",
+                keyColumn: "Id",
+                keyValue: 77);
+
+            migrationBuilder.DeleteData(
+                table: "Lessons",
+                keyColumn: "Id",
+                keyValue: 78);
+
+            migrationBuilder.DeleteData(
+                table: "Lessons",
+                keyColumn: "Id",
+                keyValue: 79);
+
+            migrationBuilder.DeleteData(
+                table: "Lessons",
+                keyColumn: "Id",
+                keyValue: 80);
+
+            migrationBuilder.DeleteData(
+                table: "Lessons",
+                keyColumn: "Id",
+                keyValue: 81);
+
+            migrationBuilder.DeleteData(
+                table: "Lessons",
+                keyColumn: "Id",
+                keyValue: 82);
+
+            migrationBuilder.DeleteData(
+                table: "Lessons",
+                keyColumn: "Id",
+                keyValue: 83);
+
+            migrationBuilder.DeleteData(
+                table: "Lessons",
+                keyColumn: "Id",
+                keyValue: 84);
+
+            migrationBuilder.DeleteData(
+                table: "Lessons",
+                keyColumn: "Id",
+                keyValue: 85);
+
+            migrationBuilder.DeleteData(
+                table: "Lessons",
+                keyColumn: "Id",
+                keyValue: 86);
+
+            migrationBuilder.DeleteData(
+                table: "Lessons",
+                keyColumn: "Id",
+                keyValue: 87);
+
+            migrationBuilder.DeleteData(
+                table: "Lessons",
+                keyColumn: "Id",
+                keyValue: 88);
+
+            migrationBuilder.DeleteData(
+                table: "Lessons",
+                keyColumn: "Id",
+                keyValue: 89);
+
+            migrationBuilder.DeleteData(
+                table: "Lessons",
+                keyColumn: "Id",
+                keyValue: 90);
+
+            migrationBuilder.DeleteData(
+                table: "Lessons",
+                keyColumn: "Id",
+                keyValue: 91);
+
+            migrationBuilder.DeleteData(
+                table: "Lessons",
+                keyColumn: "Id",
+                keyValue: 92);
+
+            migrationBuilder.DeleteData(
+                table: "Lessons",
+                keyColumn: "Id",
+                keyValue: 93);
+
+            migrationBuilder.DeleteData(
+                table: "Lessons",
+                keyColumn: "Id",
+                keyValue: 94);
+
+            migrationBuilder.DeleteData(
+                table: "Lessons",
+                keyColumn: "Id",
+                keyValue: 95);
+
+            migrationBuilder.DeleteData(
+                table: "Lessons",
+                keyColumn: "Id",
+                keyValue: 96);
+
+            migrationBuilder.DeleteData(
+                table: "Lessons",
+                keyColumn: "Id",
+                keyValue: 97);
+
+            migrationBuilder.DeleteData(
+                table: "Lessons",
+                keyColumn: "Id",
+                keyValue: 98);
+
+            migrationBuilder.DeleteData(
+                table: "Lessons",
+                keyColumn: "Id",
+                keyValue: 99);
+
+            migrationBuilder.DeleteData(
+                table: "Lessons",
+                keyColumn: "Id",
+                keyValue: 100);
+
+            migrationBuilder.DeleteData(
+                table: "Lessons",
+                keyColumn: "Id",
+                keyValue: 101);
+
+            migrationBuilder.DeleteData(
+                table: "Lessons",
+                keyColumn: "Id",
+                keyValue: 102);
+
+            migrationBuilder.DeleteData(
+                table: "Lessons",
+                keyColumn: "Id",
+                keyValue: 103);
+
+            migrationBuilder.DeleteData(
+                table: "Lessons",
+                keyColumn: "Id",
+                keyValue: 104);
+
+            migrationBuilder.DeleteData(
+                table: "Lessons",
+                keyColumn: "Id",
+                keyValue: 105);
+
+            migrationBuilder.DeleteData(
+                table: "Lessons",
+                keyColumn: "Id",
+                keyValue: 106);
+
+            migrationBuilder.DeleteData(
+                table: "Lessons",
+                keyColumn: "Id",
+                keyValue: 107);
+
+            migrationBuilder.DeleteData(
+                table: "Lessons",
+                keyColumn: "Id",
+                keyValue: 108);
+
+            migrationBuilder.DeleteData(
+                table: "Lessons",
+                keyColumn: "Id",
+                keyValue: 109);
+
+            migrationBuilder.DeleteData(
+                table: "Lessons",
+                keyColumn: "Id",
+                keyValue: 110);
+
+            migrationBuilder.DeleteData(
+                table: "Lessons",
+                keyColumn: "Id",
+                keyValue: 111);
+
+            migrationBuilder.DeleteData(
+                table: "MonUsers",
+                keyColumn: "Id",
+                keyValue: 1);
+
+            migrationBuilder.DeleteData(
+                table: "Posts",
+                keyColumn: "Id",
+                keyValue: 2);
+
+            migrationBuilder.DeleteData(
+                table: "Schools",
+                keyColumn: "Id",
+                keyValue: 152);
+
+            migrationBuilder.DeleteData(
+                table: "Schools",
+                keyColumn: "Id",
+                keyValue: 289);
+
+            migrationBuilder.DeleteData(
+                table: "AspNetUsers",
+                keyColumn: "Id",
+                keyValue: "023bafc9-8b7e-4fbd-bb06-2b178fe8ae8b");
+
+            migrationBuilder.DeleteData(
+                table: "AspNetUsers",
+                keyColumn: "Id",
+                keyValue: "7decfb7d-d2df-40a2-a449-dcec04eb091a");
+
+            migrationBuilder.DeleteData(
+                table: "Exercises",
+                keyColumn: "Id",
+                keyValue: 1);
+
+            migrationBuilder.DeleteData(
+                table: "Exercises",
+                keyColumn: "Id",
+                keyValue: 2);
+
+            migrationBuilder.DeleteData(
+                table: "Exercises",
+                keyColumn: "Id",
+                keyValue: 3);
+
+            migrationBuilder.DeleteData(
+                table: "Exercises",
+                keyColumn: "Id",
+                keyValue: 4);
+
+            migrationBuilder.DeleteData(
+                table: "Exercises",
+                keyColumn: "Id",
+                keyValue: 5);
+
+            migrationBuilder.DeleteData(
+                table: "Exercises",
+                keyColumn: "Id",
+                keyValue: 6);
+
+            migrationBuilder.DeleteData(
+                table: "Exercises",
+                keyColumn: "Id",
+                keyValue: 7);
+
+            migrationBuilder.DeleteData(
+                table: "Exercises",
+                keyColumn: "Id",
+                keyValue: 8);
+
+            migrationBuilder.DeleteData(
+                table: "Exercises",
+                keyColumn: "Id",
+                keyValue: 9);
+
+            migrationBuilder.DeleteData(
+                table: "Exercises",
+                keyColumn: "Id",
+                keyValue: 10);
+
+            migrationBuilder.DeleteData(
+                table: "Exercises",
+                keyColumn: "Id",
+                keyValue: 11);
+
+            migrationBuilder.DeleteData(
+                table: "Exercises",
+                keyColumn: "Id",
+                keyValue: 12);
+
+            migrationBuilder.DeleteData(
+                table: "Exercises",
+                keyColumn: "Id",
+                keyValue: 13);
+
+            migrationBuilder.DeleteData(
+                table: "Exercises",
+                keyColumn: "Id",
+                keyValue: 14);
+
+            migrationBuilder.DeleteData(
+                table: "Exercises",
+                keyColumn: "Id",
+                keyValue: 15);
+
+            migrationBuilder.DeleteData(
+                table: "Exercises",
+                keyColumn: "Id",
+                keyValue: 16);
+
+            migrationBuilder.DeleteData(
+                table: "Exercises",
+                keyColumn: "Id",
+                keyValue: 17);
+
+            migrationBuilder.DeleteData(
+                table: "Exercises",
+                keyColumn: "Id",
+                keyValue: 18);
+
+            migrationBuilder.DeleteData(
+                table: "Exercises",
+                keyColumn: "Id",
+                keyValue: 19);
+
+            migrationBuilder.DeleteData(
+                table: "Exercises",
+                keyColumn: "Id",
+                keyValue: 20);
+
+            migrationBuilder.DeleteData(
+                table: "Exercises",
+                keyColumn: "Id",
+                keyValue: 21);
+
+            migrationBuilder.DeleteData(
+                table: "Exercises",
+                keyColumn: "Id",
+                keyValue: 22);
+
+            migrationBuilder.DeleteData(
+                table: "Exercises",
+                keyColumn: "Id",
+                keyValue: 23);
+
+            migrationBuilder.DeleteData(
+                table: "Exercises",
+                keyColumn: "Id",
+                keyValue: 24);
+
+            migrationBuilder.DeleteData(
+                table: "Exercises",
+                keyColumn: "Id",
+                keyValue: 25);
+
+            migrationBuilder.DeleteData(
+                table: "Exercises",
+                keyColumn: "Id",
+                keyValue: 26);
+
+            migrationBuilder.DeleteData(
+                table: "Exercises",
+                keyColumn: "Id",
+                keyValue: 27);
+
+            migrationBuilder.DeleteData(
+                table: "Exercises",
+                keyColumn: "Id",
+                keyValue: 28);
+
+            migrationBuilder.DeleteData(
+                table: "Exercises",
+                keyColumn: "Id",
+                keyValue: 29);
+
+            migrationBuilder.DeleteData(
+                table: "Exercises",
+                keyColumn: "Id",
+                keyValue: 30);
+
+            migrationBuilder.DeleteData(
+                table: "Exercises",
+                keyColumn: "Id",
+                keyValue: 31);
+
+            migrationBuilder.DeleteData(
+                table: "Exercises",
+                keyColumn: "Id",
+                keyValue: 32);
+
+            migrationBuilder.DeleteData(
+                table: "Exercises",
+                keyColumn: "Id",
+                keyValue: 33);
+
+            migrationBuilder.DeleteData(
+                table: "Exercises",
+                keyColumn: "Id",
+                keyValue: 34);
+
+            migrationBuilder.DeleteData(
+                table: "Exercises",
+                keyColumn: "Id",
+                keyValue: 35);
+
+            migrationBuilder.DeleteData(
+                table: "Exercises",
+                keyColumn: "Id",
+                keyValue: 36);
+
+            migrationBuilder.DeleteData(
+                table: "Exercises",
+                keyColumn: "Id",
+                keyValue: 37);
+
+            migrationBuilder.DeleteData(
+                table: "Exercises",
+                keyColumn: "Id",
+                keyValue: 38);
+
+            migrationBuilder.DeleteData(
+                table: "Exercises",
+                keyColumn: "Id",
+                keyValue: 39);
+
+            migrationBuilder.DeleteData(
+                table: "Exercises",
+                keyColumn: "Id",
+                keyValue: 40);
+
+            migrationBuilder.DeleteData(
+                table: "Exercises",
+                keyColumn: "Id",
+                keyValue: 41);
+
+            migrationBuilder.DeleteData(
+                table: "Exercises",
+                keyColumn: "Id",
+                keyValue: 42);
+
+            migrationBuilder.DeleteData(
+                table: "Exercises",
+                keyColumn: "Id",
+                keyValue: 43);
+
+            migrationBuilder.DeleteData(
+                table: "Exercises",
+                keyColumn: "Id",
+                keyValue: 44);
+
+            migrationBuilder.DeleteData(
+                table: "Exercises",
+                keyColumn: "Id",
+                keyValue: 45);
+
+            migrationBuilder.DeleteData(
+                table: "Exercises",
+                keyColumn: "Id",
+                keyValue: 46);
+
+            migrationBuilder.DeleteData(
+                table: "Exercises",
+                keyColumn: "Id",
+                keyValue: 47);
+
+            migrationBuilder.DeleteData(
+                table: "Exercises",
+                keyColumn: "Id",
+                keyValue: 48);
+
+            migrationBuilder.DeleteData(
+                table: "Exercises",
+                keyColumn: "Id",
+                keyValue: 49);
+
+            migrationBuilder.DeleteData(
+                table: "Exercises",
+                keyColumn: "Id",
+                keyValue: 50);
+
+            migrationBuilder.DeleteData(
+                table: "Exercises",
+                keyColumn: "Id",
+                keyValue: 51);
+
+            migrationBuilder.DeleteData(
+                table: "Exercises",
+                keyColumn: "Id",
+                keyValue: 52);
+
+            migrationBuilder.DeleteData(
+                table: "Exercises",
+                keyColumn: "Id",
+                keyValue: 53);
+
+            migrationBuilder.DeleteData(
+                table: "Exercises",
+                keyColumn: "Id",
+                keyValue: 54);
+
+            migrationBuilder.DeleteData(
+                table: "Exercises",
+                keyColumn: "Id",
+                keyValue: 55);
+
+            migrationBuilder.DeleteData(
+                table: "Exercises",
+                keyColumn: "Id",
+                keyValue: 56);
+
+            migrationBuilder.DeleteData(
+                table: "Exercises",
+                keyColumn: "Id",
+                keyValue: 57);
+
+            migrationBuilder.DeleteData(
+                table: "Exercises",
+                keyColumn: "Id",
+                keyValue: 58);
+
+            migrationBuilder.DeleteData(
+                table: "Exercises",
+                keyColumn: "Id",
+                keyValue: 59);
+
+            migrationBuilder.DeleteData(
+                table: "Exercises",
+                keyColumn: "Id",
+                keyValue: 60);
+
+            migrationBuilder.DeleteData(
+                table: "Exercises",
+                keyColumn: "Id",
+                keyValue: 61);
+
+            migrationBuilder.DeleteData(
+                table: "Exercises",
+                keyColumn: "Id",
+                keyValue: 62);
+
+            migrationBuilder.DeleteData(
+                table: "Exercises",
+                keyColumn: "Id",
+                keyValue: 63);
+
+            migrationBuilder.DeleteData(
+                table: "Exercises",
+                keyColumn: "Id",
+                keyValue: 64);
+
+            migrationBuilder.DeleteData(
+                table: "Exercises",
+                keyColumn: "Id",
+                keyValue: 65);
+
+            migrationBuilder.DeleteData(
+                table: "Exercises",
+                keyColumn: "Id",
+                keyValue: 66);
+
+            migrationBuilder.DeleteData(
+                table: "Exercises",
+                keyColumn: "Id",
+                keyValue: 67);
+
+            migrationBuilder.DeleteData(
+                table: "Exercises",
+                keyColumn: "Id",
+                keyValue: 68);
+
+            migrationBuilder.DeleteData(
+                table: "Exercises",
+                keyColumn: "Id",
+                keyValue: 69);
+
+            migrationBuilder.DeleteData(
+                table: "Exercises",
+                keyColumn: "Id",
+                keyValue: 70);
+
+            migrationBuilder.DeleteData(
+                table: "Exercises",
+                keyColumn: "Id",
+                keyValue: 71);
+
+            migrationBuilder.DeleteData(
+                table: "Exercises",
+                keyColumn: "Id",
+                keyValue: 72);
+
+            migrationBuilder.DeleteData(
+                table: "Exercises",
+                keyColumn: "Id",
+                keyValue: 73);
+
+            migrationBuilder.DeleteData(
+                table: "Exercises",
+                keyColumn: "Id",
+                keyValue: 74);
+
+            migrationBuilder.DeleteData(
+                table: "Exercises",
+                keyColumn: "Id",
+                keyValue: 75);
+
+            migrationBuilder.DeleteData(
+                table: "Exercises",
+                keyColumn: "Id",
+                keyValue: 76);
+
+            migrationBuilder.DeleteData(
+                table: "Exercises",
+                keyColumn: "Id",
+                keyValue: 77);
+
+            migrationBuilder.DeleteData(
+                table: "Exercises",
+                keyColumn: "Id",
+                keyValue: 78);
+
+            migrationBuilder.DeleteData(
+                table: "Exercises",
+                keyColumn: "Id",
+                keyValue: 79);
+
+            migrationBuilder.DeleteData(
+                table: "Exercises",
+                keyColumn: "Id",
+                keyValue: 80);
+
+            migrationBuilder.DeleteData(
+                table: "Exercises",
+                keyColumn: "Id",
+                keyValue: 81);
+
+            migrationBuilder.DeleteData(
+                table: "Exercises",
+                keyColumn: "Id",
+                keyValue: 82);
+
+            migrationBuilder.DeleteData(
+                table: "Exercises",
+                keyColumn: "Id",
+                keyValue: 83);
+
+            migrationBuilder.DeleteData(
+                table: "Exercises",
+                keyColumn: "Id",
+                keyValue: 84);
+
+            migrationBuilder.DeleteData(
+                table: "Exercises",
+                keyColumn: "Id",
+                keyValue: 85);
+
+            migrationBuilder.DeleteData(
+                table: "Exercises",
+                keyColumn: "Id",
+                keyValue: 86);
+
+            migrationBuilder.DeleteData(
+                table: "Exercises",
+                keyColumn: "Id",
+                keyValue: 87);
+
+            migrationBuilder.DeleteData(
+                table: "Exercises",
+                keyColumn: "Id",
+                keyValue: 88);
+
+            migrationBuilder.DeleteData(
+                table: "Exercises",
+                keyColumn: "Id",
+                keyValue: 89);
+
+            migrationBuilder.DeleteData(
+                table: "Exercises",
+                keyColumn: "Id",
+                keyValue: 90);
+
+            migrationBuilder.DeleteData(
+                table: "Exercises",
+                keyColumn: "Id",
+                keyValue: 91);
+
+            migrationBuilder.DeleteData(
+                table: "Exercises",
+                keyColumn: "Id",
+                keyValue: 92);
+
+            migrationBuilder.DeleteData(
+                table: "Exercises",
+                keyColumn: "Id",
+                keyValue: 93);
+
+            migrationBuilder.DeleteData(
+                table: "Exercises",
+                keyColumn: "Id",
+                keyValue: 94);
+
+            migrationBuilder.DeleteData(
+                table: "Exercises",
+                keyColumn: "Id",
+                keyValue: 95);
+
+            migrationBuilder.DeleteData(
+                table: "Exercises",
+                keyColumn: "Id",
+                keyValue: 96);
+
+            migrationBuilder.DeleteData(
+                table: "Exercises",
+                keyColumn: "Id",
+                keyValue: 97);
+
+            migrationBuilder.DeleteData(
+                table: "Exercises",
+                keyColumn: "Id",
+                keyValue: 98);
+
+            migrationBuilder.DeleteData(
+                table: "Exercises",
+                keyColumn: "Id",
+                keyValue: 99);
+
+            migrationBuilder.DeleteData(
+                table: "Exercises",
+                keyColumn: "Id",
+                keyValue: 100);
+
+            migrationBuilder.DeleteData(
+                table: "Exercises",
+                keyColumn: "Id",
+                keyValue: 101);
+
+            migrationBuilder.DeleteData(
+                table: "Exercises",
+                keyColumn: "Id",
+                keyValue: 102);
+
+            migrationBuilder.DeleteData(
+                table: "Exercises",
+                keyColumn: "Id",
+                keyValue: 103);
+
+            migrationBuilder.DeleteData(
+                table: "Exercises",
+                keyColumn: "Id",
+                keyValue: 104);
+
+            migrationBuilder.DeleteData(
+                table: "Exercises",
+                keyColumn: "Id",
+                keyValue: 105);
+
+            migrationBuilder.DeleteData(
+                table: "Exercises",
+                keyColumn: "Id",
+                keyValue: 106);
+
+            migrationBuilder.DeleteData(
+                table: "Exercises",
+                keyColumn: "Id",
+                keyValue: 107);
+
+            migrationBuilder.DeleteData(
+                table: "Exercises",
+                keyColumn: "Id",
+                keyValue: 108);
+
+            migrationBuilder.DeleteData(
+                table: "Exercises",
+                keyColumn: "Id",
+                keyValue: 109);
+
+            migrationBuilder.DeleteData(
+                table: "Exercises",
+                keyColumn: "Id",
+                keyValue: 110);
+
+            migrationBuilder.DeleteData(
+                table: "Exercises",
+                keyColumn: "Id",
+                keyValue: 111);
+
+            migrationBuilder.DeleteData(
+                table: "SectionsOfCurricular",
+                keyColumn: "Id",
+                keyValue: 1);
+
+            migrationBuilder.DeleteData(
+                table: "SectionsOfCurricular",
+                keyColumn: "Id",
+                keyValue: 2);
+
+            migrationBuilder.DeleteData(
+                table: "SectionsOfCurricular",
+                keyColumn: "Id",
+                keyValue: 3);
+
+            migrationBuilder.DeleteData(
+                table: "SectionsOfCurricular",
+                keyColumn: "Id",
+                keyValue: 4);
+
+            migrationBuilder.DeleteData(
+                table: "SectionsOfCurricular",
+                keyColumn: "Id",
+                keyValue: 5);
+
+            migrationBuilder.DeleteData(
+                table: "SectionsOfCurricular",
+                keyColumn: "Id",
+                keyValue: 6);
+
+            migrationBuilder.DeleteData(
+                table: "SectionsOfCurricular",
+                keyColumn: "Id",
+                keyValue: 7);
+
+            migrationBuilder.DeleteData(
+                table: "SectionsOfCurricular",
+                keyColumn: "Id",
+                keyValue: 8);
+
+            migrationBuilder.DeleteData(
+                table: "SectionsOfCurricular",
+                keyColumn: "Id",
+                keyValue: 9);
+
+            migrationBuilder.DeleteData(
+                table: "SectionsOfCurricular",
+                keyColumn: "Id",
+                keyValue: 10);
+
+            migrationBuilder.DeleteData(
+                table: "SectionsOfCurricular",
+                keyColumn: "Id",
+                keyValue: 12);
+
+            migrationBuilder.DeleteData(
+                table: "SectionsOfCurricular",
+                keyColumn: "Id",
+                keyValue: 13);
+
+            migrationBuilder.DeleteData(
+                table: "SectionsOfCurricular",
+                keyColumn: "Id",
+                keyValue: 14);
+
+            migrationBuilder.DeleteData(
+                table: "SectionsOfCurricular",
+                keyColumn: "Id",
+                keyValue: 15);
+
+            migrationBuilder.DeleteData(
+                table: "SectionsOfCurricular",
+                keyColumn: "Id",
+                keyValue: 16);
+
+            migrationBuilder.DeleteData(
+                table: "SectionsOfCurricular",
+                keyColumn: "Id",
+                keyValue: 17);
+
+            migrationBuilder.DeleteData(
+                table: "SectionsOfCurricular",
+                keyColumn: "Id",
+                keyValue: 18);
+
+            migrationBuilder.DeleteData(
+                table: "ModuleOfCurricular",
+                keyColumn: "Id",
+                keyValue: 1);
+
+            migrationBuilder.DeleteData(
+                table: "ModuleOfCurricular",
+                keyColumn: "Id",
+                keyValue: 2);
+
+            migrationBuilder.DeleteData(
+                table: "ModuleOfCurricular",
+                keyColumn: "Id",
+                keyValue: 3);
+
+            migrationBuilder.DeleteData(
+                table: "ModuleOfCurricular",
+                keyColumn: "Id",
+                keyValue: 4);
         }
     }
 }

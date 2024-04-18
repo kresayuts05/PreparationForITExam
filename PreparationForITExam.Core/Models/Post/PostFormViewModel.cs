@@ -31,7 +31,7 @@ namespace PreparationForITExam.Core.Models.Post
         public string Description { get; set; } = null!;
 
         public string? UsefulUrl { get; set; }
-
+            
         public string UserId { get; set; }
 
         public List<IFormFile>? Images { get; set; } 

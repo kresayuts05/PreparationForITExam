@@ -33,6 +33,7 @@ namespace PreparationForITExam.Controllers
         public async Task<IActionResult> Index(string id)//make it work
         {
             var model = await userService.GetUserInfo(id);
+            model.Id = id;
 
             model.MaterialsInExercise = await materialService.GetAllMaterialsForExerciseByUserId(id);
             model.MaterialsInLessons = await materialService.GetAllMaterialsForLessonByUserId(id);

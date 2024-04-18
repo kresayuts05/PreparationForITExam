@@ -121,7 +121,7 @@
                         <li>
                             <a id="materials" data-toggle="tab">Всички Материали</a>
                         </li>
-                        
+
                     }
                     else
                     {
@@ -147,11 +147,14 @@
                         {
                             <div style="overflow:auto;">
                                 <a style="float: left;" class="curricular-element" asp-controller="Post" asp-action="Details" asp-route-id="@item.Id">@item.Title</a>
-                                <div style="float: right;">
-                                    <a asp-controller="Post" asp-area="" asp-action="Edit" asp-route-id="@item.Id" class="btn btn-info">Промени</a>
-                                    <a asp-controller="Post" asp-area="" asp-action="Delete" asp-route-id="@item.Id" class="btn btn-danger">Изтрий</a>
 
-                                </div>
+                                @if (this.User.Id() == Model.Id)
+                                {
+                                    <div style="float: right;">
+                                        <a asp-controller="Post" asp-area="" asp-action="Edit" asp-route-id="@item.Id" class="btn btn-info">Промени</a>
+                                        <a asp-controller="Post" asp-area="" asp-action="Delete" asp-route-id="@item.Id" class="btn btn-danger">Изтрий</a>
+                                    </div>
+                                }
                             </div>
                             <hr class=" br-lighter">
                         }
@@ -169,11 +172,13 @@
                         {
                             <div style="overflow:auto;">
                                 <a style="float: left;" class="curricular-element" asp-controller="Post" asp-action="Details" asp-route-id="@item.Id">@item.Title</a>
-                                <div style="float: right;">
-                                    <a asp-controller="Post" asp-area="" asp-action="Edit" asp-route-id="@item.Id" class="btn btn-info">Промени</a>
-                                    <a asp-controller="Post" asp-area="" asp-action="Delete" asp-route-id="@item.Id" class="btn btn-danger">Изтрий</a>
-
-                                </div>
+                                @if (this.User.Id() == Model.Id)
+                                {
+                                    <div style="float: right;">
+                                        <a asp-controller="Post" asp-area="" asp-action="Edit" asp-route-id="@item.Id" class="btn btn-info">Промени</a>
+                                        <a asp-controller="Post" asp-area="" asp-action="Delete" asp-route-id="@item.Id" class="btn btn-danger">Изтрий</a>
+                                    </div>
+                                }
                             </div>
                             <hr class=" br-lighter">
                         }
@@ -191,9 +196,12 @@
                         {
                             <div style="overflow:auto;">
                                 <a style="float: left;" class="curricular-element" asp-controller="Lesson" asp-action="Index" asp-route-id="@item.Id">@item.Name</a>
-                                <div style="float: right;">
-                                    <a asp-controller="Material" asp-area="" asp-action="DeleteMaterialFromLesson" asp-route-id="@item.Id" class="btn btn-danger">Изтрий</a>
-                                </div>
+                                @if (this.User.Id() == Model.Id)
+                                {
+                                    <div style="float: right;">
+                                        <a asp-controller="Material" asp-area="" asp-action="DeleteMaterialFromLesson" asp-route-id="@item.Id" class="btn btn-danger">Изтрий</a>
+                                    </div>
+                                }
                             </div>
                             <hr class=" br-lighter">
                         }
@@ -201,9 +209,12 @@
                         {
                             <div style="overflow:auto;">
                                 <a style="float: left;" class="curricular-element" asp-controller="Exercise" asp-action="Index" asp-route-id="@item.LessonId">@item.Name</a>
-                                <div style="float: right;">
-                                    <a asp-controller="Material" asp-area="" asp-action="DeleteMaterialFromExercise" asp-route-id="@item.Id" class="btn btn-danger">Изтрий</a>
-                                </div>
+                                @if (this.User.Id() == Model.Id)
+                                {
+                                    <div style="float: right;">
+                                        <a asp-controller="Material" asp-area="" asp-action="DeleteMaterialFromExercise" asp-route-id="@item.Id" class="btn btn-danger">Изтрий</a>
+                                    </div>
+                                }
                             </div>
                             <hr class=" br-lighter">
                         }
@@ -224,7 +235,10 @@
                                 <div style="float: right;">
                                     @if (User.IsInRole(RoleConstants.Teacher))
                                     {
-                                        <a asp-controller="Answer" asp-area="" asp-action="Delete" asp-route-id="@item.Id" class="btn btn-danger">Изтрий</a>
+                                        @if (this.User.Id() == Model.Id)
+                                        {
+                                            <a asp-controller="Answer" asp-area="" asp-action="Delete" asp-route-id="@item.Id" class="btn btn-danger">Изтрий</a>
+                                        }
                                     }
                                     else
                                     {
@@ -540,7 +554,7 @@
     </div>
 </section>*@
 
-@section Styles{
+@section Styles {
     <link rel="stylesheet" href="~/css/profile.css">
 
 

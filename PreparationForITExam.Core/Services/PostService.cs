@@ -82,11 +82,15 @@ namespace PreparationForITExam.Core.Services
 
             for (int i = 0; i < model.Count; i++)
             {
-                if (model[i].Images != null)
-                {
-                    model[i].Images = await imageService.GetPostImages(model[i].Id);
-                    model[i].CommentsCount = await commentService.CommentCount(model[i].Id);
-                }
+                //if (model[i].Images != null)
+                //{
+                model[i].Images = await imageService.GetPostImages(model[i].Id);
+                model[i].CommentsCount = await commentService.CommentCount(model[i].Id);
+                //}
+                //else
+                //{
+                //    model[i].Images = new List<string>();
+                //}
             }
 
             return model;
@@ -238,20 +242,20 @@ namespace PreparationForITExam.Core.Services
         }
 
         //This method edits the information in a post or question
-        public async Task Edit(PostFormViewModel model)
-        {
-            var post = await repo.GetByIdAsync<Post>(model.Id);
+            public async Task Edit(PostFormViewModel model)
+            {
+                var post = await repo.GetByIdAsync<Post>(model.Id);
 
-            post.Title = model.Title;
-            post.Description = model.Description;
-            post.ShortDescription = model.ShortDescription;
-            post.UsefulUrl = model.UsefulUrl;
-            post.UserId = model.UserId;
-            post.IsItQuestion = model.IsItQuestion;
+                post.Title = model.Title;
+                post.Description = model.Description;
+                post.ShortDescription = model.ShortDescription;
+                post.UsefulUrl = model.UsefulUrl;
+                post.UserId = model.UserId;
+                post.IsItQuestion = model.IsItQuestion;
 
-            await repo.SaveChangesAsync();
+                await repo.SaveChangesAsync();
 
-        }
+            }
 
         //This method returns a collection of PostModel. It is used in the profile page to be accessible
         //to is creator and other users

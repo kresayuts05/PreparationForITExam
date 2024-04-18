@@ -12,8 +12,8 @@ using PreparationForITExam.Infrastructure.Data;
 namespace PreparationForITExam.Infrastructure.Migrations
 {
     [DbContext(typeof(PreparationForITExamDbContext))]
-    [Migration("20240325111012_newwwwww")]
-    partial class newwwwww
+    [Migration("20240416101208_seed")]
+    partial class seed
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -84,28 +84,28 @@ namespace PreparationForITExam.Infrastructure.Migrations
                         new
                         {
                             Id = "0f761db2-ab55-416c-83b9-70abded3d908",
-                            ConcurrencyStamp = "8b522af0-bbf0-4825-8f8e-db7beec52f0a",
+                            ConcurrencyStamp = "466c5f3a-1a01-43ee-ab74-9565c1c02170",
                             Name = "Administrator",
                             NormalizedName = "ADMINISTRATOR"
                         },
                         new
                         {
                             Id = "e66d730b-bcf1-41b5-b7e0-3e66056e61d9",
-                            ConcurrencyStamp = "5bed423b-10b4-4a43-9b0c-3c23fbcd35b9",
+                            ConcurrencyStamp = "a3fda70d-8084-429b-9795-615a83186a80",
                             Name = "Student",
                             NormalizedName = "STUDENT"
                         },
                         new
                         {
                             Id = "71281cf3-9730-4d7e-acbb-213edee8291c",
-                            ConcurrencyStamp = "df1de11e-877c-444a-8530-6662a4e838aa",
+                            ConcurrencyStamp = "4a89723a-cf6b-4180-a7e1-d541d88969d3",
                             Name = "Teacher",
                             NormalizedName = "TEACHER"
                         },
                         new
                         {
                             Id = "fe750b82-6fe9-472c-bdc5-61f5433d429e",
-                            ConcurrencyStamp = "300f1420-46d4-43c7-b2ff-524d739e6ebb",
+                            ConcurrencyStamp = "22b337a1-1fac-4eda-a232-545c4c36f830",
                             Name = "MonUser",
                             NormalizedName = "MONUSER"
                         });
@@ -3063,12 +3063,7 @@ namespace PreparationForITExam.Infrastructure.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("UserId")
-                        .HasColumnType("nvarchar(450)");
-
                     b.HasKey("Id");
-
-                    b.HasIndex("UserId");
 
                     b.ToTable("Messages");
                 });
@@ -3196,7 +3191,7 @@ namespace PreparationForITExam.Infrastructure.Migrations
                             Description = "Изпитните материали от днешният изпит вече са налични онлайн на сайта на МОН.",
                             IsActive = true,
                             MonId = 1,
-                            PostedOn = new DateTime(2024, 3, 25, 13, 10, 11, 717, DateTimeKind.Local).AddTicks(7291),
+                            PostedOn = new DateTime(2024, 4, 16, 13, 12, 7, 621, DateTimeKind.Local).AddTicks(6062),
                             SeenByPeople = 0,
                             Title = "ДЗИ 23 май 2023г",
                             UsefulUrls = "https://web.mon.bg/bg/101234"
@@ -3207,7 +3202,7 @@ namespace PreparationForITExam.Infrastructure.Migrations
                             Description = "Изпитните материали от днешният изпит вече са налични онлайн на сайта на МОН.",
                             IsActive = true,
                             MonId = 1,
-                            PostedOn = new DateTime(2024, 3, 25, 13, 10, 11, 717, DateTimeKind.Local).AddTicks(7698),
+                            PostedOn = new DateTime(2024, 4, 16, 13, 12, 7, 621, DateTimeKind.Local).AddTicks(6069),
                             SeenByPeople = 0,
                             Title = "ДЗИ 25 август 2023г",
                             UsefulUrls = "https://web.mon.bg/bg/101234"
@@ -3218,7 +3213,7 @@ namespace PreparationForITExam.Infrastructure.Migrations
                             Description = "Датите за тазгодишната изпитна кампания са 20 май 2024г.",
                             IsActive = true,
                             MonId = 1,
-                            PostedOn = new DateTime(2024, 3, 25, 13, 10, 11, 717, DateTimeKind.Local).AddTicks(7704),
+                            PostedOn = new DateTime(2024, 4, 16, 13, 12, 7, 621, DateTimeKind.Local).AddTicks(6072),
                             SeenByPeople = 0,
                             Title = "Изпитни дати за 2023/2024 г.",
                             UsefulUrls = "https://danybon.com/wp-content/uploads/2023/09/zap2050_NVO_01092023.pdf"
@@ -3277,7 +3272,7 @@ namespace PreparationForITExam.Infrastructure.Migrations
                             Description = "Имах затруднения да разбера Git технологията, но с помощта на тази игра бързо осъвършенствах функциите и начина на използване.",
                             IsActive = true,
                             IsItQuestion = false,
-                            PostedOn = new DateTime(2024, 3, 25, 13, 10, 11, 718, DateTimeKind.Local).AddTicks(7320),
+                            PostedOn = new DateTime(2024, 4, 16, 13, 12, 7, 621, DateTimeKind.Local).AddTicks(6149),
                             ShortDescription = "Попаднах на страхотна игра, която ти помага да научиш Git",
                             Title = "Git игра",
                             UsefulUrl = "https://learngitbranching.js.org/?locale=en_US",
@@ -3289,7 +3284,7 @@ namespace PreparationForITExam.Infrastructure.Migrations
                             Description = "Имах затруднения да разбера Git технологията, но с помощта на тази игра бързо осъвършенствах функциите и начина на използване.",
                             IsActive = true,
                             IsItQuestion = false,
-                            PostedOn = new DateTime(2024, 3, 25, 13, 10, 11, 718, DateTimeKind.Local).AddTicks(7539),
+                            PostedOn = new DateTime(2024, 4, 16, 13, 12, 7, 621, DateTimeKind.Local).AddTicks(6155),
                             ShortDescription = "Попаднах на страхотна игра, която ти помага да научиш Git",
                             Title = "Git игра",
                             UsefulUrl = "https://learngitbranching.js.org/?locale=en_US",
@@ -3301,7 +3296,7 @@ namespace PreparationForITExam.Infrastructure.Migrations
                             Description = "Имах затруднения да разбера Git технологията, но с помощта на тази игра бързо осъвършенствах функциите и начина на използване.",
                             IsActive = true,
                             IsItQuestion = false,
-                            PostedOn = new DateTime(2024, 3, 25, 13, 10, 11, 718, DateTimeKind.Local).AddTicks(7543),
+                            PostedOn = new DateTime(2024, 4, 16, 13, 12, 7, 621, DateTimeKind.Local).AddTicks(6159),
                             ShortDescription = "Попаднах на страхотна игра, която ти помага да научиш Git",
                             Title = "Git игра",
                             UsefulUrl = "https://learngitbranching.js.org/?locale=en_US",
@@ -3313,7 +3308,7 @@ namespace PreparationForITExam.Infrastructure.Migrations
                             Description = "Имах затруднения да разбера Git технологията, но с помощта на тази игра бързо осъвършенствах функциите и начина на използване.",
                             IsActive = true,
                             IsItQuestion = false,
-                            PostedOn = new DateTime(2024, 3, 25, 13, 10, 11, 718, DateTimeKind.Local).AddTicks(7547),
+                            PostedOn = new DateTime(2024, 4, 16, 13, 12, 7, 621, DateTimeKind.Local).AddTicks(6163),
                             ShortDescription = "Попаднах на страхотна игра, която ти помага да научиш Git",
                             Title = "Git игра",
                             UsefulUrl = "https://learngitbranching.js.org/?locale=en_US",
@@ -3325,7 +3320,7 @@ namespace PreparationForITExam.Infrastructure.Migrations
                             Description = "Имах затруднения да разбера Git технологията, но с помощта на тази игра бързо осъвършенствах функциите и начина на използване.",
                             IsActive = true,
                             IsItQuestion = false,
-                            PostedOn = new DateTime(2024, 3, 25, 13, 10, 11, 718, DateTimeKind.Local).AddTicks(7550),
+                            PostedOn = new DateTime(2024, 4, 16, 13, 12, 7, 621, DateTimeKind.Local).AddTicks(6166),
                             ShortDescription = "Попаднах на страхотна игра, която ти помага да научиш Git",
                             Title = "Git игра",
                             UsefulUrl = "https://learngitbranching.js.org/?locale=en_US",
@@ -3337,7 +3332,7 @@ namespace PreparationForITExam.Infrastructure.Migrations
                             Description = "Имах затруднения да разбера Git технологията, но с помощта на тази игра бързо осъвършенствах функциите и начина на използване.",
                             IsActive = true,
                             IsItQuestion = false,
-                            PostedOn = new DateTime(2024, 3, 25, 13, 10, 11, 718, DateTimeKind.Local).AddTicks(7558),
+                            PostedOn = new DateTime(2024, 4, 16, 13, 12, 7, 621, DateTimeKind.Local).AddTicks(6170),
                             ShortDescription = "Попаднах на страхотна игра, която ти помага да научиш Git",
                             Title = "Git игра",
                             UsefulUrl = "https://learngitbranching.js.org/?locale=en_US",
@@ -3349,7 +3344,7 @@ namespace PreparationForITExam.Infrastructure.Migrations
                             Description = "Имах затруднения да разбера Git технологията, но с помощта на тази игра бързо осъвършенствах функциите и начина на използване.",
                             IsActive = true,
                             IsItQuestion = false,
-                            PostedOn = new DateTime(2024, 3, 25, 13, 10, 11, 718, DateTimeKind.Local).AddTicks(7562),
+                            PostedOn = new DateTime(2024, 4, 16, 13, 12, 7, 621, DateTimeKind.Local).AddTicks(6173),
                             ShortDescription = "Попаднах на страхотна игра, която ти помага да научиш Git",
                             Title = "Git игра",
                             UsefulUrl = "https://learngitbranching.js.org/?locale=en_US",
@@ -3361,7 +3356,7 @@ namespace PreparationForITExam.Infrastructure.Migrations
                             Description = "Имах затруднения да разбера Git технологията, но с помощта на тази игра бързо осъвършенствах функциите и начина на използване.",
                             IsActive = true,
                             IsItQuestion = false,
-                            PostedOn = new DateTime(2024, 3, 25, 13, 10, 11, 718, DateTimeKind.Local).AddTicks(7566),
+                            PostedOn = new DateTime(2024, 4, 16, 13, 12, 7, 621, DateTimeKind.Local).AddTicks(6176),
                             ShortDescription = "Попаднах на страхотна игра, която ти помага да научиш Git",
                             Title = "Git игра",
                             UsefulUrl = "https://learngitbranching.js.org/?locale=en_US",
@@ -3373,7 +3368,7 @@ namespace PreparationForITExam.Infrastructure.Migrations
                             Description = "Имах затруднения да разбера Git технологията, но с помощта на тази игра бързо осъвършенствах функциите и начина на използване.",
                             IsActive = true,
                             IsItQuestion = false,
-                            PostedOn = new DateTime(2024, 3, 25, 13, 10, 11, 718, DateTimeKind.Local).AddTicks(7569),
+                            PostedOn = new DateTime(2024, 4, 16, 13, 12, 7, 621, DateTimeKind.Local).AddTicks(6179),
                             ShortDescription = "Попаднах на страхотна игра, която ти помага да научиш Git",
                             Title = "Git игра",
                             UsefulUrl = "https://learngitbranching.js.org/?locale=en_US",
@@ -3385,7 +3380,7 @@ namespace PreparationForITExam.Infrastructure.Migrations
                             Description = "Имах затруднения да разбера Git технологията, но с помощта на тази игра бързо осъвършенствах функциите и начина на използване.",
                             IsActive = true,
                             IsItQuestion = false,
-                            PostedOn = new DateTime(2024, 3, 25, 13, 10, 11, 718, DateTimeKind.Local).AddTicks(7574),
+                            PostedOn = new DateTime(2024, 4, 16, 13, 12, 7, 621, DateTimeKind.Local).AddTicks(6222),
                             ShortDescription = "Попаднах на страхотна игра, която ти помага да научиш Git",
                             Title = "Git игра",
                             UsefulUrl = "https://learngitbranching.js.org/?locale=en_US",
@@ -3397,7 +3392,7 @@ namespace PreparationForITExam.Infrastructure.Migrations
                             Description = "Имах затруднения да разбера Git технологията, но с помощта на тази игра бързо осъвършенствах функциите и начина на използване.",
                             IsActive = true,
                             IsItQuestion = false,
-                            PostedOn = new DateTime(2024, 3, 25, 13, 10, 11, 718, DateTimeKind.Local).AddTicks(7577),
+                            PostedOn = new DateTime(2024, 4, 16, 13, 12, 7, 621, DateTimeKind.Local).AddTicks(6226),
                             ShortDescription = "Попаднах на страхотна игра, която ти помага да научиш Git",
                             Title = "Git игра",
                             UsefulUrl = "https://learngitbranching.js.org/?locale=en_US",
@@ -3409,7 +3404,7 @@ namespace PreparationForITExam.Infrastructure.Migrations
                             Description = "Имах затруднения да разбера Git технологията, но с помощта на тази игра бързо осъвършенствах функциите и начина на използване.",
                             IsActive = true,
                             IsItQuestion = false,
-                            PostedOn = new DateTime(2024, 3, 25, 13, 10, 11, 718, DateTimeKind.Local).AddTicks(7581),
+                            PostedOn = new DateTime(2024, 4, 16, 13, 12, 7, 621, DateTimeKind.Local).AddTicks(6229),
                             ShortDescription = "Попаднах на страхотна игра, която ти помага да научиш Git",
                             Title = "Git игра",
                             UsefulUrl = "https://learngitbranching.js.org/?locale=en_US",
@@ -3421,7 +3416,7 @@ namespace PreparationForITExam.Infrastructure.Migrations
                             Description = "Имах затруднения да разбера Git технологията, но с помощта на тази игра бързо осъвършенствах функциите и начина на използване.",
                             IsActive = true,
                             IsItQuestion = false,
-                            PostedOn = new DateTime(2024, 3, 25, 13, 10, 11, 718, DateTimeKind.Local).AddTicks(7584),
+                            PostedOn = new DateTime(2024, 4, 16, 13, 12, 7, 621, DateTimeKind.Local).AddTicks(6232),
                             ShortDescription = "Попаднах на страхотна игра, която ти помага да научиш Git",
                             Title = "Git игра",
                             UsefulUrl = "https://learngitbranching.js.org/?locale=en_US",
@@ -3433,7 +3428,7 @@ namespace PreparationForITExam.Infrastructure.Migrations
                             Description = "Имах затруднения да разбера Git технологията, но с помощта на тази игра бързо осъвършенствах функциите и начина на използване.",
                             IsActive = true,
                             IsItQuestion = false,
-                            PostedOn = new DateTime(2024, 3, 25, 13, 10, 11, 718, DateTimeKind.Local).AddTicks(7588),
+                            PostedOn = new DateTime(2024, 4, 16, 13, 12, 7, 621, DateTimeKind.Local).AddTicks(6235),
                             ShortDescription = "Попаднах на страхотна игра, която ти помага да научиш Git",
                             Title = "Git игра",
                             UsefulUrl = "https://learngitbranching.js.org/?locale=en_US",
@@ -3445,7 +3440,7 @@ namespace PreparationForITExam.Infrastructure.Migrations
                             Description = "Имах затруднения да разбера Git технологията, но с помощта на тази игра бързо осъвършенствах функциите и начина на използване.",
                             IsActive = true,
                             IsItQuestion = false,
-                            PostedOn = new DateTime(2024, 3, 25, 13, 10, 11, 718, DateTimeKind.Local).AddTicks(7591),
+                            PostedOn = new DateTime(2024, 4, 16, 13, 12, 7, 621, DateTimeKind.Local).AddTicks(6238),
                             ShortDescription = "Попаднах на страхотна игра, която ти помага да научиш Git",
                             Title = "Git игра",
                             UsefulUrl = "https://learngitbranching.js.org/?locale=en_US",
@@ -3457,7 +3452,7 @@ namespace PreparationForITExam.Infrastructure.Migrations
                             Description = "Имах затруднения да разбера Git технологията, но с помощта на тази игра бързо осъвършенствах функциите и начина на използване.",
                             IsActive = true,
                             IsItQuestion = false,
-                            PostedOn = new DateTime(2024, 3, 25, 13, 10, 11, 718, DateTimeKind.Local).AddTicks(7595),
+                            PostedOn = new DateTime(2024, 4, 16, 13, 12, 7, 621, DateTimeKind.Local).AddTicks(6241),
                             ShortDescription = "Попаднах на страхотна игра, която ти помага да научиш Git",
                             Title = "Git игра",
                             UsefulUrl = "https://learngitbranching.js.org/?locale=en_US",
@@ -3469,7 +3464,7 @@ namespace PreparationForITExam.Infrastructure.Migrations
                             Description = "Имах затруднения да разбера Git технологията, но с помощта на тази игра бързо осъвършенствах функциите и начина на използване.",
                             IsActive = true,
                             IsItQuestion = false,
-                            PostedOn = new DateTime(2024, 3, 25, 13, 10, 11, 718, DateTimeKind.Local).AddTicks(7598),
+                            PostedOn = new DateTime(2024, 4, 16, 13, 12, 7, 621, DateTimeKind.Local).AddTicks(6244),
                             ShortDescription = "Попаднах на страхотна игра, която ти помага да научиш Git",
                             Title = "Git игра",
                             UsefulUrl = "https://learngitbranching.js.org/?locale=en_US",
@@ -3481,7 +3476,7 @@ namespace PreparationForITExam.Infrastructure.Migrations
                             Description = "Имах затруднения да разбера Git технологията, но с помощта на тази игра бързо осъвършенствах функциите и начина на използване.",
                             IsActive = true,
                             IsItQuestion = false,
-                            PostedOn = new DateTime(2024, 3, 25, 13, 10, 11, 718, DateTimeKind.Local).AddTicks(7657),
+                            PostedOn = new DateTime(2024, 4, 16, 13, 12, 7, 621, DateTimeKind.Local).AddTicks(6249),
                             ShortDescription = "Попаднах на страхотна игра, която ти помага да научиш Git",
                             Title = "Git игра",
                             UsefulUrl = "https://learngitbranching.js.org/?locale=en_US",
@@ -9058,18 +9053,11 @@ namespace PreparationForITExam.Infrastructure.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
 
-                    b.Property<int>("Grade")
-                        .HasColumnType("int");
-
                     b.Property<bool>("IsActive")
                         .HasColumnType("bit");
 
                     b.Property<int>("SchoolId")
                         .HasColumnType("int");
-
-                    b.Property<string>("Speciality")
-                        .HasMaxLength(40)
-                        .HasColumnType("nvarchar(40)");
 
                     b.Property<string>("UserId")
                         .IsRequired()
@@ -9087,10 +9075,8 @@ namespace PreparationForITExam.Infrastructure.Migrations
                         new
                         {
                             Id = 1,
-                            Grade = 12,
                             IsActive = true,
                             SchoolId = 152,
-                            Speciality = "Приложен програмист",
                             UserId = "023bafc9-8b7e-4fbd-bb06-2b178fe8ae8b"
                         });
                 });
@@ -9163,9 +9149,6 @@ namespace PreparationForITExam.Infrastructure.Migrations
 
                     b.Property<string>("ConcurrencyStamp")
                         .IsConcurrencyToken()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("ConnectionId")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<DateTime>("CreatedOn")
@@ -9252,8 +9235,8 @@ namespace PreparationForITExam.Infrastructure.Migrations
                             AboutMe = "Разработвам това приложение, за да участвам в олимпиада по информационни технологии. Темата си избрах след първата матура по Информатика. Моите учители и приятели, които се явиха на това ДЗИ, имаха проблем с намирането на полезни материали и информация за самата матура. Това приложение се надявам, че би олеснило подготовката, защото хора с еднакви интереси и задачи могат да комуникират и обменят знания. Също така, учители могат да предадат знанията си на ученици, които наистина имат желание да се научат и полагат усилия.",
                             AccessFailedCount = 0,
                             City = "Казанлък",
-                            ConcurrencyStamp = "26267169-65df-4cbd-8a2b-15d283f4f0df",
-                            CreatedOn = new DateTime(2024, 3, 25, 11, 10, 11, 649, DateTimeKind.Utc).AddTicks(5500),
+                            ConcurrencyStamp = "0c7ddd6c-3f17-435b-a5fb-7773903c9dc2",
+                            CreatedOn = new DateTime(2024, 4, 16, 10, 12, 7, 615, DateTimeKind.Utc).AddTicks(196),
                             Email = "admin@gmail.com",
                             EmailConfirmed = false,
                             FirstName = "Креса",
@@ -9262,12 +9245,12 @@ namespace PreparationForITExam.Infrastructure.Migrations
                             LockoutEnabled = false,
                             NormalizedEmail = "ADMIN@GMAIL.COM",
                             NormalizedUserName = "ADMIN@GMAIL.COM",
-                            PasswordHash = "AQAAAAEAACcQAAAAEAkPvGWwrM+Fc7kF9M1OmnTjlh0cCADQq7v/tI2AcB8/KtaRBYaKfSfweKWVFy4ESQ==",
+                            PasswordHash = "AQAAAAEAACcQAAAAEOZCddvZmfTQkHrc0AXJz4IuTzFv+5ZSMyhjFG7uYR+9qAeHZQuVGLLGiOFNA/68CA==",
                             PhoneNumber = "0886121260",
                             PhoneNumberConfirmed = false,
                             ProfilePictureUrl = "https://res.cloudinary.com/dmv8nabul/image/upload/v1707334401/kresa_bkbaoa.jpg",
                             RoleName = "Administrator",
-                            SecurityStamp = "c53a0ba8-7c12-4f21-9a54-c104b119870d",
+                            SecurityStamp = "a937e8c0-30cf-4af8-8f4f-421883d93a79",
                             TwoFactorEnabled = false,
                             UserName = "admin@gmail.com"
                         },
@@ -9277,8 +9260,8 @@ namespace PreparationForITExam.Infrastructure.Migrations
                             AboutMe = "Работя в МОН от 5 години. Преподавам по Информатика в частна школа. Програмирането е моята страст. Обичам фо повече от приятелката ми.",
                             AccessFailedCount = 0,
                             City = "Кърджали",
-                            ConcurrencyStamp = "64932fae-6872-4304-8fce-f42c0a9beb42",
-                            CreatedOn = new DateTime(2024, 3, 25, 11, 10, 11, 653, DateTimeKind.Utc).AddTicks(3725),
+                            ConcurrencyStamp = "c71dc72a-5112-4fb7-b00c-d807dbfdd32a",
+                            CreatedOn = new DateTime(2024, 4, 16, 10, 12, 7, 616, DateTimeKind.Utc).AddTicks(1826),
                             Email = "monuser@gmail.com",
                             EmailConfirmed = false,
                             FirstName = "Валентин",
@@ -9287,12 +9270,12 @@ namespace PreparationForITExam.Infrastructure.Migrations
                             LockoutEnabled = false,
                             NormalizedEmail = "MONUSER@GMAIL.COM",
                             NormalizedUserName = "MONUSER@GMAIL.COM",
-                            PasswordHash = "AQAAAAEAACcQAAAAEBxGdmz6BOJSyC3s9xfHGgcwDWm3GeE1oVRhHB9/a3VoKCkAMNWksEc/MivpxzYyWA==",
+                            PasswordHash = "AQAAAAEAACcQAAAAEHpymRgZnkRFn36J+putBBP/Z0AmDU9Cyqf9DnqKkJz5zw/FfwBWgh85wDq0A3v/pw==",
                             PhoneNumber = "0886121261",
                             PhoneNumberConfirmed = false,
                             ProfilePictureUrl = "https://res.cloudinary.com/dmv8nabul/image/upload/v1707334408/valentin_u5en92.jpg",
                             RoleName = "MonUser",
-                            SecurityStamp = "6918c225-e26c-4128-a3b0-59c001510543",
+                            SecurityStamp = "0c9efb68-360a-44f3-8d23-8963df6fad86",
                             TwoFactorEnabled = false,
                             UserName = "monuser@gmail.com"
                         },
@@ -9302,8 +9285,8 @@ namespace PreparationForITExam.Infrastructure.Migrations
                             AboutMe = "Занимавам се с програмиране от 3 години. Интересувам се от кибер сигурност, а именно и това искам да уча след като завърша.",
                             AccessFailedCount = 0,
                             City = "Миделбург",
-                            ConcurrencyStamp = "64ed22da-55e7-4f02-9b58-b1b7f99a40f1",
-                            CreatedOn = new DateTime(2024, 3, 25, 11, 10, 11, 654, DateTimeKind.Utc).AddTicks(7707),
+                            ConcurrencyStamp = "f800b3c8-e250-45f1-9b34-3b72b4e50c9a",
+                            CreatedOn = new DateTime(2024, 4, 16, 10, 12, 7, 617, DateTimeKind.Utc).AddTicks(4209),
                             Email = "student@gmail.com",
                             EmailConfirmed = false,
                             FirstName = "Никол",
@@ -9312,12 +9295,12 @@ namespace PreparationForITExam.Infrastructure.Migrations
                             LockoutEnabled = false,
                             NormalizedEmail = "STUDENT@GMAIL.COM",
                             NormalizedUserName = "STUDENT@GMAIL.COM",
-                            PasswordHash = "AQAAAAEAACcQAAAAENjiL8WKObegamjIK+W74s8v1G/60v8dAHlHcsEq8UxmLPifLSHPqfpj6RuQ/+seLA==",
+                            PasswordHash = "AQAAAAEAACcQAAAAEKpDqhE9Cq9hP+bobHP2vwU8RmXglRKMMwcgnHaxm02dD3bPJDRoujDeXTSrwHAHnA==",
                             PhoneNumber = "0886121262",
                             PhoneNumberConfirmed = false,
                             ProfilePictureUrl = "https://res.cloudinary.com/dmv8nabul/image/upload/v1707334404/nikol_prlrcl.jpg",
                             RoleName = "Student",
-                            SecurityStamp = "cac8c8a0-aa24-47d5-a0c3-80c25308d2c2",
+                            SecurityStamp = "f57396dd-d904-46cf-a8f8-ef552ff638c7",
                             TwoFactorEnabled = false,
                             UserName = "student@gmail.com"
                         },
@@ -9327,8 +9310,8 @@ namespace PreparationForITExam.Infrastructure.Migrations
                             AboutMe = "Учителка съм от 12 години. Избрах тази професия, защото работата с деца е моята страст. В работата си опитвам да предам знанията си колкото повече мога. Мой интерес е работата с ASP.NET.",
                             AccessFailedCount = 0,
                             City = "София",
-                            ConcurrencyStamp = "59bb6bfd-0935-4cf8-9b9b-63ce54d97352",
-                            CreatedOn = new DateTime(2024, 3, 25, 11, 10, 11, 656, DateTimeKind.Utc).AddTicks(1242),
+                            ConcurrencyStamp = "ced65bdf-0629-4c82-b4ae-22dc4f0d07e2",
+                            CreatedOn = new DateTime(2024, 4, 16, 10, 12, 7, 619, DateTimeKind.Utc).AddTicks(4816),
                             Email = "teacher@gmail.com",
                             EmailConfirmed = false,
                             FirstName = "Ивета",
@@ -9337,12 +9320,12 @@ namespace PreparationForITExam.Infrastructure.Migrations
                             LockoutEnabled = false,
                             NormalizedEmail = "TEACHER@GMAIL.COM",
                             NormalizedUserName = "TEACHER@GMAIL.COM",
-                            PasswordHash = "AQAAAAEAACcQAAAAECTzbX08CPnWmZSvUc5BdeHWFK5rQqdNUVQVHEMd/FF/HFXjKxfITSPZFjp9k0+3Bw==",
+                            PasswordHash = "AQAAAAEAACcQAAAAEGHuGkjQQ558GryMQ87OwpXKv23xKGPTkejFcrTGHQIx8GAWZpLiki6lWevzpBDveg==",
                             PhoneNumber = "0886121262",
                             PhoneNumberConfirmed = false,
                             ProfilePictureUrl = "https://res.cloudinary.com/dmv8nabul/image/upload/v1707334395/iveta_rknyn3.jpg",
                             RoleName = "Teacher",
-                            SecurityStamp = "0c0d9669-4302-4c29-81eb-f775ff4b87cc",
+                            SecurityStamp = "0506c6bc-ded2-4c02-b3a1-1001a9a53026",
                             TwoFactorEnabled = false,
                             UserName = "teacher@gmail.com"
                         });
@@ -9592,13 +9575,6 @@ namespace PreparationForITExam.Infrastructure.Migrations
                     b.Navigation("MonUser");
                 });
 
-            modelBuilder.Entity("PreparationForITExam.Infrastructure.Data.Entities.Message", b =>
-                {
-                    b.HasOne("PreparationForITExam.Infrastructure.Data.Entities.User", null)
-                        .WithMany("Messages")
-                        .HasForeignKey("UserId");
-                });
-
             modelBuilder.Entity("PreparationForITExam.Infrastructure.Data.Entities.MonUser", b =>
                 {
                     b.HasOne("PreparationForITExam.Infrastructure.Data.Entities.User", "User")
@@ -9808,8 +9784,6 @@ namespace PreparationForITExam.Infrastructure.Migrations
             modelBuilder.Entity("PreparationForITExam.Infrastructure.Data.Entities.User", b =>
                 {
                     b.Navigation("Materials");
-
-                    b.Navigation("Messages");
 
                     b.Navigation("Posts");
 

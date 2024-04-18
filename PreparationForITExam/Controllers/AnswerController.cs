@@ -21,12 +21,6 @@ namespace PreparationForITExam.Controllers
         }
 
         [HttpGet]
-        public IActionResult GetAllAnswers()
-        {
-            return View();
-        }
-
-        [HttpGet]
         public async Task<IActionResult> SentMaterialToStudent(int id)
         {
             var userId = await materialService.GetUserIdByMaterialId(id, true);

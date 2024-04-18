@@ -26,6 +26,7 @@ namespace PreparationForITExam.Controllers
             return View(model);
         }
 
+
         [HttpPost]
         public async Task<IActionResult> Add(NewsFormViewModel model)
         {
