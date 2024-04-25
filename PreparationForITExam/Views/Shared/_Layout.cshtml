@@ -90,6 +90,7 @@
                             <li><a asp-controller="Home" asp-area="" asp-action="Contacts"><b>контакти</b></a></li>
                             @if (this.User?.Identity != null && this.User.Identity.IsAuthenticated)
                             {
+                                <li><a asp-controller="Test" asp-area="" asp-action="Index"><b>тестове</b></a></li>
                                 <li><a asp-controller="Profile" asp-area="" asp-action="Index" asp-route-id="@User.Id()"><b>профил</b></a></li>
                             }
 
@@ -138,6 +139,7 @@
                             <li><a asp-controller="Home" asp-area="" asp-action="Contacts"><b>контакти</b></a></li>
                             @if (this.User?.Identity != null && this.User.Identity.IsAuthenticated)
                             {
+                                <li><a asp-controller="Test" asp-area="" asp-action="Index"><b>тестове</b></a></li>
                                 <li><a asp-controller="Profile" asp-area="" asp-action="Index" asp-route-id="@User.Id()"><b>профил</b></a></li>
                             }
                         </ul><!--/.nav -->

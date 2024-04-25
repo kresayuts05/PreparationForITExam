@@ -1,0 +1,59 @@
+﻿@model TestViewModel
+@{
+    int i = 1;
+    int val = 0;
+}
+<link rel="stylesheet" href="~/css/test.css" asp-append-version="true" />
+
+<section style="background:#d8d7fb;">
+    <div id="main">
+        <!-- open main div -->
+        <div id="header">
+            <!-- open header div -->
+            <h1 id="demo"></h1>
+        </div><!-- close header div -->
+
+        <h1 style="padding-left: 45%;padding-top: 1em;" >
+            Test
+        </h1>
+        <form id="form1" method="post" asp-controller="Test" asp-action="Test">
+
+            @foreach (var question in Model.Questions)
+            {
+                <h2 style=" text-transform:none!important;">@i. @question.Description</h2>
+                @if (question.Image != null)
+                {
+                    <div>
+                        <img src="@question.Image" class="img-responsive thumbnail" style=" width: auto;max-height: 43em;max-width: 81em;" />
+                    </div>
+                }
+
+                    @foreach (var a in question.Answers)
+                    {
+                        @if (a == question.RightAnswer)
+                        {
+                            val = 1;
+                        }
+
+                        <label for="var_string"><input type="radio" name="@i" value="@val" id="var_string" />@a</label>
+                        val = 0;
+                    }
+
+                i++;
+            }
+
+            <input asp-for="Score" id="score" type="hidden" />
+            <input id="index" value="@i" type="hidden" />
+
+            <div style="margin-top: 2em;">
+                <button type="submit" class="btn-success" value="Submit" id="submitBtn">Submit</button>
+                <button asp-controller="Test" asp-action="Test" type="submit" id="exitBtn" class="btn btn-danger st">Изход</button>
+            </div>
+        </form>
+
+        <p>Резултат: <span id="grade">__</span></p>
+    </div><!-- close main div -->
+</section>
+
+<script src="~/js/test.js">
+</script>

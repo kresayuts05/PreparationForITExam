@@ -1,0 +1,62 @@
+﻿@model TestViewModel
+@{
+}
+
+
+<section>
+
+    <div class="container">
+        <div class="section-header">
+            <h2>Тестова Система</h2>
+            @if (User.IsInRole("Student"))
+            {
+                <p>
+                    БлицКод-ДЗИ Ви предоставя възможността да тествате своите знания чрез нашата тестова система.
+                    Чрез кликане на бутона <i><b>Генерирай Тест</b></i>, пред Вас ще се отвори случайно генерирант тест,
+                    който е във формат на профилираната матура по информатика. Всеки път когато решавате тест, той ще бъде различен, а по този начин подфотовкатата Ви ще бъде по-ефикасна.
+                    Не чакайте! Започнете сега!
+                    УСПЕХ!
+                </p>
+            }
+            else
+            {
+                <p>
+                    БлицКод-ДЗИ Ви предоставя възможността на учениците да тестват знанията си. Помогнете на всички ученици в БлицКод-ДЗИ,
+                    като добавите въпрос в базата ни от въпроси за тестове. По този начит въпросите ще бъдат разнообарзни и подфотовката
+                    ще бъде още по-ефикасна.
+                    УСПЕХ!
+                </p>
+            }
+
+            <br>
+            <br>
+            <br>
+            <div class="btn-group" role="group">
+                @if (User.IsInRole("Student"))
+                {
+                    <a class="btn welcome-hero-btn" asp-controller="Test" asp-action="Test">
+                        Генерирай Тест
+                    </a>
+                }
+                else
+                {
+                    <a style="background:#3D445F!important" class="btn welcome-hero-btn" asp-controller="Question" asp-action="Add">
+                        Добави Въпрос
+                    </a>
+                    <a class="btn welcome-hero-btn" asp-controller="Test" asp-action="Test">
+                        Генерирай Тест
+                    </a>
+                }
+            </div>
+        </div>
+        <br>
+        <br>
+        <br>
+        <br>
+
+
+        <partial name="_TestScoresPartial" model="@Model" />
+    </div>
+</section>
+
+<script src="/js/admin.js"></script>

@@ -139,5 +139,25 @@ namespace PreparationForITExam.Core.Services
 
             return images;
         }
+
+        public async Task<string> UploadImageQuestion(IFormFile imageFile, string nameFolder, int questionId)
+        {
+            using var stream = imageFile.OpenReadStream();
+
+            var uploadParams = new ImageUploadParams()
+            {
+                File = new FileDescription("questionImage",stream),
+                Folder = nameFolder,
+            };
+
+            var result = await this.cloudinary.UploadAsync(uploadParams);
+
+            if (result.Error != null)
+            {
+                throw new InvalidOperationException(result.Error.Message);
+            }
+
+            return result.Url.ToString();
+        }
     }
 }

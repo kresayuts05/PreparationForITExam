@@ -25,6 +25,11 @@ namespace Microsoft.Extensions.DependencyInjection
             services.AddScoped<IPostService, PostService>();
             services.AddScoped<ICommentService, CommentService>();
             services.AddScoped<IAnswerService, AnswerService>();
+            services.AddScoped<ITestService, TestService>();
+            services.AddScoped<IQuestionService, QuestionService>();
+            services.AddScoped<IQuestionCategoryService, QuestionCategoryService>();
+            services.AddScoped<IQuestionAnswerService, QuestionAnswerService>();
+            services.AddScoped<ITestScoreService, TestScoreService>();
 
             return services;
         }

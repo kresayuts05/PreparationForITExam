@@ -2960,7 +2960,7 @@ textarea.form-control-lg {
 .form-check-inline .form-check-input ~ .invalid-feedback {
     margin-left: 0.5em
 }
-
+/*
 .btn {
     display: inline-block;
     font-weight: 400;
@@ -2983,16 +2983,16 @@ textarea.form-control-lg {
     -o-transition: color 0.15s ease-in-out,background-color 0.15s ease-in-out,border-color 0.15s ease-in-out,box-shadow 0.15s ease-in-out;
     transition: color 0.15s ease-in-out,background-color 0.15s ease-in-out,border-color 0.15s ease-in-out,box-shadow 0.15s ease-in-out;
     transition: color 0.15s ease-in-out,background-color 0.15s ease-in-out,border-color 0.15s ease-in-out,box-shadow 0.15s ease-in-out,-webkit-box-shadow 0.15s ease-in-out
-}
-
+}*/
+/*
 @media (prefers-reduced-motion:reduce) {
     .btn {
         -webkit-transition: none;
         -o-transition: none;
         transition: none
     }
-}
-
+}*/
+/*
 .btn:hover {
     color: #3e5569
 }
@@ -3001,7 +3001,7 @@ textarea.form-control-lg {
     outline: 0;
     -webkit-box-shadow: transparent;
     box-shadow: transparent
-}
+}*/
 
 .btn.disabled, .btn:disabled, fieldset:disabled .btn {
     pointer-events: none;

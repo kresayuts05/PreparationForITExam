@@ -60,5 +60,11 @@ namespace PreparationForITExam.Infrastructure.Data.Entities
 
         //Property that is collection of all reviews the user has made. Connection many to one
         public ICollection<Review> Reviews { get; set; } = new HashSet<Review>();
+
+        //Property that is collection of all questions the user has made. Connection one to many
+        public ICollection<Question> Questions { get; set; } = new HashSet<Question>();
+
+        //Property that is collection of all test scores the user has. Connection many to one
+        public ICollection<TestScore> TestScores { get; set; } = new HashSet<TestScore>();
     }
 }

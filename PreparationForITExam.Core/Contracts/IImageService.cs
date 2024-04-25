@@ -12,6 +12,7 @@ namespace PreparationForITExam.Core.Contracts
     {
         Task<Image> UploadImage(IFormFile imageFile, string nameFolder, int postId);
         Task<List<ImageComment>> UploadImagesComment(List<IFormFile> imagesFiles, string nameFolder, int commentId);
+        Task<string> UploadImageQuestion(IFormFile imageFile, string nameFolder, int questionId);
 
         Task<string> UploadImage(IFormFile imageFile, string nameFolder, User user);
 

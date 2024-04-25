@@ -50,6 +50,10 @@ namespace PreparationForITExam.Infrastructure.Data
         public DbSet<LessonMonUser> LessonMonUser { get; set; }
         public DbSet<Message> Messages { get; set; }
         public DbSet<Answer> Answers { get; set; }
+        public DbSet<Question> Questions { get; set; }
+        public DbSet<QuestionAnswer> QuestionAnswers { get; set; }
+        public DbSet<QuestionCategory> QuestionCategories { get; set; }
+        public DbSet<TestScore> TestScores { get; set; }
 
 
         protected override void OnModelCreating(ModelBuilder builder)
@@ -69,13 +73,12 @@ namespace PreparationForITExam.Infrastructure.Data
              .WithOne()
              .OnDelete(DeleteBehavior.Restrict);
 
-
             builder.Entity<LessonMonUser>()
                .HasKey(pk => new { pk.LessonId, pk.MonUserId });
 
 
-            //if (seedDb)
-            //{
+            if (seedDb)
+            {
                 builder.ApplyConfiguration(new RoleConfiguration());
                 builder.ApplyConfiguration(new UserConfiguration());
                 builder.ApplyConfiguration(new MonUserConfiguration());
@@ -91,7 +94,10 @@ namespace PreparationForITExam.Infrastructure.Data
                 builder.ApplyConfiguration(new NewsConfiguration());
                 builder.ApplyConfiguration(new PostConfiguration());
                 builder.ApplyConfiguration(new ImageConfiguration());
-            //}
+                builder.ApplyConfiguration(new QuestionCategoryConfiguration());
+                builder.ApplyConfiguration(new QuestionConfiguration());
+                builder.ApplyConfiguration(new QuestionAnswerConfifuration());
+            }
 
             base.OnModelCreating(builder);
         }
